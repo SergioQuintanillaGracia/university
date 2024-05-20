@@ -12,8 +12,7 @@ public class QueueIntArray {
 
     public void enqueue(int x) {
         if (size == MAX) {
-            System.err.println("Size limit reached");
-            return;
+            throw new IllegalStateException("Queue is full");
         }
 
         last = (last + 1) % MAX;
@@ -21,7 +20,11 @@ public class QueueIntArray {
         size++;
     }
 
-    public int deque() {
+    public int dequeue() {
+        if (size == 0) {
+            throw new IllegalStateException("Queue is empty");
+        }
+
         int x = arr[first];
         first = (first + 1) % MAX;
         size--;
