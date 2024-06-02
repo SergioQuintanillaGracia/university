@@ -203,4 +203,43 @@ public class QueueIntLinked {
             size++;
         }
     }
+
+    public void swapThirds() {
+        // Stores the first 3 elements at first, and then the last
+        // three ones
+        int arr[] = new int[size / 3];
+        NodeInt curr = first;
+        int i = 0;  // Index of the current element
+
+        while (curr != null) {
+            if (i < size / 3) {
+                // The value is in the first third of the queue, store it
+                // in the array
+                arr[i] = curr.data;
+            
+            } else if (i >= size / 3 * 2) {
+                // The value is in the last third of the queue, swap it
+                // by the corresponding one stored in the array
+                int temp = arr[i - size / 3 * 2];
+                arr[i - size / 3 * 2] = curr.data;
+                curr.data = temp;
+            }
+
+            curr = curr.next;
+            i++;
+        }
+
+        // Now, the queue contains in its last third the same elements
+        // as in its first third, and the array contains the original
+        // elements in the last third of the queue
+        // We need to replace the first third of the queue by the
+        // elements in the array
+        curr = first;
+        i = 0;
+
+        while (i < size / 3) {
+            curr.data = arr[i++];
+            curr = curr.next;
+        }
+    }
 }
