@@ -103,6 +103,52 @@ public class QueueIntLinked {
         return merged;
     }
 
+    public void naturalMerge_2(QueueIntLinked other) {
+        NodeInt a = this.first;
+        NodeInt b = other.first;
+        NodeInt cf = null;
+        NodeInt c = null;
+
+        while (a != null && b != null) {
+            if (a.data <= b.data) {
+                if (cf == null) {
+                    cf = c = a;
+                    a = a.next;
+                    c.next = null;
+                } else {
+                    c.next = a;
+                    a = a.next;
+                    c = c.next;
+                    c.next = null;
+                }
+            } else {
+                if (cf == null) {
+                    cf = c = b;
+                    b = b.next;
+                    c.next = null;
+                } else {
+                    c.next = b;
+                    b = b.next;
+                    c = c.next;
+                    c.next = null;
+                }
+            }
+        }
+
+        if (a != null) {
+            c.next = a;
+        
+        } else {
+            c.next = b;
+            this.last = other.last; // This is maybe not needed
+        }
+
+        this.first = cf;
+        this.size = this.size + other.size;
+        other.size = 0;
+        other.first = other.last = null;
+    }
+
     public void mergeSort() {
         if (this.size > 1) {
             QueueIntLinked secondHalf;
@@ -116,6 +162,45 @@ public class QueueIntLinked {
             this.first = merged.first;
             this.last = merged.last;
             this.size = merged.size;
+        }
+    }
+
+    public void splitExam(int x) {
+        NodeInt curr = this.first;
+        NodeInt prev = null;
+
+        while (curr != null) {
+            if (curr.data == x) {
+                curr.data = x / 2;
+                curr.next = new NodeInt(x / 2 + x % 2, curr.next);
+                break;
+            }
+
+            prev = curr;
+            curr = curr.next;
+        }
+
+        if (curr == null) {  // Igual esto hay que arreglarlo
+            last = prev.next;
+        }
+    }
+
+    public void splitJonAnder(int x) {
+        NodeInt n = this.first;
+
+        while (n != null && n.data != x) {
+            n = n.next;
+        }
+
+        if (n != null) {
+            n.next = new NodeInt(x / 2 + x % 2, n.next);
+            n.data = x/2;
+
+            if (n == this.last) {
+                this.last = n.next;
+            }
+
+            size++;
         }
     }
 }

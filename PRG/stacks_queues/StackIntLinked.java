@@ -30,4 +30,25 @@ class StackIntLinked {
     public int size() {
         return this.size;
     }
+
+    public boolean pushMRedundancy20212022(int x, int max) {
+        int counter = 0;
+        NodeInt n = top;
+
+        while (n != null && counter < max) {
+            if (n.data == x) {
+                counter++;
+            }
+
+            n = n.next;
+        }
+
+        if (counter < max) {
+            top = new NodeInt(x, top); // I think this is not wrong, the stack goes in reverse to the queue
+            size++;
+            return true;
+        }
+
+        return false;
+    }
 }
