@@ -62,4 +62,38 @@ public class ExamExercises {
 
         return newS;
     }
+
+    public static StackIntLinked removeNegative(QueueIntLinked q) {
+        StackIntLinked s = new StackIntLinked();
+        int n = q.size();
+        
+        for (int i = 0; i < n; i++) {
+            if (q.first() < 0) {
+                s.push(q.dequeue());
+            } else {
+                q.enqueue(q.dequeue());
+            }
+        }
+
+        return s;
+    }
+
+    public static void prioritize(QueueIntLinked q, int d) {
+        QueueIntLinked aux = new QueueIntLinked();
+        int n = q.size();
+
+        while (n-- > 0) {
+            int val = q.dequeue();
+            
+            if (val == d) {
+                q.enqueue(val);
+            } else {
+                aux.enqueue(val);
+            }
+        }
+
+        while (!aux.isEmpty()) {
+            q.enqueue(aux.dequeue());
+        }
+    }
 }

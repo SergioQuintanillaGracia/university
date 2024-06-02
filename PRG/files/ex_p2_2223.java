@@ -1,7 +1,7 @@
 import java.util.*;
 import java.io.*;
 
-public class ex_p2_2023 {
+public class ex_p2_2223 {
     public static void checkErrors_jonander(String fileIn, String fileErr) throws FileNotFoundException {
         Scanner input = new Scanner(new File(fileIn));
         PrintWriter errors = new PrintWriter(new File(fileErr));

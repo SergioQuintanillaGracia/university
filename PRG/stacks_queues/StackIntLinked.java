@@ -51,4 +51,29 @@ class StackIntLinked {
 
         return false;
     }
+
+    public int pushR(int x) {
+        int count = 0;
+        NodeInt curr = top;
+        boolean added = false;
+
+        while (curr != null) {
+            if (curr.data == x) {
+                count++;
+
+                if (!added) {
+                    curr.next = new NodeInt(x, curr.next);
+                    added = true;
+                }
+            }
+
+            curr = curr.next;
+        }
+        
+        if (!added) {
+            top = new NodeInt(x, top);
+        }
+
+        return count;
+    }
 }
