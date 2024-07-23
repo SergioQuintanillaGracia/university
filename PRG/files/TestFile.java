@@ -2,16 +2,16 @@ import java.io.File;
 
 public class TestFile {
     public static void main(String[] args) {
-        File f = new File("/home/sergio/Repos/University/PRG/files/file.txt");
-        
-        if (f.exists()) {
-            System.out.println("File exists");
-        } else {
-            System.err.println("File doesn't exist");
+        try {
+            test();
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("hi");
         }
+    }
 
-        System.out.println(f.getName());
-        System.out.println(f.getParent());
-        System.out.println(f.length());
+    public static void test() {
+        int arr[] = new int[5];
+
+        arr[10] = 2;
     }
 }

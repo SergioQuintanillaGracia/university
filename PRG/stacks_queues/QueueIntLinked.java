@@ -242,4 +242,117 @@ public class QueueIntLinked {
             curr = curr.next;
         }
     }
+
+    public void removeRepeatedValues() {
+        if (size > 1) {
+            NodeInt prev = first;
+            NodeInt curr = first.next;
+
+            while (curr != null) {
+                if (prev.data == curr.data) {
+                    prev.next = curr.next;
+                    size--;
+                } else {
+                    prev = curr;
+                }
+                curr = curr.next;
+            }
+
+            if (prev.next == null) {
+                last = prev;
+            }
+        }
+    }
+
+    public void addSorted(int d) {
+        if (first == null) {
+            first = last = new NodeInt(d);
+        
+        } else {
+            NodeInt prev = null;
+            NodeInt curr = first;
+
+            while (curr != null && curr.data < d) {
+                prev = curr;
+                curr = curr.next;
+            }
+
+            if (curr == null) {
+                // Insert the element at the end
+                last.next = new NodeInt(d);
+                last = last.next;
+
+            } else if (prev == null) {
+                // Insert the element at the beginning
+                first = new NodeInt(d, first);
+            
+            } else {
+                // Insert the element in the middle
+                prev.next = new NodeInt(d, curr);
+            }
+        }
+
+        size++;
+    }
+
+    public void removeBigThanInOrd(int x) {
+        NodeInt prev = null;
+        NodeInt curr = first;
+
+        while (curr != null && curr.data <= x) {
+            prev = curr;
+            curr = curr.next;
+        }
+
+        if (curr != null) {
+            if (prev == null) {
+                // The first element is greater than x, the queue must be empty
+                first = last = null;
+            } else {
+                last = prev;
+                prev.next = null;
+            }
+        }
+    }
+
+    public void split(int x) {
+        NodeInt curr = first;
+
+        while (curr != null) {
+            if (curr.data == x) {
+                curr.data = x / 2;
+                curr.next = new NodeInt(x / 2 + x % 2, curr.next);
+
+                if (curr.next.next == null) {
+                    last = curr.next;
+                }
+
+                size++;
+                break;
+            }
+
+            curr = curr.next;
+        }
+    }
+
+    public QueueIntLinked splitQueue2() {
+        QueueIntLinked q2 = new QueueIntLinked();
+        NodeInt prev = null;
+        NodeInt curr = first;
+
+        for (int i = 0; i < size / 2; i++) {
+            prev = curr;
+            curr = curr.next;
+        }
+
+        q2.first = curr;
+        q2.last = last;
+        q2.size = size / 2 + size % 2;
+
+        prev.next = null;
+        last = prev;
+        size = size / 2;
+
+        return q2;
+    }
 }

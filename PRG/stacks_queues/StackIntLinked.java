@@ -76,4 +76,21 @@ class StackIntLinked {
 
         return count;
     }
+
+    public StackIntLinked(StackIntLinked s) {
+        this();
+
+        if (!s.isEmpty()) {
+            NodeInt curr = top = new NodeInt(s.top.data);
+            NodeInt pt = s.top.next;
+
+            while (pt != null) {
+                curr.next = new NodeInt(pt.data);
+                curr = curr.next;
+                pt = pt.next;
+            }
+
+            this.size = s.size;
+        }
+    }
 }
