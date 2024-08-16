@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=TimeInstant
+comment0.text=\n\ Class\ TimeInstant.\ \n\ This\ class\ allows\ you\ to\ represent\ instants\ or\ timestamps\ with\ \n\ detail\ of\ hours\ and\ minutes.\ Thus,\ this\ class\ represents\ the\ moment\ \n\ that\ defines\ a\ time\ instant,\ in\ this\ case,\ the\ hours\ and\ minutes\ of\ \n\ any\ given\ day.\n\ \n\ \ @author\ IIP\ \n\ \ @version\ Academic\ Year\ 2023-24\n
+comment1.params=iniHours\ iniMinutes
+comment1.target=TimeInstant(int,\ int)
+comment1.text=\n\ \ Creates\ a\ TimeInstant\ corresponding\ to\ iniHours\ hours\ and\ \n\ iniMinutes\ minutes.\n\ Precondition\:\ 0\ <\=\ iniHours\ <\ 24,\ 0\ <\=\ iniMinutes\ <\ 60\n\n\ @param\ iniHours\ \ \ \ Initial\ value\ for\ hours.\n\ @param\ iniMinutes\ \ Initial\ value\ for\ minutes.\n
+comment2.params=
+comment2.target=int\ toMinutes()
+comment2.text=\ Returns\ number\ of\ minutes\ from\ 00\:00\ until\ current\ TimeInstant\ object\n\ \ @return\ The\ minutes\ from\ 00\:00\n
+comment3.params=
+comment3.target=java.lang.String\ toString()
+comment3.text=\ Returns\ current\ TimeInstant\ object\ in\ "hh\:mm"\ format.\n\ @return\ A\ string\ representation\ of\ the\ current\ object.\n
+comment4.params=
+comment4.target=void\ divideBy2()
+comment4.text=\ updates\ the\ hours\ and\ minutes\ of\ the\ current\ TimeInstant\ (this)\ \n\ dividing\ them\ by\ 2.\ To\ divide\ by\ 2,\ the\ TimeInstant\ is\ converted\ \n\ to\ minutes\ and\ these\ are\ divided\ by\ 2.\ \n\ From\ these\ minutes,\ the\ equivalent\ hours\ and\ minutes\ can\ be\ \n\ obtained\ to\ update\ the\ hours\ and\ minutes\ of\ this.\ \n\ For\ example,\ 13\:10,\ dividing\ the\ hours\ and\ minutes\ by\ 2,\ \n\ would\ be\ 06\:35\ (13\:10\ equals\ 790\ minutes;\ dividing\ by\ 2\ is\ \n\ 395\ minutes,\ which\ corresponds\ to\ 6\ hours\ and\ 35\ minutes).\n
+numComments=5

@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=Test5
+comment0.text=\n\ Class\ {@code\ Test5}\:\ allows\ you\ to\ test\ part\ of\ the\ functionality\ \n\ of\ the\ {@link\ DateTime}\ class,\ in\ whose\ main\ the\ following\ actions\ are\ to\ be\ performed\ \:<br>\n\ a.\ Ask\ the\ user\ to\ enter\ from\ the\ keyboard\ the\ values\ of\ hours,\ minutes,\ \n\ \ \ \ \ day,\ month,\ and\ year.\n\ b.\ If\ the\ data\ does\ not\ correspond\ to\ a\ correct\ time\ and\ date,\ \n\ \ \ \ \ display\ a\ message\ on\ the\ screen.\n\ c.\ If\ they\ are\ correct\:\n\ \ \ \ -\ Create\ a\ DateTime\ dT\ with\ this\ data.\n\ \ \ \ -\ Create\ a\ DateTime\ now\ with\ the\ current\ UTC\ date\ and\ time.\n\ \ \ \ -\ Compare\ dT\ and\ now.\n\ \ \ \ -\ Display\ on\ screen\ if\ dT\ is\ earlier,\ later\ or\ equal\ to\ now.\n\ \ \ \ \n\ @author\ IIP\ \n\ @version\ Academic\ year\ 2023-24\n
+comment1.params=
+comment1.target=Test5()
+comment1.text=No\ objects\ of\ this\ class\ are\ allowed.
+comment2.params=args
+comment2.target=void\ main(java.lang.String[])
+comment2.text=\n\ main\ method.\n\ @param\ args\ array\ of\ {@link\ String}.\n
+numComments=3

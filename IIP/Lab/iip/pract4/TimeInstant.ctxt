@@ -1,0 +1,37 @@
+#BlueJ class context
+comment0.target=TimeInstant
+comment0.text=\n\ Class\ TimeInstant.\ \n\ <p>\ This\ class\ allows\ you\ to\ represent\ instants\ or\ timestamps\ with\ \n\ detail\ of\ hours\ and\ minutes.\ Thus,\ this\ class\ represents\ the\ moment\ \n\ that\ defines\ a\ time\ instant,\ in\ this\ case,\ the\ hours\ and\ minutes\ of\ \n\ any\ given\ day.\n\ </p>\n\ \n\ \ @author\ IIP\ -\ ETSINF\ -\ UPV\ \ \n\ \ @version\ Academic\ Year\ 2023-24\n
+comment1.params=iniHours\ iniMinutes
+comment1.target=TimeInstant(int,\ int)
+comment1.text=\n\ \ <code>TimeInstant</code>\ corresponding\ to\ <code>iniHours</code>\ \n\ \ hours\ and\ <code>iniMinutes</code>\ minutes.\n\ \ <p>\ Precondition\:\ <code>0<\=iniHours<24,\ 0<\=iniMinutes<60\ </code>\ </p>\n
+comment10.params=tInstant
+comment10.target=int\ chronoComparison(TimeInstant)
+comment10.text=\ Chronological\ comparison\ of\ current\ TimeInstant\ object\ \n\ \ and\ <code>tInstant</code>\ parameter.\ Result\ is\:\n\ \ \ \ \ <ul>\n\ \ \ \ \ \ <li>negative\ when\ current\ TimeInstant\ is\ previous\ to\ \n\ \ \ \ \ \ \ \ <code>tInstant</code>\n\ \ \ \ \ \ </li>\n\ \ \ \ \ \ <li>\ zero\ if\ they\ are\ equal\n\ \ \ \ \ \ </li>\n\ \ \ \ \ \ <li>positive\ when\ current\ TimeInstant\ is\ posterior\ to\ \n\ \ \ \ \ \ \ \ <code>tInstant</code>\n\ \ \ \ \ \ </li>\n\ \ \ \ </ul>\n
+comment11.params=str
+comment11.target=TimeInstant\ getTimeInstant(java.lang.String)
+comment11.text=\ Returns\ a\ TimeInstant\ from\ its\ textual\ description\ \n\ \ in\ a\ <code>String</code>\ with\ format\ "<code>hh\:mm</code>".\n
+comment2.params=
+comment2.target=TimeInstant()
+comment2.text=\n\ <code>TimeInstant</code>\ (hours\ and\ minutes)\ from\ current\ \n\ UTC\ (universal\ coordinated\ time).\n
+comment3.params=
+comment3.target=int\ getHours()
+comment3.text=Returns\ hours\ of\ current\ TimeInstant\ object.
+comment4.params=
+comment4.target=int\ getMinutes()
+comment4.text=Returns\ minutes\ of\ current\ TimeInstant\ object.
+comment5.params=newHours
+comment5.target=void\ setHours(int)
+comment5.text=Modifies\ hours\ of\ current\ TimeInstant\ object.
+comment6.params=newMinutes
+comment6.target=void\ setMinutes(int)
+comment6.text=Modifies\ minutes\ of\ current\ TimeInstant\ object.
+comment7.params=
+comment7.target=java.lang.String\ toString()
+comment7.text=Returns\ current\ TimeInstant\ object\ in\ "hh\:mm"\ format.
+comment8.params=o
+comment8.target=boolean\ equals(java.lang.Object)
+comment8.text=\ Returns\ true\ only\ if\ <code>\ o\ </code>\ is\ a\ TimeInstant\ \n\ \ that\ concides\ in\ hours\ and\ minutes\ with\ current\ TimeInstant.\n
+comment9.params=
+comment9.target=int\ minuteDifference()
+comment9.text=\ Returns\ number\ of\ minutes\ from\ \n\ \ 00\:00\ until\ current\ TimeInstant\ object\n
+numComments=12

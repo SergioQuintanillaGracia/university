@@ -1,0 +1,6 @@
+#BlueJ class context
+comment0.target=Hello
+comment0.text=\n\ This\ is\ our\ first\ class\ in\ IIP.\n\ \n\ @author\ Sergio\n\ @version\ beta\n
+comment1.params=args
+comment1.target=void\ main(java.lang.String[])
+numComments=2

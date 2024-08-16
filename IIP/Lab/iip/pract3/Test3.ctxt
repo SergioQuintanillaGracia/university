@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.target=Test3
+comment0.text=\n\ \ Class\ Test3.\n\ \ A\ first\ class\ with\ data\ input\ from\ keyboard,\ \n\ \ and\ use\ of\ operations\ with\ int,\ long,\ Math,\ and\ String.\n\ \ It\ has\ three\ compilation\ errors.\n\ \ @author\ IIP\ \n\ \ @version\ Academic\ Year\ 2023-24\n
+comment1.params=args
+comment1.target=void\ main(java.lang.String[])
+comment2.params=str
+comment2.target=boolean\ isPalindrome(java.lang.String)
+numComments=3

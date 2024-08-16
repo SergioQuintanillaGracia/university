@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=TestIIPMath
+comment0.text=\n\ Write\ a\ description\ of\ class\ TestIIPMath\ here.\n\n\ @author\ (your\ name)\n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment1.params=
+comment1.target=void\ graph()
+comment1.text=Get\ the\ graph\ of\ the\ function\ IIPMath.sin(x)\ on\ the\ interval\ [-20,\ 20].
+numComments=2

@@ -1,0 +1,34 @@
+#BlueJ class context
+comment0.target=Calendar
+comment0.text=\n\ Calendar\ class\:\ data\ type\ class\ representing\ the\ calendar\ of\ a\ venue\ where\ events\ are\ held.\n\n\ @author\ IIP\ -\ Lab\ Activity\ 7\n\ @version\ Academic\ Year\ 2023/24\n
+comment1.params=
+comment1.target=Calendar()
+comment1.text=Default\ constructor\ to\ create\ a\ new\ Calendar\ object\ empty\ (without\ events).
+comment10.params=type
+comment10.target=Event[]\ filterByType(int)
+comment10.text=\ \n\ Method\ that\ returns\ an\ array\ with\ all\ the\ events\ of\ type\ type\ type\ of\ the\ calendar,\ being\ 1\ <\=\ type\ <\=\ 3.\ \n\ The\ size\ of\ the\ returned\ array\ must\ be\ equal\ to\ the\ number\ of\ events\ of\ type\ type,\ \n\ being\ 0\ if\ there\ are\ no\ events\ of\ type\ type\ type.\n\ @param\ type\ int,\ the\ type.\ Precondition\:\ 1\ <\=\ type\ <\=\ 3.\n\ @return\ Event[],\ the\ array.\n
+comment2.params=
+comment2.target=int\ getNumEvents()
+comment2.text=\ \n\ Getter\ Method\ of\ the\ instance\ attribute\ numEvents.\ Return\ the\ total\ number\ of\ events.\n\ \ @return\ int,\ the\ number\ of\ events.\n
+comment3.params=type
+comment3.target=int\ getNumType(int)
+comment3.text=\ \n\ Getter\ Method\ of\ the\ number\ of\ events\ of\ a\ given\ type,\ where\ 1\ <\=\ type\ <\=\ 3.\n\ \ @param\ type\ int,\ the\ type.\ Precondition\:\ 1\ <\=\ type\ <\=\ 3.\n\ \ @return\ int,\ the\ number\ of\ events\ ot\ this\ type.\n
+comment4.params=
+comment4.target=java.lang.String\ toString()
+comment4.text=\ \n\ Method\ toString,\ returns\ the\ String\ representation\ of\ all\ the\ events\ of\ the\ calendar.\n\ \ @return\ String.\n
+comment5.params=inputE
+comment5.target=boolean\ overlaps(Event)
+comment5.text=\ \n\ Method\ that\ returns\ true\ if\ a\ given\ Event\ e\ overlaps\ with\ any\ other\ Event\ \n\ \ in\ the\ current\ calendar.\ Otherwise,\ it\ returns\ false.\n\ @param\ e\ Event,\ the\ event.\n\ @return\ boolean,\ true\ if\ e\ overlaps\ and\ false\ otherwise.\n
+comment6.params=e
+comment6.target=boolean\ add(Event)
+comment6.text=\ \n\ Method\ that,\ if\ a\ given\ Event\ e\ fits\ and\ does\ not\ overlap\ with\ any\ other\n\ \ \ in\ the\ current\ calendar,\ adds\ it\ in\ chronological\ order\ to\ the\ calendar\ and\ returns\ true.\ \n\ \ \ If\ it\ does\ not\ fit\ or\ there\ is\ overlap,\ it\ does\ not\ add\ it\ and\ returns\ false.\n\ @param\ e\ Event,\ event\ to\ be\ added.\ \ \n\ @return\ boolean,\ true\ if\ added\ and\ false\ otherwise.\n
+comment7.params=title
+comment7.target=int\ searchTitle(java.lang.String)
+comment7.text=\ \n\ Method\ that\ returns\ the\ position\ in\ the\ array\ program\ for\ a\ given\ title\ event.\n\ or\ -1\ if\ it\ does\ not\ exist.\n\ @param\ title\ String,\ the\ title.\n\ @return\ int,\ the\ position\ of\ the\ event\ in\ the\ array\ or\ -1\ if\ not\ present.\ \n
+comment8.params=title
+comment8.target=boolean\ delete(java.lang.String)
+comment8.text=\ \n\ Method\ that\ removes\ the\ given\ title\ event\ from\ the\ calendar,\ if\ it\ exists,\ and\ returns\ true.\n\ If\ it\ does\ not\ exist,\ removes\ nothing\ and\ returns\ false.\n\ @param\ title\ String,\ the\ title.\n\ @return\ boolean,\ true\ if\ removed\ and\ false\ otherwise.\ \ \ \ \ *\ @param\ title\ String,\ the\ title.\n\ @return\ int,\ the\ event's\ position\ in\ the\ array,\ or\ -1\ if\ it\ is\ not\ present.\ \n
+comment9.params=
+comment9.target=Event\ eventLarger()
+comment9.text=\ \n\ Method\ that\ returns\ the\ longest\ event\ (with\ the\ longest\ duration)\ in\ the\ calendar.\n\ Precondition\:\ at\ least\ one\ event.\ \n\ @return\ Event,\ the\ event.\n
+numComments=11

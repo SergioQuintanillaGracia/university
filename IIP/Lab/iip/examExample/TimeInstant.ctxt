@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=TimeInstant
+comment0.text=\n\ Clase\ TimeInstant\:\ permite\ representar\ instantes\ o\ marcas\ de\ tiempo\n\ (Timestamp)\ con\ detalle\ de\ horas\ y\ minutos.\ As\u00ED,\ esta\ clase\ representa\ \n\ el\ momento\ que\ define\ un\ instante\ de\ tiempo,\ en\ este\ caso,\ las\ horas\ y\ \n\ los\ minutos\ de\ un\ d\u00EDa\ cualquiera.\n\ \n\ \ @author\ IIP\ \n\ \ @version\ Curso\ 2023-24\n
+comment1.params=iniHours\ iniMinutes
+comment1.target=TimeInstant(int,\ int)
+comment1.text=\n\ \ Crea\ un\ TimeInstant\ con\ el\ valor\ de\ las\ horas\ y\ \n\ \ los\ minutos\ que\ recibe\ como\ argumentos,\ iniHours\ y\ \n\ \ iniMinutes,\ respectivamente.\n\ \ Precondici\u00F3n\:\ 0\ <\=\ iniHours\ <\ 24,\ 0\ <\=\ iniMinutes\ <\ 60.\n
+comment2.params=
+comment2.target=java.lang.String\ toString()
+comment2.text=Devuelve\ el\ TimeInstant\ this\ en\ el\ formato\ "hh\:mm".
+comment3.params=
+comment3.target=int\ toMinutes()
+comment3.text=\ Devuelve\ el\ numero\ de\ minutos\ transcurridos\ desde\ las\ 00\:00\ \n\ \ hasta\ el\ instante\ representado\ por\ el\ TimeInstant\ this.\n
+numComments=4

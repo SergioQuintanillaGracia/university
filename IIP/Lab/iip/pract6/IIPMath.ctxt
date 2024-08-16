@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=IIPMath
+comment0.text=\n\ Write\ a\ description\ of\ class\ IIPMath\ here.\n\n\ @author\ (your\ name)\n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment1.params=x\ epsilon
+comment1.target=double\ sin(double,\ double)
+comment1.text=\ Calculate\ the\ sine\ of\ an\ angle\ x,\ in\ radians,\ *\nwith\ a\ maximum\ error\ epsilon
+comment2.params=x
+comment2.target=double\ sin(double)
+comment3.params=
+comment3.target=void\ table()
+comment3.text=\ Write\ to\ standard\ output,\ line\ by\ line,\ the\ values\ of\n\ Math.sin(x)\ and\ IIPMath.sin(x),\ for\ x\ from\ 0\ to\ 20\ radians.\nDisplay\ the\ difference\ in\ absolute\ value\ between\ these\ values.
+numComments=4

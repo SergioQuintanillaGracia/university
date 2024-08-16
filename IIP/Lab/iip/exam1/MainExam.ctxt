@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=MainExam
+comment0.text=\n\ MainExam\ class\:\ program\ class\ that\ uses\ the\ TimeInstant\ class\ from\ the\ "others"\ package,\ \n\ identical\ to\ your\ TimeInstant\ class\ with\ the\ correct\ divideBy2()\ method.\ \ \n\ \n\ @author\ IIP\n\ @version\ Academic\ Year\ 2023-24\n
+comment1.params=
+comment1.target=MainExam()
+comment1.text=No\ objects\ of\ this\ class\ are\ created.
+comment2.params=args
+comment2.target=void\ main(java.lang.String[])
+numComments=3
