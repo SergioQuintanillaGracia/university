@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.target=SetStringExam
+comment0.text=\n\ Clase\ SetString.\ Implementaci\u00F3n\ de\ un\ conjunto\ de\ String\ mediante\ \n\ una\ secuencia\ enlazada\ ordenada\ lexicogr\u00E1ficamente.\n\n\ @author\ PRG\ -\ Parcial\ 2\n\ @version\ Curso\ 2023/24\n
+comment1.params=
+comment1.target=SetStringExam()
+comment1.text=\n\ Crea\ un\ conjunto\ vac\u00EDo.\n
+comment2.params=s
+comment2.target=void\ add(java.lang.String)
+comment2.text=\n\ Inserta\ s\ en\ el\ conjunto.\n\ Si\ s\ ya\ pertenece\ al\ conjunto,\ el\ conjunto\ no\ cambia.\n\ @param\ s\ String,\ elemento\ que\ se\ inserta\ en\ el\ conjunto.\n
+comment3.params=
+comment3.target=int\ size()
+comment3.text=\n\ Devuelve\ la\ talla\ o\ cardinal\ del\ conjunto.\n\ @return\ la\ talla\ del\ conjunto.\n
+comment4.params=
+comment4.target=java.lang.String\ toString()
+comment4.text=\n\ Devuelve\ el\ listado\ de\ los\ Strings\ en\ el\ conjunto,\ en\ orden\n\ lexicogr\u00E1fico,\ y\ separados\ por\ saltos\ de\ l\u00EDnea.\n\ Si\ el\ conjunto\ es\ vac\u00EDo\ devuelve\ "",\ la\ String\ vac\u00EDa.\n\ @return\ el\ listado\ de\ los\ elementos\ del\ conjunto.\n
+comment5.params=length
+comment5.target=void\ removeLength(int)
+comment5.text=\ Elimina\ del\ conjunto\ todas\ las\ palabras\ de\ una\ longitud\ dada.\ \n\ \ @param\ length\ int,\ longitud\ de\ las\ palabras\ a\ eliminar.\n\ \ Precondici\u00F3n\:\ length\ >\ 0.\n
+numComments=6

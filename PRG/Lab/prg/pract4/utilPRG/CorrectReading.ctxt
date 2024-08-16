@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.target=CorrectReading
+comment0.text=\n\ Class\ CorrectReading.\ Utility\ class\ to\ perform\ validated\ reading\ of\n\ from\ standard\ input.\n\ \n\ @author\ PRG\ -\ ETSINF\ -\ UPV\n\ @version\ Academic\ year\ 2023/24\n
+comment1.params=
+comment1.target=CorrectReading()
+comment1.text=There\ are\ not\ objects\ of\ this\ class.
+comment2.params=keyboard\ message
+comment2.target=int\ nextInt(java.util.Scanner,\ java.lang.String)
+comment2.text=\n\ Reads\ from\ a\ Scanner\ object\ and\ returns\ an\ integer\ value.\ \n\ @param\ keyboard\ Scanner\ object\ for\ reading\ from.\n\ @param\ message\ String\ for\ asking\ to\ the\ user\ for\ the\ value.\n\ @return\ int,\ the\ integer\ value\ user\ entered.\n
+comment3.params=keyboard\ message
+comment3.target=double\ nextDouble(java.util.Scanner,\ java.lang.String)
+comment3.text=\n\ Reads\ from\ a\ Scanner\ object\ and\ returns\ a\ double\ value.\ \n\ @param\ keyboard\ Scanner\ object\ for\ reading\ from.\n\ @param\ message\ String\ for\ asking\ to\ the\ user\ for\ the\ value.\n\ @return\ double,\ the\ double\ value\ user\ entered.\n
+comment4.params=keyboard\ message
+comment4.target=double\ nextDoublePositive(java.util.Scanner,\ java.lang.String)
+comment4.text=\n\ Reads\ from\ a\ Scanner\ object\ and\ returns\ a\ double\ value\ \n\ checking\ that\ it\ is\ >\ 0.\n\ \n\ If\ the\ value\ read\ is\ a\ negative\ real\ number,\ it\ displays\ \n\ \ \ \ \ the\ message\:\ "Please\ type\ a\ correct\ positive\ floating\ point\ value\!\!\ ...\ ");\n\ If\ the\ value\ is\ not\ a\ real\ number,\ the\ method\ will\ display\n\ \ \ \ \ the\ message\:\ "Please\ type\ a\ correct\ floating\ point\ number\!\ ...\ "\ \n\ \n\ The\ reading\ is\ repeated\ until\ it\ is\ correct,\ returning\ the\ \n\ first\ one\ \ that\ is\ >\=\ 0.0.\n\ \n\ @param\ keyboard\ Scanner\ object\ for\ reading\ from.\n\ @param\ message\ String\ for\ asking\ the\ user\ for\ the\ value.\n\ @return\ double,\ a\ non-negative\ double\ value.\n
+comment5.params=keyboard\ message\ lowerBound\ upperBound
+comment5.target=int\ nextInt(java.util.Scanner,\ java.lang.String,\ int,\ int)
+comment5.text=\n\ Reads\ from\ a\ Scanner\ object\ and\ returns\ an\ integer\ value\ \n\ in\ the\ range\ <code>[\ lowerBound\ ..\ upperBound\ ]</code>\ \n\ where\ <code>Integer.MIN_VALUE\ <\=\ lowerBound</code>\ and\ \n\ <code>upperBound\ <\=\ Integer.MAX_VALUE</code>.\n\ \n\ \n\ -\ If\ the\ integer\ read\ is\ out\ of\ range,\ the\ method\ throws\ \n\ an\ exception\ of\ type\ IllegalArgumentException\ with\ \n\ the\ message\:\ "v\ is\ not\ in\ the\ range\ [lowerBound\ ..\ upperBound]"\ \n\ where\ v\ is\ the\ read\ value,\ and\ lowerBoud,\ and\ upperBound\ are\n\ the\ given\ parameters.\n\ \n\ The\ method\ then\ catches\ the\ exception\ and\ displays\ the\ \n\ exception\ message\ along\ with\ the\ text\:\ \n\ \ \ \ \ ".\ Please,\ type\ a\ correct\ value\ inside\ the\ bounds\!...\ "\ \n\ \ \ \ \ \n\ -\ If\ the\ value\ is\ not\ an\ integer,\ the\ method\ displays\ \n\ the\ message\:\ "Please,\ type\ an\ integer\!\ ...\ "\ \n\ \n\ The\ reading\ is\ repeated\ until\ the\ token\ read\ is\ correct\ \n\ and\ returns\ the\ first\ one\ that\ is\ a\ valid\ integer.\n\ \n\ \n\ @param\ keyboard\ Scanner\ object\ for\ reading\ from.\n\ @param\ message\ String\ for\ asking\ to\ the\ user\ for\ the\ value.\n\ @param\ lowerBound\ int\ lower\ bound\ of\ the\ value\ to\ be\ read\ and\ accepted.\n\ @param\ upperBound\ int\ upper\ bound\ of\ the\ value\ to\ be\ read\ and\ accepted.\n\ @return\ int,\ the\ integer\ number\ entered\ by\ the\ user.\n
+numComments=6

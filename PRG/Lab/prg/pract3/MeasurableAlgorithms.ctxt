@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=MeasurableAlgorithms
+comment0.text=\ Class\ MeasurableAlgorithms\:\ class\ with\ the\ methods\ to\ be\ analyzed.\ It\ is\ a\ tool\ class.\n\ \ @author\ PRG\ -\ ETSInf\n\ \ @version\ Curso\ 2023-24\n
+comment1.params=a\ e
+comment1.target=int\ linearSearch(int[],\ int)
+comment1.text=\ Linear\ Search\n\ \ @param\ a\ int[],\ array\ of\ int\n\ \ @param\ e\ int,\ value\ to\ look\ for\n\ \ @return\ int,\ position\ of\ e\ in\ a\ or\ -1\ if\ e\ is\ not\ in\ a\n
+comment2.params=a
+comment2.target=void\ selectionSort(int[])
+comment2.text=\ Selection\ Sort\n\ \ @param\ a\ int[],\ array\ of\ int\n
+comment3.params=a
+comment3.target=void\ insertionSort(int[])
+comment3.text=\ InsertionSort\n\ \ @param\ a\ int[],\ array\ of\ int\n
+numComments=4

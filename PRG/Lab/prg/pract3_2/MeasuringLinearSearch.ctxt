@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=MeasuringLinearSearch
+comment0.text=\ Class\ MeasuringLinearSearch\:\ empirical\ or\ a\ posterior\ analysis\ of\ linear\ search\ algorithm\n\ \ @author\ PRG\ -\ ETSInf\n\ \ @version\ Curso\ 2023-24\n
+comment1.params=size
+comment1.target=int[]\ createArray(int)
+comment2.params=
+comment2.target=void\ measuringLinearSearch()
+comment3.params=args
+comment3.target=void\ main(java.lang.String[])
+numComments=4

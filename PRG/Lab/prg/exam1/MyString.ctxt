@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=MyString
+comment0.text=\n\ Clase\ MyString\:\ Exercise\ Lab\ Practice\ 2\ -\ First\ Mid\ Term\ Exam\ Lab\n\ \n\ @author\ PRG\ \n\ @version\ Academic\ year\ 2021-22\n
+comment1.params=
+comment1.target=MyString()
+comment1.text=Hidden\ constructor,\ there\ are\ no\ objects\ of\ this\ class
+comment2.params=c
+comment2.target=boolean\ isVowel(char)
+comment2.text=\n\ Returns\ true\ if\ char\ c\ is\ a\ vowel\ and\ if\ not,\ it\ returns\ false\ .\n
+comment3.params=s
+comment3.target=java.lang.String\ removeVowels(java.lang.String)
+comment3.text=\n\ Returns\ an\ String\ resulting\ of\ remove\ all\ the\ characters\ of\ \n\ the\ String\ that\ are\ vowels\n
+comment4.params=args
+comment4.target=void\ main(java.lang.String[])
+comment4.text=\n\ \ \ \ You\ can\ use\ this\ main\ method\ to\ test\ some\ Strings\ as\ an\ Example,\ \n\ \ but\ passing\ these\ examples\ does\ not\ guarantee\ the\ maximum\ mark.\n\ \ \ You\ can\ also\ check\ your\ code\ with\ different\ Strings.\ \ \n
+numComments=5

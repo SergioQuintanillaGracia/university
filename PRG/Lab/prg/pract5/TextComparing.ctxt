@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=TextComparing
+comment0.text=\n\ TextComparing\ class.\ Program\ class\ that\ calculates\ the\ union\ \n\ or\ intersection\ of\ the\ words\ of\ certain\ texts.\n\n\ @author\ (PRG.\ ETSINF.\ UPV)\n\ @version\ (Academic\ Year\ 2023/24)\n
+comment1.params=
+comment1.target=TextComparing()
+comment2.params=args
+comment2.target=void\ main(java.lang.String[])
+comment2.text=\n\ The\ user\ is\ requested\ to\ provide\ the\ names\ of\ two\ text\ files,\ \ \n\ after\ which\ the\ intersection\ or\ union\ of\ the\ sets\ of\ words\ in\n\ the\ texts\ is\ performed.\ \n\ \n\ The\ result\ is\ then\ displayed\ in\ the\ standard\ output.\n
+comment3.params=kb
+comment3.target=int\ menu(java.util.Scanner)
+comment3.text=\n\ Displays\ a\ menu\ of\ options\ on\ the\ screen\ and\ read\ a\ valid\ option\ from\ the\ keyboard.\n\ @param\ kb\ Scanner,\ the\ keyboard.\n\ @return\ int,\ the\ valid\ option.\n
+numComments=4

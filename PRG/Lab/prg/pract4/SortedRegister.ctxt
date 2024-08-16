@@ -1,0 +1,22 @@
+#BlueJ class context
+comment0.target=SortedRegister
+comment0.text=\n\ SortedRegister\ class\:\ A\ SortedRegister\ keeps\ a\ bidimensional\ array\ m\ in\ which\ rows\n\ are\ months\ and\ columns\ are\ days\ of\ the\ month,\ in\ such\ a\ way\ that\ m[r][c]\ correspong\ to\ the\n\ accumulated\ amount\ of\ accidents\ for\ day\ c\ of\ month\ r.\n\ This\ class\ contains\ the\ needed\ methods\ to\ fill\ the\ matrix\ with\ \n\ data\ read\ from\ a\ Scanner,\ and\ to\ save\ data\ in\ the\ matrix\ on\ a\n\ PrintWriter.\n\ @author\ PRG\ -\ ETSINF\ -\ UPV\n\ @version\ Academic\ year\ 2023/24\ \ \n
+comment1.params=dataYear
+comment1.target=SortedRegister(int)
+comment1.text=\ Create\ a\ SortedRegister\ for\ year\ dataYear.\n\ \ @param\ dataYear\ int.\n
+comment2.params=sc
+comment2.target=int\ add(java.util.Scanner)
+comment2.text=\ Classify\ and\ sort\ data\ read\ from\ Scanner\ sc,\ line\ by\ line\n\ \ Precondition\:\ Each\ line\ has\ data\ organised\ as\n\ \ \ \ \ \ \ \ day\ month\ amount\n\ \ where\ day\ and\ month\ must\ be\ integers\ corresponding\ to\ a\n\ \ correct\ date\ for\ the\ year\ of\ this,\ and\ amount\ must\ be\ an\ integer\ >\ 0.\n\ \ The\ read\ amount\ is\ accumulated\ onto\ the\ register\ that\ is\ kept\n\ \ for\ the\ day\ of\ the\ month.\n\ \ \n\ \ Returns\ the\ amount\ of\ processed\ lines.\n\ \ \n\ \ The\ method\ stops\ data\ read\ if\ any\ wrong\ line\ is\ detected,\ and\ returns\ -1\n\ \ in\ that\ case.\n\ \ \n\ \ @param\ sc\ Scanner\ data\ source.\n\ \ @return\ int\n\ \ \n
+comment3.params=line
+comment3.target=void\ handleLine(java.lang.String)
+comment3.text=\ Help\ method\ for\ add\ method\:\ process\ data\ from\ line,\ String\n\ \ that\ corresponds\ to\ a\ line\ read\ from\ the\ Scanner\ object.\n\ \ Format\ for\ "line"\ must\ be\n\ \ \ \ \ \ \ \ day\ month\ amount\n\ \ where\ day\ and\ month\ must\ be\ integers\ corresponding\ to\ a\n\ \ correct\ date,\ and\ amount\ must\ be\ an\ integer\ >\ 0.\n\ \ -\ If\ data\ in\ the\ line\ is\ correct,\ the\ read\ amount\ is\ accumulated\n\ \ \ \ onto\ the\ record\ of\ the\ day\ of\ the\ month.\n\ \ -\ If\ data\ is\ incorrect,\ the\ method\ terminates\ by\ throwing\ an\ exception.\n\n\ \ @param\ line\ String\ data\ source.\n\ \ @throws\ NumberFormatExceptionException\ when\ a\ non-integer\ data\ item\ is\ read.\n\ \ @throws\ IllegalArgumentException\ when\ line\ has\ no\ three\ data\ items\n\ \ or\ they\ do\ not\ fit\ the\ format\ (date\ and\ correct\ amount).\n
+comment4.params=pw
+comment4.target=void\ save(java.io.PrintWriter)
+comment4.text=\ Recorded\ data\ items\ >\ 0\ are\ written\ into\ pw,\ line\ by\ line\n\ \ with\ format\n\ \ \ \ \ \ \ \ day\ \ month\ \ amount\n\ \ chronologically\ sorted.\n\ \ @param\ pw\ Printwriter\ sorted\ data\ destination.\n
+comment5.params=sc\ err
+comment5.target=int\ add(java.util.Scanner,\ java.io.PrintWriter)
+comment5.text=\ Sort\ data\ read\ from\ Scanners.\ Data\ with\ wrong\ format\ are\ filtered,\n\ \ and\ an\ error\ report\ is\ generated.\n\ \ Precondition\:\ Line\ format\ must\ be\n\ \ \ \ \ \ \ \ day\ month\ amount\n\ \ where\ day\ and\ month\ must\ be\ integers\ corresponding\ to\ a\n\ \ correct\ date,\ and\ amount\ must\ be\ an\ integer\ >\ 0.\n\ \ The\ read\ amount\ gets\ accumulated\ onto\ the\ record\ corresponding\n\ \ to\ the\ day\ of\ the\ month.\n\ \ Wrong\ lines\ are\ written\ onto\ err,\ indicating\ line\ number.\n\ \ @param\ sc\ Scanner\ data\ source.\n\ \ @param\ err\ PrintWriter\ error\ report\ destination.\n\ \ @return\ int,\ amount\ of\ processed\ lines.\n
+comment6.params=year
+comment6.target=boolean\ isLeap(int)
+comment6.text=\ Check\ whether\ year\ is\ leap\ or\ not.\n\ \ @param\ year\ int\n\ \ @return\ true\ if\ it\ is\ leap.\n
+numComments=7

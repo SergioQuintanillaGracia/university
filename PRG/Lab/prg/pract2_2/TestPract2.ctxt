@@ -1,0 +1,15 @@
+#BlueJ class context
+comment0.target=TestPract2
+comment0.text=\n\ Clase\ TestPract2\:\ program\ class\ for\ checking\ \n\ method\ isPrefix(String,\ String)\ and\ isSubstring(String,\ String)\n\ \n\ @author\ PRG\ -\ ETSINF\ -\ DSIC\ -\ UPV\n\ @version\ Academic\ Year\ 2023/2024\n
+comment1.params=
+comment1.target=TestPract2()
+comment1.text=Hidden\ constructor
+comment2.params=
+comment2.target=void\ testIsPrefix()
+comment3.params=
+comment3.target=void\ testIsSubstring()
+comment4.params=a\ b
+comment4.target=void\ compareIsPrefix(java.lang.String,\ java.lang.String)
+comment5.params=a\ b
+comment5.target=void\ compareIsSubstring(java.lang.String,\ java.lang.String)
+numComments=6

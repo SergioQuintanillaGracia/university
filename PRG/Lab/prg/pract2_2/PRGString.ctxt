@@ -1,0 +1,22 @@
+#BlueJ class context
+comment0.target=PRGString
+comment0.text=\n\ Clas\ PRGString\:\ class\ of\ tools\ with\ methods\ for\ working\ with\ Strings.\n\ \n\ @author\ PRG\ -\ ETSINF\ -\ DSIC\ -\ UPV\n\ @version\ Academic\ Year\ 2023/2024\n
+comment1.params=
+comment1.target=PRGString()
+comment1.text=Objects\ of\ this\ class\ cannot\ be\ created.
+comment2.params=s
+comment2.target=int\ countA(java.lang.String)
+comment2.text=\n\ Returns\ the\ number\ of\ occurrences\ of\ the\ letter\ 'a'\ in\ the\ String\ given\ as\ parameter.\n\ @param\ s\ String\ to\ be\ explored\ to\ find\ occurrences\ of\ the\ letter\ 'a'.\n\ @return\ int\n
+comment3.params=s\ pos
+comment3.target=int\ countA(java.lang.String,\ int)
+comment3.text=\n\ Returns\ the\ number\ of\ occurrences\ of\ the\ letter\ 'a'\ in\n\ the\ String\ given\ as\ parameter\ from\ the\ specified\ position.\n\ @param\ s\ String\ to\ be\ explored\ to\ find\ occurrences\ of\ the\ letter\ 'a'.\n\ @param\ pos\ starting\ position\ of\ 's'\ where\ the\ substring\ starts.\n\ @return\ int\n\ PRECONDITION\:\ pos\ >\=\ 0\n
+comment4.params=s
+comment4.target=int\ countA2(java.lang.String)
+comment4.text=\n\ Returns\ the\ number\ of\ occurrences\ of\ the\ letter\ 'a'\ in\n\ @param\ s\ String\ to\ be\ explored\ to\ find\ occurrences\ of\ the\ letter\ 'a'.\n\ @return\ int\n
+comment5.params=a\ b
+comment5.target=boolean\ isPrefix(java.lang.String,\ java.lang.String)
+comment5.text=\n\ Check\ whether\ 'a'\ is\ prefix\ of\ 'b'.\n\ --\ TO\ BE\ COMPLETED\ --\n
+comment6.params=a\ b
+comment6.target=boolean\ isSubstring(java.lang.String,\ java.lang.String)
+comment6.text=\n\ Check\ whether\ 'a'\ is\ prefix\ of\ 'b'.\n\ --\ TO\ BE\ COMPLETED\ --\n
+numComments=7
