@@ -5,7 +5,7 @@ char F(char *c) {
     return (*c);
 }
 
-main () {
+int main() {
     char c;
 
     c = 'a';
