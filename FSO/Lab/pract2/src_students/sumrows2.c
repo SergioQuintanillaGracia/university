@@ -7,8 +7,6 @@ struct ROW {
     float data[SIZE_ROW];
     float addition;
 };
-// A) define a vector “rows” of structures ROW with size NUM_ROWS
-struct ROW rows[NUM_ROWS];
 
 void sum_row(struct ROW *pf) {
     pf->addition = 0;
@@ -17,22 +15,20 @@ void sum_row(struct ROW *pf) {
     }
 }
 
-// Initilize rows with value i * j
-void init_rows() {
-    int i, j;
-
-    for (i = 0; i < NUM_ROWS; i++) {
-        for (j = 0; j < SIZE_ROW; j++) {
-            rows[i].data[j] = (float) i * j;
-        }
+void init_row(struct ROW *r, int i) {
+    for (int j = 0; j < SIZE_ROW; j++) {
+        r->data[j] = (float) i * j;
     }
 }
 
 int main() {
+    struct ROW rows[NUM_ROWS];
     int i;
     float total_sum;
     
-    init_rows();
+    for (int i = 0; i < NUM_ROWS; i++) {
+        init_row(&(rows[i]), i);
+    }
     
     // C) Complete the loop
     total_sum = 0;
