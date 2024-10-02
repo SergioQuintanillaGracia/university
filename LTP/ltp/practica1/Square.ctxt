@@ -1,0 +1,6 @@
+#BlueJ class context
+comment0.target=Square
+comment0.text=\n\ Write\ a\ description\ of\ class\ Square\ here.\n\n\ @author\ (your\ name)\n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment1.params=x\ y\ side
+comment1.target=Square(double,\ double,\ double)
+numComments=2
