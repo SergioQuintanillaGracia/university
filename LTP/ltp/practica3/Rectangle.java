@@ -47,7 +47,7 @@ public class Rectangle extends Figure implements ComparableRange<Rectangle> {
         double diff = Math.abs((area1 - area2) / (area1 + area2));
         
         if (diff <= 0.1) {
-            return 1;
+            return 0;
         } else {
             return compareTo(f);
         }

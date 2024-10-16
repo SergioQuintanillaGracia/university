@@ -29,6 +29,8 @@ public class FiguresGroupUse {
         List<Rectangle> l = new LinkedList<Rectangle>(); 
         // List<Rectangle> l = new ArrayList<Rectangle>();
         Random r = new Random();
+        System.out.println("---------------------------");
+        
         for (int i = 0; i < 100; i++) {
             if (r.nextInt(2) == 0) {
                 double a = r.nextDouble() * 10;
@@ -40,6 +42,7 @@ public class FiguresGroupUse {
                 l.add(new Square(1, 1, a));
             }
         }
+        
         for (int i = 0; i < 100; i++) {
             Rectangle fi = (Rectangle) l.get(i);
             for (int j = i + 1; j < 100; j++) {
