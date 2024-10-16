@@ -7,7 +7,7 @@ package practica3;
  * @author (your name)
  * @version (a version number or a date)
  */
-public class Rectangle extends Figure implements ComparableRange<Rectangle> {
+public class Rectangle extends Figure implements ComparableRange<Rectangle>, Printable<Rectangle> {
     private double side1;
     private double side2;
     
@@ -50,6 +50,18 @@ public class Rectangle extends Figure implements ComparableRange<Rectangle> {
             return 0;
         } else {
             return compareTo(f);
+        }
+    }
+    
+    @Override
+    public void print(char c) {
+        int b = (int) side1;
+        int h = (int) side2;
+        for (int i = 0; i < h; i++) {
+            for (int j = 0; j < b; j++) {
+                System.out.print(c);
+            }
+            System.out.println();
         }
     }
 }

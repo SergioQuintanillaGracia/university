@@ -10,7 +10,7 @@ import java.util.*;
  * @version 2020-21
  */
 
-public class FiguresGroup {
+public class FiguresGroup implements Printable {
     private static final int NUM_FIGURES = 10;
     private Figure figuresList[] = new Figure[NUM_FIGURES];
     private int numF = 0;
@@ -104,5 +104,11 @@ public class FiguresGroup {
         }
         
         return maxAreaFig;
+    }
+    
+    public void print(char c) {
+        for (int i = 0; i < numF; i++) {
+            
+        }
     }
 }

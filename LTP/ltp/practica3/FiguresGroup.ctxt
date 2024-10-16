@@ -17,4 +17,6 @@ comment7.params=
 comment7.target=double\ area()
 comment8.params=
 comment8.target=Figure\ greatestFigure()
-numComments=9
+comment9.params=c
+comment9.target=void\ print(char)
+numComments=10

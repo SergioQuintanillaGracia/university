@@ -11,4 +11,6 @@ comment4.params=
 comment4.target=double\ area()
 comment5.params=f
 comment5.target=int\ compareToRange(Rectangle)
-numComments=6
+comment6.params=c
+comment6.target=void\ print(char)
+numComments=7
