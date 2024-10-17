@@ -108,7 +108,9 @@ public class FiguresGroup implements Printable {
     
     public void print(char c) {
         for (int i = 0; i < numF; i++) {
-            
+            if (figuresList[i] instanceof Printable) {
+                ((Printable) figuresList[i]).print(c);
+            }
         }
     }
 }

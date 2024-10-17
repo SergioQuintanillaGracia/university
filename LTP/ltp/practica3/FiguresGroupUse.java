@@ -20,7 +20,8 @@ public class FiguresGroupUse {
         g.add(new Triangle(5.0, 1.0, 1.0, 2.0));
         g.add(new Square(6.0, 7.0, 15));
         g.add(new Rectangle(7.0, 2.0, 1.0, 3.0));
-        System.out.println(g.orderedList());
+        // System.out.println(g.orderedList());
+        g.print('#');
         
         // g.print('*');
     }
