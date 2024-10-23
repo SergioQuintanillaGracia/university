@@ -1,0 +1,48 @@
+220 serveis-rdc ESMTP Postfix (Ubuntu)
+
+EHLO [10.236.43.224]
+
+250-serveis-rdc
+250-PIPELINING
+250-SIZE 10240000
+250-VRFY
+250-ETRN
+250-STARTTLS
+250-ENHANCEDSTATUSCODES
+250-8BITMIME
+250-DSN
+250-SMTPUTF8
+250 CHUNKING
+
+MAIL FROM:<redes06@redes.upv.es> BODY=8BITMIME SIZE=386
+
+250 2.1.0 Ok
+
+RCPT TO:<redes06@redes.upv.es>
+
+250 2.1.5 Ok
+
+DATA
+
+354 End data with <CR><LF>.<CR><LF>
+
+Message-ID: <559ac777-fffd-4235-a9eb-df75dadc7e87@redes.upv.es>
+Date: Wed, 23 Oct 2024 09:50:42 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Content-Language: en-US
+To: redes06@redes.upv.es
+From: Alumno de Redes <redes06@redes.upv.es>
+Subject: Duolingo
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+
+I'm coming for you.
+
+.
+
+250 2.0.0 Ok: queued as E9F9F5F81C
+
+QUIT
+
+221 2.0.0 Bye
