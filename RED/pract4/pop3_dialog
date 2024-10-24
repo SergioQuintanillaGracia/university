@@ -1,0 +1,68 @@
++OK Hello there.
+
+CAPA
+
++OK Here's what I can do:
+STLS
+TOP
+USER
+LOGIN-DELAY 10
+PIPELINING
+UIDL
+UTF8 USER
+IMPLEMENTATION Courier Mail Server
+.
+
+USER redes06
+
++OK Password required.
+
+PASS bloqueo
+
++OK logged in.
+
+STAT
+
++OK 2 1408
+
+LIST
+
++OK POP3 clients that break here, they violate STD53.
+1 695
+2 713
+.
+
+UIDL
+
++OK
+1 UID1-1729670061
+2 UID2-1729670061
+.
+
+RETR 2
+
++OK 713 octets follow.
+Return-Path: <redes06@redes.upv.es>
+X-Original-To: redes06@redes.upv.es
+Delivered-To: redes06@redes.upv.es
+Received: from [10.236.43.224] (wifialur43-224.wi-fi.upv.es [10.236.43.224])
+	by serveis-rdc (Postfix) with ESMTP id A69F45F74D
+	for <redes06@redes.upv.es>; Wed, 23 Oct 2024 10:01:19 +0200 (CEST)
+Message-ID: <3f67d3e3-b8f2-45ca-b449-cbf82048d501@redes.upv.es>
+Date: Wed, 23 Oct 2024 09:59:46 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Content-Language: en-US
+To: redes06@redes.upv.es
+From: Alumno de Redes <redes06@redes.upv.es>
+Subject: Duolingo POP3
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+
+I'm coming for you through POP3.
+
+.
+
+QUIT
+
++OK Bye-bye.
