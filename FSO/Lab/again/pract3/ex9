@@ -1,0 +1,6 @@
+#!/bin/bash
+echo Argument count: $#
+echo Full command line: $0 $@
+echo Command name: $0
+echo First argument: $1
+echo Second argument: $2

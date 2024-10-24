@@ -1,0 +1,16 @@
+#!/bin/bash
+
+for i in $(ls)
+do
+    # echo $i
+    # if test -d $i
+    # then
+    #     echo "File is a directory and can't be removed"
+    # elif test -f $i
+    # then
+    #     echo "Removing $i"
+    #     rm $i
+    # else
+    #     echo "The file doesn't exist"
+    # fi
+done

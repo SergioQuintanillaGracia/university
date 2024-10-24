@@ -1,0 +1,10 @@
+#!/bin/bash
+
+count=$(ps u | grep $USER | wc -l)
+
+if test $count -gt $1
+then
+    echo "More than $1 user process active"
+else
+    echo "<= $1 user processes active"
+fi

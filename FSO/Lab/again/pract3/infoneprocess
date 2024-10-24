@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo PID $'\t' PPID $'\t' STATE $'\t' CMD
+./infprocess $1

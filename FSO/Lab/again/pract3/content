@@ -1,0 +1,3 @@
+#!/bin/bash
+num_process=$(ls -d /proc/[1-9]* | wc -l)
+echo Number of system processes: $num_process
