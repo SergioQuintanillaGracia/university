@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.target=Queue
+comment0.text=\r\n\ interface\ Queue<T>\r\n\ it\ defines\ the\ TAD\ of\ a\ generic\ queue\r\n\ \r\n\ @author\ LTP\ \r\n\ @version\ 2020-21\r\n\ @param\ <T>\r\n
+comment1.params=e
+comment1.target=void\ enqueue(java.lang.Object)
+comment1.text=\ Inserts\ the\ element\ at\ the\ end\ of\ the\ queue\r\n\ \ @param\ e\ element\ to\ be\ inserted\ \r\n
+comment2.params=
+comment2.target=java.lang.Object\ dequeue()
+comment2.text=\ Queries\ and\ extracts\ the\ first\ element,\r\n\ \ only\ if\ the\ queue\ is\ not\ empty\ \r\n\ \ @return\ the\ first\ element\r\n
+comment3.params=
+comment3.target=int\ size()
+comment3.text=\ Queries\ the\ number\ of\ elements\ of\ the\ queue\r\n\ \ @return\ the\ number\ of\ elements\r\n
+comment4.params=
+comment4.target=java.lang.Object\ first()
+comment4.text=\ Queries\ the\ first\ element,\ in\ order\ of\ insertion,\r\n\ \ only\ if\ the\ queue\ is\ not\ empty\ \r\n\ \ @return\ the\ first\ element\r\n
+comment5.params=
+comment5.target=boolean\ isEmpty()
+comment5.text=\ Verifies\ if\ the\ queue\ is\ empty\r\n\ \ @return\ true\ iif\ the\ queue\ is\ empty\r\n
+numComments=6
