@@ -1,0 +1,18 @@
+total 152
+drwxr-xr-x 1 sergio sergio   348 Nov 22 13:56 .
+drwxr-xr-x 1 sergio sergio    82 Nov 22 10:22 ..
+-rw-r--r-- 1 sergio sergio  1398 Nov 22 10:24 a_pipe.c
+-rwxr-xr-x 1 sergio sergio 22096 Nov 22 13:13 descriptor
+-rw-r--r-- 1 sergio sergio   639 Nov 22 13:16 descriptor.c
+-rwxr-xr-x 1 sergio sergio 19896 Nov 22 13:21 descriptor_output
+-rw-r--r-- 1 sergio sergio   804 Nov 22 13:25 descriptor_output.c
+-rwx------ 1 sergio sergio   986 Nov 22 13:56 ls_output.txt
+-rwxr-xr-x 1 sergio sergio 21152 Nov 22 13:56 ls_redir
+-rw-r--r-- 1 sergio sergio   485 Nov 22 13:56 ls_redir.c
+-rwx------ 1 sergio sergio    44 Nov 22 13:37 messages.txt
+-rwx------ 1 sergio sergio    23 Nov 22 13:48 output.txt
+-rwxr-xr-x 1 sergio sergio 22440 Nov 22 13:48 redir_output
+-rw-r--r-- 1 sergio sergio   601 Nov 22 13:48 redir_output.c
+-rwxr-xr-x 1 sergio sergio 21608 Nov 22 13:37 share_file
+-rw-r--r-- 1 sergio sergio   746 Nov 22 13:30 share_file.c
+drwxr-xr-x 1 sergio sergio    46 Nov 22 13:13 .vscode
