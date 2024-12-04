@@ -1,3 +1,4 @@
+import Data.ByteString.Lazy.Char8 (replicate)
 type Side = Float
 type Apothem = Float
 type Radius = Float
