@@ -1,0 +1,2 @@
+out: Output redirected
+stdout is not present

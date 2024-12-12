@@ -1,0 +1,17 @@
+total 156
+drwxr-xr-x 1 sergio sergio   334 Dec 12 17:45 .
+drwxr-xr-x 1 sergio sergio    98 Dec 12 14:29 ..
+-rw-r--r-- 1 sergio sergio  1399 Dec 12 16:59 a_pipe.c
+-rwxr-xr-x 1 sergio sergio 22112 Dec 12 17:00 descriptor
+-rw-r--r-- 1 sergio sergio   588 Dec 12 17:05 descriptor.c
+-rwxr-xr-x 1 sergio sergio 21160 Dec 12 17:09 descriptor_output
+-rw-r--r-- 1 sergio sergio   780 Dec 12 17:09 descriptor_output.c
+-rwx------ 1 sergio sergio   932 Dec 12 17:41 ls_output.txt
+-rwxr-xr-x 1 sergio sergio 21160 Dec 12 17:45 ls_redir
+-rw-r--r-- 1 sergio sergio   472 Dec 12 17:45 ls_redir.c
+-rwx------ 1 sergio sergio    47 Dec 12 17:16 messages.txt
+-rwx------ 1 sergio sergio    44 Dec 12 17:39 output.txt
+-rwxr-xr-x 1 sergio sergio 22544 Dec 12 17:39 redir_output
+-rw-r--r-- 1 sergio sergio   597 Dec 12 17:39 redir_output.c
+-rwxr-xr-x 1 sergio sergio 21624 Dec 12 17:16 share_file
+-rw-r--r-- 1 sergio sergio   735 Dec 12 17:16 share_file.c
