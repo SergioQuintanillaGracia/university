@@ -1,0 +1,22 @@
+#BlueJ class context
+comment0.target=FiguresGroup
+comment0.text=\n\ class\ FiguresGroup.\n\ \n\ @author\ LTP\ \n\ @version\ 2020-21\n
+comment1.params=f
+comment1.target=void\ add(Figure)
+comment2.params=c
+comment2.target=void\ print(char)
+comment3.params=
+comment3.target=java.util.List\ orderedList()
+comment4.params=
+comment4.target=java.lang.String\ toString()
+comment5.params=f
+comment5.target=boolean\ found(Figure)
+comment6.params=g
+comment6.target=boolean\ included(FiguresGroup)
+comment7.params=o
+comment7.target=boolean\ equals(java.lang.Object)
+comment8.params=
+comment8.target=double\ area()
+comment9.params=
+comment9.target=Figure\ greatestFigure()
+numComments=10

@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=Triangle
+comment0.text=\n\ class\ Triangle.\n\ \n\ @author\ LTP\n\ @version\ 2020-21\n
+comment1.params=x\ y\ b\ h
+comment1.target=Triangle(double,\ double,\ double,\ double)
+comment2.params=o
+comment2.target=boolean\ equals(java.lang.Object)
+comment3.params=
+comment3.target=java.lang.String\ toString()
+comment4.params=
+comment4.target=double\ area()
+numComments=5

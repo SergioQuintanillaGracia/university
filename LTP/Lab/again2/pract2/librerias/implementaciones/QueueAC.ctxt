@@ -1,0 +1,31 @@
+#BlueJ class context
+comment0.target=QueueAC
+comment0.text=\r\n\ class\ QueueAC<T>\r\n\ It\ is\ the\ implementation\ of\ a\ Queue<T>\ \r\n\ using\ a\ circular\ array\ of\ variable\ length.\r\n\ \r\n\ @author\ LTP\ \r\n\ @version\ 2020-21\r\n\ @param\ <T>\r\n
+comment1.params=
+comment1.target=QueueAC()
+comment1.text=\ The\ object\ constructor\ \r\n\ \r\n\ The\ compiler\ warns\ us\ (warning)\r\n\ that\ the\ pure\ type\ corresponding\ to\ T\ in\ (1)\r\n\ will\ be\ applied\ at\ run\ time.\r\n\ With\ this\ directive\ we\ say\ that\r\n\ do\ not\ show\ us\ the\ warning\ since\ the\ coercion\ is\ safe.\r\n
+comment2.params=
+comment2.target=void\ expandArray()
+comment2.text=\ Private\ method\ for\ expanding\ the\ array\ when\ it\ is\ necessary\ \r\n
+comment3.params=i
+comment3.target=int\ increase(int)
+comment3.text=\ Private\ method\ for\ increasing\ the\ array\ indexes\ \r\n\ \ in\ a\ ciclic\ way\ (module\ theArray.length)\r\n
+comment4.params=
+comment4.target=java.lang.String\ toString()
+comment4.text=\ It\ returns\ the\ content\ of\ the\ queue\ \r\n\ \ according\ to\ the\ following\ format\:\r\n\ \ \ <-\ item0\ <-\ item1\ <-\ item2\ <-\ ...\ <-\ itemN\ \r\n\ \ where\ N\ \=\ size()\ -\ 1\r\n\ \ and\ each\ item\ is\ concatenated\ \r\n\ \ according\ to\ the\ format\ defined\ in\ its\ type\r\n\ \ @return\ the\ content\ of\ the\ queue\ \r\n
+comment5.params=e
+comment5.target=void\ enqueue(java.lang.Object)
+comment5.text=\ Inserts\ the\ element\ at\ the\ end\ of\ the\ queue\r\n\ \ @param\ e\ element\ to\ be\ inserted\ \r\n
+comment6.params=
+comment6.target=java.lang.Object\ dequeue()
+comment6.text=\ Queries\ and\ extracts\ the\ first\ element,\r\n\ \ only\ if\ the\ queue\ is\ not\ empty\ \r\n\ \ @return\ the\ first\ element\r\n
+comment7.params=
+comment7.target=int\ size()
+comment7.text=\ Queries\ the\ number\ of\ elements\ of\ the\ queue\r\n\ \ @return\ the\ number\ of\ elements\r\n
+comment8.params=
+comment8.target=java.lang.Object\ first()
+comment8.text=\ Queries\ the\ first\ element,\ in\ order\ of\ insertion,\r\n\ \ only\ if\ the\ queue\ is\ not\ empty\ \r\n\ \ @return\ the\ first\ element\r\n
+comment9.params=
+comment9.target=boolean\ isEmpty()
+comment9.text=\ Verifies\ if\ the\ queue\ is\ empty\r\n\ \ @return\ true\ iif\ the\ queue\ is\ empty\r\n
+numComments=10
