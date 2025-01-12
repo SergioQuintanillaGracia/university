@@ -1,5 +1,5 @@
 
-% movie(X,Y,Z) indicates that the film entitled X
+% movie(X,Y,Z) indicates that the film entitled X 
 %              was directed by Y in the year Z
 movie("Casablanca", "Michael Curtiz", 1943).
 movie("El hombre que pudo reinar", "John Huston", 1975).
@@ -11,28 +11,28 @@ movie("El honor de los Prizzi", "John Huston", 1985).
 movie("El sueÃ±o eterno", "Howard Hawks", 1946).
 movie("Cayo Largo", "John Huston", 1948).
 
-% cast(X,Y) indicates that the movie entitled X is cast
+% cast(X,Y) indicates that the movie entitled X is cast 
 %           with the actors / actresses of the list Y
-cast("El honor de los Prizzi",
+cast("El honor de los Prizzi", 
      ["Jack Nicholson", "Anjelica Huston"]).
-cast("Casablanca",
+cast("Casablanca", 
      ["Humphrey Bogart", "Ingrid Bergman"]).
-cast("La burla del diablo",
+cast("La burla del diablo", 
      ["Humphrey Bogart", "Gina Lollobrigida"]).
-cast("Apocalypse now",
+cast("Apocalypse now", 
      ["Marlon Brando", "Robert Duvall", "Martin Sheen"]).
-cast("Wall Street",
+cast("Wall Street", 
      ["Michael Douglas", "Charlie Sheen", "Daryl Hannah", "Martin Sheen"]).
-cast("El hombre que pudo reinar",
+cast("El hombre que pudo reinar", 
      ["Sean Connery", "Michael Caine"]).
-cast("El nombre de la rosa",
+cast("El nombre de la rosa", 
      ["Sean Connery", "F. Murray Abraham"]).
-cast("El sueÃ±o eterno",
+cast("El sueÃ±o eterno", 
 	     ["Humphrey Bogart", "Lauren Bacall"]).
-cast("Cayo Largo",
+cast("Cayo Largo", 
      ["Humphrey Bogart", "Edward G. Robinson", "Lauren Bacall", "Lionel Barrymore"]).
-
-
+ 
+     
 %%%%%%%%%%%%%
 
 % Exercise 8
@@ -54,7 +54,7 @@ subcast(M1,C1,M2,C2) :- M1 \== M2, cast(M1,C1), cast(M2,C2), subset(C1,C2).
 
 sorted([]).
 sorted([_]).
-sorted([X,Y|Ys])  :- X =< Y, sorted([Y|Ys]).
+sorted[[X,Y|Ys]]  :- X =< Y, sorted([Y|Ys]).
 
 
 %%%%%%%%%%%%%
@@ -64,6 +64,8 @@ sorted([X,Y|Ys])  :- X =< Y, sorted([Y|Ys]).
 strings_sorted([]).
 strings_sorted([_]).
 strings_sorted([X,Y|Ys])  :- X @< Y, strings_sorted([Y|Ys]).
+
+% NOTE: @< is for general terms, while < is only for numbers
 
 
 %%%%%%%%%%%%%
@@ -80,6 +82,6 @@ remove(C,[X|R],W) :- X \== C, remove(C,R,L), W = [X|L].
 % Exercise 13
 
 whoPlaysWithWhom(A, M, L) :-
-     cast(M, Cast),           % Find the cast of the movie M
-     member(A, Cast),         % Ensure A is in the cast of M
-     remove(A, Cast, L).      % Remove A from the cast to get L
+    cast(M,Cast),
+    member(A,Cast),
+    remove(A,Cast,L).
