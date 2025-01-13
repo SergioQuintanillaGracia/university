@@ -99,7 +99,7 @@ symmetric (Branch a b) = Branch (symmetric b) (symmetric a)
 -- Exercise 13
 listToTree :: [a] -> Tree a
 listToTree [x] = Leaf x
-listToTree xs = Branch (listToTree (take size xs)) (listToTree (take size xs))
+listToTree xs = Branch (listToTree (take size xs)) (listToTree (drop size xs))
     where size = div (length xs) 2
 
 treeToList :: Tree a -> [a]
