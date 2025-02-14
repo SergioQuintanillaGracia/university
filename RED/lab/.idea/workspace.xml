@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="d7370301-55ca-45bb-8429-1fc85002c66d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/src/again/pract5/ex1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/again/pract5/ex1.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="2omuCjciMBEbn2GvYPm8Byt482J" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Application.ClienteHTTP.executor&quot;: &quot;Run&quot;,
+    &quot;Application.ClienteSMTP.executor&quot;: &quot;Run&quot;,
+    &quot;Application.DnsLookup.executor&quot;: &quot;Run&quot;,
+    &quot;Application.again.pract1.ex1.executor&quot;: &quot;Run&quot;,
+    &quot;Application.again.pract5.ex1.executor&quot;: &quot;Run&quot;,
+    &quot;Application.again.pract6.ex1.executor&quot;: &quot;Run&quot;,
+    &quot;Application.again.pract7.ex1.executor&quot;: &quot;Run&quot;,
+    &quot;Application.ex1.executor&quot;: &quot;Run&quot;,
+    &quot;Application.ex10.executor&quot;: &quot;Run&quot;,
+    &quot;Application.ex2.executor&quot;: &quot;Run&quot;,
+    &quot;Application.ex3.executor&quot;: &quot;Run&quot;,
+    &quot;Application.ex4.executor&quot;: &quot;Run&quot;,
+    &quot;Application.ex5.executor&quot;: &quot;Run&quot;,
+    &quot;Application.ex9.executor&quot;: &quot;Run&quot;,
+    &quot;Application.pract1.ex1.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/sergio/Documents/GitHub/university/RED/lab/src/again/pract3&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/again/pract3" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="again.pract5" />
+      <recent name="pract6" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="again.pract7.ex1" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="again.pract7.ex1" />
+      <module name="lab" />
+      <option name="PROGRAM_PARAMETERS" value="&quot;www.eltiempo.es&quot;" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="again.pract7.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ex1" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="pract7.ex1" />
+      <module name="lab" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="pract7.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.again.pract7.ex1" />
+      <item itemvalue="Application.ex1" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.again.pract7.ex1" />
+        <item itemvalue="Application.ex1" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d7370301-55ca-45bb-8429-1fc85002c66d" name="Changes" comment="" />
+      <created>1731486946905</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1731486946905</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/lab$again_pract7_ex1.ic" NAME="again.pract7.ex1 Coverage Results" MODIFIED="1738606678374" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>again.pract7.*</FILTER>
+    </SUITE>
+  </component>
+</project>
