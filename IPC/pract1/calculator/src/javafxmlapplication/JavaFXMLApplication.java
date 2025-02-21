@@ -44,27 +44,47 @@ public class JavaFXMLApplication extends Application {
     }
 }
 
-class updateTextThread extends Thread {
-    private static updateTextThread prevThread = null;
+class UpdateTextThread extends Thread {
+    private static UpdateTextThread prevThread = null;
     private static TextField textField;
     
-    private final int CHAR_INTERVAL = 40;
-    private final int CHAR_DELETE_INTERVAL = 10;
-    private final int TEXT_INTERVAL = 1500;
-    private final int TEXT_DELETE_INTERVAL = 200;
+    // We need to make the variable volatile so changes made to it can instantly
+    // be seen by every thread
+    volatile boolean running = true;
+    
     private String[] texts;
+    private static int[] defaultIntervals = new int[] {40, 1500, 10, 200};
+    private int[][] intervals;
+    
+    public UpdateTextThread(String[] texts) {
+        int[][] autoIntervals = new int[texts.length][4];
+        
+        for (int i = 0; i < texts.length; i++) {
+            autoIntervals[i] = defaultIntervals;
+        }
+        
+        this.texts = texts;
+        this.intervals = autoIntervals;
+    }
+    
+    public UpdateTextThread(String[] texts, int[][] intervals) {
+        this.texts = texts;
+        this.intervals = intervals;
+    }
     
     public static void setTextField(TextField tf) {
         textField = tf;
     }
     
-    public updateTextThread(String[] texts) {
-        this.texts = texts;
+    public static int[] getDefaultIntervals() {
+        return defaultIntervals;
     }
     
     private static void killPrevThread() {
-        // Deprecated methods are fun!
-        if (prevThread != null) prevThread.stop();
+        if (prevThread != null) {
+            prevThread.running = false;
+            prevThread.interrupt();
+        }
     }
     
     private void delay(int ms) {
@@ -78,22 +98,26 @@ class updateTextThread extends Thread {
         killPrevThread();
         prevThread = this;
         
-        for (String t : texts) {
-            for (int i = 0; i <= t.length(); i++) {
-                final int limit = i;
+        for (int i = 0; i < texts.length; i++) {
+            String t = texts[i];
+            
+            for (int j = 0; j <= t.length(); j++) {
+                if (!running) return;
+                final int limit = j;
                 Platform.runLater(() -> textField.setText(t.substring(0, limit)));
-                delay(CHAR_INTERVAL);
+                delay(intervals[i][0]);
             }
             
-            delay(TEXT_INTERVAL);
+            delay(intervals[i][1]);
             
-            for (int i = t.length(); i >= 0; i--) {
-                final int limit = i;
+            for (int j = t.length(); j >= 0; j--) {
+                if (!running) return;
+                final int limit = j;
                 Platform.runLater(() -> textField.setText(t.substring(0, limit)));
-                delay(CHAR_DELETE_INTERVAL);
+                delay(intervals[i][2]);
             }
             
-            delay(TEXT_DELETE_INTERVAL);
+            delay(intervals[i][3]);
         }
     }
 }

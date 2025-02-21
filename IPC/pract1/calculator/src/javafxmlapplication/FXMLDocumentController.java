@@ -67,7 +67,7 @@ public class FXMLDocumentController implements Initializable {
     // you must initialize here all related with the object 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        updateTextThread.setTextField(textField);
+        UpdateTextThread.setTextField(textField);
     }    
 
     @FXML
@@ -75,11 +75,18 @@ public class FXMLDocumentController implements Initializable {
         String[] texts = new String[] {
             "Why was C the first button you pressed?",
             "Did you have anything to clear?",
-            "Why aren't you answering? I'll answer for you.",
-            "No. You didn't."
+            "I'll answer for you.",
+            "NO. YOU DIDN'T."
         };
         
-        new updateTextThread(texts).start();
+        int[][] intervals = new int[][] {
+            UpdateTextThread.getDefaultIntervals(),
+            UpdateTextThread.getDefaultIntervals(),
+            UpdateTextThread.getDefaultIntervals(),
+            new int[] {200, 1000, 50, 0}
+        };
+        
+        new UpdateTextThread(texts, intervals).start();
     }
 
     @FXML
