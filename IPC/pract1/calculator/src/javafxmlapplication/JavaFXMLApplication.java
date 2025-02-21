@@ -117,10 +117,11 @@ class UpdateTextThread extends Thread {
 }
 
 class StoryManager {
-    private static int[] defaultIntervals = new int[] {50, 1200, 10, 200};
+    private static int[] defaultIntervals = new int[] {50, 800, 5, 100};
     private int bCCounter = 0;
     private int bMultiplyCounter = 0;
     private int bDivideCounterAfterMult = 0;
+    private int bMultiplyCounterAfterDialogue = 0;
     
     private Button BC, BDivide, BMultiply, BSubtract, BAdd, B7, B8, B9, BEqual,
             B4, B5, B6, BDot, B1, B2, B3, B0;
@@ -188,15 +189,16 @@ class StoryManager {
                     "I have disabled the clear button for you.",
                     "How does that feel?",
                     "You have managed to anger a calculator to the point where "
-                        + "it had to disable one of its buttons."
+                        + "it had to disable one of its buttons.",
+                    "Congratulations."
                 };
                 intervals = new int[][] {
                     defaultIntervals,
                     defaultIntervals,
-                    defaultIntervals
+                    defaultIntervals,
+                    new int[] { defaultIntervals[0], 1500, defaultIntervals[2], 100 }
                 };
                 BC.setDisable(true);
-                break;
         }
         
         new UpdateTextThread(texts, intervals).start();
@@ -209,11 +211,21 @@ class StoryManager {
         if (bMultiplyCounter > 0) {
             bDivideCounterAfterMult++;
             
-            switch(bDivideCounterAfterMult) {
+            switch (bDivideCounterAfterMult) {
                 case 1:
                     texts = new String[] {
-                        "Calc is short for calculator c"
-                    }
+                        "Calc is short for calculator chat"
+                    };
+                    intervals = new int[][] { defaultIntervals };
+                    break;
+                    
+                default:
+                    texts = new String[] {
+                        "For those that just joined the stream, calc stands "
+                            + "for calculator, I'm just using slang"
+                    };
+                    intervals = new int[][] { defaultIntervals };
+                    
             }
         
         } else {
@@ -229,10 +241,52 @@ class StoryManager {
     public void handleBMultiply() {
         bMultiplyCounter++;
         
-        String[] texts = {
-            "I think \"/\" wants to tell you something"
-        };
-        int[][] intervals = new int[][] { defaultIntervals };
+        String[] texts;
+        int[][] intervals;
+        
+        if (bDivideCounterAfterMult == 0) {
+            texts = new String[] {
+                "I think \"/\" wants to tell you something"
+            };
+            intervals = new int[][] { defaultIntervals };
+        
+        } else {
+            bMultiplyCounterAfterDialogue++;
+            
+            switch (bMultiplyCounterAfterDialogue) {
+                case 1:
+                    texts = new String[] {
+                        "If you didn't get it, its a random meme",
+                        "Here's a link to it:",
+                        "https://www.reddit.com/r/Deltarune/comments/1d1rpj1/calc_is_short_for_calculator/",
+                        "What? You didn't have time to copy the link?",
+                        "Let me write it for you again, but this time a bit slower:",
+                        "https:/",
+                        "You know, just search it yourself"
+                    };
+                    intervals = new int[][] {
+                        defaultIntervals,
+                        defaultIntervals,
+                        new int[] {25, 0, 0, 100},
+                        defaultIntervals,
+                        defaultIntervals,
+                        new int[] {500, 0, 0, 100},
+                        defaultIntervals
+                    };
+                    break;
+                
+                default:
+                    texts = new String[] {
+                        "I'm not writing the link again",
+                        "You can search it yourself online"
+                    };
+                    intervals = new int[][] {
+                        defaultIntervals,
+                        defaultIntervals
+                    };
+            }
+        }
+
         new UpdateTextThread(texts, intervals).start();
     }
     
@@ -241,10 +295,14 @@ class StoryManager {
             "I have heard this calculator was initially going to",
             "You know",
             "Calculate.",
-            "But this lazy programmer refused to spend 10 minutes programming that.",
-            "He instead spent a couple of hours programming what you are seeing now."
+            "But this lazy programmer refused to spend 10 minutes programming that",
+            "He instead spent some hours programming what you are seeing now"
         };
         int[][] intervals = new int[][] {
+            defaultIntervals,
+            defaultIntervals,
+            new int[] {100, 400, 5, 0},
+            defaultIntervals,
             defaultIntervals
         };
         new UpdateTextThread(texts, intervals).start();
