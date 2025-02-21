@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -31,11 +32,7 @@ public class FXMLDocumentController implements Initializable {
     private Button BMultiply;
     @FXML
     private Button BSubtract;
-    @FXML
-    private Button BFunc1;
-    @FXML
     private Button BFunc2;
-    @FXML
     private Button BFunc3;
     @FXML
     private Button BAdd;
@@ -64,24 +61,25 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Button B0;
     @FXML
-    private TextField TextField;
-    
-    //=========================================================
-    // event handler, fired when button is clicked or 
-    //                      when the button has the focus and enter is pressed
-    private void handleButtonAction(ActionEvent event) {
-        labelMessage.setText("Hello, this is your first JavaFX project - IPC");
-    }
+    private TextField textField;
     
     //=========================================================
     // you must initialize here all related with the object 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        updateTextThread.setTextField(textField);
     }    
 
     @FXML
     private void BCHandler(ActionEvent event) {
+        String[] texts = new String[] {
+            "Why was C the first button you pressed?",
+            "Did you have anything to clear?",
+            "Why aren't you answering? I'll answer for you.",
+            "No. You didn't."
+        };
+        
+        new updateTextThread(texts).start();
     }
 
     @FXML
@@ -94,21 +92,6 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void BSubtractHandler(ActionEvent event) {
-    }
-
-    @FXML
-    private void BFunc1Handler(ActionEvent event) {
-        BFunc2.setText("press");
-    }
-
-    @FXML
-    private void BFunc2Handler(ActionEvent event) {
-        BFunc3.setText("ME");
-    }
-
-    @FXML
-    private void BFunc3Handler(ActionEvent event) {
-        TextField.setText("927883715782816129781278");
     }
 
     @FXML
