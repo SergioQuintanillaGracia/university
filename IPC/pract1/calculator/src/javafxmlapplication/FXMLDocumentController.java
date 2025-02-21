@@ -32,8 +32,6 @@ public class FXMLDocumentController implements Initializable {
     private Button BMultiply;
     @FXML
     private Button BSubtract;
-    private Button BFunc2;
-    private Button BFunc3;
     @FXML
     private Button BAdd;
     @FXML
@@ -63,42 +61,40 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private TextField textField;
     
+    private StoryManager storyManager;
+    
     //=========================================================
     // you must initialize here all related with the object 
-    @Override
+        @Override
     public void initialize(URL url, ResourceBundle rb) {
         UpdateTextThread.setTextField(textField);
+        storyManager = new StoryManager(BC, BDivide, BMultiply, BSubtract,
+                BAdd, B7, B8, B9, BEqual, B4, B5, B6, BDot, B1, B2, B3, B0,
+                textField);
     }    
 
     @FXML
     private void BCHandler(ActionEvent event) {
-        String[] texts = new String[] {
-            "Why was C the first button you pressed?",
-            "Did you have anything to clear?",
-            "I'll answer for you.",
-            "NO. YOU DIDN'T."
-        };
-        
-        int[][] intervals = new int[][] {
-            UpdateTextThread.getDefaultIntervals(),
-            UpdateTextThread.getDefaultIntervals(),
-            UpdateTextThread.getDefaultIntervals(),
-            new int[] {200, 1000, 50, 0}
-        };
-        
-        new UpdateTextThread(texts, intervals).start();
+        if (!UpdateTextThread.isThreadRunning())
+            storyManager.handleBC();
     }
 
     @FXML
     private void BDivideHandler(ActionEvent event) {
+        if (!UpdateTextThread.isThreadRunning())
+            storyManager.handleBDivide();
     }
 
     @FXML
     private void BMultiplyHandler(ActionEvent event) {
+        if (!UpdateTextThread.isThreadRunning())
+            storyManager.handleBMultiply();
     }
 
     @FXML
     private void BSubtractHandler(ActionEvent event) {
+        if (!UpdateTextThread.isThreadRunning())
+            storyManager.handleBSubtract();
     }
 
     @FXML

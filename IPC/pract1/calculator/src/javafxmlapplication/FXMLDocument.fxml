@@ -42,7 +42,7 @@
       <Button fx:id="B0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#B0Handler" text="0" GridPane.columnSpan="2" GridPane.rowIndex="5" />
       <TextField fx:id="textField" alignment="CENTER_RIGHT" editable="false" prefHeight="32.0" prefWidth="158.0" GridPane.columnSpan="4" GridPane.valignment="TOP">
          <font>
-            <Font size="16.0" />
+            <Font name="Monospaced Regular" size="14.0" />
          </font>
       </TextField>
    </children>
