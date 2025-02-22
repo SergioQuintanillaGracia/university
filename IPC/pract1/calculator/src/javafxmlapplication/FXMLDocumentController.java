@@ -23,7 +23,8 @@ import javafx.scene.control.TextField;
  * @author jsoler
  */
 public class FXMLDocumentController implements Initializable {
-    private Label labelMessage;
+    public static int buttonPresses = 0;
+    
     @FXML
     private Button BC;
     @FXML
@@ -75,78 +76,121 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void BCHandler(ActionEvent event) {
+        buttonPresses++;
         if (!UpdateTextThread.isThreadRunning())
             storyManager.handleBC();
     }
 
     @FXML
     private void BDivideHandler(ActionEvent event) {
+        buttonPresses++;
         if (!UpdateTextThread.isThreadRunning())
             storyManager.handleBDivide();
     }
 
     @FXML
     private void BMultiplyHandler(ActionEvent event) {
+        buttonPresses++;
         if (!UpdateTextThread.isThreadRunning())
             storyManager.handleBMultiply();
     }
 
     @FXML
     private void BSubtractHandler(ActionEvent event) {
+        buttonPresses++;
         if (!UpdateTextThread.isThreadRunning())
             storyManager.handleBSubtract();
     }
 
     @FXML
     private void BAddHandler(ActionEvent event) {
+        buttonPresses++;
+        if (!UpdateTextThread.isThreadRunning())
+            storyManager.handleBAdd();
     }
 
     @FXML
     private void B7Handler(ActionEvent event) {
+        buttonPresses++;
+        if (!UpdateTextThread.isThreadRunning())
+            storyManager.handleNumber();
     }
 
     @FXML
     private void B8Handler(ActionEvent event) {
+        buttonPresses++;
+        if (!UpdateTextThread.isThreadRunning())
+            storyManager.handleNumber();
     }
 
     @FXML
     private void B9Handler(ActionEvent event) {
+        buttonPresses++;
+        if (!UpdateTextThread.isThreadRunning())
+            storyManager.handleNumber();
     }
 
     @FXML
     private void BEqualHandler(ActionEvent event) {
+        buttonPresses++;
+        if (!UpdateTextThread.isThreadRunning())
+            storyManager.handleBEqual();
     }
 
     @FXML
     private void B4Handler(ActionEvent event) {
+        buttonPresses++;
+        if (!UpdateTextThread.isThreadRunning())
+            storyManager.handleNumber();
     }
 
     @FXML
     private void B5Handler(ActionEvent event) {
+        buttonPresses++;
+        if (!UpdateTextThread.isThreadRunning())
+            storyManager.handleNumber();
     }
 
     @FXML
     private void B6Handler(ActionEvent event) {
+        buttonPresses++;
+        if (!UpdateTextThread.isThreadRunning())
+            storyManager.handleNumber();
     }
 
     @FXML
     private void BDotHandler(ActionEvent event) {
+        buttonPresses++;
+        if (!UpdateTextThread.isThreadRunning())
+            storyManager.handleDot();
     }
 
     @FXML
     private void B1Handler(ActionEvent event) {
+        buttonPresses++;
+        if (!UpdateTextThread.isThreadRunning())
+            storyManager.handleNumber();
     }
 
     @FXML
     private void B2Handler(ActionEvent event) {
+        buttonPresses++;
+        if (!UpdateTextThread.isThreadRunning())
+            storyManager.handleNumber();
     }
 
     @FXML
     private void B3Handler(ActionEvent event) {
+        buttonPresses++;
+        if (!UpdateTextThread.isThreadRunning())
+            storyManager.handleNumber();
     }
 
     @FXML
     private void B0Handler(ActionEvent event) {
+        buttonPresses++;
+        if (!UpdateTextThread.isThreadRunning())
+            storyManager.handleNumber();
     }
     
 }

@@ -122,6 +122,9 @@ class StoryManager {
     private int bMultiplyCounter = 0;
     private int bDivideCounterAfterMult = 0;
     private int bMultiplyCounterAfterDialogue = 0;
+    private int bAddCounter = 0;
+    private int numberCount = 0;
+    private int balance = 0;
     
     private Button BC, BDivide, BMultiply, BSubtract, BAdd, B7, B8, B9, BEqual,
             B4, B5, B6, BDot, B1, B2, B3, B0;
@@ -161,14 +164,14 @@ class StoryManager {
         switch (bCCounter) {
             case 1: 
                 texts = new String[] {
-                    "This calculator has no clear function."
+                    "This calculator doesn't have a clear function"
                 };
                 intervals = new int[][] { defaultIntervals };
                 break;
                 
             case 2: 
                 texts = new String[] {
-                    "It just doesn't have a clear function."
+                    "It just doesn't have a clear function"
                 };
                 intervals = new int[][] { defaultIntervals };
                 break;
@@ -180,23 +183,23 @@ class StoryManager {
                 };
                 intervals = new int[][] {
                     defaultIntervals,
-                    new int[] {200, 1000, 30, 0}
+                    new int[] {150, 1000, 30, 0}
                 };
                 break;
 
             default:
                 texts = new String[] {
-                    "I have disabled the clear button for you.",
+                    "I have disabled the clear button for you",
                     "How does that feel?",
                     "You have managed to anger a calculator to the point where "
-                        + "it had to disable one of its buttons.",
+                        + "it had to disable one of its buttons",
                     "Congratulations."
                 };
                 intervals = new int[][] {
                     defaultIntervals,
                     defaultIntervals,
                     defaultIntervals,
-                    new int[] { defaultIntervals[0], 1500, defaultIntervals[2], 100 }
+                    new int[] { 80, 1500, 80, defaultIntervals[3] }
                 };
                 BC.setDisable(true);
         }
@@ -256,13 +259,13 @@ class StoryManager {
             switch (bMultiplyCounterAfterDialogue) {
                 case 1:
                     texts = new String[] {
-                        "If you didn't get it, its a random meme",
-                        "Here's a link to it:",
+                        "If you didn't get it, its a silly meme",
+                        "Here's a link to it",
                         "https://www.reddit.com/r/Deltarune/comments/1d1rpj1/calc_is_short_for_calculator/",
                         "What? You didn't have time to copy the link?",
-                        "Let me write it for you again, but this time a bit slower:",
+                        "Let me write it for you again, but this time a bit slower",
                         "https:/",
-                        "You know, just search it yourself"
+                        "You know, just search it online"
                     };
                     intervals = new int[][] {
                         defaultIntervals,
@@ -296,15 +299,208 @@ class StoryManager {
             "You know",
             "Calculate.",
             "But this lazy programmer refused to spend 10 minutes programming that",
-            "He instead spent some hours programming what you are seeing now"
+            "He instead spent some hours programming...",
+            "Well, this",
+            "Because the calculator needed to talk instead of calculate",
+            "It was a necessity"
         };
         int[][] intervals = new int[][] {
             defaultIntervals,
             defaultIntervals,
             new int[] {100, 400, 5, 0},
             defaultIntervals,
+            defaultIntervals,
+            defaultIntervals,
+            defaultIntervals,
             defaultIntervals
         };
+        new UpdateTextThread(texts, intervals).start();
+    }
+    
+    public void setNumberButtonsText(String text) {
+        B0.setText(text);
+        B1.setText(text);
+        B2.setText(text);
+        B3.setText(text);
+        B4.setText(text);
+        B5.setText(text);
+        B6.setText(text);
+        B7.setText(text);
+        B8.setText(text);
+        B9.setText(text);
+    }
+
+    
+    public void handleBAdd() {
+        bAddCounter++;
+        
+        String[] texts;
+        int[][] intervals;
+        
+        switch (bAddCounter) {
+            case 1:
+                texts = new String[] {
+                    "What do you want to add?",
+                    "If you don't tell me, how am I supposed to know?",
+                    "Maybe you want to add the amount of times you have pressed calculator buttons?",
+                    "Well, here you go: you have pressed calculator buttons "
+                        + FXMLDocumentController.buttonPresses + " times"
+
+                };
+                intervals = new int[][] {
+                    defaultIntervals,
+                    defaultIntervals,
+                    defaultIntervals,
+                    defaultIntervals
+                };
+                break;
+                
+            default:
+                texts = new String[] {
+                    "You have pressed calculator buttons "
+                        + FXMLDocumentController.buttonPresses + " times",
+                    "Great use of your time!"
+
+                };
+                intervals = new int[][] {
+                    defaultIntervals,
+                    defaultIntervals
+                };
+        }
+        
+        new UpdateTextThread(texts, intervals).start();
+    }
+    
+    public void handleBEqual() {
+        String[] texts = {
+            "Many things in life are equal",
+            "1 is equal to 1",
+            "2 is equal to 2",
+            "And guess what",
+            "1 is equal to 1",
+            "As you can see, the equal function of the calculator works",
+            "Unlike the clear function"
+        };
+        int[][] intervals = new int[][] {
+            defaultIntervals,
+            defaultIntervals,
+            defaultIntervals,
+            defaultIntervals,
+            new int[] {75, defaultIntervals[1], defaultIntervals[2], defaultIntervals[3]},
+            defaultIntervals,
+            defaultIntervals
+        };
+        new UpdateTextThread(texts, intervals).start();
+    }
+    
+    public void handleDot() {
+        String[] texts = {
+            "Do you want to end a sentence?"
+        };
+        int[][] intervals = new int[][] {
+            defaultIntervals
+        };
+        new UpdateTextThread(texts, intervals).start();
+    }
+    
+    public void handleNumber() {
+        numberCount++;
+        
+        String[] texts;
+        int[][] intervals;
+        
+        switch(numberCount) {
+            case 1:
+                texts = new String[] {
+                    "A number"
+
+                };
+                intervals = new int[][] {
+                    defaultIntervals
+                };
+                break;
+            
+            case 2:
+                texts = new String[] {
+                    "Yes, a number"
+
+                };
+                intervals = new int[][] {
+                    defaultIntervals
+                };
+                break;
+            
+            case 3:
+                texts = new String[] {
+                    "Do you enjoy pressing numbers?"
+
+                };
+                intervals = new int[][] {
+                    defaultIntervals
+                };
+                break;
+            
+            case 4:
+                texts = new String[] {
+                    "It's the 4th time you press a number",
+                    "Is it really that fun?"
+
+                };
+                intervals = new int[][] {
+                    defaultIntervals,
+                    defaultIntervals
+                };
+                break;
+            
+            case 5:
+                texts = new String[] {
+                    "The numbers had to take a break, sorry for the inconveniences",
+                    "But pressing # should also be fun, shouldn't it?"
+                };
+                intervals = new int[][] {
+                    defaultIntervals,
+                    defaultIntervals
+                };
+                setNumberButtonsText("#");
+                break;
+            
+            case 6:
+                texts = new String[] {
+                    "Or maybe it isn't? Should we try with $?"
+
+                };
+                intervals = new int[][] {
+                    defaultIntervals
+                };
+                setNumberButtonsText("$");
+                break;
+            
+            case 7:
+                balance++;
+                texts = new String[] {
+                    "Yes, now we are talking",
+                    "Let's keep making money",
+                    "Balance: $" + balance
+
+                };
+                intervals = new int[][] {
+                    defaultIntervals,
+                    defaultIntervals,
+                    defaultIntervals
+                };
+                break;
+            
+            default:
+                balance++;
+                texts = new String[] {
+                    "Balance: $" + balance
+
+                };
+                intervals = new int[][] {
+                    defaultIntervals
+                };
+                break;
+        }
         new UpdateTextThread(texts, intervals).start();
     }
 }
