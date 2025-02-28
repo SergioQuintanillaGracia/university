@@ -33,12 +33,18 @@ public class FXMLDocumentController implements Initializable {
     private int rowCount;
     private int colCount;
     
+    private double dragStartX;
+    private double dragStartY;
+    
     //=========================================================
     // you must initialize here all related with the object 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         circle.setOnKeyPressed(this::handleKeyPressed);
         gridpane.setOnMousePressed(this::handleMousePressed);
+        circle.setOnMousePressed(this::handleMousePressedBall);
+        circle.setOnMouseDragged(this:: handleMouseDraggedBall);
+        circle.setOnMouseReleased(this::handleMouseReleased);
         rowCount = gridpane.getRowCount();
         colCount = gridpane.getColumnCount();
     }
@@ -47,16 +53,40 @@ public class FXMLDocumentController implements Initializable {
         return (num + limit) % limit;
     }
     
-    @FXML
-    public void handleMousePressed(MouseEvent event) {
-        double x = event.getSceneX();
-        double y = event.getSceneY();
-        
+    private void moveCircleToCellAt(double x, double y) {
         int row = rowCalc(gridpane, y);
         int col = columnCalc(gridpane, x);
         
         gridpane.getChildren().remove(circle);
         gridpane.add(circle, col, row);
+    }
+    
+    @FXML
+    public void handleMousePressedBall(MouseEvent event) {
+        dragStartX =  event.getSceneX();
+        dragStartY = event.getSceneY();
+    }
+    
+    @FXML
+    public void handleMouseDraggedBall(MouseEvent event) {
+        circle.setTranslateX(event.getSceneX() - dragStartX);
+        circle.setTranslateY(event.getSceneY() - dragStartY);
+    }
+    
+    @FXML
+    public void handleMouseReleased(MouseEvent event) {
+        circle.setTranslateX(0);
+        circle.setTranslateY(0);
+        moveCircleToCellAt(event.getSceneX(), event.getSceneY());
+        event.consume();
+    }
+    
+    @FXML
+    public void handleMousePressed(MouseEvent event) {
+        double x = event.getSceneX();
+        double y = event.getSceneY();
+        
+        moveCircleToCellAt(x, y);
     }
     
     @FXML
