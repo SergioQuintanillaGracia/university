@@ -1,0 +1,18 @@
+#BlueJ class context
+comment0.target=VoterList
+comment0.text=\n\ VoterList\:\ represents\ a\ list\ of\ residents\ registered\ in\n\ \ \ \ \ \ \ \ \ \ \ \ the\ census,\ and,\ thus,\ voters\n\n\ @author\ \ EDA\ Professors\n\ @version\ September\ 2023\ (Translation\ Feb.\ 24)\n
+comment1.params=
+comment1.target=libraries.dataStructures.models.ListPOI\ getCensus()
+comment1.text=\n\ Field\ getter\ methods\n
+comment2.params=
+comment2.target=int\ getSize()
+comment3.params=
+comment3.target=java.lang.String\ toString()
+comment3.text=\n\ Returns\ the\ String\ that\ represents\ a\ VoterList\n\n\ @return\ the\ String\ with\ the\ VoterList\ in\ the\ given\ textual\ format.\n
+comment4.params=sorted\ n
+comment4.target=VoterList(boolean,\ int)
+comment4.text=\n\ Creates\ a\ VoterList...\n\n\ @param\ sorted\ A\ boolean\ that\ shows\ whether\ the\ census\ must\ be\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sorted\ in\ ascending\ order\ (true)\ or\ not\ (false).\n\ @param\ n\ \ \ \ \ An\ int\ that\ shows\ the\ size\ (number\ of\ elements)\ of\ the\ list\n
+comment5.params=r
+comment5.target=int\ index(Resident)
+comment5.text=\n\ Returns\ the\ index\ or\ position\ of\ Resident\ r\ in\ a\ VoterList,\n\ or\ -1\ if\ r\ doesn't\ belong\ to\ the\ list.\n\n\ @param\ r\ a\ Resident\n\ @return\ r's\ index\ in\ a\ census,\ an\ int,\ 0\ or\ positive\n\ \ \ \ \ \ \ \ \ if\ r\ is\ in\ the\ census,\ or\ -1\ otherwise.\n
+numComments=6
