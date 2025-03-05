@@ -3,94 +3,107 @@ package librerias.estructurasDeDatos.lineales;
 import librerias.estructurasDeDatos.modelos.*;
 
 public class ArrayQueue<E> implements Queue<E> {
-    protected E[] elArray;    
-    protected int finalC;
-    protected int principioC;
-    protected int talla;
-    protected static final int CAPACIDAD_POR_DEFECTO = 50;
-   
-    /** construye una Cola vacia **/
+    protected E[] arr;
+    protected int endC;
+    protected int beginC;
+    protected int size;
+    protected static final int DEFAULT_CAPACITY = 50;
+
+    /** constructs an empty queue **/
     @SuppressWarnings("unchecked")
     public ArrayQueue() {
-        elArray = (E[]) new Object[CAPACIDAD_POR_DEFECTO];
-        talla = 0; 
-        principioC = 0; 
-        finalC = 0;
+        arr = (E[]) new Object[DEFAULT_CAPACITY];
+        size = 0;
+        beginC = 0;
+        endC = 0;
     }
-    
-    /** inserta el Elemento e en una Cola, o lo situa en su final **/
-    //  SII no hay suficiente espacio en elArray se duplica 
-    //  el tamagno de elArray circular
+
+    /** inserts the element e into a Queue, or situates it at its end **/
+    // if there is not enough space in arr it doubles
+    // the size of the circular Array
     public void enqueue(E e) {
-        if (talla == elArray.length) duplicateCircularArray();
-        elArray[finalC] = e;
-        finalC = increment(finalC); 
-        talla++;
+        if (size == arr.length)
+            duplicateCircularArray();
+        arr[endC] = e;
+        endC = increment(endC);
+        size++;
     }
-    
-    // duplica el tamagno actual de un array circular 
+
+    // doubles the current size of a circular Array
     @SuppressWarnings("unchecked")
     protected void duplicateCircularArray() {
-        E[] nuevoArray = (E[]) new Object[elArray.length * 2];
-        for (int i = 0; i < talla; i++, principioC = increment(principioC))
-            nuevoArray[i] = elArray[principioC];
-        elArray = nuevoArray; 
-        principioC = 0; 
-        finalC = talla;
+        E[] newArr = (E[]) new Object[arr.length * 2];
+        for (int i = 0; i < size; i++, beginC = increment(beginC))
+            newArr[i] = arr[beginC];
+        arr = newArr;
+        beginC = 0;
+        endC = size;
     }
-    
-    // incrementa un indice de un array circular 
-    protected int increment(int indice) {
-        if (++indice == elArray.length) indice = 0;
-        return indice;
+
+    // increments an index of a circular Array
+    protected int increment(int index) {
+        if (++index == arr.length)
+            index = 0;
+        return index;
     }
-    
-    /** SII !esVacia(): 
-     *  obtiene y elimina de una Cola el Elemento que ocupa su principio **/ 
-    // principio se incrementa circularmente 
+
+    /**
+     * SII !isEmpty():
+     * obtains and removes from a Queue the Element that occupies its beginning
+     **/
+    // the beginning is incremented circularly
     public E dequeue() {
-        E elPrimero = elArray[principioC];
-        principioC = increment(principioC); 
-        talla--;
-        return elPrimero;
+        E firstElement = arr[beginC];
+        beginC = increment(beginC);
+        size--;
+        return firstElement;
     }
-    
-    /** SII !esVacia(): 
-     *  obtiene el Elemento que ocupa el principio de una Cola,  
-     *  el primero en orden de insercion **/
-    public E first() { return elArray[principioC]; }
-    
-    /** comprueba si una Cola esta vacia **/
-    public boolean isEmpty() { return talla == 0; }
-    
-   /** obtiene un String con los Elementos de una Cola en orden FIFO, 
-    *  o de insercion, y con el formato que se usa en el estandar de Java. 
-    *  Asi, por ejemplo, si se tiene una Cola con los Integer del 1 al 4, 
-    *  en orden FIFO, toString devuelve [1, 2, 3, 4]; 
-    *  si la Cola esta vacia, entonces devuelve [] 
-    */
-    // OJO: se contempla la circularidad de elArray no solo usando el metodo
-    // incrementar, sino contando el numero de Elementos desde 0 hasta talla-1
+
+    /**
+     * SII !isEmpty():
+     * obtains the Element that occupies the beginning of a Queue,
+     * the first in order of insertion
+     **/
+    public E first() {
+        return arr[beginC];
+    }
+
+    /** checks if a Queue is empty **/
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
+    /**
+     * obtains a String with the Elements of a Queue in FIFO order,
+     * or insertion order, and with the format used in the standard Java.
+     * For example, if there is a Queue with the Integers from 1 to 4,
+     * in FIFO order, toString returns [1, 2, 3, 4];
+     * if the Queue is empty, then it returns []
+     */
+    // NOTE: circularity of arr is considered not only using the increment method
+    // but counting the number of Elements from 0 to size-1
     public String toString() {
-        // NOTA: se usa la clase StringBuilder, en lugar de String, 
-        // por motivos de eficiencia
+        // NOTE: use the StringBuilder class instead of String
+        // for efficiency reasons
         StringBuilder res = new StringBuilder();
         res.append("[");
-        // NOTA: por cuestiones de formato ... 
-        // -Recorrer el ArrayCola 
-        //  desde el primero al PENULTIMO de sus elementos; 
-        // -En cada elemento visitado, 
-        //  si aux es la variable del bucle de recorrido, 
-        //  agnadir (append) a res aux.dato + ", "
-        int aux = principioC;
-        for (int i = 0, j = talla - 1; i < j; i++, aux = increment(aux))
-              res.append(elArray[aux].toString() + ", ");
-        // NOTA: por cuestiones de formato, al terminar el bucle, 
-        // agnadir el ultimo elemento al resultado;
-        // en funcion de la talla, dicho elemento es 
-        // el String elArray[aux].toString()+"]" o el String "]"
-        if (talla != 0) res.append(elArray[aux].toString() + "]"); 
-        else res.append("]");
+        // NOTE: for formatting purposes ...
+        // -Iterate over the ArrayQueue
+        // from the first to the PENULTIMATE of its elements;
+        // -For each element visited,
+        // if aux is the variable of the loop iteration,
+        // add (append) to res aux.dato + ", "
+        int aux = beginC;
+        for (int i = 0, j = size - 1; i < j; i++, aux = increment(aux))
+            res.append(arr[aux].toString() + ", ");
+        // NOTE: for formatting purposes, after the loop ends,
+        // add the last element to the result;
+        // depending on the size, said element is
+        // the String arr[aux].toString()+"]" or the String "]"
+        if (size != 0)
+            res.append(arr[aux].toString() + "]");
+        else
+            res.append("]");
         return res.toString();
     }
 }
