@@ -54,8 +54,8 @@ public class FXMLDocumentController implements Initializable {
     }
     
     private void moveCircleToCellAt(double x, double y) {
-        int row = rowCalc(gridpane, y);
-        int col = columnCalc(gridpane, x);
+        int row = Math.max(0, Math.min(rowCount - 1, rowCalc(gridpane, y)));
+        int col = Math.max(0, Math.min(colCount - 1, columnCalc(gridpane, x)));
         
         gridpane.getChildren().remove(circle);
         gridpane.add(circle, col, row);
