@@ -2,13 +2,13 @@ package librerias.estructurasDeDatos.lineales;
 
 import librerias.estructurasDeDatos.modelos.*;
 
-public class LEGLista<E> implements List<E> {
+public class LinkedList<E> implements List<E> {
 
     protected LinkedNode<E> primero;
     protected int talla;
 
     /** construye una Lista vacia, de talla cero **/
-    public LEGLista() {
+    public LinkedList() {
         primero = null;
         talla = 0;
     }
@@ -27,10 +27,8 @@ public class LEGLista<E> implements List<E> {
             aux = aux.next;
         }
         nuevo.next = aux;
-        if (ant == null)
-            primero = nuevo;
-        else
-            ant.next = nuevo;
+        if (ant == null) primero = nuevo;
+        else ant.next = nuevo;
     }
 
     /**
@@ -45,10 +43,8 @@ public class LEGLista<E> implements List<E> {
             ant = aux;
             aux = aux.next;
         }
-        if (ant == null)
-            primero = aux.next;
-        else
-            ant.next = aux.next;
+        if (ant == null) primero = aux.next;
+        else ant.next = aux.next;
     }
 
     /**
@@ -58,8 +54,7 @@ public class LEGLista<E> implements List<E> {
     public E get(int i) {
         LinkedNode<E> aux;
         int j;
-        for (aux = primero, j = 0; j < i; aux = aux.next, j++)
-            ;
+        for (aux = primero, j = 0; j < i; aux = aux.next, j++);
         return aux.data;
     }
 
@@ -84,11 +79,11 @@ public class LEGLista<E> implements List<E> {
     public String toString() {
         StringBuilder res = new StringBuilder();
         res.append("[");
-        if (talla == 0)
-            return res.append("]").toString();
+        if (talla == 0) return res.append("]").toString();
         LinkedNode<E> aux = primero;
-        for (int i = 0, j = talla - 1; i < j; i++, aux = aux.next)
-            res.append(aux.data.toString() + ", ");
+        for (int i = 0, j = talla - 1; i < j; i++, aux = aux.next) res.append(
+            aux.data.toString() + ", "
+        );
         res.append(aux.data.toString() + "]");
         return res.toString();
     }

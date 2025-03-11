@@ -3,9 +3,10 @@ package librerias.estructurasDeDatos.lineales;
 import librerias.estructurasDeDatos.modelos.*;
 
 public class ArrayQueue<E> implements Queue<E> {
+
     protected E[] arr;
-    protected int endC;
-    protected int beginC;
+    protected int end;
+    protected int begin;
     protected int size;
     protected static final int DEFAULT_CAPACITY = 50;
 
@@ -14,18 +15,17 @@ public class ArrayQueue<E> implements Queue<E> {
     public ArrayQueue() {
         arr = (E[]) new Object[DEFAULT_CAPACITY];
         size = 0;
-        beginC = 0;
-        endC = 0;
+        begin = 0;
+        end = 0;
     }
 
     /** inserts the element e into a Queue, or situates it at its end **/
     // if there is not enough space in arr it doubles
     // the size of the circular Array
     public void enqueue(E e) {
-        if (size == arr.length)
-            duplicateCircularArray();
-        arr[endC] = e;
-        endC = increment(endC);
+        if (size == arr.length) duplicateCircularArray();
+        arr[end] = e;
+        end = increment(end);
         size++;
     }
 
@@ -33,17 +33,16 @@ public class ArrayQueue<E> implements Queue<E> {
     @SuppressWarnings("unchecked")
     protected void duplicateCircularArray() {
         E[] newArr = (E[]) new Object[arr.length * 2];
-        for (int i = 0; i < size; i++, beginC = increment(beginC))
-            newArr[i] = arr[beginC];
+        for (int i = 0; i < size; i++, begin = increment(begin)) newArr[i] =
+            arr[begin];
         arr = newArr;
-        beginC = 0;
-        endC = size;
+        begin = 0;
+        end = size;
     }
 
     // increments an index of a circular Array
     protected int increment(int index) {
-        if (++index == arr.length)
-            index = 0;
+        if (++index == arr.length) index = 0;
         return index;
     }
 
@@ -53,8 +52,8 @@ public class ArrayQueue<E> implements Queue<E> {
      **/
     // the beginning is incremented circularly
     public E dequeue() {
-        E firstElement = arr[beginC];
-        beginC = increment(beginC);
+        E firstElement = arr[begin];
+        begin = increment(begin);
         size--;
         return firstElement;
     }
@@ -65,7 +64,7 @@ public class ArrayQueue<E> implements Queue<E> {
      * the first in order of insertion
      **/
     public E first() {
-        return arr[beginC];
+        return arr[begin];
     }
 
     /** checks if a Queue is empty **/
@@ -93,17 +92,18 @@ public class ArrayQueue<E> implements Queue<E> {
         // -For each element visited,
         // if aux is the variable of the loop iteration,
         // add (append) to res aux.dato + ", "
-        int aux = beginC;
-        for (int i = 0, j = size - 1; i < j; i++, aux = increment(aux))
-            res.append(arr[aux].toString() + ", ");
+        int aux = begin;
+        for (
+            int i = 0, j = size - 1;
+            i < j;
+            i++, aux = increment(aux)
+        ) res.append(arr[aux].toString() + ", ");
         // NOTE: for formatting purposes, after the loop ends,
         // add the last element to the result;
         // depending on the size, said element is
         // the String arr[aux].toString()+"]" or the String "]"
-        if (size != 0)
-            res.append(arr[aux].toString() + "]");
-        else
-            res.append("]");
+        if (size != 0) res.append(arr[aux].toString() + "]");
+        else res.append("]");
         return res.toString();
     }
 }

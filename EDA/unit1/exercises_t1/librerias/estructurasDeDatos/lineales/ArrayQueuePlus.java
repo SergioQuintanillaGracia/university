@@ -3,14 +3,14 @@ package librerias.estructurasDeDatos.lineales;
 import librerias.estructurasDeDatos.modelos.*;
 
 public class ArrayQueuePlus<E> extends ArrayQueue<E> implements QueuePlus<E> {
+
     public final int size() {
         return super.size;
     }
 
     private int decrement(int i) {
         i--;
-        if (i < 0)
-            i = arr.length - 1;
+        if (i < 0) i = arr.length - 1;
         return i;
     }
 
