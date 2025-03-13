@@ -55,10 +55,10 @@
                   <VBox fillWidth="false">
                      <children>
                         <Label text="Email:" textFill="#025477" />
-                        <TextField fx:id="emailField1" minWidth="150.0" prefHeight="26.0" prefWidth="285.0" promptText="yourEmail@domain.com" />
+                        <TextField fx:id="emailField" minWidth="150.0" prefHeight="26.0" prefWidth="285.0" promptText="user@domain.com" />
                      </children>
                   </VBox>
-                  <Label fx:id="emailError1" text="Incorrect email" textFill="#ca0505" translateY="5.0" visible="false" />
+                  <Label fx:id="emailErrorLabel" text="Incorrect email" textFill="#ca0505" translateY="5.0" visible="false" />
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" spacing="10.0" GridPane.columnSpan="2" GridPane.rowIndex="1">
@@ -66,10 +66,10 @@
                   <VBox fillWidth="false">
                      <children>
                         <Label text="Password:" textFill="#025477" />
-                        <TextField fx:id="emailField11" minWidth="150.0" prefHeight="26.0" prefWidth="150.0" promptText="Password" />
+                        <TextField fx:id="passwordField" minWidth="150.0" prefHeight="26.0" prefWidth="150.0" promptText="Password" />
                      </children>
                   </VBox>
-                  <Label fx:id="emailError11" text="Must be a combination of 8 to 15 numbers or letters without blank spaces" textFill="#ca0505" translateY="5.0" visible="false" />
+                  <Label fx:id="passwordErrorLabel" text="Must be a combination of 8 to 15 numbers or letters without blank spaces" textFill="#ca0505" translateY="5.0" visible="false" />
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" spacing="10.0" GridPane.columnSpan="2" GridPane.rowIndex="2">
@@ -77,10 +77,10 @@
                   <VBox fillWidth="false">
                      <children>
                         <Label text="Repeat password:" textFill="#025477" />
-                        <TextField fx:id="emailField12" minWidth="150.0" prefHeight="26.0" prefWidth="150.0" promptText="Password" />
+                        <TextField fx:id="repeatPasswordField" minWidth="150.0" prefHeight="26.0" prefWidth="150.0" promptText="Password" />
                      </children>
                   </VBox>
-                  <Label fx:id="emailError12" text="Passwords don't match" textFill="#ca0505" translateY="5.0" visible="false" />
+                  <Label fx:id="repeatPasswordErrorLabel" text="Passwords don't match" textFill="#ca0505" translateY="5.0" visible="false" />
                </children>
             </HBox>
             <Separator prefWidth="200.0" GridPane.rowIndex="3" />
@@ -89,15 +89,15 @@
                   <VBox fillWidth="false">
                      <children>
                         <Label text="Birthdate:" textFill="#025477" />
-                        <DatePicker />
+                        <DatePicker fx:id="datePicker" />
                      </children>
                   </VBox>
-                  <Label fx:id="emailError121" text="User must be 16 years old" textFill="#ca0505" translateY="5.0" visible="false" />
+                  <Label fx:id="birthdateErrorLabel" text="User must be 16 years old" textFill="#ca0505" translateY="5.0" visible="false" />
                </children>
             </HBox>
             <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="280.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="116.0" style="-fx-background-color: #3BA3ED;" text="Register" textFill="WHITE">
+                  <Button fx:id="registerButton" mnemonicParsing="false" prefHeight="44.0" prefWidth="116.0" style="-fx-background-color: #3BA3ED;" text="Register" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="22.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -115,7 +115,7 @@
                         <Insets right="16.0" />
                      </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="116.0" style="-fx-background-color: #3BA3ED;" text="Cancel" textFill="WHITE">
+                  <Button fx:id="cancelButton" mnemonicParsing="false" prefHeight="44.0" prefWidth="116.0" style="-fx-background-color: #3BA3ED;" text="Cancel" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="22.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                            <image>

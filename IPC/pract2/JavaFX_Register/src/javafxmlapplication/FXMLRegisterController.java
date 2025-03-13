@@ -29,16 +29,34 @@ import javafx.scene.control.TextField;
 public class FXMLRegisterController implements Initializable {
 
     @FXML
-    private Label emailError;
+    private Label emailErrorLabel;
     @FXML
     private TextField emailField;
  
     //properties to control valid fields values. 
     private BooleanProperty validEmail;
+    private BooleanProperty validPassword;
+
  
     
     // listener to register on textProperty() or valueProperty()
     private ChangeListener<String> listenerEmail;
+    @FXML
+    private TextField passwordField;
+    @FXML
+    private Label passwordErrorLabel;
+    @FXML
+    private TextField repeatPasswordField;
+    @FXML
+    private Label repeatPasswordErrorLabel;
+    @FXML
+    private DatePicker datePicker;
+    @FXML
+    private Label birthdateErrorLabel;
+    @FXML
+    private Button registerButton;
+    @FXML
+    private Button cancelButton;
 
     
     private void checkEmail() {
@@ -46,14 +64,13 @@ public class FXMLRegisterController implements Initializable {
 //        boolean isValid = email.matches("^[A-Za-z0-9+_.-]+@(.+)$");
         boolean isValid = email.matches("^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$");
         validEmail.set(isValid); //actualiza la property asociada
-        showError(isValid, emailField, emailError); //muestra o esconde el mensaje de error
+        showError(isValid, emailField, emailErrorLabel); //muestra o esconde el mensaje de error
     }
 
 
-    
     private void showError(boolean isValid, Node field, Node errorMessage){
         errorMessage.setVisible(!isValid);
-        field.setStyle(((isValid) ? "" : "-fx-background-color: #FCE5E0"));
+        field.setStyle((isValid ? "" : "-fx-background-color: #FCE5E0"));
     }
 
     //=========================================================
