@@ -16,33 +16,76 @@ public class QuickSort {
         System.out.println("Before sorting: " + Arrays.toString(arr3));
         quickSort(arr3, 0, arr3.length - 1);
         System.out.println("After sorting: " + Arrays.toString(arr3));
+
+        // Test case 1: Integer array
+        Integer[] intArr = {3, 1, 4, 1, 5, 9, 2, 6, 5};
+        System.out.println("Test 1: " + quickSelect(intArr, 3)); // Expect the 3rd smallest element
+
+        // Test case 2: String array
+        String[] strArr = {"apple", "orange", "banana", "grape", "pear"};
+        System.out.println("Test 2: " + quickSelect(strArr, 2)); // Expect the 2nd smallest string lexicographically
+
+        // Test case 3: Double array
+        Double[] doubleArr = {2.5, 3.1, 4.7, 1.2, 8.6};
+        System.out.println("Test 3: " + quickSelect(doubleArr, 4)); // Expect the 4th smallest element
+
+        // Test case 4: Edge case - Single element
+        Integer[] singleElementArr = {42};
+        System.out.println("Test 4: " + quickSelect(singleElementArr, 1)); // Expect 42
+
+        // Test case 5: Edge case - Already sorted array
+        Integer[] sortedArr = {1, 2, 3, 4, 5};
+        System.out.println("Test 5: " + quickSelect(sortedArr, 3)); // Expect 3
     }
 
-    // I should modify this so it is more understandable and simple
-    public static <T extends Comparable<T>> int partition(T[] arr, int left, int right) {
-        T pivot = arr[(left + right) / 2];
-
-        if (right - left <= 2) return 1 + 1;
-
-        // Hide the pivot in right - 1
-        swap(arr, (left + right) / 2, right - 1);
-
-        int indP = left;
-        int j = right - 1;
-        while (indP < j) {
-            // Get to a position indP where arr[indP] >= pivot
-            while (arr[++indP].compareTo(pivot) < 0);
-            // Get to a position j where arr[j] <= pivot
-            while (arr[--j].compareTo(pivot) > 0);
-            swap(arr, indP, j);
+    public static <T extends Comparable<T>> T quickSelect(T[] arr, int k) {
+        int left = 0;
+        int right = arr.length - 1;
+        int pivotIndex = partition(arr, left, right);;
+        
+        while (pivotIndex + 1 != k) {
+            if (pivotIndex + 1 > k) {
+                right = pivotIndex - 1;
+            } else if (pivotIndex + 1 < k) {
+                left = pivotIndex + 1;
+            }
+            pivotIndex = partition(arr, left, right);
         }
 
-        // Undo last swap
-        swap(arr, indP, j);
+        return arr[pivotIndex];
+    }
 
-        // Restore hidden pivot
-        swap(arr, indP, right - 1);
-        return indP;
+    public static <T extends Comparable<T>> void quickSort(T[] arr, int left, int right) {
+        if (left < right) {
+            // The array has more than 2 elements
+            int pivot = partition(arr, left, right);
+            quickSort(arr, left, pivot - 1);
+            quickSort(arr, pivot + 1, right);
+        }
+    }
+
+    public static <T extends Comparable<T>> int partition(T[] arr, int left, int right) {
+        // Choose the pivot
+        T pivot = arr[right];
+
+        // Index of last value smaller than the pivot
+        int i = left - 1;
+
+        // Traverse arr[left..right] and move all smaller elements to the left
+        for (int j = left; j <= right - 1; j++) {
+            if (arr[j].compareTo(pivot) < 0) {
+                // If the current element is smaller than the pivot, add it to the left
+                // part of the array, next to i
+                i++;
+                swap(arr, i, j);
+            }
+        }
+
+        // The pivot should be just after i, which is the last value smaller than the pivot
+        // Remember the pivot is the last element of the array, at the right
+        swap(arr, i + 1, right);
+        // Return the position of the pivot
+        return i + 1;
     }
 
     public static <T> void swap(T[] arr, int a, int b) {
