@@ -1,0 +1,34 @@
+#BlueJ class context
+comment0.target=Sorting
+comment0.text=\n\ The\ Sorting\ class\ contains\:\n\ -\ The\ implementation\ of\ the\ in-place\ sorting\ algorithms\ D&Q\n\ \ \ Quick\ Sort\ and\ Merge\ Sort.\n\ -\ A\ method\ to\ check\ whether\ two\ generic\ arrays\ are\ equal.\n\n\ @author\ (EDA)\n\ @version\ (Curso\ 2017-2018)\n
+comment1.params=a
+comment1.target=void\ quickSort(java.lang.Comparable[])
+comment1.text=\n\ Quicksort\ sorting\ algorithm\ (Hoare,\ 1963).\n\ Using\ Weiss'\ partition\ algorithm,\ with\ median\ 3\n\ to\ compute\ the\ pivot.\n\n\ @param\ a\ Its\ elements\ implement\ the\ Comparable\ interface\n
+comment10.params=v1\ v2
+comment10.target=java.lang.Comparable[]\ merge2(java.lang.Comparable[],\ java.lang.Comparable[])
+comment10.text=\n\ Returns\ the\ array\ that\ results\ from\ merging\ v1\ and\ v2,\n\ two\ arrays\ that\ are\ already\ sorted\ in\ ascending\ order.\n\n\ @param\ v1\ \ Its\ elements\ must\ implement\ the\ Comparable\ interface\n\ @param\ v2\ \ Its\ elements\ must\ implement\ the\ Comparable\ interface\n\ @return\ T[],\ the\ array\ that\ results\ from\ merging\ v1\ and\ v2\n
+comment11.params=a\ b
+comment11.target=boolean\ areEqual(java.lang.Comparable[],\ java.lang.Comparable[])
+comment11.text=\n\ \ Checks\ whether\ arrays\ a\ and\ b\ are\ equal\ element\ to\ element.\n\n\ \ @param\ a\ \ Its\ elements\ must\ implement\ the\ Comparable\ interface\n\ \ @return\ boolean,\ the\ result\ of\ this\ check\n
+comment2.params=a\ left\ right
+comment2.target=void\ quickSort(java.lang.Comparable[],\ int,\ int)
+comment3.params=a\ i\ j
+comment3.target=void\ swap(java.lang.Object[],\ int,\ int)
+comment4.params=a\ left\ right
+comment4.target=java.lang.Comparable\ median3(java.lang.Comparable[],\ int,\ int)
+comment5.params=v
+comment5.target=void\ mergeSort1(java.lang.Comparable[])
+comment5.text=\n\ Sorts\ array\ v\ in\ ascending\ order.\n\n\ @param\ v\ \ Its\ elements\ must\ implement\ the\ Comparable\ interface\n
+comment6.params=v\ i\ f
+comment6.target=void\ mergeSort1(java.lang.Comparable[],\ int,\ int)
+comment6.text=\n\ IFF\ i<\=f\:\ sorts\ the\ subarray\ v[i,\ f]\ in\ ascending\ order.\n\n\ @param\ v\ \ Its\ elements\ must\ implement\ the\ Comparable\ interface\n\ @param\ i\ \ Lower\ bound\ of\ the\ interval\ to\ be\ sorted\n\ @param\ f\ \ Upper\ bound\ of\ the\ interval\ to\ be\ sorted\n
+comment7.params=v\ i\ f\ m
+comment7.target=void\ merge1(java.lang.Comparable[],\ int,\ int,\ int)
+comment7.text=\n\ Merges\ internally\ the\ subarrays\ v[i,\ m]\ and\ v[m\ +\ 1,\ f],\n\ both\ are\ already\ sorted\ in\ ascending\ order.\n\n\ @param\ v\ \ Its\ elements\ must\ implement\ the\ Comparable\ interface\n\ @param\ i\ \ Lower\ bound\ of\ the\ interval\ to\ be\ merged\n\ @param\ f\ \ Upper\ bound\ of\ the\ interval\ to\ be\ merged\n
+comment8.params=v
+comment8.target=void\ mergeSort2(java.lang.Comparable[])
+comment8.text=\n\ Sorts\ array\ v\ in\ ascending\ order.\n\n\ @param\ v\ \ Its\ elements\ must\ implement\ the\ Comparable\ interface\n
+comment9.params=v\ i\ f
+comment9.target=java.lang.Comparable[]\ mergeSort2(java.lang.Comparable[],\ int,\ int)
+comment9.text=\n\ IFF\ i<\=f\:\ returns\ an\ array\ with\ the\ elements\ of\n\ the\ subarray\ v[i,\ f]\ sorted\ in\ ascending\ order.\n\n\ @param\ v\ \ Its\ elements\ must\ implement\ the\ Comparable\ interface\n\ @param\ i\ \ Lower\ bound\ of\ the\ interval\ to\ be\ sorted\n\ @param\ f\ \ Upper\ bound\ of\ the\ interval\ to\ be\ sorted\n\ @return\ T[],\ the\ array\ that\ results\ from\ sorting\ v[i,\ f]\n
+numComments=12

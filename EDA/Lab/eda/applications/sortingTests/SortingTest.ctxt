@@ -1,0 +1,21 @@
+#BlueJ class context
+comment0.target=SortingTest
+comment0.text=\n\ The\ SortingTest\ class\ can\ test\ and\ time\ the\ methods\ to\n\ sort\ generic\ arrays\ defined\ in\ the\ libraries.util.Sorting\n\ class.\n\n\ \ @author\ (EDA)\n\ \ @version\ (Curso\ 2019-2020)\n
+comment1.params=
+comment1.target=boolean\ check()
+comment1.text=\n\ Checks\ the\ correctness\ of\ the\ mergeSort2\ method\n\ of\ the\ Sorting\ class,\ knowing\ that\ the\ quickSort\n\ method\ is\ correct.\n
+comment2.params=
+comment2.target=void\ time()
+comment2.text=\n\ Prints\ a\ table\ of\ timings\ of\ the\ time\ it\ takes\n\ mergeSort1,\ mergeSort2\ and\ quickSort\ to\ sort\n\ arrays\ of\ integers.\n
+comment3.params=size
+comment3.target=java.lang.Integer[]\ createRandomInteger(int)
+comment3.text=\n\ Returns\ an\ array\ of\ size\ Integers\ generated\ randomly.\n\n\ @param\ size\ \ Length\ of\ the\ resulting\ array\n\ @return\ Integer[]\n
+comment4.params=
+comment4.target=void\ timeString()
+comment4.text=\n\ Prints\ a\ table\ of\ timings\ of\ the\ time\ it\ takes\n\ mergeSort1,\ mergeSort2\ and\ quickSort\ to\ sort\n\ arrays\ of\ strings.\n
+comment5.params=size\ n
+comment5.target=java.lang.String[]\ createRandomString(int,\ int)
+comment5.text=\n\ Returns\ an\ array\ of\ size\ Strings\ generated\ randomly.\n\ All\ share\ the\ same\ prefix\ of\ length\ n.\n\n\ @param\ size\ \ Length\ of\ the\ resulting\ array\n\ @param\ n\ Length\ of\ the\ prefix\ shared\ by\ all\ strings\n\ @return\ String[]\n
+comment6.params=args
+comment6.target=void\ main(java.lang.String[])
+numComments=7

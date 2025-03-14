@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=StringGenerator
+comment0.text=\n\ StringGenerator(n)\ generates\ Strings\ with\ a\ common\n\ prefix\ of\ length\ n.\n\ Usage\:\ if\ you\ want\ to\ create\ two\ strings\ s1\ and\ s2\ that\n\ share\ a\ 10-character\ prefix,\ use\ the\ following\ code.\n\ \ StringGenerator\ g\ \=\ new\ StringGenerator(10);\n\ \ String\ s1\ \=\ g.generate();\n\ \ String\ s2\ \=\ g.generate();\n\n\ @author\ (EDA)\n\ @version\ (Curso\ 2017-2018)\n
+comment1.params=n
+comment1.target=StringGenerator(int)
+comment1.text=\n\ Creates\ a\ new\ StringGenerator\ whose\ first\ n\ characters\ are\ equal.\n
+comment2.params=
+comment2.target=java.lang.String\ generate()
+comment2.text=\n\ Returns\ a\ String\ whose\ n\ first\ characters\ are\n\ equal\ to\ all\ other\ strings\ generated\ by\ this\ object,\n\ the\ rest\ are\ chosen\ at\ random.\n
+numComments=3
