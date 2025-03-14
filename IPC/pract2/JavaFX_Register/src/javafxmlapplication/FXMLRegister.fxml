@@ -7,7 +7,7 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.ColorAdjust?>
-<?import javafx.scene.effect.GaussianBlur?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -32,7 +32,7 @@
             <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
          </padding>
          <effect>
-            <GaussianBlur />
+            <DropShadow />
          </effect>
       </HBox>
       <GridPane hgap="12.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="309.0" prefWidth="673.0" vgap="12.0" VBox.vgrow="ALWAYS">
@@ -114,6 +114,9 @@
                      <HBox.margin>
                         <Insets right="16.0" />
                      </HBox.margin>
+                     <effect>
+                        <DropShadow />
+                     </effect>
                   </Button>
                   <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#handleCancel" prefHeight="44.0" prefWidth="116.0" style="-fx-background-color: #3BA3ED;" text="Cancel" textFill="WHITE">
                      <graphic>
@@ -129,6 +132,9 @@
                      <font>
                         <Font size="15.0" />
                      </font>
+                     <effect>
+                        <DropShadow />
+                     </effect>
                   </Button>
                </children>
             </HBox>
