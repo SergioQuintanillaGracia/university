@@ -12,6 +12,8 @@ import java.time.temporal.ChronoUnit;
 import static java.time.temporal.ChronoUnit.YEARS;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.BooleanBinding;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.value.ChangeListener;
@@ -25,6 +27,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.util.converter.LocalDateStringConverter;
 
 public class FXMLRegisterController implements Initializable {
 
@@ -37,11 +40,13 @@ public class FXMLRegisterController implements Initializable {
     private BooleanProperty validEmail;
     private BooleanProperty validPassword;
     private BooleanProperty validRepeatPassword;
+    private BooleanProperty validDate;
     
     // listener to register on textProperty() or valueProperty()
     private ChangeListener<String> listenerEmail;
     private ChangeListener<String> listenerPassword;
     private ChangeListener<String> listenerRepeatPassword;
+    private ChangeListener<LocalDate> listenerDate;
 
 
     @FXML
@@ -64,24 +69,30 @@ public class FXMLRegisterController implements Initializable {
     
     private void checkEmail() {
         String email = emailField.getText();
-//        boolean isValid = email.matches("^[A-Za-z0-9+_.-]+@(.+)$");
         boolean isValid = email.matches("^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$");
-        validEmail.set(isValid); //actualiza la property asociada
-        showError(isValid, emailField, emailErrorLabel); //muestra o esconde el mensaje de error
+        validEmail.set(isValid);
+        showError(isValid, emailField, emailErrorLabel);
     }
     
     private void checkPassword() {
         String password = passwordField.getText();
         boolean isValid = password.matches("^(?=.*[0-9])(?=.*[a-zA-Z])\\S{8,15}$");
-        validPassword.set(isValid); //actualiza la property asociada
-        showError(isValid, passwordField, passwordErrorLabel); //muestra o esconde el mensaje de error
+        validPassword.set(isValid);
+        showError(isValid, passwordField, passwordErrorLabel);
     }
     
     private void checkRepeatPassword() {
         String password = passwordField.getText();
         boolean isValid = password.equals(repeatPasswordField.getText());
-        validRepeatPassword.set(isValid); //actualiza la property asociada
-        showError(isValid, repeatPasswordField, repeatPasswordErrorLabel); //muestra o esconde el mensaje de error
+        validRepeatPassword.set(isValid);
+        showError(isValid, repeatPasswordField, repeatPasswordErrorLabel);
+    }
+    
+    private void checkDate() {
+        LocalDate value = datePicker.getValue();
+        boolean isValid = value.isBefore(LocalDate.now().minus(16, YEARS));
+        validDate.set(isValid);
+        showError(isValid, datePicker, birthdateErrorLabel);
     }
 
 
@@ -96,6 +107,29 @@ public class FXMLRegisterController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         validEmail = new SimpleBooleanProperty(false);
         validPassword = new SimpleBooleanProperty(false);
+        validRepeatPassword = new SimpleBooleanProperty(false);
+        validDate = new SimpleBooleanProperty(false);
+        
+        BooleanBinding validFields = Bindings.and(validEmail, validPassword)
+                .and(validRepeatPassword)
+                .and(validDate);
+        
+        registerButton.disableProperty().bind(
+                Bindings.not(validFields)
+        );
+        
+        LocalDateStringConverter localDateStringConverter = new LocalDateStringConverter() {
+            @Override
+            public LocalDate fromString(String value) {
+                try {
+                    return super.fromString(value);
+                } catch (Exception e) {
+                    System.out.println("Exception in fromString");
+                    return LocalDate.now();
+                }
+            }
+        };
+        datePicker.setConverter(localDateStringConverter);
 
         //When the field loses focus, the field is validated. 
         emailField.focusedProperty().addListener((obs, oldVal, newVal) -> {
@@ -120,7 +154,7 @@ public class FXMLRegisterController implements Initializable {
                     //If it is not correct, a listener is added to the text or value 
                     //so that the field is validated while it is being edited.
                     if (listenerPassword == null) {
-                        listenerPassword = (a, b, c) -> checkEmail();
+                        listenerPassword = (a, b, c) -> checkPassword();
                         passwordField.textProperty().addListener(listenerPassword);
                     }
                 }
@@ -135,11 +169,41 @@ public class FXMLRegisterController implements Initializable {
                     //If it is not correct, a listener is added to the text or value 
                     //so that the field is validated while it is being edited.
                     if (listenerRepeatPassword == null) {
-                        listenerRepeatPassword = (a, b, c) -> checkEmail();
+                        listenerRepeatPassword = (a, b, c) -> checkRepeatPassword();
                         repeatPasswordField.textProperty().addListener(listenerRepeatPassword);
                     }
                 }
             }
         });
+        
+        datePicker.focusedProperty().addListener((obs, oldval, newVal) -> {
+           if (!newVal) {
+               checkDate();
+               if (!validDate.get()) {
+                   if (listenerDate == null) {
+                       listenerDate = (a, b, c) -> checkDate();
+                       datePicker.valueProperty().addListener(listenerDate);
+                   }
+               }
+           } 
+        });
+    }
+
+    @FXML
+    private void handleAccept(ActionEvent event) {
+        emailField.clear();
+        passwordField.clear();
+        repeatPasswordField.clear();
+        datePicker.setValue(null);
+        
+        validEmail.setValue(Boolean.FALSE);
+        validPassword.setValue(Boolean.FALSE);
+        validRepeatPassword.setValue(Boolean.FALSE);
+        validDate.setValue(Boolean.FALSE);
+    }
+
+    @FXML
+    private void handleCancel(ActionEvent event) {
+        cancelButton.getScene().getWindow().hide();
     }
 }

@@ -97,7 +97,7 @@
             </HBox>
             <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="280.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
                <children>
-                  <Button fx:id="registerButton" mnemonicParsing="false" prefHeight="44.0" prefWidth="116.0" style="-fx-background-color: #3BA3ED;" text="Register" textFill="WHITE">
+                  <Button fx:id="registerButton" mnemonicParsing="false" onAction="#handleAccept" prefHeight="44.0" prefWidth="116.0" style="-fx-background-color: #3BA3ED;" text="Register" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="22.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -115,7 +115,7 @@
                         <Insets right="16.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="cancelButton" mnemonicParsing="false" prefHeight="44.0" prefWidth="116.0" style="-fx-background-color: #3BA3ED;" text="Cancel" textFill="WHITE">
+                  <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#handleCancel" prefHeight="44.0" prefWidth="116.0" style="-fx-background-color: #3BA3ED;" text="Cancel" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="22.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                            <image>
