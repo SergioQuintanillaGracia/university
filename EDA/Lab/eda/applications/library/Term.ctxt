@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.target=Term
+comment0.text=\n\ Term\:\ Key\ class\ of\ a\ Map\ that\ represents\ a\ word\ or\ term\ of\n\ the\ Analytical\ Index\ of\ a\ Digital\ Library.\n\n\ To\ override\ efficiently\ the\ equals\ and\ hashCode\ methods\ of\ Object,\n\ each\ Term\ HAS\ A\ hashValue\ that\ stores\ the\ result\ of\ the\ FIRST\n\ invocation\ of\ the\ hashCode\ method.\n\ Thus,\ the\ hash\ value\ associated\ to\ a\ given\ Term...\n\ (a)\ is\ only\ computed\ once,\ regardless\ of\ the\ number\ of\n\ \ \ \ \ calls\ to\ hashCode;\n\ (b)\ can\ be\ used\ in\ the\ equals\ method\ of\ the\ class\ to\ ONLY\ check\n\ \ \ \ \ for\ equality\ if\ the\ hash\ values\ are\ equal.\n\n\ On\ top\ of\ that,\ to\ evaluate\ different\ hashCode\ implementations,\ each\n\ Term\ HAS\ A\ hashCodeBase\ that\ stores\ the\ numerical\ base\ to\ use\ when\n\ computing\ its\ hashValue.\n\ \n\ @author\ (EDA-QA)\ \n\ @version\ (Curso\ 2020-2021)\n
+comment1.params=t\ base
+comment1.target=Term(java.lang.String,\ int)
+comment1.text=\ Creates\ the\ Term\ associated\ to\ a\ word\ t\ and\ selects\nthe\ base\ to\ be\ used\ in\ the\ hashCode\ method.
+comment2.params=t
+comment2.target=Term(java.lang.String)
+comment2.text=Creates\ the\ Term\ associated\ to\ a\ word\ t\ according\ to\ Java's\ standard.
+comment3.params=
+comment3.target=int\ hashCode()
+comment3.text=\ Return\ the\ hash\ value\ of\ this\ Term\ in\ an\ EFFICIENT\ way,\ i.e.\n\ \ when\ running\ this\ method\ for\ the\ FIRST\ time\ over\ a\ Term\ of\ length\n\ \ n\ (this.word.length()),\ computes\ its\ hash\ value\ using\ the\ following\n\ \ polynomial\ equation.\ It\ must\ be\ implemented\ using\ Horner's\ method,\n\ \ so\ WITHOUT\ using\ methods\ from\ the\ Math\ class.\n\ \ this.hashValue\ \=\ word.charAt(0)\ *\ hashCodeBase\ ^\ (n\ -\ 1)\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ word.charAt(1)\ *\ hashCodeBase\ ^\ (n\ -\ 2)\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ ...\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ word.chatAt(n\ -\ 1)\n\ \ If\ this\ ISN'T\ the\ first\ call\ to\ this\ method,\ returns\ this.hashValue\n
+comment4.params=other
+comment4.target=boolean\ equals(java.lang.Object)
+comment4.text=\ Checks\ whether\ this\ Term\ is\ equal\ to\ another\ in\ an\ efficient\n\ \ way,\ i.e.,\ ONLY\ runs\ the\ equals\ method\ of\ String\ when\ the\n\ \ hash\ values\ of\ this\ and\ other\ are\ equal.\n
+comment5.params=
+comment5.target=java.lang.String\ toString()
+comment5.text=Returns\ a\ String\ that\ represents\ a\ Term\ in\ a\ given\ textual\ format
+numComments=6
