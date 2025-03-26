@@ -1,0 +1,22 @@
+#BlueJ class context
+comment0.target=Map
+comment0.text=\n\ Dictionary\ Model\ WITHOUT\ repeated\ keys,\ or\ Map\:\ Dynamic\ Search\n\ for\ a\ given\ Key's\ Entry\ in\ a\ Collection,\ to\ recover\ the\n\ Value\ associated\ to\ it.\n\ @param\ <K>,\ the\ Keys'\ type\n\ @param\ <V>,\ the\ Values'\ type\n\n\ @author\ (EDA)\n\ @version\ (Curso\ 2018-2019)\n
+comment1.params=k\ v
+comment1.target=java.lang.Object\ put(java.lang.Object,\ java.lang.Object)
+comment1.text=\ Inserts\ the\ Entry\ (k,\ v)\ in\ a\ Map\ and\ returns\ null;\ if\n\ \ the\ Map\ contains\ another\ Entry\ with\ Key\ k,\ returns\ its\n\ \ associated\ value\ and\ replaces\ it\ with\ v\ (updates\ the\ Entry).\n
+comment2.params=k
+comment2.target=java.lang.Object\ remove(java.lang.Object)
+comment2.text=\ removes\ the\ Entry\ with\ Key\ k\ from\ a\ Map,\ and\ returns\ its\n\ \ associated\ value,\ or\ null\ if\ no\ Entry\ exists\ with\ the\ given\ key\n
+comment3.params=k
+comment3.target=java.lang.Object\ get(java.lang.Object)
+comment3.text=\ returns\ the\ value\ associated\ to\ a\ Key\ k\ in\ a\ Map,\n\ \ or\ null\ if\ no\ Entry\ exists\ with\ the\ given\ key\n
+comment4.params=
+comment4.target=boolean\ isEmpty()
+comment4.text=checks\ whether\ a\ Map\ is\ empty
+comment5.params=
+comment5.target=int\ size()
+comment5.text=returns\ the\ size,\ or\ number\ of\ Entries\ of\ the\ Map
+comment6.params=
+comment6.target=ListPOI\ keys()
+comment6.text=returns\ a\ ListPOI\ with\ the\ size()\ Keys\ of\ a\ Map
+numComments=7
