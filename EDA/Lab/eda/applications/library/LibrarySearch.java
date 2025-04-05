@@ -47,7 +47,7 @@ public class LibrarySearch {
     // separators that appear in the books from bookList.
     // Its default value is shown below, and can be changed if applicable.
     protected static String separators =
-       "[[ ]*|[,]*|[\\.]*|[\t]*|[:]*|[;]*|[(]*|[)]*|[/]*|[!]*|[?]*|[Â¿]*|[â€œ]*|[â€]*|[+]*]+";
+       "[[ ]*|[,]*|[\\.]*|[\t]*|[:]*|[;]*|[(]*|[)]*|[/]*|[!]*|[?]*|[¿]*|[“]*|[”]*|[+]*]+";
 
     // AN int maxTerms, the maximum number of different terms contained in
     // the books from bookList. Its default value is shown below, and should
