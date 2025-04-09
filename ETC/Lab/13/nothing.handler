@@ -1,0 +1,51 @@
+## ESTRUCTURA DE COMPUTADORES   (ETSInformatica)
+##  
+##
+## LAB 13. Interrupt synchronisation
+##
+## Initial handler code
+
+
+##############################################################
+##                  HANDLER DATA SEGMENT                    ##
+##############################################################
+
+			.kdata
+var1:	.word 0xFFFFFFFF
+
+##############################################################
+##                       HANDLER CODE                       ##
+#####################################################3########
+
+          .ktext 0x80000080
+
+    ## Save the user program context
+    ## (to be completed)
+
+    ## Identify and handle exceptions
+    ## (to be completed)
+
+    ## Restore context
+    ## (to be completed)
+
+    ## Set user mode and return to the user program
+    ## (to be completed)
+	rfe  # (Restore From Exception)
+	jr $k0 
+
+#############################################################
+## STARTUP, USER-PROGRAM INVOCATION, AND TERMINATION CODE  ##
+#############################################################
+
+          .text
+          .globl __start 
+__start: 
+    ## Initialisation code
+    ## (to be completed)
+
+    ## Jump to user program
+	jal main
+
+    ## Ending code
+	li $v0, 10
+	syscall	 # exit function

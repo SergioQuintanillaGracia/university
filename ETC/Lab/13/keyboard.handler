@@ -1,0 +1,64 @@
+## ESTRUCTURA DE COMPUTADORES   (ETSInformatica)
+##  
+##
+## LAB 13. Interrupt synchronisation
+##
+## Initial handler code
+
+
+##############################################################
+##                  HANDLER DATA SEGMENT                    ##
+##############################################################
+
+			.kdata
+var1:	.word 0xFFFFFFFF
+
+##############################################################
+##                       HANDLER CODE                       ##
+#####################################################3########
+
+          .ktext 0x80000080
+
+    ## Save the user program context
+    ## (to be completed)
+
+    ## Identify and handle exceptions
+    ## (to be completed)
+
+    ## Restore context
+    ## (to be completed)
+
+    ## Set user mode and return to the user program
+    ## (to be completed)
+	rfe  # (Restore From Exception)
+	mfc0 $k0, $14
+	jr $k0
+
+#############################################################
+## STARTUP, USER-PROGRAM INVOCATION, AND TERMINATION CODE  ##
+#############################################################
+
+          .text
+          .globl __start 
+__start: 
+    ## Initialisation code
+	
+    # Set Status IMx bit to 1, and IEc bit to 1 as well
+	# We also have to set the bit KUc to 1 to go from kernel to user mode
+	# We therefore have to load 0x103 in mtc0
+	li $t0, 0x103
+	mtc0 $t0, $12  # 12 is the Status register
+	
+	# We now need to enable interruptions in the keyboard peripheral
+	li $t0, 0xFFFF0000
+	li $t1, 0x2
+	sw $t1, 0($t0)
+	
+
+    ## Jump to user program
+	jal main
+	
+
+    ## Ending code
+	li $v0, 10
+	syscall	 # exit function
