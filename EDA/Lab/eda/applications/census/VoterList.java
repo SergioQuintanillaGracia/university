@@ -86,5 +86,44 @@ public class VoterList {
         
         return -1;
     }
-
+    
+    public boolean remove(Resident r) {
+        census.begin();
+        
+        // Try to find the resident in the census
+        while (!census.isEnd()) {
+            if (census.get().equals(r)) {
+                // If the current resident in the census is equal to the
+                // passed resident, remove it and reduce the size accordingly
+                census.remove();
+                size--;
+                return true;
+            }
+            
+            census.next();
+        }
+        
+        // We got to the end of the census and the resident wasn't found in
+        // it, return false
+        return false;
+    }
+    
+    public static void testRemove() {
+        VoterList vl = new VoterList(true, 4);
+        System.out.println(vl);
+        vl.census.begin();
+        vl.census.next();
+        vl.remove(vl.census.get());
+        System.out.println("\nRemoving the second resident...");
+        System.out.println(vl);
+        vl.census.begin();
+        vl.remove(vl.census.get());
+        System.out.println("\nRemoving the first resident...");
+        System.out.println(vl);
+        vl.census.begin();
+        vl.census.next();
+        vl.remove(vl.census.get());
+        System.out.println("\nRemoving the last resident...");
+        System.out.println(vl);
+    }
 }

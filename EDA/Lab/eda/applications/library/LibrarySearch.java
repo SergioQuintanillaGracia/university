@@ -152,6 +152,53 @@ public class LibrarySearch {
         }
         return res;
     }
+    
+    public String condensedSearch(String word) {
+        // Get the bucket corresponding to the passed word
+        Term wordTerm = new Term(word);
+        ListPOI<Posting> bucket = index.get(wordTerm);
+        
+        // Create a map that will store the occurrences for the word
+        // in each book
+        Map<String, ListPOI<Integer>> cases = new HashTable<>(bucket.size());
+        
+        // Iterate through the bucket and count occurrences
+        bucket.begin();
+        while (!bucket.isEnd()) {
+            Posting p = bucket.get();
+            if (cases.get(p.bookTitle) == null) {
+                // The book doesn't yet have an entry in the map
+                ListPOI<Integer> list = new LinkedListPOI<>();
+                list.add(p.lineNumber);
+                // Add the entry in the map with just the current occurrence
+                cases.put(p.bookTitle, list);
+            } else {
+                // The book has an entry in the map, we just have to update
+                // the ListPOI
+                ListPOI<Integer> list = cases.get(p.bookTitle);
+                list.end();
+                list.add(p.lineNumber);
+                cases.put(p.bookTitle, list);
+            }
+            
+            bucket.next();
+        }
+        
+        // Create a string with the correct format for the result
+        StringBuilder sb = new StringBuilder("");
+        
+        ListPOI<String> keys = cases.keys();
+        keys.begin();
+        
+        // Iterate through every key in the map
+        while (!keys.isEnd()) {
+            sb.append("%s %s\n".formatted(keys.get(), cases.get(keys.get())));
+            keys.next();
+        }
+        
+        // Return the resulting text
+        return sb.toString();
+    }
 
     /** Checks whether aWord is a term in a Digital Library's Index, i.e.,
      *  whether aWord is non-empty and contains only letters. */
