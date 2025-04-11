@@ -62,17 +62,21 @@ __start:
     # Load $k1 with the address of context
     la $k1, context
 	
-    # Set Status IMx bit to 1, and IEc bit to 1 as well
+    # Set Status IM0 and IM2 bit to 1, and IEc bit to 1 as well
 	# We also have to set the bit KUc to 1 to go from kernel to user mode
 	# We therefore have to load 0x103 in mtc0
-	li $t0, 0x103
+	li $t0, 0x503
 	mtc0 $t0, $12  # 12 is the Status register
 	
-	# We now need to enable interruptions in the keyboard peripheral
+	# Enable interruptions in the keyboard peripheral
 	li $t0, 0xFFFF0000
 	li $t1, 0x2
 	sw $t1, 0($t0)
 	
+    # Enable clock interruptions
+    li $t0, 0xFFFF0010
+    li $t1, 0x1
+    sw $t1, 0($t0)
 
     ## Jump to user program
 	jal main
