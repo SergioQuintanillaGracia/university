@@ -47,7 +47,7 @@ public class PriorityQueueServerPlus extends PriorityQueueServer
         // Move patients to the array
         int index = 0;
         while (hasPatients()) {
-            arr[index] = transferPatient();
+            arr[index++] = transferPatient();
         }
         
         // Add patients to each surgery server alternatively
