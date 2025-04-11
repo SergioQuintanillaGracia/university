@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=SurgeryServerPlus
+comment0.text=\n\ SurgeryServerPlus\ interface\:\ additional\ functionality.\n\n\ @author\ \ EDA\ Professors\n\ @version\ April\ 2024\n
+comment1.params=
+comment1.target=int\ numPatients()
+comment1.text=Obtains\ the\ number\ of\ patients\ currently\ waiting\ on\ this\ server.
+comment2.params=
+comment2.target=Patient\ transferPatient()
+comment2.text=\ Removes\ the\ next\ patient\ to\ be\ operated,\ so\ that\ it\ can\ be\ntransferred\ to\ another\ server.
+comment3.params=s
+comment3.target=void\ distributePatients(SurgeryServerPlus)
+comment3.text=Splits\ the\ patients\ between\ this\ and\ the\ given\ server\ s.
+numComments=4

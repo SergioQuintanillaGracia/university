@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.target=PriorityQueueServer
+comment0.text=\n\ PriorityQueueServer\ class\:\ implements\ a\ SurgeryServer\n\ using\ a\ maximum\ priority\ model\ (PriorityQueue)\ to\ sort\n\ incoming\ patients\ in\ its\ waitlist.\n\n\ \ @author\ \ EDA\ Professors\n\ \ @version\ April\ 2024\n
+comment1.params=
+comment1.target=PriorityQueueServer()
+comment1.text=Creates\ an\ empty\ SurgeryServer.
+comment2.params=p
+comment2.target=void\ addWaiting(Patient)
+comment2.text=Includes\ a\ new\ Patient\ p\ in\ a\ SurgeryServer.
+comment3.params=
+comment3.target=boolean\ hasPatients()
+comment3.text=Checks\ whether\ there\ is\ any\ Patient\ waiting\ for\ surgery.
+comment4.params=
+comment4.target=Patient\ getPatient()
+comment4.text=IFF\ hasPatients()\:\ returns\ the\ Patient\ from\ a\ SurgeryServer\ to\ be\ operated.
+comment5.params=h
+comment5.target=Patient\ operatePatient(int)
+comment5.text=\n\ IFF\ hasPatients()\:\ removes\ from\ a\ SurgeryServer\ the\ Patient\ that\n\ will\ be\ operated\ on,\ and\ returns\ that\ Patient,\ updating\ its\n\ entersSurgery\ attribute.\n\ @param\ h\ Timestamp\ (in\ hours)\ when\ the\ patient\ is\ admitted\ to\ surgery.\n
+numComments=6

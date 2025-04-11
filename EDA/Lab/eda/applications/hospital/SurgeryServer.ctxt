@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=SurgeryServer
+comment0.text=\n\ SurgeryServer\ interface\:\n\ specifies\ the\ service\ capacity\ of\ a\ surgery\ server\n\ and\ the\ methods\ that\ it\ must\ implement\ **independently**\n\ of\ whether\ it\ uses\ a\ Queue\ or\ a\ PriorityQueue\n\ to\ handle\ waiting\ patients.\n\n\ @author\ \ EDA\ Professors\n\ @version\ April\ 2024\n
+comment1.params=p
+comment1.target=void\ addWaiting(Patient)
+comment1.text=\n\ Includes\ a\ new\ Patient\ in\ the\ waiting\ list,\ in\ a\ SurgeryServer.\n
+comment2.params=
+comment2.target=boolean\ hasPatients()
+comment2.text=\n\ Checks\ whether\ there\ is\ any\ patient\ waiting\ in\ a\ SurgeryServer.\n
+comment3.params=
+comment3.target=Patient\ getPatient()
+comment3.text=\n\ IFF\ hasPatients()\:\ returns\ the\ Patient\ from\ a\ SurgeryServer\ to\ be\ operated.\n
+comment4.params=h
+comment4.target=Patient\ operatePatient(int)
+comment4.text=\n\ IFF\ hasPatients()\:\ removes\ from\ a\ SurgeryServer\ the\ Patient\ that\n\ will\ be\ operated\ on,\ and\ returns\ that\ Patient,\ updating\ its\n\ entersSurgery\ attribute.\n\ @param\ h\ Timestamp\ (in\ hours)\ when\ the\ patient\ is\ admitted\ to\ surgery.\n
+numComments=5

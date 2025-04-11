@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=Queue
+comment0.text=\n\ Queue\ Model\:\ FIFO\ access\ to\ the\ elements\ of\ a\ collection\n\ @param\ <E>\ data\ type\ of\ the\ elements\ in\ the\ queue\n\n\ @author\ (EDA)\n\ @version\ (Curso\ 2018-2019)\n
+comment1.params=e
+comment1.target=void\ enqueue(java.lang.Object)
+comment1.text=Adds\ the\ element\ e\ to\ a\ Queue,\ i.e.,\ places\ it\ at\ the\ end.
+comment2.params=
+comment2.target=java.lang.Object\ dequeue()
+comment2.text=\ IFF\ \!isEmpty()\:\ngets\ and\ removes\ from\ a\ Queue\ its\ first\ Element
+comment3.params=
+comment3.target=java.lang.Object\ first()
+comment3.text=\ IFF\ \!isEmpty()\:\ gets\ the\ Element\ that\ occupies\ the\ first\nposition\ of\ a\ Queue,\ the\ first\ in\ insertion\ order.
+comment4.params=
+comment4.target=boolean\ isEmpty()
+comment4.text=Checks\ whether\ a\ Queue\ is\ empty.
+numComments=5
