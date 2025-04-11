@@ -23,7 +23,14 @@ var1:	.word 0xFFFFFFFF
     ## (to be completed)
 
     ## Identify and handle exceptions
-    ## (to be completed)
+    li $v0, 11
+    li $a0, '*'
+    syscall
+
+    # Cancel ready bit
+    li $t0, 0xFFFF0000
+    li $t1, 0x2
+    sw $t1, 0($t0)
 
     ## Restore context
     ## (to be completed)
