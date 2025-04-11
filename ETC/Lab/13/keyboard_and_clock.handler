@@ -12,7 +12,7 @@
 
 			.kdata
 var1:	.word 0xFFFFFFFF
-context: .space 16
+context: .space 20
 
 ##############################################################
 ##                       HANDLER CODE                       ##
@@ -27,23 +27,50 @@ context: .space 16
     sw $t0, 4($k1)
     sw $a0, 8($k1)
     sw $v0, 12($k1)
+    sw $t1, 16($k1)
 
     ## Identify and handle exceptions
+    # Move the $Cause register (13) to register $t0
+    mfc0 $t0, $13
+    # Check if the exception is an interruption
+    andi $t1, $t0, 0x3C
+    bnez $t1, retexc
+    # Check if int0 produced the interruption
+    andi $t1, $t0, 0x400
+    bnez $t1, int0
+    # Check if int2 produced the interruption
+    andi $t1, $t0, 0x1000
+    bnez $t1, int2
+    # Interruption wasn't caused by known int lines, return
+    j retexc
+
+int0:
     li $v0, 11
     li $a0, '*'
     syscall
 
-    # Cancel ready bit
+    # Cancel keyboard ready bit
     li $t0, 0xFFFF0000
     lw $t0, 4($t0)
 
+    j retexc
+
+int2:
+    # Cancel clock ready bit
+    li $t0, 0xFFFF0010
+    li $t1, 0x1
+    sw $t1, 0($t0)
+    j retexc
+
+retexc:
     ## Restore context
     .set noat
     lw $at, 0($k1)
     .set at
     lw $t0, 4($k1)
     lw $a0, 8($k1)
-    sw $v0, 12($k1)
+    lw $v0, 12($k1)
+    lw $t1, 16($k1)
 
     ## Set user mode and return to the user program
     ## (to be completed)
@@ -64,7 +91,7 @@ __start:
 	
     # Set Status IM0 and IM2 bit to 1, and IEc bit to 1 as well
 	# We also have to set the bit KUc to 1 to go from kernel to user mode
-	# We therefore have to load 0x103 in mtc0
+	# We therefore have to load 0x503 in mtc0
 	li $t0, 0x503
 	mtc0 $t0, $12  # 12 is the Status register
 	
