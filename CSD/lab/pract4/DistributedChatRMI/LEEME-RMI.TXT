@@ -1,0 +1,23 @@
+----------------------
+Instrucciones rápidas:
+----------------------
+
+tar xvf DistributedChatRMI*tgz
+cd DistributedChatRMI
+javac *.java
+java NameServer
+java ChatServer
+java ChatClient
+
+-----------------------
+opcionalmente, podemos lanzar el ChatClient en bonito:
+-----------------------
+java -cp lib/*:.: ChatClient
+
+-----------------------
+para ayuda:
+-----------------------
+java ChatClient help
+java ChatServer help
+java NameServer help
+
