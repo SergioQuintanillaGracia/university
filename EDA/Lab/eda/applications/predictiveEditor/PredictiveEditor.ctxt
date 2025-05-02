@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.target=PredictiveEditor
+comment0.text=\ Clase\ EditorPredictivo\:\ es\ un\ Arbol\ Binario\ de\ Busqueda\ <br>\n\ de\ elementos\ de\ tipo\ String,\ que\ representan\ las\ palabras\ <br>\n\ de\ un\ idioma.\ Esta\ clase\ proporciona\ los\ metodos\ necesarios\ <br>\n\ para\ la\ gestion\ de\ un\ editor\ predictivo.\ <br>\n\n\ \ @version\ Febrero\ 2019\n
+comment1.params=
+comment1.target=PredictiveEditor()
+comment1.text=Creates\ an\ empty\ PredictiveEditor
+comment2.params=fileName
+comment2.target=PredictiveEditor(java.lang.String)
+comment2.text=\n\ Creates\ a\ PredictiveEditor\ based\ on\ a\ list\ of\ words,\ sorted\n\ alphabetically,\ from\ a\ given\ file.\ The\ file\ contains\ a\ number\n\ that\ represents\ the\ number\ of\ words\ in\ the\ first\ line,\ and\ then\n\ one\ line\ per\ word.\n\ @param\ fileName\ Name\ of\ the\ text\ file\ that\ contains\ the\ words\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ from\ which\ an\ editor\ will\ be\ created.\n
+comment3.params=word
+comment3.target=void\ include(java.lang.String)
+comment3.text=\ Adds\ the\ given\ word\ to\ a\ Predictive\ Editor.\n\ \ @param\ \ word\ Word\ to\ be\ added\ to\ the\ Editor.\n
+comment4.params=fileName
+comment4.target=void\ save(java.lang.String)
+comment4.text=\n\ Writes\ to\ a\ file\ the\ number\ of\ words\ in\ this\ Editor\ and\ each\n\ of\ the\ words\ in\ alphabetical\ order.\ Each\ element\ is\ in\ a\ separate\ line.\n\ @param\ fileName\ Where\ the\ contents\ of\ the\ Editor\ should\ be\ saved.\n
+comment5.params=prefix\ n
+comment5.target=libraries.dataStructures.models.ListPOI\ successors(java.lang.String,\ int)
+comment5.text=\n\ Returns\ a\ ListPOI\ with,\ at\ most,\ the\ next\ n\ successors\ of\ a\n\ given\ prefix;\ the\ first\ word\ of\ the\ list\ will\ be\ the\ prefix\ itself\n\ if\ it\ is\ a\ valid\ word\ in\ the\ editor.\n\ @param\ \ prefix\ Prefix\ to\ search\ for.\n\ @param\ \ n\ \ \ \ \ \ Maximum\ number\ of\ successors\ to\ return.\n\ @return\ List\ with\ POI\ with\ the\ successors\ of\ prefix\ found.\n
+numComments=6

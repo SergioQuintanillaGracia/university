@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=NodeBST
+comment0.text=\ Friendly\ class\ BSTNode<E>\:\ represents\ a\ Node\ of\ a\ BST,\ so\ it\n\ \ HAS\ A\:\n\ \ 1.-\ E\ data,\ represents\ the\ Element\ that\ occupies\ a\ Node\ in\ a\ BST\n\ \ 2.-\ BSTNode<E>\ left,\ a\ reference\ to\ the\ left\ child\ of\ a\ Node\ in\ a\ BST\n\ \ 3.-\ BSTNode<E>\ right,\ a\ reference\ to\ the\ right\ child\ of\ a\ Node\ in\ a\ BST\n\ \ 4.-\ size,\ an\ integer\ that\ represents\ the\ number\ of\ child\ nodes\ that\ hang\ from\ a\ Node\n\ \ \ \ \ \ An\ BST\ with\ Nodes\ that\ store\ their\ size\ is\ called\ a\ Ranked\ BST\n\n\ \ @param\ <E>,\ the\ type\ of\ data\ stored\ in\ the\ BST\n\ \ @version\ Marzo\ 2017\n
+comment1.params=data
+comment1.target=NodeBST(java.lang.Object)
+comment1.text=\ Constructor\ for\ a\ node\ without\ children\n\ @param\ \ data\ Value\ to\ be\ stored\ in\ this\ node\n
+comment2.params=data\ left\ right
+comment2.target=NodeBST(java.lang.Object,\ NodeBST,\ NodeBST)
+comment2.text=\ \ Constructor\ for\ a\ node\ with\ a\ left\ child\ and\ a\ right\ child.\n\ @param\ \ data\ Value\ to\ be\ stored\ in\ this\ node\n\ @param\ \ left\ Left\ child\ of\ this\ node\n\ @param\ \ right\ Right\ child\ of\ this\ node\n
+numComments=3
