@@ -1,20 +1,18 @@
-import ui.ChatUI;
-import ui.ChatClientFace;
-import ui.ChatUIFace;
-import faces.MessageListener;
-import impl.ChatUserImpl;
-import impl.ChatMessageImpl;
-import impl.ChatChannelImpl;
-import utils_rmi.ChatConfiguration;
-import faces.IChatMessage;
 import faces.IChatChannel;
+import faces.IChatMessage;
+import faces.IChatServer;
 import faces.IChatUser;
 import faces.INameServer;
-import faces.IChatServer;
+import faces.MessageListener;
+import impl.ChatChannelImpl;
+import impl.ChatMessageImpl;
+import impl.ChatUserImpl;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
+import ui.ChatClientFace;
+import ui.ChatUI;
+import ui.ChatUIFace;
+import utils_rmi.ChatConfiguration;
 
 /**
  * Main RMI Client process.
