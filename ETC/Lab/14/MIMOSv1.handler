@@ -26,7 +26,7 @@ retaddr:	.word 0			# To store the return address
 state:		.word READY		# State of Main, initially READY 
 
 	## Clock variables
-	seconds: .word 0
+seconds: .word 0			# Counts the enlapsed seconds
 
 	## Keyboard variables
 
@@ -92,14 +92,13 @@ $L1:
 ## CLOCK interrupt handling
 
 int2:
-	lw $t0, seconds
-	addi $t0, $t0, 1
-	sw $t0, seconds
-
-	li $t0, 0xFFFF0010
-	li $t1, 1  # Cancel interrupt, keep interrupts enabled
+	lw $t1, seconds
+	addi $t1, $t1, 1
+	sw $t1, seconds
+	la $t0, 0xffff0010
+	li $t1, 1
 	sb $t1, 0($t0)
-
+	
 	b retexc			# end
 
 ## KEYBOARD interrupt handling
@@ -173,6 +172,7 @@ get_version:
 get_time:
 	lw $v0, seconds
 	b retexc
+	
 
 ###### WAIT_TIME (system call 92)
 
@@ -241,7 +241,7 @@ __start:
 ## Prepare coprocessor Status register and user mode
 
 	mfc0 $t0, $12
-	ori $t0, $t0, 0x0403  # Enable ints., and unmask clock. Set User mode
+	ori $t0, $t0, 0x0403  # Enable ints., but keep all masked, EXCEPT THE CLOCK. Set User mode
 	mtc0 $t0, $12
 
 ## Jump to user program
