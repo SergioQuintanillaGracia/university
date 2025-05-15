@@ -1,0 +1,33 @@
+.background {
+    -fx-background-color: black;
+}
+
+.button {
+    -fx-background-color: #CFD1D5;
+    -fx-border-color: black;
+    -fx-border-width: 0.25pt;
+    -fx-font-size: 18pt;
+    -fx-font-family: Italic, Arial, sans-serif;
+}
+
+.button:hover {
+    -fx-background-color: darkgray;
+}
+
+.button:pressed {
+    -fx-text-fill: white;
+}
+
+.orange-button {
+    -fx-background-color: #F6852F;
+}
+
+.orange-button:hover {
+    -fx-background-color: #db6d18;
+}
+
+.display {
+    -fx-background-color: black;
+    -fx-text-fill: white;
+    -fx-font-size: 30pt;
+}
