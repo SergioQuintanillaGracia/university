@@ -9,8 +9,8 @@
         </group>
         <group name="IPC"/>
         <group>
-            <file>file:/home/sergio/Documents/GitHub/university/IPC/pract3/IPC_FXML_ListView-main/src/aplicacion/ListViewEjemplo.java</file>
             <file>file:/home/sergio/Documents/GitHub/university/IPC/pract3/IPC_FXML_ListView-main/src/controlador/VistaListaControlador.java</file>
+            <file>file:/home/sergio/Documents/GitHub/university/IPC/pract3/IPC_FXML_ListView-main/src/tarea2/controlador/VistaPersonaController.java</file>
         </group>
     </open-files>
 </project-private>

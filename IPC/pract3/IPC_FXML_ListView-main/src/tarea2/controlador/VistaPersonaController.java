@@ -25,6 +25,14 @@ public class VistaPersonaController implements Initializable {
     @FXML
     private TextField apellidosTextField;
     
+    private Persona persona;
+    private boolean changesAccepted = false;
+    
+    public void initPersona(Persona p) {
+        persona = p;
+        nombreTextField.setText(p.getNombre());
+        apellidosTextField.setText(p.getApellidos());
+    }
 
 
     /**
@@ -33,19 +41,26 @@ public class VistaPersonaController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
+    
+    public boolean getChangesAccepted() {
+        return changesAccepted;
+    }
+    
+    public Persona getPersona() {
+        return persona;
+    }
 
     @FXML
     private void aceptar(ActionEvent event) {
-
-       
+        changesAccepted = true;
+        persona.setNombre(nombreTextField.getText());
+        persona.setApellidos(apellidosTextField.getText());
+        nombreTextField.getScene().getWindow().hide();
     }
 
     @FXML
     private void cancelar(ActionEvent event) {
         nombreTextField.getScene().getWindow().hide();
     }
-
-
-    
 }

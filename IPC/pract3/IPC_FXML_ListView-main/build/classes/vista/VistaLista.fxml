@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="522.0" prefWidth="477.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.VistaListaControlador">
+<BorderPane prefHeight="522.0" prefWidth="477.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.VistaListaControlador">
    <top>
       <GridPane hgap="5.0" vgap="5.0" BorderPane.alignment="CENTER">
          <columnConstraints>
@@ -56,6 +56,7 @@
       <VBox spacing="15.0" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="addButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addAccion" text="Añadir" />
+            <Button fx:id="editButton" mnemonicParsing="false" onAction="#editPerson" prefHeight="24.0" prefWidth="61.0" text="Edit" />
             <Button fx:id="borrarButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#borrarAccion" text="Borrar" />
          </children>
          <padding>
