@@ -153,34 +153,38 @@ public abstract class Graph {
      *         vertices of the graph, or null if the graph is Unconnected.
      */
     public Edge[] bfsSpanningTree() {
+        // A spanning tree has as many edges as the number of vertices - 1
         Edge[] res = new Edge[numVertices() - 1];
+        // Array that stores a 0 for vertices that haven't been visited, and a 1 for
+        // the ones visited
         visited = new int[numVertices()];
         visitOrder = 0;
-        boolean connected = true;
+        // Queue that stores the vertices discovered that need to be explored
         q = new ArrayQueue<>();
-        for (int  i = 0; i < numVertices(); i++) {
-            if (visited[i] == 0) {
-                if (!bfsSpanningTree(i, res)) {
-                    connected = false;
-                    break;
-                }
-            }
+        
+        if (!bfsSpanningTree(0, res)) {
+            // If the check returns false, the graph is not complete, return null
+            return null;
         }
         
-        if (!connected) return null;
-        
+        // The graph is complete, return the edges that form a spanning tree
         return res;
     }
     
     protected boolean bfsSpanningTree(int origin, Edge[] res) {
+        // Set the first node as visited and enqueue it to start exploring from it
         visited[origin] = 1;
         q.enqueue(origin);
         
-        while (!q.isEmpty()) {
+        while (!q.isEmpty()) {  // While there are vertices pending to be explored
+            // Get the next vertex to be explored and get the list of adjacent vertices to it
             int u = q.dequeue();
             ListPOI<Adjacent> l = adjacentTo(u);
-            for (l.begin(); !l.isEnd(); l.next()) {
+            for (l.begin(); !l.isEnd(); l.next()) {  // For every adjacent vertex
                 Adjacent a = l.get();
+                // If the vertex hasn't been visited yet, add the edge between u and this
+                // vertex to res, mark the vertex as visited, and enqueue it so it is explored
+                // in the future
                 if (visited[a.target] == 0) {
                     res[visitOrder++] = new Edge(u, a.getTarget(), a.getWeight());
                     visited[a.target] = 1;
@@ -189,6 +193,8 @@ public abstract class Graph {
             }
         }
         
+        // Check if every vertex has been visited
+        // If so, return true (the graph is connected), else, return false (the graph is unconnected)
         for (int i = 0; i < numVertices(); i++) {
             if (visited[i] == 0) {
                 return false;
