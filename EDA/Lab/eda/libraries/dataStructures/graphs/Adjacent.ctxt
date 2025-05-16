@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=Adjacent
+comment0.text=\ Adjacent\:\ represents\ a\ vertex\ adjacent\ to\ another\ one\ in\ a\ graph\n\ \ and\ the\ weight\ of\ the\ edge\ between\ them.<br>\n\n\ \ @version\ May\ 2018\n
+comment1.params=t\ w
+comment1.target=Adjacent(int,\ double)
+comment1.text=\ Creates\ the\ vertex\ v\ adjacent\ to\ another\ one\ in\ a\ graph\n\ \ and\ the\ weight\ of\ the\ edge\ between\ them.\n\n\ @param\ \ t\ Vertex\ adjacent\ to\ another\ one\n\ @param\ \ w\ Weight\ of\ the\ edge\ between\ t\ and\n\ \ \ \ \ \ \ \ \ \ \ the\ vertex\ to\ which\ it\ is\ adjacent\n
+comment2.params=
+comment2.target=int\ getTarget()
+comment2.text=\ Returns\ the\ vertex\ adjacent\ to\ another\ one\ in\ a\ graph,\n\ \ or\ target\ vertex\ of\ the\ edge\ between\ them.\n\n\ @return\ int\ \ Vertex\ adjacent\ to\ another\ one\n
+comment3.params=
+comment3.target=double\ getWeight()
+comment3.text=\ Returns\ the\ weight\ of\ an\ edge\ that\ connects\ a\ vertex\n\ \ in\ a\ graph\ to\ an\ adjacent\ one.\n\n\ @return\ double\ \ Weight\ of\ the\ edge\ that\ connects\ a\ vertex\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ with\ an\ adjacent\ one,\ or\ 1\ if\ the\ graph\ is\ unweighted.\n
+comment4.params=
+comment4.target=java.lang.String\ toString()
+comment4.text=\ Returns\ a\ String\ that\ represent\ an\ adjacent\ vertex\ of\n\ \ a\ vertex\ in\ a\ graph\ and\ the\ weight\ of\ the\ edge\ between\ them.\n\n\ @return\ \ String\ representation\ of\ an\ adjacent\ vertex\n
+numComments=5
