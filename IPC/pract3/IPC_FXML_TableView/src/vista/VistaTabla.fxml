@@ -23,8 +23,9 @@
          <children>
             <TableView fx:id="personasTableV" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
               <columns>
-                <TableColumn fx:id="nombreColumn" prefWidth="269.0" text="Nombre" />
-                <TableColumn fx:id="apellidosColumn" prefWidth="310.0" text="Apellidos" />
+                <TableColumn fx:id="nombreColumn" prefWidth="140.0" text="Nombre" />
+                <TableColumn fx:id="apellidosColumn" prefWidth="140.0" text="Apellidos" />
+                  <TableColumn fx:id="imagenColumn" prefWidth="200.0" text="Imagen" />
               </columns>
             </TableView>
             <VBox spacing="12.0">

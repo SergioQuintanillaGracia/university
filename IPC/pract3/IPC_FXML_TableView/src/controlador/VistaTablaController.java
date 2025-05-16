@@ -21,9 +21,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.ComboBoxListCell;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import modelo.Persona;
@@ -49,6 +53,8 @@ public class VistaTablaController implements Initializable {
     private TableColumn<Persona, String> apellidosColumn;
     @FXML
     private TableView<Persona> personasTableV;
+    @FXML
+    private TableColumn<Persona, String> imagenColumn;
 
     private void inicializaModelo() {
         ArrayList<Persona> misdatos = new ArrayList<Persona>();
@@ -73,10 +79,11 @@ public class VistaTablaController implements Initializable {
         // initialize tableColumn   setCellValueFactory()
         nombreColumn.setCellValueFactory(personRow -> new SimpleStringProperty(personRow.getValue().getNombre()));
         apellidosColumn.setCellValueFactory(personRow -> new SimpleStringProperty(personRow.getValue().getApellidos()));
+        imagenColumn.setCellFactory(personRow -> new ImageTableCell());
+        imagenColumn.setCellValueFactory(personRow -> new SimpleStringProperty(personRow.getValue().getImageRoute()));
 
         //===============================================
         // add bindings for diable buttons
-        
         
     }
 
@@ -141,5 +148,22 @@ public class VistaTablaController implements Initializable {
     void deleteAction(ActionEvent event) {
         // borramos de la lista
         datos.remove(personasTableV.getSelectionModel().getSelectedItem());
+    }
+    
+    class ImageTableCell extends TableCell<Persona, String> {
+        private ImageView view = new ImageView();
+        private Image image;
+        
+        @Override
+        protected void updateItem(String imageRoute, boolean isEmpty) {
+            if (imageRoute == null || isEmpty) {
+                setText(null);
+                setGraphic(null);
+            } else {
+                image = new Image(imageRoute, 25, 25, true, true);
+                view.setImage(image);
+                setGraphic(view);
+            }
+        }
     }
 }

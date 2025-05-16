@@ -7,11 +7,13 @@ package controlador;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.ComboBoxListCell;
 import javafx.scene.image.Image;
@@ -32,7 +34,7 @@ public class VistaPersonaController implements Initializable {
     @FXML
     private Button aceptarButton;
     @FXML
-    private ComboBox<?> imagesCombo;
+    private ComboBox<String> imagesCombo;
 
     private Persona persona;
     private boolean changesAccepted = false;
@@ -51,14 +53,18 @@ public class VistaPersonaController implements Initializable {
         // TODO
         //=================================================================
         // add 3 path images to ComboBox
-        
+        ObservableList<String> comboImages = imagesCombo.getItems();
+        comboImages.add("/resources/images/Lloroso.png");
+        comboImages.add("/resources/images/Pregunta.png");
+        comboImages.add("/resources/images/Sonriente.png");
         
         //=================================================================
         // change the way the ComboBox cell is visualized, setCellFactory
+        imagesCombo.setCellFactory(c -> new ImageComboCell());
         
         //=================================================================
         // change the way the ComboBox selecction is visualized, setButtonCell
-        
+        imagesCombo.setButtonCell(new ImageComboCell());
         
         //==================================================================
         // add binding with the disabled property on aceptarButton
@@ -79,6 +85,7 @@ public class VistaPersonaController implements Initializable {
         changesAccepted = true;
         persona.setNombre(nombreTextField.getText());
         persona.setApellidos(apellidosTextField.getText());
+        persona.setImageRoute(imagesCombo.getSelectionModel().getSelectedItem());
         nombreTextField.getScene().getWindow().hide();
     }
 
@@ -91,7 +98,6 @@ public class VistaPersonaController implements Initializable {
     // class to display images in the combobox
     // to us with setCellFactory and setButtonCell
     class ImageComboCell extends ComboBoxListCell<String> {
-
         private ImageView view = new ImageView();
         private Image imagen;
 
@@ -109,5 +115,4 @@ public class VistaPersonaController implements Initializable {
             }
         }
     }
-
 }
