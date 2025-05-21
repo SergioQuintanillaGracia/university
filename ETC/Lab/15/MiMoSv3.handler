@@ -1,0 +1,318 @@
+### ESTRUCTURA Y TECNOLOG�A DE COMPUTADORES II (ETISINF)
+###  
+###
+### LAB 15: SYSTEM CALLS (II)
+###
+### Handler version MiMoS v.3 (to be completed)
+
+
+
+
+##############################################################
+##              HANDLER DATA AREA                           ##
+##############################################################
+
+		.kdata
+
+		## Main process context
+
+savereg:		.word 0,0,0	  # Space for context: $at, $t1, and $t0
+retaddr:		.word 0		  # Handler's return address
+
+		## Main process states
+
+		READY            = 0
+		WAITING_ALARM    = 1
+		WAITING_KEYBOARD = 2
+		WAITING_CONSOLE  = 3
+
+
+state:		.word READY 	# Process state 
+					        # initially ready
+
+		## Clock variables
+seconds:	.word 0
+alarm:     	.word 0
+
+		## Keyboard variables
+
+
+		## Console variables
+
+
+#############################################################
+##           HANDLER CODE                                  ##
+#############################################################
+
+          .ktext 0x80000080
+
+## Save context
+
+	.set noat
+	sw $at,0($k1)	    # Save $at
+	.set at
+	sw $t0,4($k1)		# Save $t0. Used mainly for addresses
+	sw $t1,8($k1)		# Save $t1. Used for data
+
+## Exception cause analysis
+
+	mfc0 $k0,$13			# Copy cause register
+	andi $t0,$k0, 0x003c	# Isolate cause code
+	beq $t0,$zero,interrupt	# Hardware interrupt?  
+	li $t1, 0x20			# syscall? 
+	beq $t1, $t0, call 
+
+	b retexc			# Ignore other causes   
+
+#############################################################
+##               INTERRUPT HANDLING SECTION                ##
+#############################################################
+
+interrupt:      
+
+## Prepare return address (in case the handler returns to the main process)
+
+	lw $t0,state
+	li $t1,READY
+	bne $t0,$t1,$L1
+	mfc0 $t0, $14		# EPC
+	sw $t0, retaddr
+
+## Identify pending interrupt
+
+$L1:
+	andi $t0, $k0, 0x1000	# int2?
+	bne  $t0, $zero, int2
+	andi $t0, $k0, 0x800	# int1?
+	bne  $t0, $zero, int1
+	andi $t0, $k0, 0x400	# int0?
+	bne  $t0, $zero, int0
+	b retexc				# ignore other interrupts
+
+#-------------------------------------------------------------
+
+## Handler for clock interrupts
+
+int2:
+
+	li $t0, 0xffff0010
+	li $t1,1
+	sb $t1, 0($t0)		# CANCEL interrupt in the clock interface
+
+	lw $t1,seconds
+	addi $t1,$t1,1
+	sw $t1,seconds		# increment seconds
+
+	lw $t0,state
+	li $t1,WAITING_ALARM
+	bne $t0,$t1,retexc	# if main is not waiting for an alarm, we're done
+
+	lw $t0,alarm  		# check alarm expiration for main
+	lw $t1,seconds
+	blt $t0,$t1,retexc	# NO: keep the state of main as WAITING_ALARM
+	li $t1,READY		# YES: (seconds = alarm)
+	sw $t1,state		# set process state to READY
+	b retexc			# end
+
+## Handler for keyboard interrupts
+
+int0:
+	# Only continue if state == WAITING_KEYBOARD
+	lw $t0, state
+	bne $t0, WAITING_KEYBOARD, int0_end
+
+	# Cancel and disable keyboard interrupts
+	li $t0, 0xFFFF0000
+	sb $zero, 0($t0)
+
+	# Get character from keyboard and store it in $a0
+	lb $a0, 4($t0)
+
+	# Set state to ready
+	li $t0, READY
+	sw $t0, state
+
+	int0_end:
+	b retexc		# end
+
+## Handler for console interrupts
+
+int1:
+	# Only continue if the state is WAITING_CONSOLE
+	lw $t0, state
+	bne $t0, WAITING_CONSOLE, int1_end
+
+	# Cancel and disable console interrupts
+	li $t0, 0xffff0008
+	li $t1, 0
+	sb $t1, 0($t0)	# disable the interrupts from the keyboard
+	
+	li $t1, READY
+	sw $t1, state
+
+	int1_end:
+	b retexc		# end
+
+
+#############################################################
+##                 SYSCALL HANDLING SECTION                ##
+#############################################################
+
+call:
+
+## Prepare return address
+
+	mfc0 $k0, $14		# EPC
+	addi $k0,$k0,4
+	sw $k0, retaddr     # retaddr = EPC + 4
+
+## Select call
+
+	li $t1,11			# print_char?
+	beq $t1,$v0,print_char
+	li $t1,12			# read_char?
+	beq $t1,$v0,read_char
+	li $t1,90			# get_version?
+	beq $t1,$v0,get_version
+	li $t1,91			# get_time?
+	beq $t1,$v0,get_time
+	li $t1,92			# wait_time?
+	beq $t1,$v0,wait_time
+	b retexc			# system function not implemented
+
+#---------------------------------------------------------------
+
+###### PRINT_CHAR (Service 11)
+
+print_char:
+	# Enable console interrupts
+	li $t0, 0xFFFF0008
+	li $t1, 2
+	sb $t1, 0($t0)
+
+	# Copy character to print (in $a0) to the data register of the console
+	sw $a0, 4($t0)
+
+	# Set state to waiting console
+	li $t0, WAITING_CONSOLE
+	sw $t0, state
+
+	b retexc
+
+###### READ_CHAR (Service 12)
+
+read_char:
+	# Enable keyboard interrupt
+	li $t0, 0xFFFF0000
+	li $t1, 2
+	sb $t1, 0($t0)
+
+	# Set state to waiting keyboard
+	li $t0, WAITING_KEYBOARD
+	sw $t0, state
+
+	b retexc
+
+
+###### GET_VERSION (Service 90)
+
+get_version:
+	li $v0,3
+	b retexc
+
+
+###### GET_TIME (Service 91)
+
+get_time:
+	lw $v0,seconds
+	b retexc
+
+###### WAIT_TIME (Service 92)
+
+wait_time:
+	lw $t0,seconds
+	add $t0,$t0,$a0
+	sw $t0,alarm
+
+	li $t0,WAITING_ALARM
+	sw $t0,state
+	b retexc
+
+
+#############################################################
+##             CLOSING SECTION OF SYSTEM HANDLER           ##
+#############################################################
+
+retexc:
+
+## Process switch
+
+	lw $t0,state
+	li $t1,READY        # if (state == READY), return to user process
+	beq $t0,$t1,$L2		
+
+	la $k0,idle_process # otherwise return to the idle process
+	b $L3			    
+         
+$L2:	lw $k0,retaddr	# Set return address to user process
+				            
+
+## Restore the context
+
+$L3:
+	lw $t1, 8($k1)		# restore $t1
+	lw $t0, 4($k1)		# restore $t0
+	.set noat
+	lw $at, 0($k1)		# restore $at
+	.set at
+	rfe					# restore bits KU/IE
+	jr $k0
+
+##############################################################
+
+
+
+###################################################################
+##                        STARTUP CODE                           ##
+###################################################################
+
+          .text
+          .globl __start 
+__start:
+
+## Set peripheral interfaces
+
+	li $t0, 0xffff0000
+	sb $zero, 0($t0)		# disable keyboard interrupt on the keyboard interface
+
+	li $t0, 0xffff0008
+	sb $zero, 0($t0)		# disable console interrupt on the console interface
+
+	li $t0, 0xffff0010
+	li $t1, 1
+	sb $t1, 0($t0)		# disable clock interrupt on the clock interface
+
+## Configure interrupts and set the user mode
+
+	li $t0, 0x0703	        # Interrupts globally enabled, int0 and int2 unmasked
+	mtc0 $t0, $12
+
+##  Have $k1 point to the handler context variable
+
+	la $k1, savereg		
+
+## Jump to user program
+	jal main
+
+## Shutdown
+
+	li $v0, 10
+	syscall			# syscall 10 (exit)
+
+
+###################################################################
+##                  SYSTEM IDLE PROCESS                          ##
+###################################################################
+
+idle_process: # system idle process
+	b idle_process
