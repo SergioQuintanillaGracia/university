@@ -5,10 +5,10 @@ import libraries.dataStructures.models.ListPOI;
 import libraries.dataStructures.linear.ArrayQueue;
 
 // IN THE SECOND SESSION: include the following import statements:
-/*import libraries.dataStructures.models.UFSet;
+import libraries.dataStructures.models.UFSet;
 import libraries.dataStructures.hierarchical.ForestUFSet;
 import libraries.dataStructures.models.PriorityQueue;
-import libraries.dataStructures.hierarchical.BinaryHeapR0;*/
+import libraries.dataStructures.hierarchical.BinaryHeap;
 
 /** Abstract Graph class: basis for the Graph hierarchy, which
  *  defines a graph's behaviour.<br>
@@ -213,7 +213,38 @@ public abstract class Graph {
      *         vertices with minimum cost, or null if the graph is Unconnected
      */
     public Edge[] kruskal() {
-        /* TO BE COMPLETED IN THE SECOND SESSION */
+        PriorityQueue<Edge> feasibleEdges = new BinaryHeap<>();
+        Edge[] res = new Edge[numVertices() - 1];
+        int index = 0;  // Cardinality
+        
+        // Fill feasible edges with every edge
+        for (int v = 0; v < numVertices(); v++) {
+            ListPOI<Adjacent> adj = adjacentTo(v);
+            
+            for (adj.begin(); !adj.isEnd(); adj.next()) {
+                Adjacent a = adj.get();
+                feasibleEdges.add(new Edge(v, a.getTarget(), a.getWeight()));
+            }
+        }
+        
+        // It generates some sort of "hashmap" from int to int. It links
+        // 0 (node 0) to 0 (class 0), 1 (node 1) to 1 (class 1)...
+        UFSet set = new ForestUFSet(numVertices());
+        
+        while (index < numVertices() - 1 && !feasibleEdges.isEmpty()) {
+            Edge e = feasibleEdges.removeMin();
+            
+            // Add the edge only if it doesn't form a cycle
+            if (set.find(e.getSource()) != set.find(e.getTarget())) {
+                set.union(set.find(e.getSource()), set.find(e.getTarget()));
+                res[index++] = e;
+            }
+        }
+        
+        if (index == numVertices() - 1) {
+            return res;
+        }
+        
         return null;
     }
 }

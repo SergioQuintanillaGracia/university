@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=UFSet
+comment0.text=\ Represents\ the\ classes\ -disjoint\ subsets-\ that\ define\ an\ equivalence\n\ \ relationship\ in\ a\ cardinal\ set\ n\n\n\ \ The\ elements\ of\ the\ set\ are\ represented\ through\ integers\ in\ the\ [0,\ n-1]\n\ \ interval,\ as\ its\ type\ does\ NOT\ intervene\ in\ the\ classes'\ definition.\n\n\ \ The\ elements\ of\ a\ class\ are\ represented\ with\ just\ ONE\ of\ its\ members,\n\ \ any\ of\ them,\ as\ they\ are\ all\ equivalent.\ This\ element\ is\ called\ class\n\ \ identifier.\n\n\ \ THe\ classes\ are\ defined\ dynamically\ based\ on\ N\ trivial\ classes,\n\ \ each\ formed\ by\ an\ element\ of\ the\ set.\n\n\ \ The\ Union-Find\ Set\ model\ receives\ other\ names,\ such\ as\n\ \ Disjoint\ Set\ and\ Merge-Find\ Set.\n\n\ \ @version\ December\ 2018\n
+comment1.params=i
+comment1.target=int\ find(int)
+comment1.text=\ Returns\ the\ identifier\ of\ the\ equivalence\ class\ -subset-\n\ to\ which\ i\ belongs,\ after\ perfoming\ path\ compression.\n
+comment2.params=classI\ classJ
+comment2.target=void\ union(int,\ int)
+comment2.text=\ PRECONDITION\:\ classI\ \!\=\ classJ\ AND\ classI\ \=\ find(i)\ &&\ classJ\ \=\ find(j)\n\ \ Joins\ together\ the\ equivalence\ classes\ -subsets-\ identified\ by\ classI\n\ \ and\ classJ\ by\ joining\ their\ ranks.\n
+numComments=3

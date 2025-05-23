@@ -16,4 +16,6 @@ comment4.text=\ Reterns\ an\ edge's\ weight\n\n\ @return\ double\ Weight\ of\ th
 comment5.params=
 comment5.target=java.lang.String\ toString()
 comment5.text=\ Returns\ a\ String\ that\ represents\ an\ edge\n\ \ in\ the\ format\ (source,\ target,\ weight)\n\n\ @return\ \ String\ that\ represents\ the\ edge\n
-numComments=6
+comment6.params=e
+comment6.target=int\ compareTo(Edge)
+numComments=7
