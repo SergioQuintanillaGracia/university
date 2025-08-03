@@ -43,7 +43,7 @@ public class BST<E extends Comparable<E>> {
             return null;
         }
         
-        // Array contains more than 2 elements
+        // Array contains at least 1 element
         int middle = (end - begin) / 2 + begin;
         NodeBST<E> left = buildBalanced(a, begin, middle - 1);
         NodeBST<E> right = buildBalanced(a, middle + 1, end);

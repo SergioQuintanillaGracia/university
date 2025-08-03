@@ -9,7 +9,7 @@ import applications.census.Resident;
  */
 public class Patient implements Comparable<Patient> {
 
-    private final Resident id;
+    protected final Resident id;
 
     /** Type of surgery */
     private final String surgery;

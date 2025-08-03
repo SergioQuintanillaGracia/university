@@ -1,5 +1,6 @@
 package applications.hospital;
-
+import libraries.dataStructures.models.ListPOI;
+import libraries.dataStructures.linear.LinkedListPOI;
 
 /**
  * Write a description of class PriorityQueueServerPlus here.
@@ -60,5 +61,26 @@ public class PriorityQueueServerPlus extends PriorityQueueServer
         }
     }
     
-    
+    public ListPOI<Patient> patientsFilter(int zip, int gravity) {
+        ListPOI<Patient> res = new LinkedListPOI<>();
+        Patient[] arr = new Patient[size];
+        
+        // Move patients to the array
+        int index = 0;
+        while (hasPatients()) {
+            arr[index++] = transferPatient();
+        }
+        
+        for (int i = 0; i < arr.length; i++) {
+            Patient patient = arr[i];
+            
+            if (patient.id.getPC() == zip && patient.getGravity() >= gravity) {
+                res.add(patient);
+            } else {
+                addWaiting(patient);
+            }
+        }
+        
+        return res;
+    }
 }

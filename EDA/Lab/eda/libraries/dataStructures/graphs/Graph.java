@@ -247,4 +247,62 @@ public abstract class Graph {
         
         return null;
     }
+    
+    public boolean graphMethod(int n, int p) {
+        UFSet set = new ForestUFSet(numVertices());
+        // Initially, as many connected components as vertices
+        int componentCount = numVertices();
+        
+        for (int v = 0; v < numVertices(); v++) {
+            // For every vertex, get its adjacents
+            ListPOI<Adjacent> adj = adjacentTo(v);
+            
+            for (adj.begin(); !adj.isEnd(); adj.next()) {
+                int u = adj.get().getTarget();
+                double w = adj.get().getWeight();
+                
+                // For every vertex u adjacent to v, only take into account the
+                // edge [v, u] if its weight is >= p, and if creating the union
+                // doesn't form a cycle
+                if (w >= p && set.find(v) != set.find(u)) {
+                    // Do the union of v and u in the set, and decrease componentCount
+                    set.union(set.find(v), set.find(u));
+                    componentCount--;
+                    
+                    // Stop the method if there are already less than n components
+                    if (componentCount < n) return false;
+                }
+            }
+        }
+        
+        return componentCount == n;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }
