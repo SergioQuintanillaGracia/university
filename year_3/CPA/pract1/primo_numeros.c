@@ -6,31 +6,36 @@ typedef unsigned long long Entero_grande;
 
 int primo(Entero_grande n)
 {
-  int p;
-  Entero_grande i, s;
+    int p;
+    Entero_grande i, s;
 
-  p = (n % 2 != 0 || n == 2);
+    p = (n % 2 != 0 || n == 2);
 
-  if (p) {
-    s = sqrt(n);
+    if (p)
+    {
+        s = sqrt(n);
 
-    for (i = 3; p && i <= s; i += 2)
-      if (n % i == 0) p = 0;
-  }
+        for (i = 3; p && i <= s; i += 2)
+            if (n % i == 0)
+                p = 0;
+    }
 
-  return p;
+    return p;
 }
 
 int main()
 {
-  Entero_grande i, n;
+    Entero_grande i, n;
 
-  n = 2; /* Por el 1 y el 2 */
-  for (i = 3; i <= N; i += 2)
-    if (primo(i)) n++;
+    n = 2; /* Por el 1 y el 2 */
 
-  printf("Entre el 1 y el %llu hay %llu numeros primos.\n",
-         N, n);
+    #pragma omp parallel for reduction(+:n) schedule(dynamic)
+    for (i = 3; i <= N; i += 2)
+        if (primo(i))
+            n++;
 
-  return 0;
+    printf("Entre el 1 y el %llu hay %llu numeros primos.\n",
+           N, n);
+
+    return 0;
 }
