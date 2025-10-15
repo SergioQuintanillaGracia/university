@@ -1,0 +1,22 @@
+
+
+
+                console.error('An error happened: ' + err)
+                console.log('End')
+            if (err) {
+            }
+            } else {
+        console.error("Error reading file")
+        fs.writeFile(file + '2', sortLines(data), 'utf-8', (err) => {
+        })
+    if (error) {
+    return str.toString().split('\n').sort().join("\n")
+    }
+    } else {
+// var r = fs.readFileSync(file, 'utf-8')
+file = process.argv[2]
+fs.readFile(file, 'utf-8', (error, data) => {
+function sortLines(str) {
+var fs = require('fs')
+}
+})
