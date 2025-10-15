@@ -15,7 +15,7 @@ emitter.emit(e1) // emit event
 emitter.emit(e2) // emit event
 
 console.log('---------------------------')
-setInterval(()=>{emitter.emit(e1)}, 2000) // asynchronous (event loop), setInterval
-setInterval(()=>{emitter.emit(e2)}, 8000) // asynchronous (event loop), setInterval
+setInterval(()=>{emitter.emit(e1)}, 1000) // asynchronous (event loop), setInterval
+setInterval(()=>{emitter.emit(e2)}, 2500) // asynchronous (event loop), setInterval
 
 console.log('\n\t========> end of code')
