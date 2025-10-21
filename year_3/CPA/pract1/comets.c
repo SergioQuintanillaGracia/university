@@ -136,4 +136,3 @@ int main(int argc, char **argv)
     free(grazing); free(x); free(y); free(vx); free(vy);
     return 0;
 }
-
