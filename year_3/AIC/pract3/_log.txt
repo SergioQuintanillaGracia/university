@@ -1,0 +1,4 @@
+Ciclo: 37, Señal: IFstall; Instrucción ecall
+Ciclo: 38, Señal: IFstall; Instrucción ecall
+Ciclo: 39, Señal: IFstall; Instrucción ecall
+Ciclo: 40, Señal: IFstall; Instrucción ecall

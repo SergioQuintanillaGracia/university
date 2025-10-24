@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "depurar.h": "c",
+        "control.h": "c",
+        "control_api.h": "c"
+    }
+}

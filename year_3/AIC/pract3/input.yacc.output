@@ -1,0 +1,3300 @@
+Terminals unused in grammar
+
+    FORM_J_A
+    INST_FENCE
+    INST_PRUEBA
+    FORM_CSR_RxR
+    FORM_CSR_RxI
+    FORM_INM
+    FORM_INM_L
+    FORM_INM_S
+    FORM_INM_DI
+    FORM_INM_B
+    FORM_INM_B_FI
+    FORM_INM_B_FFI
+    FORM_INM_T
+    FORM_PSEUDO_R
+    FORM_PSEUDO_CSRR
+    FORM_PSEUDO_CSRW
+    FORM_PSEUDO_CSRS
+    FORM_PSEUDO_CSRC
+    FORM_PSEUDO_CSRWI
+    FORM_PSEUDO_CSRSI
+    FORM_PSEUDO_CSRCI
+    FORM_PSEUDO_FRCSR
+    FORM_PSEUDO_FSCSR
+    FORM_PSEUDO_FRRM
+    FORM_PSEUDO_FSRM
+    FORM_PSEUDO_FRFLAGS
+    FORM_PSEUDO_FSFLAGS
+    FORM_PSEUDO_L
+    FORM_PSEUDO_S
+    FORM_PSEUDO_FL
+    FORM_PSEUDO_FS
+    INST_RET
+    INST_SYSCALL
+    FORM_REG
+    FORM_REG_FF
+    FORM_INM_FP_L
+    FORM_INM_FP_S
+    FORM_FP_REG
+    FORM_FP_REG_FF
+    FORM_FP_REG_DF
+    FORM_REG_R_FP
+    FORM_REG_FP_R
+    FORM_J
+    FORM_J_F
+    PINST_LA
+    PINST_LI
+    DE_PC
+    FORM_INTERNAL_NOP
+
+
+Grammar
+
+    0 $accept: r_inicio $end
+
+    1 $@1: ε
+
+    2 r_inicio: LABEL $@1 r_linea_ensamblador
+    3         | r_linea_ensamblador
+    4         | ε
+
+    5 $@2: ε
+
+    6 r_linea_ensamblador: r_directiva NL $@2 r_inicio
+
+    7 $@3: ε
+
+    8 r_linea_ensamblador: r_instruccion NL $@3 r_inicio
+    9                    | NL r_inicio
+   10                    | r_directiva
+   11                    | r_instruccion
+
+   12 r_directiva: DE_DATA
+   13            | DE_TEXT
+   14            | DE_GLOBL T_ALPHANUM
+
+   15 $@4: ε
+
+   16 r_directiva: DE_BYTE $@4 r_lista_enteros
+
+   17 $@5: ε
+
+   18 r_directiva: DE_HALF $@5 r_lista_enteros
+
+   19 $@6: ε
+
+   20 r_directiva: DE_WORD $@6 r_lista_enteros
+
+   21 $@7: ε
+
+   22 r_directiva: DE_DWORD $@7 r_lista_enteros
+
+   23 $@8: ε
+
+   24 r_directiva: DE_FLOAT $@8 r_lista_reales
+
+   25 $@9: ε
+
+   26 r_directiva: DE_DOUBLE $@9 r_lista_reales
+   27            | DE_SPACE T_INT_LIT
+   28            | DE_ASCIIZ T_STRING
+
+   29 $@10: ε
+
+   30 r_directiva: DE_IREG $@10 r_valores_enteros
+
+   31 $@11: ε
+
+   32 r_directiva: DE_FREG $@11 r_valores_fp
+
+   33 $@12: ε
+
+   34 r_directiva: DE_BTB $@12 r_valores_btb
+
+   35 $@13: ε
+
+   36 r_lista_enteros: T_INT_LIT $@13 r_lista_enteros_cont
+
+   37 r_lista_enteros_cont: ',' r_lista_enteros
+   38                     | ε
+
+   39 $@14: ε
+
+   40 r_lista_reales: T_FP_LIT $@14 r_lista_reales_cont
+
+   41 $@15: ε
+
+   42 r_lista_reales: T_INT_LIT $@15 r_lista_reales_cont
+
+   43 r_lista_reales_cont: ',' r_lista_reales
+   44                    | ε
+
+   45 r_offset: '+' T_INT_LIT
+   46         | '-' T_INT_LIT
+   47         | T_INT_LIT
+   48         | ε
+
+   49 r_indice_ireg: REG_INT '='
+   50              | ε
+
+   51 $@16: ε
+
+   52 r_valores_enteros: r_indice_ireg T_INT_LIT $@16 r_valores_enteros_cont
+
+   53 $@17: ε
+
+   54 r_valores_enteros: r_indice_ireg T_ALPHANUM r_offset $@17 r_valores_enteros_cont
+
+   55 r_valores_enteros_cont: ',' r_valores_enteros
+   56                       | ε
+
+   57 r_indice_fpreg: REG_FP '='
+   58               | ε
+
+   59 $@18: ε
+
+   60 r_valores_fp: r_indice_fpreg T_FP_LIT $@18 r_valores_fp_cont
+
+   61 r_valores_fp_cont: ',' r_valores_fp
+   62                  | ε
+
+   63 r_valores_btb: T_ALPHANUM r_offset '&' T_INT_LIT '&' T_ALPHANUM r_offset
+
+   64 r_inmediato_disp: T_INT_LIT
+   65                 | T_ALPHANUM
+   66                 | M_HI '[' T_ALPHANUM ']'
+   67                 | M_LO '[' T_ALPHANUM ']'
+   68                 | M_DISP '[' T_ALPHANUM ']'
+
+   69 r_inmediato_hi: T_INT_LIT
+   70               | T_ALPHANUM
+   71               | M_HI '[' T_ALPHANUM ']'
+   72               | M_LO '[' T_ALPHANUM ']'
+   73               | M_DISP '[' T_ALPHANUM ']'
+
+   74 r_posicion: T_INT_LIT
+   75           | T_ALPHANUM
+
+   76 r_posicion_larga: T_INT_LIT
+   77                 | T_ALPHANUM
+
+   78 r_instruccion: FORM_PSEUDO_NOP
+   79              | FORM_PSEUDO_RR REG_INT ',' REG_INT
+   80              | FORM_PSEUDO_BRA REG_INT ',' r_posicion
+   81              | FORM_PSEUDO_FF REG_FP ',' REG_FP
+   82              | FORM_PSEUDO_J r_posicion_larga
+   83              | FORM_PSEUDO_JR REG_INT
+   84              | FORM_PSEUDO_RET
+   85              | FORM_PSEUDO_BRRA REG_INT ',' REG_INT ',' r_posicion
+   86              | FORM_PSEUDO_RRi REG_INT ',' REG_INT
+   87              | FORM_PSEUDO_LI REG_INT ',' T_INT_LIT
+   88              | FORM_PSEUDO_LLA REG_INT ',' T_ALPHANUM
+   89              | FORM_PSEUDO_CALL T_ALPHANUM
+   90              | FORM_PSEUDO_TAIL T_ALPHANUM
+   91              | FORM_PSEUDO_TRAP T_INT_LIT
+   92              | FORM_INT_RRI REG_INT ',' REG_INT ',' r_inmediato_disp
+   93              | FORM_INT_RRSH REG_INT ',' REG_INT ',' T_INT_LIT
+   94              | FORM_INT_RRR REG_INT ',' REG_INT ',' REG_INT
+   95              | FORM_INT_RI REG_INT ',' r_inmediato_hi
+   96              | FORM_INT_RA REG_INT ',' T_INT_LIT
+   97              | FORM_J_RA REG_INT ',' r_posicion_larga
+   98              | FORM_J_RRA REG_INT ',' REG_INT ',' r_posicion
+   99              | FORM_INT_B_RRA REG_INT ',' REG_INT ',' r_posicion
+  100              | FORM_INT_L_RSB REG_INT ',' r_inmediato_disp '(' REG_INT ')'
+  101              | FORM_INT_L_RSB REG_INT ',' T_ALPHANUM
+  102              | FORM_INT_S_RSB REG_INT ',' r_inmediato_disp '(' REG_INT ')'
+  103              | FORM_INT_S_RSB REG_INT ',' T_ALPHANUM ',' REG_INT
+  104              | FORM_INT_ECALL
+  105              | FORM_INT_EBREAK
+  106              | FORM_FP_FFF REG_FP ',' REG_FP ',' REG_FP
+  107              | FORM_FP_FFFr REG_FP ',' REG_FP ',' REG_FP ',' FR_MODE
+  108              | FORM_FP_FFFr REG_FP ',' REG_FP ',' REG_FP
+  109              | FORM_FP_FFFFr REG_FP ',' REG_FP ',' REG_FP ',' REG_FP ',' FR_MODE
+  110              | FORM_FP_FFFFr REG_FP ',' REG_FP ',' REG_FP ',' REG_FP
+  111              | FORM_FP_FFr REG_FP ',' REG_FP ',' FR_MODE
+  112              | FORM_FP_FFr REG_FP ',' REG_FP
+  113              | FORM_FP_FF REG_FP ',' REG_FP
+  114              | FORM_FP_FRr REG_FP ',' REG_INT ',' FR_MODE
+  115              | FORM_FP_FRr REG_FP ',' REG_INT
+  116              | FORM_FP_FR REG_FP ',' REG_INT
+  117              | FORM_FP_RFr REG_INT ',' REG_FP ',' FR_MODE
+  118              | FORM_FP_RFr REG_INT ',' REG_FP
+  119              | FORM_FP_RF REG_INT ',' REG_FP
+  120              | FORM_FP_RFF REG_INT ',' REG_FP ',' REG_FP
+  121              | FORM_FP_L_FSB REG_FP ',' r_inmediato_disp '(' REG_INT ')'
+  122              | FORM_FP_L_FSB REG_FP ',' T_INT_LIT
+  123              | FORM_FP_S_FSB REG_FP ',' r_inmediato_disp '(' REG_INT ')'
+  124              | FORM_FP_S_FSB REG_FP ',' T_INT_LIT ',' REG_INT
+  125              | FORM_INT_RB REG_INT ',' '(' REG_INT ')'
+  126              | FORM_INT_RRB REG_INT ',' REG_INT ',' '(' REG_INT ')'
+
+
+Terminals, with rules where they appear
+
+    $end (0) 0
+    '&' (38) 63
+    '(' (40) 100 102 121 123 125 126
+    ')' (41) 100 102 121 123 125 126
+    '+' (43) 45
+    ',' (44) 37 43 55 61 79 80 81 85 86 87 88 92 93 94 95 96 97 98 99 100 101 102 103 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126
+    '-' (45) 46
+    '=' (61) 49 57
+    '[' (91) 66 67 68 71 72 73
+    ']' (93) 66 67 68 71 72 73
+    error (256)
+    NL <ivalue> (258) 6 8 9
+    T_INT_LIT <ivalue> (259) 27 36 42 45 46 47 52 63 64 69 74 76 87 91 93 96 122 124
+    T_FP_LIT <fvalue> (260) 40 60
+    T_ALPHANUM <cvalue> (261) 14 54 63 65 66 67 68 70 71 72 73 75 77 88 89 90 101 103
+    T_STRING <cvalue> (262) 28
+    FR_MODE <cvalue> (263) 107 109 111 114 117
+    REG_INT <ivalue> (264) 49 79 80 83 85 86 87 88 92 93 94 95 96 97 98 99 100 101 102 103 114 115 116 117 118 119 120 121 123 124 125 126
+    REG_FP <ivalue> (265) 57 81 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124
+    DE_DATA <ivalue> (266) 12
+    DE_TEXT <ivalue> (267) 13
+    DE_SPACE <ivalue> (268) 27
+    DE_GLOBL <ivalue> (269) 14
+    DE_IREG <ivalue> (270) 30
+    DE_FREG <ivalue> (271) 32
+    DE_ASCIIZ <ivalue> (272) 28
+    DE_BTB <ivalue> (273) 34
+    DE_BYTE <ivalue> (274) 16
+    DE_HALF <ivalue> (275) 18
+    DE_WORD <ivalue> (276) 20
+    DE_DWORD <ivalue> (277) 22
+    DE_FLOAT <ivalue> (278) 24
+    DE_DOUBLE <ivalue> (279) 26
+    FORM_INT_RRI <ivalue> (280) 92
+    FORM_INT_RRSH <ivalue> (281) 93
+    FORM_INT_RRR <ivalue> (282) 94
+    FORM_INT_RA <ivalue> (283) 96
+    FORM_INT_RI <ivalue> (284) 95
+    FORM_J_RA <ivalue> (285) 97
+    FORM_J_RRA <ivalue> (286) 98
+    FORM_INT_B_RRA <ivalue> (287) 99
+    FORM_J_A <ivalue> (288)
+    FORM_INT_L_RSB <ivalue> (289) 100 101
+    FORM_INT_S_RSB <ivalue> (290) 102 103
+    FORM_INT_ECALL <ivalue> (291) 104
+    FORM_INT_EBREAK <ivalue> (292) 105
+    FORM_FP_FFF <ivalue> (293) 106
+    FORM_FP_FFFr <ivalue> (294) 107 108
+    FORM_FP_FFFFr <ivalue> (295) 109 110
+    FORM_FP_FFr <ivalue> (296) 111 112
+    FORM_FP_RFF <ivalue> (297) 120
+    FORM_FP_RFr <ivalue> (298) 117 118
+    FORM_FP_RF <ivalue> (299) 119
+    FORM_FP_FR <ivalue> (300) 116
+    FORM_FP_FRr <ivalue> (301) 114 115
+    FORM_FP_FF <ivalue> (302) 113
+    FORM_FP_L_FSB <ivalue> (303) 121 122
+    FORM_FP_S_FSB <ivalue> (304) 123 124
+    FORM_INT_RB <ivalue> (305) 125
+    FORM_INT_RRB <ivalue> (306) 126
+    INST_FENCE <ivalue> (307)
+    INST_PRUEBA <ivalue> (308)
+    FORM_CSR_RxR <ivalue> (309)
+    FORM_CSR_RxI <ivalue> (310)
+    FORM_INM <ivalue> (311)
+    FORM_INM_L <ivalue> (312)
+    FORM_INM_S <ivalue> (313)
+    FORM_INM_DI <ivalue> (314)
+    FORM_INM_B <ivalue> (315)
+    FORM_INM_B_FI <ivalue> (316)
+    FORM_INM_B_FFI <ivalue> (317)
+    FORM_INM_T <ivalue> (318)
+    FORM_PSEUDO_NOP <ivalue> (319) 78
+    FORM_PSEUDO_RR <ivalue> (320) 79
+    FORM_PSEUDO_BRA <ivalue> (321) 80
+    FORM_PSEUDO_J <ivalue> (322) 82
+    FORM_PSEUDO_JR <ivalue> (323) 83
+    FORM_PSEUDO_RET <ivalue> (324) 84
+    FORM_PSEUDO_TAIL <ivalue> (325) 90
+    FORM_PSEUDO_R <ivalue> (326)
+    FORM_PSEUDO_CSRR <ivalue> (327)
+    FORM_PSEUDO_CSRW <ivalue> (328)
+    FORM_PSEUDO_CSRS <ivalue> (329)
+    FORM_PSEUDO_CSRC <ivalue> (330)
+    FORM_PSEUDO_CSRWI <ivalue> (331)
+    FORM_PSEUDO_CSRSI <ivalue> (332)
+    FORM_PSEUDO_CSRCI <ivalue> (333)
+    FORM_PSEUDO_FRCSR <ivalue> (334)
+    FORM_PSEUDO_FSCSR <ivalue> (335)
+    FORM_PSEUDO_FRRM <ivalue> (336)
+    FORM_PSEUDO_FSRM <ivalue> (337)
+    FORM_PSEUDO_FRFLAGS <ivalue> (338)
+    FORM_PSEUDO_FSFLAGS <ivalue> (339)
+    FORM_PSEUDO_BRRA <ivalue> (340) 85
+    FORM_PSEUDO_RRi <ivalue> (341) 86
+    FORM_PSEUDO_FF <ivalue> (342) 81
+    FORM_PSEUDO_LLA <ivalue> (343) 88
+    FORM_PSEUDO_L <ivalue> (344)
+    FORM_PSEUDO_S <ivalue> (345)
+    FORM_PSEUDO_FL <ivalue> (346)
+    FORM_PSEUDO_FS <ivalue> (347)
+    FORM_PSEUDO_LI <ivalue> (348) 87
+    FORM_PSEUDO_CALL <ivalue> (349) 89
+    FORM_PSEUDO_TRAP <ivalue> (350) 91
+    INST_RET <ivalue> (351)
+    INST_SYSCALL <ivalue> (352)
+    FORM_REG <ivalue> (353)
+    FORM_REG_FF <ivalue> (354)
+    FORM_INM_FP_L <ivalue> (355)
+    FORM_INM_FP_S <ivalue> (356)
+    FORM_FP_REG <ivalue> (357)
+    FORM_FP_REG_FF <ivalue> (358)
+    FORM_FP_REG_DF <ivalue> (359)
+    FORM_REG_R_FP <ivalue> (360)
+    FORM_REG_FP_R <ivalue> (361)
+    FORM_J <ivalue> (362)
+    FORM_J_F <ivalue> (363)
+    LABEL <cvalue> (364) 2
+    PINST_LA <ivalue> (365)
+    PINST_LI <ivalue> (366)
+    M_LO <ivalue> (367) 67 72
+    M_HI <ivalue> (368) 66 71
+    M_DISP <ivalue> (369) 68 73
+    DE_PC <ivalue> (370)
+    FORM_INTERNAL_NOP <ivalue> (371)
+
+
+Nonterminals, with rules where they appear
+
+    $accept (126)
+        on left: 0
+    r_inicio (127)
+        on left: 2 3 4
+        on right: 0 6 8 9
+    $@1 (128)
+        on left: 1
+        on right: 2
+    r_linea_ensamblador (129)
+        on left: 6 8 9 10 11
+        on right: 2 3
+    $@2 (130)
+        on left: 5
+        on right: 6
+    $@3 (131)
+        on left: 7
+        on right: 8
+    r_directiva (132)
+        on left: 12 13 14 16 18 20 22 24 26 27 28 30 32 34
+        on right: 6 10
+    $@4 (133)
+        on left: 15
+        on right: 16
+    $@5 (134)
+        on left: 17
+        on right: 18
+    $@6 (135)
+        on left: 19
+        on right: 20
+    $@7 (136)
+        on left: 21
+        on right: 22
+    $@8 (137)
+        on left: 23
+        on right: 24
+    $@9 (138)
+        on left: 25
+        on right: 26
+    $@10 (139)
+        on left: 29
+        on right: 30
+    $@11 (140)
+        on left: 31
+        on right: 32
+    $@12 (141)
+        on left: 33
+        on right: 34
+    r_lista_enteros (142)
+        on left: 36
+        on right: 16 18 20 22 37
+    $@13 (143)
+        on left: 35
+        on right: 36
+    r_lista_enteros_cont (144)
+        on left: 37 38
+        on right: 36
+    r_lista_reales (145)
+        on left: 40 42
+        on right: 24 26 43
+    $@14 (146)
+        on left: 39
+        on right: 40
+    $@15 (147)
+        on left: 41
+        on right: 42
+    r_lista_reales_cont (148)
+        on left: 43 44
+        on right: 40 42
+    r_offset <ivalue> (149)
+        on left: 45 46 47 48
+        on right: 54 63
+    r_indice_ireg (150)
+        on left: 49 50
+        on right: 52 54
+    r_valores_enteros (151)
+        on left: 52 54
+        on right: 30 55
+    $@16 (152)
+        on left: 51
+        on right: 52
+    $@17 (153)
+        on left: 53
+        on right: 54
+    r_valores_enteros_cont (154)
+        on left: 55 56
+        on right: 52 54
+    r_indice_fpreg (155)
+        on left: 57 58
+        on right: 60
+    r_valores_fp (156)
+        on left: 60
+        on right: 32 61
+    $@18 (157)
+        on left: 59
+        on right: 60
+    r_valores_fp_cont (158)
+        on left: 61 62
+        on right: 60
+    r_valores_btb (159)
+        on left: 63
+        on right: 34
+    r_inmediato_disp <ivalue> (160)
+        on left: 64 65 66 67 68
+        on right: 92 100 102 121 123
+    r_inmediato_hi <ivalue> (161)
+        on left: 69 70 71 72 73
+        on right: 95
+    r_posicion <ivalue> (162)
+        on left: 74 75
+        on right: 80 85 98 99
+    r_posicion_larga <ivalue> (163)
+        on left: 76 77
+        on right: 82 97
+    r_instruccion (164)
+        on left: 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126
+        on right: 8 11
+
+
+State 0
+
+    0 $accept: • r_inicio $end
+
+    NL                shift, and go to state 1
+    DE_DATA           shift, and go to state 2
+    DE_TEXT           shift, and go to state 3
+    DE_SPACE          shift, and go to state 4
+    DE_GLOBL          shift, and go to state 5
+    DE_IREG           shift, and go to state 6
+    DE_FREG           shift, and go to state 7
+    DE_ASCIIZ         shift, and go to state 8
+    DE_BTB            shift, and go to state 9
+    DE_BYTE           shift, and go to state 10
+    DE_HALF           shift, and go to state 11
+    DE_WORD           shift, and go to state 12
+    DE_DWORD          shift, and go to state 13
+    DE_FLOAT          shift, and go to state 14
+    DE_DOUBLE         shift, and go to state 15
+    FORM_INT_RRI      shift, and go to state 16
+    FORM_INT_RRSH     shift, and go to state 17
+    FORM_INT_RRR      shift, and go to state 18
+    FORM_INT_RA       shift, and go to state 19
+    FORM_INT_RI       shift, and go to state 20
+    FORM_J_RA         shift, and go to state 21
+    FORM_J_RRA        shift, and go to state 22
+    FORM_INT_B_RRA    shift, and go to state 23
+    FORM_INT_L_RSB    shift, and go to state 24
+    FORM_INT_S_RSB    shift, and go to state 25
+    FORM_INT_ECALL    shift, and go to state 26
+    FORM_INT_EBREAK   shift, and go to state 27
+    FORM_FP_FFF       shift, and go to state 28
+    FORM_FP_FFFr      shift, and go to state 29
+    FORM_FP_FFFFr     shift, and go to state 30
+    FORM_FP_FFr       shift, and go to state 31
+    FORM_FP_RFF       shift, and go to state 32
+    FORM_FP_RFr       shift, and go to state 33
+    FORM_FP_RF        shift, and go to state 34
+    FORM_FP_FR        shift, and go to state 35
+    FORM_FP_FRr       shift, and go to state 36
+    FORM_FP_FF        shift, and go to state 37
+    FORM_FP_L_FSB     shift, and go to state 38
+    FORM_FP_S_FSB     shift, and go to state 39
+    FORM_INT_RB       shift, and go to state 40
+    FORM_INT_RRB      shift, and go to state 41
+    FORM_PSEUDO_NOP   shift, and go to state 42
+    FORM_PSEUDO_RR    shift, and go to state 43
+    FORM_PSEUDO_BRA   shift, and go to state 44
+    FORM_PSEUDO_J     shift, and go to state 45
+    FORM_PSEUDO_JR    shift, and go to state 46
+    FORM_PSEUDO_RET   shift, and go to state 47
+    FORM_PSEUDO_TAIL  shift, and go to state 48
+    FORM_PSEUDO_BRRA  shift, and go to state 49
+    FORM_PSEUDO_RRi   shift, and go to state 50
+    FORM_PSEUDO_FF    shift, and go to state 51
+    FORM_PSEUDO_LLA   shift, and go to state 52
+    FORM_PSEUDO_LI    shift, and go to state 53
+    FORM_PSEUDO_CALL  shift, and go to state 54
+    FORM_PSEUDO_TRAP  shift, and go to state 55
+    LABEL             shift, and go to state 56
+
+    $default  reduce using rule 4 (r_inicio)
+
+    r_inicio             go to state 57
+    r_linea_ensamblador  go to state 58
+    r_directiva          go to state 59
+    r_instruccion        go to state 60
+
+
+State 1
+
+    9 r_linea_ensamblador: NL • r_inicio
+
+    NL                shift, and go to state 1
+    DE_DATA           shift, and go to state 2
+    DE_TEXT           shift, and go to state 3
+    DE_SPACE          shift, and go to state 4
+    DE_GLOBL          shift, and go to state 5
+    DE_IREG           shift, and go to state 6
+    DE_FREG           shift, and go to state 7
+    DE_ASCIIZ         shift, and go to state 8
+    DE_BTB            shift, and go to state 9
+    DE_BYTE           shift, and go to state 10
+    DE_HALF           shift, and go to state 11
+    DE_WORD           shift, and go to state 12
+    DE_DWORD          shift, and go to state 13
+    DE_FLOAT          shift, and go to state 14
+    DE_DOUBLE         shift, and go to state 15
+    FORM_INT_RRI      shift, and go to state 16
+    FORM_INT_RRSH     shift, and go to state 17
+    FORM_INT_RRR      shift, and go to state 18
+    FORM_INT_RA       shift, and go to state 19
+    FORM_INT_RI       shift, and go to state 20
+    FORM_J_RA         shift, and go to state 21
+    FORM_J_RRA        shift, and go to state 22
+    FORM_INT_B_RRA    shift, and go to state 23
+    FORM_INT_L_RSB    shift, and go to state 24
+    FORM_INT_S_RSB    shift, and go to state 25
+    FORM_INT_ECALL    shift, and go to state 26
+    FORM_INT_EBREAK   shift, and go to state 27
+    FORM_FP_FFF       shift, and go to state 28
+    FORM_FP_FFFr      shift, and go to state 29
+    FORM_FP_FFFFr     shift, and go to state 30
+    FORM_FP_FFr       shift, and go to state 31
+    FORM_FP_RFF       shift, and go to state 32
+    FORM_FP_RFr       shift, and go to state 33
+    FORM_FP_RF        shift, and go to state 34
+    FORM_FP_FR        shift, and go to state 35
+    FORM_FP_FRr       shift, and go to state 36
+    FORM_FP_FF        shift, and go to state 37
+    FORM_FP_L_FSB     shift, and go to state 38
+    FORM_FP_S_FSB     shift, and go to state 39
+    FORM_INT_RB       shift, and go to state 40
+    FORM_INT_RRB      shift, and go to state 41
+    FORM_PSEUDO_NOP   shift, and go to state 42
+    FORM_PSEUDO_RR    shift, and go to state 43
+    FORM_PSEUDO_BRA   shift, and go to state 44
+    FORM_PSEUDO_J     shift, and go to state 45
+    FORM_PSEUDO_JR    shift, and go to state 46
+    FORM_PSEUDO_RET   shift, and go to state 47
+    FORM_PSEUDO_TAIL  shift, and go to state 48
+    FORM_PSEUDO_BRRA  shift, and go to state 49
+    FORM_PSEUDO_RRi   shift, and go to state 50
+    FORM_PSEUDO_FF    shift, and go to state 51
+    FORM_PSEUDO_LLA   shift, and go to state 52
+    FORM_PSEUDO_LI    shift, and go to state 53
+    FORM_PSEUDO_CALL  shift, and go to state 54
+    FORM_PSEUDO_TRAP  shift, and go to state 55
+    LABEL             shift, and go to state 56
+
+    $default  reduce using rule 4 (r_inicio)
+
+    r_inicio             go to state 61
+    r_linea_ensamblador  go to state 58
+    r_directiva          go to state 59
+    r_instruccion        go to state 60
+
+
+State 2
+
+   12 r_directiva: DE_DATA •
+
+    $default  reduce using rule 12 (r_directiva)
+
+
+State 3
+
+   13 r_directiva: DE_TEXT •
+
+    $default  reduce using rule 13 (r_directiva)
+
+
+State 4
+
+   27 r_directiva: DE_SPACE • T_INT_LIT
+
+    T_INT_LIT  shift, and go to state 62
+
+
+State 5
+
+   14 r_directiva: DE_GLOBL • T_ALPHANUM
+
+    T_ALPHANUM  shift, and go to state 63
+
+
+State 6
+
+   30 r_directiva: DE_IREG • $@10 r_valores_enteros
+
+    $default  reduce using rule 29 ($@10)
+
+    $@10  go to state 64
+
+
+State 7
+
+   32 r_directiva: DE_FREG • $@11 r_valores_fp
+
+    $default  reduce using rule 31 ($@11)
+
+    $@11  go to state 65
+
+
+State 8
+
+   28 r_directiva: DE_ASCIIZ • T_STRING
+
+    T_STRING  shift, and go to state 66
+
+
+State 9
+
+   34 r_directiva: DE_BTB • $@12 r_valores_btb
+
+    $default  reduce using rule 33 ($@12)
+
+    $@12  go to state 67
+
+
+State 10
+
+   16 r_directiva: DE_BYTE • $@4 r_lista_enteros
+
+    $default  reduce using rule 15 ($@4)
+
+    $@4  go to state 68
+
+
+State 11
+
+   18 r_directiva: DE_HALF • $@5 r_lista_enteros
+
+    $default  reduce using rule 17 ($@5)
+
+    $@5  go to state 69
+
+
+State 12
+
+   20 r_directiva: DE_WORD • $@6 r_lista_enteros
+
+    $default  reduce using rule 19 ($@6)
+
+    $@6  go to state 70
+
+
+State 13
+
+   22 r_directiva: DE_DWORD • $@7 r_lista_enteros
+
+    $default  reduce using rule 21 ($@7)
+
+    $@7  go to state 71
+
+
+State 14
+
+   24 r_directiva: DE_FLOAT • $@8 r_lista_reales
+
+    $default  reduce using rule 23 ($@8)
+
+    $@8  go to state 72
+
+
+State 15
+
+   26 r_directiva: DE_DOUBLE • $@9 r_lista_reales
+
+    $default  reduce using rule 25 ($@9)
+
+    $@9  go to state 73
+
+
+State 16
+
+   92 r_instruccion: FORM_INT_RRI • REG_INT ',' REG_INT ',' r_inmediato_disp
+
+    REG_INT  shift, and go to state 74
+
+
+State 17
+
+   93 r_instruccion: FORM_INT_RRSH • REG_INT ',' REG_INT ',' T_INT_LIT
+
+    REG_INT  shift, and go to state 75
+
+
+State 18
+
+   94 r_instruccion: FORM_INT_RRR • REG_INT ',' REG_INT ',' REG_INT
+
+    REG_INT  shift, and go to state 76
+
+
+State 19
+
+   96 r_instruccion: FORM_INT_RA • REG_INT ',' T_INT_LIT
+
+    REG_INT  shift, and go to state 77
+
+
+State 20
+
+   95 r_instruccion: FORM_INT_RI • REG_INT ',' r_inmediato_hi
+
+    REG_INT  shift, and go to state 78
+
+
+State 21
+
+   97 r_instruccion: FORM_J_RA • REG_INT ',' r_posicion_larga
+
+    REG_INT  shift, and go to state 79
+
+
+State 22
+
+   98 r_instruccion: FORM_J_RRA • REG_INT ',' REG_INT ',' r_posicion
+
+    REG_INT  shift, and go to state 80
+
+
+State 23
+
+   99 r_instruccion: FORM_INT_B_RRA • REG_INT ',' REG_INT ',' r_posicion
+
+    REG_INT  shift, and go to state 81
+
+
+State 24
+
+  100 r_instruccion: FORM_INT_L_RSB • REG_INT ',' r_inmediato_disp '(' REG_INT ')'
+  101              | FORM_INT_L_RSB • REG_INT ',' T_ALPHANUM
+
+    REG_INT  shift, and go to state 82
+
+
+State 25
+
+  102 r_instruccion: FORM_INT_S_RSB • REG_INT ',' r_inmediato_disp '(' REG_INT ')'
+  103              | FORM_INT_S_RSB • REG_INT ',' T_ALPHANUM ',' REG_INT
+
+    REG_INT  shift, and go to state 83
+
+
+State 26
+
+  104 r_instruccion: FORM_INT_ECALL •
+
+    $default  reduce using rule 104 (r_instruccion)
+
+
+State 27
+
+  105 r_instruccion: FORM_INT_EBREAK •
+
+    $default  reduce using rule 105 (r_instruccion)
+
+
+State 28
+
+  106 r_instruccion: FORM_FP_FFF • REG_FP ',' REG_FP ',' REG_FP
+
+    REG_FP  shift, and go to state 84
+
+
+State 29
+
+  107 r_instruccion: FORM_FP_FFFr • REG_FP ',' REG_FP ',' REG_FP ',' FR_MODE
+  108              | FORM_FP_FFFr • REG_FP ',' REG_FP ',' REG_FP
+
+    REG_FP  shift, and go to state 85
+
+
+State 30
+
+  109 r_instruccion: FORM_FP_FFFFr • REG_FP ',' REG_FP ',' REG_FP ',' REG_FP ',' FR_MODE
+  110              | FORM_FP_FFFFr • REG_FP ',' REG_FP ',' REG_FP ',' REG_FP
+
+    REG_FP  shift, and go to state 86
+
+
+State 31
+
+  111 r_instruccion: FORM_FP_FFr • REG_FP ',' REG_FP ',' FR_MODE
+  112              | FORM_FP_FFr • REG_FP ',' REG_FP
+
+    REG_FP  shift, and go to state 87
+
+
+State 32
+
+  120 r_instruccion: FORM_FP_RFF • REG_INT ',' REG_FP ',' REG_FP
+
+    REG_INT  shift, and go to state 88
+
+
+State 33
+
+  117 r_instruccion: FORM_FP_RFr • REG_INT ',' REG_FP ',' FR_MODE
+  118              | FORM_FP_RFr • REG_INT ',' REG_FP
+
+    REG_INT  shift, and go to state 89
+
+
+State 34
+
+  119 r_instruccion: FORM_FP_RF • REG_INT ',' REG_FP
+
+    REG_INT  shift, and go to state 90
+
+
+State 35
+
+  116 r_instruccion: FORM_FP_FR • REG_FP ',' REG_INT
+
+    REG_FP  shift, and go to state 91
+
+
+State 36
+
+  114 r_instruccion: FORM_FP_FRr • REG_FP ',' REG_INT ',' FR_MODE
+  115              | FORM_FP_FRr • REG_FP ',' REG_INT
+
+    REG_FP  shift, and go to state 92
+
+
+State 37
+
+  113 r_instruccion: FORM_FP_FF • REG_FP ',' REG_FP
+
+    REG_FP  shift, and go to state 93
+
+
+State 38
+
+  121 r_instruccion: FORM_FP_L_FSB • REG_FP ',' r_inmediato_disp '(' REG_INT ')'
+  122              | FORM_FP_L_FSB • REG_FP ',' T_INT_LIT
+
+    REG_FP  shift, and go to state 94
+
+
+State 39
+
+  123 r_instruccion: FORM_FP_S_FSB • REG_FP ',' r_inmediato_disp '(' REG_INT ')'
+  124              | FORM_FP_S_FSB • REG_FP ',' T_INT_LIT ',' REG_INT
+
+    REG_FP  shift, and go to state 95
+
+
+State 40
+
+  125 r_instruccion: FORM_INT_RB • REG_INT ',' '(' REG_INT ')'
+
+    REG_INT  shift, and go to state 96
+
+
+State 41
+
+  126 r_instruccion: FORM_INT_RRB • REG_INT ',' REG_INT ',' '(' REG_INT ')'
+
+    REG_INT  shift, and go to state 97
+
+
+State 42
+
+   78 r_instruccion: FORM_PSEUDO_NOP •
+
+    $default  reduce using rule 78 (r_instruccion)
+
+
+State 43
+
+   79 r_instruccion: FORM_PSEUDO_RR • REG_INT ',' REG_INT
+
+    REG_INT  shift, and go to state 98
+
+
+State 44
+
+   80 r_instruccion: FORM_PSEUDO_BRA • REG_INT ',' r_posicion
+
+    REG_INT  shift, and go to state 99
+
+
+State 45
+
+   82 r_instruccion: FORM_PSEUDO_J • r_posicion_larga
+
+    T_INT_LIT   shift, and go to state 100
+    T_ALPHANUM  shift, and go to state 101
+
+    r_posicion_larga  go to state 102
+
+
+State 46
+
+   83 r_instruccion: FORM_PSEUDO_JR • REG_INT
+
+    REG_INT  shift, and go to state 103
+
+
+State 47
+
+   84 r_instruccion: FORM_PSEUDO_RET •
+
+    $default  reduce using rule 84 (r_instruccion)
+
+
+State 48
+
+   90 r_instruccion: FORM_PSEUDO_TAIL • T_ALPHANUM
+
+    T_ALPHANUM  shift, and go to state 104
+
+
+State 49
+
+   85 r_instruccion: FORM_PSEUDO_BRRA • REG_INT ',' REG_INT ',' r_posicion
+
+    REG_INT  shift, and go to state 105
+
+
+State 50
+
+   86 r_instruccion: FORM_PSEUDO_RRi • REG_INT ',' REG_INT
+
+    REG_INT  shift, and go to state 106
+
+
+State 51
+
+   81 r_instruccion: FORM_PSEUDO_FF • REG_FP ',' REG_FP
+
+    REG_FP  shift, and go to state 107
+
+
+State 52
+
+   88 r_instruccion: FORM_PSEUDO_LLA • REG_INT ',' T_ALPHANUM
+
+    REG_INT  shift, and go to state 108
+
+
+State 53
+
+   87 r_instruccion: FORM_PSEUDO_LI • REG_INT ',' T_INT_LIT
+
+    REG_INT  shift, and go to state 109
+
+
+State 54
+
+   89 r_instruccion: FORM_PSEUDO_CALL • T_ALPHANUM
+
+    T_ALPHANUM  shift, and go to state 110
+
+
+State 55
+
+   91 r_instruccion: FORM_PSEUDO_TRAP • T_INT_LIT
+
+    T_INT_LIT  shift, and go to state 111
+
+
+State 56
+
+    2 r_inicio: LABEL • $@1 r_linea_ensamblador
+
+    $default  reduce using rule 1 ($@1)
+
+    $@1  go to state 112
+
+
+State 57
+
+    0 $accept: r_inicio • $end
+
+    $end  shift, and go to state 113
+
+
+State 58
+
+    3 r_inicio: r_linea_ensamblador •
+
+    $default  reduce using rule 3 (r_inicio)
+
+
+State 59
+
+    6 r_linea_ensamblador: r_directiva • NL $@2 r_inicio
+   10                    | r_directiva •
+
+    NL  shift, and go to state 114
+
+    $default  reduce using rule 10 (r_linea_ensamblador)
+
+
+State 60
+
+    8 r_linea_ensamblador: r_instruccion • NL $@3 r_inicio
+   11                    | r_instruccion •
+
+    NL  shift, and go to state 115
+
+    $default  reduce using rule 11 (r_linea_ensamblador)
+
+
+State 61
+
+    9 r_linea_ensamblador: NL r_inicio •
+
+    $default  reduce using rule 9 (r_linea_ensamblador)
+
+
+State 62
+
+   27 r_directiva: DE_SPACE T_INT_LIT •
+
+    $default  reduce using rule 27 (r_directiva)
+
+
+State 63
+
+   14 r_directiva: DE_GLOBL T_ALPHANUM •
+
+    $default  reduce using rule 14 (r_directiva)
+
+
+State 64
+
+   30 r_directiva: DE_IREG $@10 • r_valores_enteros
+
+    REG_INT  shift, and go to state 116
+
+    $default  reduce using rule 50 (r_indice_ireg)
+
+    r_indice_ireg      go to state 117
+    r_valores_enteros  go to state 118
+
+
+State 65
+
+   32 r_directiva: DE_FREG $@11 • r_valores_fp
+
+    REG_FP  shift, and go to state 119
+
+    $default  reduce using rule 58 (r_indice_fpreg)
+
+    r_indice_fpreg  go to state 120
+    r_valores_fp    go to state 121
+
+
+State 66
+
+   28 r_directiva: DE_ASCIIZ T_STRING •
+
+    $default  reduce using rule 28 (r_directiva)
+
+
+State 67
+
+   34 r_directiva: DE_BTB $@12 • r_valores_btb
+
+    T_ALPHANUM  shift, and go to state 122
+
+    r_valores_btb  go to state 123
+
+
+State 68
+
+   16 r_directiva: DE_BYTE $@4 • r_lista_enteros
+
+    T_INT_LIT  shift, and go to state 124
+
+    r_lista_enteros  go to state 125
+
+
+State 69
+
+   18 r_directiva: DE_HALF $@5 • r_lista_enteros
+
+    T_INT_LIT  shift, and go to state 124
+
+    r_lista_enteros  go to state 126
+
+
+State 70
+
+   20 r_directiva: DE_WORD $@6 • r_lista_enteros
+
+    T_INT_LIT  shift, and go to state 124
+
+    r_lista_enteros  go to state 127
+
+
+State 71
+
+   22 r_directiva: DE_DWORD $@7 • r_lista_enteros
+
+    T_INT_LIT  shift, and go to state 124
+
+    r_lista_enteros  go to state 128
+
+
+State 72
+
+   24 r_directiva: DE_FLOAT $@8 • r_lista_reales
+
+    T_INT_LIT  shift, and go to state 129
+    T_FP_LIT   shift, and go to state 130
+
+    r_lista_reales  go to state 131
+
+
+State 73
+
+   26 r_directiva: DE_DOUBLE $@9 • r_lista_reales
+
+    T_INT_LIT  shift, and go to state 129
+    T_FP_LIT   shift, and go to state 130
+
+    r_lista_reales  go to state 132
+
+
+State 74
+
+   92 r_instruccion: FORM_INT_RRI REG_INT • ',' REG_INT ',' r_inmediato_disp
+
+    ','  shift, and go to state 133
+
+
+State 75
+
+   93 r_instruccion: FORM_INT_RRSH REG_INT • ',' REG_INT ',' T_INT_LIT
+
+    ','  shift, and go to state 134
+
+
+State 76
+
+   94 r_instruccion: FORM_INT_RRR REG_INT • ',' REG_INT ',' REG_INT
+
+    ','  shift, and go to state 135
+
+
+State 77
+
+   96 r_instruccion: FORM_INT_RA REG_INT • ',' T_INT_LIT
+
+    ','  shift, and go to state 136
+
+
+State 78
+
+   95 r_instruccion: FORM_INT_RI REG_INT • ',' r_inmediato_hi
+
+    ','  shift, and go to state 137
+
+
+State 79
+
+   97 r_instruccion: FORM_J_RA REG_INT • ',' r_posicion_larga
+
+    ','  shift, and go to state 138
+
+
+State 80
+
+   98 r_instruccion: FORM_J_RRA REG_INT • ',' REG_INT ',' r_posicion
+
+    ','  shift, and go to state 139
+
+
+State 81
+
+   99 r_instruccion: FORM_INT_B_RRA REG_INT • ',' REG_INT ',' r_posicion
+
+    ','  shift, and go to state 140
+
+
+State 82
+
+  100 r_instruccion: FORM_INT_L_RSB REG_INT • ',' r_inmediato_disp '(' REG_INT ')'
+  101              | FORM_INT_L_RSB REG_INT • ',' T_ALPHANUM
+
+    ','  shift, and go to state 141
+
+
+State 83
+
+  102 r_instruccion: FORM_INT_S_RSB REG_INT • ',' r_inmediato_disp '(' REG_INT ')'
+  103              | FORM_INT_S_RSB REG_INT • ',' T_ALPHANUM ',' REG_INT
+
+    ','  shift, and go to state 142
+
+
+State 84
+
+  106 r_instruccion: FORM_FP_FFF REG_FP • ',' REG_FP ',' REG_FP
+
+    ','  shift, and go to state 143
+
+
+State 85
+
+  107 r_instruccion: FORM_FP_FFFr REG_FP • ',' REG_FP ',' REG_FP ',' FR_MODE
+  108              | FORM_FP_FFFr REG_FP • ',' REG_FP ',' REG_FP
+
+    ','  shift, and go to state 144
+
+
+State 86
+
+  109 r_instruccion: FORM_FP_FFFFr REG_FP • ',' REG_FP ',' REG_FP ',' REG_FP ',' FR_MODE
+  110              | FORM_FP_FFFFr REG_FP • ',' REG_FP ',' REG_FP ',' REG_FP
+
+    ','  shift, and go to state 145
+
+
+State 87
+
+  111 r_instruccion: FORM_FP_FFr REG_FP • ',' REG_FP ',' FR_MODE
+  112              | FORM_FP_FFr REG_FP • ',' REG_FP
+
+    ','  shift, and go to state 146
+
+
+State 88
+
+  120 r_instruccion: FORM_FP_RFF REG_INT • ',' REG_FP ',' REG_FP
+
+    ','  shift, and go to state 147
+
+
+State 89
+
+  117 r_instruccion: FORM_FP_RFr REG_INT • ',' REG_FP ',' FR_MODE
+  118              | FORM_FP_RFr REG_INT • ',' REG_FP
+
+    ','  shift, and go to state 148
+
+
+State 90
+
+  119 r_instruccion: FORM_FP_RF REG_INT • ',' REG_FP
+
+    ','  shift, and go to state 149
+
+
+State 91
+
+  116 r_instruccion: FORM_FP_FR REG_FP • ',' REG_INT
+
+    ','  shift, and go to state 150
+
+
+State 92
+
+  114 r_instruccion: FORM_FP_FRr REG_FP • ',' REG_INT ',' FR_MODE
+  115              | FORM_FP_FRr REG_FP • ',' REG_INT
+
+    ','  shift, and go to state 151
+
+
+State 93
+
+  113 r_instruccion: FORM_FP_FF REG_FP • ',' REG_FP
+
+    ','  shift, and go to state 152
+
+
+State 94
+
+  121 r_instruccion: FORM_FP_L_FSB REG_FP • ',' r_inmediato_disp '(' REG_INT ')'
+  122              | FORM_FP_L_FSB REG_FP • ',' T_INT_LIT
+
+    ','  shift, and go to state 153
+
+
+State 95
+
+  123 r_instruccion: FORM_FP_S_FSB REG_FP • ',' r_inmediato_disp '(' REG_INT ')'
+  124              | FORM_FP_S_FSB REG_FP • ',' T_INT_LIT ',' REG_INT
+
+    ','  shift, and go to state 154
+
+
+State 96
+
+  125 r_instruccion: FORM_INT_RB REG_INT • ',' '(' REG_INT ')'
+
+    ','  shift, and go to state 155
+
+
+State 97
+
+  126 r_instruccion: FORM_INT_RRB REG_INT • ',' REG_INT ',' '(' REG_INT ')'
+
+    ','  shift, and go to state 156
+
+
+State 98
+
+   79 r_instruccion: FORM_PSEUDO_RR REG_INT • ',' REG_INT
+
+    ','  shift, and go to state 157
+
+
+State 99
+
+   80 r_instruccion: FORM_PSEUDO_BRA REG_INT • ',' r_posicion
+
+    ','  shift, and go to state 158
+
+
+State 100
+
+   76 r_posicion_larga: T_INT_LIT •
+
+    $default  reduce using rule 76 (r_posicion_larga)
+
+
+State 101
+
+   77 r_posicion_larga: T_ALPHANUM •
+
+    $default  reduce using rule 77 (r_posicion_larga)
+
+
+State 102
+
+   82 r_instruccion: FORM_PSEUDO_J r_posicion_larga •
+
+    $default  reduce using rule 82 (r_instruccion)
+
+
+State 103
+
+   83 r_instruccion: FORM_PSEUDO_JR REG_INT •
+
+    $default  reduce using rule 83 (r_instruccion)
+
+
+State 104
+
+   90 r_instruccion: FORM_PSEUDO_TAIL T_ALPHANUM •
+
+    $default  reduce using rule 90 (r_instruccion)
+
+
+State 105
+
+   85 r_instruccion: FORM_PSEUDO_BRRA REG_INT • ',' REG_INT ',' r_posicion
+
+    ','  shift, and go to state 159
+
+
+State 106
+
+   86 r_instruccion: FORM_PSEUDO_RRi REG_INT • ',' REG_INT
+
+    ','  shift, and go to state 160
+
+
+State 107
+
+   81 r_instruccion: FORM_PSEUDO_FF REG_FP • ',' REG_FP
+
+    ','  shift, and go to state 161
+
+
+State 108
+
+   88 r_instruccion: FORM_PSEUDO_LLA REG_INT • ',' T_ALPHANUM
+
+    ','  shift, and go to state 162
+
+
+State 109
+
+   87 r_instruccion: FORM_PSEUDO_LI REG_INT • ',' T_INT_LIT
+
+    ','  shift, and go to state 163
+
+
+State 110
+
+   89 r_instruccion: FORM_PSEUDO_CALL T_ALPHANUM •
+
+    $default  reduce using rule 89 (r_instruccion)
+
+
+State 111
+
+   91 r_instruccion: FORM_PSEUDO_TRAP T_INT_LIT •
+
+    $default  reduce using rule 91 (r_instruccion)
+
+
+State 112
+
+    2 r_inicio: LABEL $@1 • r_linea_ensamblador
+
+    NL                shift, and go to state 1
+    DE_DATA           shift, and go to state 2
+    DE_TEXT           shift, and go to state 3
+    DE_SPACE          shift, and go to state 4
+    DE_GLOBL          shift, and go to state 5
+    DE_IREG           shift, and go to state 6
+    DE_FREG           shift, and go to state 7
+    DE_ASCIIZ         shift, and go to state 8
+    DE_BTB            shift, and go to state 9
+    DE_BYTE           shift, and go to state 10
+    DE_HALF           shift, and go to state 11
+    DE_WORD           shift, and go to state 12
+    DE_DWORD          shift, and go to state 13
+    DE_FLOAT          shift, and go to state 14
+    DE_DOUBLE         shift, and go to state 15
+    FORM_INT_RRI      shift, and go to state 16
+    FORM_INT_RRSH     shift, and go to state 17
+    FORM_INT_RRR      shift, and go to state 18
+    FORM_INT_RA       shift, and go to state 19
+    FORM_INT_RI       shift, and go to state 20
+    FORM_J_RA         shift, and go to state 21
+    FORM_J_RRA        shift, and go to state 22
+    FORM_INT_B_RRA    shift, and go to state 23
+    FORM_INT_L_RSB    shift, and go to state 24
+    FORM_INT_S_RSB    shift, and go to state 25
+    FORM_INT_ECALL    shift, and go to state 26
+    FORM_INT_EBREAK   shift, and go to state 27
+    FORM_FP_FFF       shift, and go to state 28
+    FORM_FP_FFFr      shift, and go to state 29
+    FORM_FP_FFFFr     shift, and go to state 30
+    FORM_FP_FFr       shift, and go to state 31
+    FORM_FP_RFF       shift, and go to state 32
+    FORM_FP_RFr       shift, and go to state 33
+    FORM_FP_RF        shift, and go to state 34
+    FORM_FP_FR        shift, and go to state 35
+    FORM_FP_FRr       shift, and go to state 36
+    FORM_FP_FF        shift, and go to state 37
+    FORM_FP_L_FSB     shift, and go to state 38
+    FORM_FP_S_FSB     shift, and go to state 39
+    FORM_INT_RB       shift, and go to state 40
+    FORM_INT_RRB      shift, and go to state 41
+    FORM_PSEUDO_NOP   shift, and go to state 42
+    FORM_PSEUDO_RR    shift, and go to state 43
+    FORM_PSEUDO_BRA   shift, and go to state 44
+    FORM_PSEUDO_J     shift, and go to state 45
+    FORM_PSEUDO_JR    shift, and go to state 46
+    FORM_PSEUDO_RET   shift, and go to state 47
+    FORM_PSEUDO_TAIL  shift, and go to state 48
+    FORM_PSEUDO_BRRA  shift, and go to state 49
+    FORM_PSEUDO_RRi   shift, and go to state 50
+    FORM_PSEUDO_FF    shift, and go to state 51
+    FORM_PSEUDO_LLA   shift, and go to state 52
+    FORM_PSEUDO_LI    shift, and go to state 53
+    FORM_PSEUDO_CALL  shift, and go to state 54
+    FORM_PSEUDO_TRAP  shift, and go to state 55
+
+    r_linea_ensamblador  go to state 164
+    r_directiva          go to state 59
+    r_instruccion        go to state 60
+
+
+State 113
+
+    0 $accept: r_inicio $end •
+
+    $default  accept
+
+
+State 114
+
+    6 r_linea_ensamblador: r_directiva NL • $@2 r_inicio
+
+    $default  reduce using rule 5 ($@2)
+
+    $@2  go to state 165
+
+
+State 115
+
+    8 r_linea_ensamblador: r_instruccion NL • $@3 r_inicio
+
+    $default  reduce using rule 7 ($@3)
+
+    $@3  go to state 166
+
+
+State 116
+
+   49 r_indice_ireg: REG_INT • '='
+
+    '='  shift, and go to state 167
+
+
+State 117
+
+   52 r_valores_enteros: r_indice_ireg • T_INT_LIT $@16 r_valores_enteros_cont
+   54                  | r_indice_ireg • T_ALPHANUM r_offset $@17 r_valores_enteros_cont
+
+    T_INT_LIT   shift, and go to state 168
+    T_ALPHANUM  shift, and go to state 169
+
+
+State 118
+
+   30 r_directiva: DE_IREG $@10 r_valores_enteros •
+
+    $default  reduce using rule 30 (r_directiva)
+
+
+State 119
+
+   57 r_indice_fpreg: REG_FP • '='
+
+    '='  shift, and go to state 170
+
+
+State 120
+
+   60 r_valores_fp: r_indice_fpreg • T_FP_LIT $@18 r_valores_fp_cont
+
+    T_FP_LIT  shift, and go to state 171
+
+
+State 121
+
+   32 r_directiva: DE_FREG $@11 r_valores_fp •
+
+    $default  reduce using rule 32 (r_directiva)
+
+
+State 122
+
+   63 r_valores_btb: T_ALPHANUM • r_offset '&' T_INT_LIT '&' T_ALPHANUM r_offset
+
+    T_INT_LIT  shift, and go to state 172
+    '+'        shift, and go to state 173
+    '-'        shift, and go to state 174
+
+    $default  reduce using rule 48 (r_offset)
+
+    r_offset  go to state 175
+
+
+State 123
+
+   34 r_directiva: DE_BTB $@12 r_valores_btb •
+
+    $default  reduce using rule 34 (r_directiva)
+
+
+State 124
+
+   36 r_lista_enteros: T_INT_LIT • $@13 r_lista_enteros_cont
+
+    $default  reduce using rule 35 ($@13)
+
+    $@13  go to state 176
+
+
+State 125
+
+   16 r_directiva: DE_BYTE $@4 r_lista_enteros •
+
+    $default  reduce using rule 16 (r_directiva)
+
+
+State 126
+
+   18 r_directiva: DE_HALF $@5 r_lista_enteros •
+
+    $default  reduce using rule 18 (r_directiva)
+
+
+State 127
+
+   20 r_directiva: DE_WORD $@6 r_lista_enteros •
+
+    $default  reduce using rule 20 (r_directiva)
+
+
+State 128
+
+   22 r_directiva: DE_DWORD $@7 r_lista_enteros •
+
+    $default  reduce using rule 22 (r_directiva)
+
+
+State 129
+
+   42 r_lista_reales: T_INT_LIT • $@15 r_lista_reales_cont
+
+    $default  reduce using rule 41 ($@15)
+
+    $@15  go to state 177
+
+
+State 130
+
+   40 r_lista_reales: T_FP_LIT • $@14 r_lista_reales_cont
+
+    $default  reduce using rule 39 ($@14)
+
+    $@14  go to state 178
+
+
+State 131
+
+   24 r_directiva: DE_FLOAT $@8 r_lista_reales •
+
+    $default  reduce using rule 24 (r_directiva)
+
+
+State 132
+
+   26 r_directiva: DE_DOUBLE $@9 r_lista_reales •
+
+    $default  reduce using rule 26 (r_directiva)
+
+
+State 133
+
+   92 r_instruccion: FORM_INT_RRI REG_INT ',' • REG_INT ',' r_inmediato_disp
+
+    REG_INT  shift, and go to state 179
+
+
+State 134
+
+   93 r_instruccion: FORM_INT_RRSH REG_INT ',' • REG_INT ',' T_INT_LIT
+
+    REG_INT  shift, and go to state 180
+
+
+State 135
+
+   94 r_instruccion: FORM_INT_RRR REG_INT ',' • REG_INT ',' REG_INT
+
+    REG_INT  shift, and go to state 181
+
+
+State 136
+
+   96 r_instruccion: FORM_INT_RA REG_INT ',' • T_INT_LIT
+
+    T_INT_LIT  shift, and go to state 182
+
+
+State 137
+
+   95 r_instruccion: FORM_INT_RI REG_INT ',' • r_inmediato_hi
+
+    T_INT_LIT   shift, and go to state 183
+    T_ALPHANUM  shift, and go to state 184
+    M_LO        shift, and go to state 185
+    M_HI        shift, and go to state 186
+    M_DISP      shift, and go to state 187
+
+    r_inmediato_hi  go to state 188
+
+
+State 138
+
+   97 r_instruccion: FORM_J_RA REG_INT ',' • r_posicion_larga
+
+    T_INT_LIT   shift, and go to state 100
+    T_ALPHANUM  shift, and go to state 101
+
+    r_posicion_larga  go to state 189
+
+
+State 139
+
+   98 r_instruccion: FORM_J_RRA REG_INT ',' • REG_INT ',' r_posicion
+
+    REG_INT  shift, and go to state 190
+
+
+State 140
+
+   99 r_instruccion: FORM_INT_B_RRA REG_INT ',' • REG_INT ',' r_posicion
+
+    REG_INT  shift, and go to state 191
+
+
+State 141
+
+  100 r_instruccion: FORM_INT_L_RSB REG_INT ',' • r_inmediato_disp '(' REG_INT ')'
+  101              | FORM_INT_L_RSB REG_INT ',' • T_ALPHANUM
+
+    T_INT_LIT   shift, and go to state 192
+    T_ALPHANUM  shift, and go to state 193
+    M_LO        shift, and go to state 194
+    M_HI        shift, and go to state 195
+    M_DISP      shift, and go to state 196
+
+    r_inmediato_disp  go to state 197
+
+
+State 142
+
+  102 r_instruccion: FORM_INT_S_RSB REG_INT ',' • r_inmediato_disp '(' REG_INT ')'
+  103              | FORM_INT_S_RSB REG_INT ',' • T_ALPHANUM ',' REG_INT
+
+    T_INT_LIT   shift, and go to state 192
+    T_ALPHANUM  shift, and go to state 198
+    M_LO        shift, and go to state 194
+    M_HI        shift, and go to state 195
+    M_DISP      shift, and go to state 196
+
+    r_inmediato_disp  go to state 199
+
+
+State 143
+
+  106 r_instruccion: FORM_FP_FFF REG_FP ',' • REG_FP ',' REG_FP
+
+    REG_FP  shift, and go to state 200
+
+
+State 144
+
+  107 r_instruccion: FORM_FP_FFFr REG_FP ',' • REG_FP ',' REG_FP ',' FR_MODE
+  108              | FORM_FP_FFFr REG_FP ',' • REG_FP ',' REG_FP
+
+    REG_FP  shift, and go to state 201
+
+
+State 145
+
+  109 r_instruccion: FORM_FP_FFFFr REG_FP ',' • REG_FP ',' REG_FP ',' REG_FP ',' FR_MODE
+  110              | FORM_FP_FFFFr REG_FP ',' • REG_FP ',' REG_FP ',' REG_FP
+
+    REG_FP  shift, and go to state 202
+
+
+State 146
+
+  111 r_instruccion: FORM_FP_FFr REG_FP ',' • REG_FP ',' FR_MODE
+  112              | FORM_FP_FFr REG_FP ',' • REG_FP
+
+    REG_FP  shift, and go to state 203
+
+
+State 147
+
+  120 r_instruccion: FORM_FP_RFF REG_INT ',' • REG_FP ',' REG_FP
+
+    REG_FP  shift, and go to state 204
+
+
+State 148
+
+  117 r_instruccion: FORM_FP_RFr REG_INT ',' • REG_FP ',' FR_MODE
+  118              | FORM_FP_RFr REG_INT ',' • REG_FP
+
+    REG_FP  shift, and go to state 205
+
+
+State 149
+
+  119 r_instruccion: FORM_FP_RF REG_INT ',' • REG_FP
+
+    REG_FP  shift, and go to state 206
+
+
+State 150
+
+  116 r_instruccion: FORM_FP_FR REG_FP ',' • REG_INT
+
+    REG_INT  shift, and go to state 207
+
+
+State 151
+
+  114 r_instruccion: FORM_FP_FRr REG_FP ',' • REG_INT ',' FR_MODE
+  115              | FORM_FP_FRr REG_FP ',' • REG_INT
+
+    REG_INT  shift, and go to state 208
+
+
+State 152
+
+  113 r_instruccion: FORM_FP_FF REG_FP ',' • REG_FP
+
+    REG_FP  shift, and go to state 209
+
+
+State 153
+
+  121 r_instruccion: FORM_FP_L_FSB REG_FP ',' • r_inmediato_disp '(' REG_INT ')'
+  122              | FORM_FP_L_FSB REG_FP ',' • T_INT_LIT
+
+    T_INT_LIT   shift, and go to state 210
+    T_ALPHANUM  shift, and go to state 211
+    M_LO        shift, and go to state 194
+    M_HI        shift, and go to state 195
+    M_DISP      shift, and go to state 196
+
+    r_inmediato_disp  go to state 212
+
+
+State 154
+
+  123 r_instruccion: FORM_FP_S_FSB REG_FP ',' • r_inmediato_disp '(' REG_INT ')'
+  124              | FORM_FP_S_FSB REG_FP ',' • T_INT_LIT ',' REG_INT
+
+    T_INT_LIT   shift, and go to state 213
+    T_ALPHANUM  shift, and go to state 211
+    M_LO        shift, and go to state 194
+    M_HI        shift, and go to state 195
+    M_DISP      shift, and go to state 196
+
+    r_inmediato_disp  go to state 214
+
+
+State 155
+
+  125 r_instruccion: FORM_INT_RB REG_INT ',' • '(' REG_INT ')'
+
+    '('  shift, and go to state 215
+
+
+State 156
+
+  126 r_instruccion: FORM_INT_RRB REG_INT ',' • REG_INT ',' '(' REG_INT ')'
+
+    REG_INT  shift, and go to state 216
+
+
+State 157
+
+   79 r_instruccion: FORM_PSEUDO_RR REG_INT ',' • REG_INT
+
+    REG_INT  shift, and go to state 217
+
+
+State 158
+
+   80 r_instruccion: FORM_PSEUDO_BRA REG_INT ',' • r_posicion
+
+    T_INT_LIT   shift, and go to state 218
+    T_ALPHANUM  shift, and go to state 219
+
+    r_posicion  go to state 220
+
+
+State 159
+
+   85 r_instruccion: FORM_PSEUDO_BRRA REG_INT ',' • REG_INT ',' r_posicion
+
+    REG_INT  shift, and go to state 221
+
+
+State 160
+
+   86 r_instruccion: FORM_PSEUDO_RRi REG_INT ',' • REG_INT
+
+    REG_INT  shift, and go to state 222
+
+
+State 161
+
+   81 r_instruccion: FORM_PSEUDO_FF REG_FP ',' • REG_FP
+
+    REG_FP  shift, and go to state 223
+
+
+State 162
+
+   88 r_instruccion: FORM_PSEUDO_LLA REG_INT ',' • T_ALPHANUM
+
+    T_ALPHANUM  shift, and go to state 224
+
+
+State 163
+
+   87 r_instruccion: FORM_PSEUDO_LI REG_INT ',' • T_INT_LIT
+
+    T_INT_LIT  shift, and go to state 225
+
+
+State 164
+
+    2 r_inicio: LABEL $@1 r_linea_ensamblador •
+
+    $default  reduce using rule 2 (r_inicio)
+
+
+State 165
+
+    6 r_linea_ensamblador: r_directiva NL $@2 • r_inicio
+
+    NL                shift, and go to state 1
+    DE_DATA           shift, and go to state 2
+    DE_TEXT           shift, and go to state 3
+    DE_SPACE          shift, and go to state 4
+    DE_GLOBL          shift, and go to state 5
+    DE_IREG           shift, and go to state 6
+    DE_FREG           shift, and go to state 7
+    DE_ASCIIZ         shift, and go to state 8
+    DE_BTB            shift, and go to state 9
+    DE_BYTE           shift, and go to state 10
+    DE_HALF           shift, and go to state 11
+    DE_WORD           shift, and go to state 12
+    DE_DWORD          shift, and go to state 13
+    DE_FLOAT          shift, and go to state 14
+    DE_DOUBLE         shift, and go to state 15
+    FORM_INT_RRI      shift, and go to state 16
+    FORM_INT_RRSH     shift, and go to state 17
+    FORM_INT_RRR      shift, and go to state 18
+    FORM_INT_RA       shift, and go to state 19
+    FORM_INT_RI       shift, and go to state 20
+    FORM_J_RA         shift, and go to state 21
+    FORM_J_RRA        shift, and go to state 22
+    FORM_INT_B_RRA    shift, and go to state 23
+    FORM_INT_L_RSB    shift, and go to state 24
+    FORM_INT_S_RSB    shift, and go to state 25
+    FORM_INT_ECALL    shift, and go to state 26
+    FORM_INT_EBREAK   shift, and go to state 27
+    FORM_FP_FFF       shift, and go to state 28
+    FORM_FP_FFFr      shift, and go to state 29
+    FORM_FP_FFFFr     shift, and go to state 30
+    FORM_FP_FFr       shift, and go to state 31
+    FORM_FP_RFF       shift, and go to state 32
+    FORM_FP_RFr       shift, and go to state 33
+    FORM_FP_RF        shift, and go to state 34
+    FORM_FP_FR        shift, and go to state 35
+    FORM_FP_FRr       shift, and go to state 36
+    FORM_FP_FF        shift, and go to state 37
+    FORM_FP_L_FSB     shift, and go to state 38
+    FORM_FP_S_FSB     shift, and go to state 39
+    FORM_INT_RB       shift, and go to state 40
+    FORM_INT_RRB      shift, and go to state 41
+    FORM_PSEUDO_NOP   shift, and go to state 42
+    FORM_PSEUDO_RR    shift, and go to state 43
+    FORM_PSEUDO_BRA   shift, and go to state 44
+    FORM_PSEUDO_J     shift, and go to state 45
+    FORM_PSEUDO_JR    shift, and go to state 46
+    FORM_PSEUDO_RET   shift, and go to state 47
+    FORM_PSEUDO_TAIL  shift, and go to state 48
+    FORM_PSEUDO_BRRA  shift, and go to state 49
+    FORM_PSEUDO_RRi   shift, and go to state 50
+    FORM_PSEUDO_FF    shift, and go to state 51
+    FORM_PSEUDO_LLA   shift, and go to state 52
+    FORM_PSEUDO_LI    shift, and go to state 53
+    FORM_PSEUDO_CALL  shift, and go to state 54
+    FORM_PSEUDO_TRAP  shift, and go to state 55
+    LABEL             shift, and go to state 56
+
+    $default  reduce using rule 4 (r_inicio)
+
+    r_inicio             go to state 226
+    r_linea_ensamblador  go to state 58
+    r_directiva          go to state 59
+    r_instruccion        go to state 60
+
+
+State 166
+
+    8 r_linea_ensamblador: r_instruccion NL $@3 • r_inicio
+
+    NL                shift, and go to state 1
+    DE_DATA           shift, and go to state 2
+    DE_TEXT           shift, and go to state 3
+    DE_SPACE          shift, and go to state 4
+    DE_GLOBL          shift, and go to state 5
+    DE_IREG           shift, and go to state 6
+    DE_FREG           shift, and go to state 7
+    DE_ASCIIZ         shift, and go to state 8
+    DE_BTB            shift, and go to state 9
+    DE_BYTE           shift, and go to state 10
+    DE_HALF           shift, and go to state 11
+    DE_WORD           shift, and go to state 12
+    DE_DWORD          shift, and go to state 13
+    DE_FLOAT          shift, and go to state 14
+    DE_DOUBLE         shift, and go to state 15
+    FORM_INT_RRI      shift, and go to state 16
+    FORM_INT_RRSH     shift, and go to state 17
+    FORM_INT_RRR      shift, and go to state 18
+    FORM_INT_RA       shift, and go to state 19
+    FORM_INT_RI       shift, and go to state 20
+    FORM_J_RA         shift, and go to state 21
+    FORM_J_RRA        shift, and go to state 22
+    FORM_INT_B_RRA    shift, and go to state 23
+    FORM_INT_L_RSB    shift, and go to state 24
+    FORM_INT_S_RSB    shift, and go to state 25
+    FORM_INT_ECALL    shift, and go to state 26
+    FORM_INT_EBREAK   shift, and go to state 27
+    FORM_FP_FFF       shift, and go to state 28
+    FORM_FP_FFFr      shift, and go to state 29
+    FORM_FP_FFFFr     shift, and go to state 30
+    FORM_FP_FFr       shift, and go to state 31
+    FORM_FP_RFF       shift, and go to state 32
+    FORM_FP_RFr       shift, and go to state 33
+    FORM_FP_RF        shift, and go to state 34
+    FORM_FP_FR        shift, and go to state 35
+    FORM_FP_FRr       shift, and go to state 36
+    FORM_FP_FF        shift, and go to state 37
+    FORM_FP_L_FSB     shift, and go to state 38
+    FORM_FP_S_FSB     shift, and go to state 39
+    FORM_INT_RB       shift, and go to state 40
+    FORM_INT_RRB      shift, and go to state 41
+    FORM_PSEUDO_NOP   shift, and go to state 42
+    FORM_PSEUDO_RR    shift, and go to state 43
+    FORM_PSEUDO_BRA   shift, and go to state 44
+    FORM_PSEUDO_J     shift, and go to state 45
+    FORM_PSEUDO_JR    shift, and go to state 46
+    FORM_PSEUDO_RET   shift, and go to state 47
+    FORM_PSEUDO_TAIL  shift, and go to state 48
+    FORM_PSEUDO_BRRA  shift, and go to state 49
+    FORM_PSEUDO_RRi   shift, and go to state 50
+    FORM_PSEUDO_FF    shift, and go to state 51
+    FORM_PSEUDO_LLA   shift, and go to state 52
+    FORM_PSEUDO_LI    shift, and go to state 53
+    FORM_PSEUDO_CALL  shift, and go to state 54
+    FORM_PSEUDO_TRAP  shift, and go to state 55
+    LABEL             shift, and go to state 56
+
+    $default  reduce using rule 4 (r_inicio)
+
+    r_inicio             go to state 227
+    r_linea_ensamblador  go to state 58
+    r_directiva          go to state 59
+    r_instruccion        go to state 60
+
+
+State 167
+
+   49 r_indice_ireg: REG_INT '=' •
+
+    $default  reduce using rule 49 (r_indice_ireg)
+
+
+State 168
+
+   52 r_valores_enteros: r_indice_ireg T_INT_LIT • $@16 r_valores_enteros_cont
+
+    $default  reduce using rule 51 ($@16)
+
+    $@16  go to state 228
+
+
+State 169
+
+   54 r_valores_enteros: r_indice_ireg T_ALPHANUM • r_offset $@17 r_valores_enteros_cont
+
+    T_INT_LIT  shift, and go to state 172
+    '+'        shift, and go to state 173
+    '-'        shift, and go to state 174
+
+    $default  reduce using rule 48 (r_offset)
+
+    r_offset  go to state 229
+
+
+State 170
+
+   57 r_indice_fpreg: REG_FP '=' •
+
+    $default  reduce using rule 57 (r_indice_fpreg)
+
+
+State 171
+
+   60 r_valores_fp: r_indice_fpreg T_FP_LIT • $@18 r_valores_fp_cont
+
+    $default  reduce using rule 59 ($@18)
+
+    $@18  go to state 230
+
+
+State 172
+
+   47 r_offset: T_INT_LIT •
+
+    $default  reduce using rule 47 (r_offset)
+
+
+State 173
+
+   45 r_offset: '+' • T_INT_LIT
+
+    T_INT_LIT  shift, and go to state 231
+
+
+State 174
+
+   46 r_offset: '-' • T_INT_LIT
+
+    T_INT_LIT  shift, and go to state 232
+
+
+State 175
+
+   63 r_valores_btb: T_ALPHANUM r_offset • '&' T_INT_LIT '&' T_ALPHANUM r_offset
+
+    '&'  shift, and go to state 233
+
+
+State 176
+
+   36 r_lista_enteros: T_INT_LIT $@13 • r_lista_enteros_cont
+
+    ','  shift, and go to state 234
+
+    $default  reduce using rule 38 (r_lista_enteros_cont)
+
+    r_lista_enteros_cont  go to state 235
+
+
+State 177
+
+   42 r_lista_reales: T_INT_LIT $@15 • r_lista_reales_cont
+
+    ','  shift, and go to state 236
+
+    $default  reduce using rule 44 (r_lista_reales_cont)
+
+    r_lista_reales_cont  go to state 237
+
+
+State 178
+
+   40 r_lista_reales: T_FP_LIT $@14 • r_lista_reales_cont
+
+    ','  shift, and go to state 236
+
+    $default  reduce using rule 44 (r_lista_reales_cont)
+
+    r_lista_reales_cont  go to state 238
+
+
+State 179
+
+   92 r_instruccion: FORM_INT_RRI REG_INT ',' REG_INT • ',' r_inmediato_disp
+
+    ','  shift, and go to state 239
+
+
+State 180
+
+   93 r_instruccion: FORM_INT_RRSH REG_INT ',' REG_INT • ',' T_INT_LIT
+
+    ','  shift, and go to state 240
+
+
+State 181
+
+   94 r_instruccion: FORM_INT_RRR REG_INT ',' REG_INT • ',' REG_INT
+
+    ','  shift, and go to state 241
+
+
+State 182
+
+   96 r_instruccion: FORM_INT_RA REG_INT ',' T_INT_LIT •
+
+    $default  reduce using rule 96 (r_instruccion)
+
+
+State 183
+
+   69 r_inmediato_hi: T_INT_LIT •
+
+    $default  reduce using rule 69 (r_inmediato_hi)
+
+
+State 184
+
+   70 r_inmediato_hi: T_ALPHANUM •
+
+    $default  reduce using rule 70 (r_inmediato_hi)
+
+
+State 185
+
+   72 r_inmediato_hi: M_LO • '[' T_ALPHANUM ']'
+
+    '['  shift, and go to state 242
+
+
+State 186
+
+   71 r_inmediato_hi: M_HI • '[' T_ALPHANUM ']'
+
+    '['  shift, and go to state 243
+
+
+State 187
+
+   73 r_inmediato_hi: M_DISP • '[' T_ALPHANUM ']'
+
+    '['  shift, and go to state 244
+
+
+State 188
+
+   95 r_instruccion: FORM_INT_RI REG_INT ',' r_inmediato_hi •
+
+    $default  reduce using rule 95 (r_instruccion)
+
+
+State 189
+
+   97 r_instruccion: FORM_J_RA REG_INT ',' r_posicion_larga •
+
+    $default  reduce using rule 97 (r_instruccion)
+
+
+State 190
+
+   98 r_instruccion: FORM_J_RRA REG_INT ',' REG_INT • ',' r_posicion
+
+    ','  shift, and go to state 245
+
+
+State 191
+
+   99 r_instruccion: FORM_INT_B_RRA REG_INT ',' REG_INT • ',' r_posicion
+
+    ','  shift, and go to state 246
+
+
+State 192
+
+   64 r_inmediato_disp: T_INT_LIT •
+
+    $default  reduce using rule 64 (r_inmediato_disp)
+
+
+State 193
+
+   65 r_inmediato_disp: T_ALPHANUM •
+  101 r_instruccion: FORM_INT_L_RSB REG_INT ',' T_ALPHANUM •
+
+    '('       reduce using rule 65 (r_inmediato_disp)
+    $default  reduce using rule 101 (r_instruccion)
+
+
+State 194
+
+   67 r_inmediato_disp: M_LO • '[' T_ALPHANUM ']'
+
+    '['  shift, and go to state 247
+
+
+State 195
+
+   66 r_inmediato_disp: M_HI • '[' T_ALPHANUM ']'
+
+    '['  shift, and go to state 248
+
+
+State 196
+
+   68 r_inmediato_disp: M_DISP • '[' T_ALPHANUM ']'
+
+    '['  shift, and go to state 249
+
+
+State 197
+
+  100 r_instruccion: FORM_INT_L_RSB REG_INT ',' r_inmediato_disp • '(' REG_INT ')'
+
+    '('  shift, and go to state 250
+
+
+State 198
+
+   65 r_inmediato_disp: T_ALPHANUM •
+  103 r_instruccion: FORM_INT_S_RSB REG_INT ',' T_ALPHANUM • ',' REG_INT
+
+    ','  shift, and go to state 251
+
+    $default  reduce using rule 65 (r_inmediato_disp)
+
+
+State 199
+
+  102 r_instruccion: FORM_INT_S_RSB REG_INT ',' r_inmediato_disp • '(' REG_INT ')'
+
+    '('  shift, and go to state 252
+
+
+State 200
+
+  106 r_instruccion: FORM_FP_FFF REG_FP ',' REG_FP • ',' REG_FP
+
+    ','  shift, and go to state 253
+
+
+State 201
+
+  107 r_instruccion: FORM_FP_FFFr REG_FP ',' REG_FP • ',' REG_FP ',' FR_MODE
+  108              | FORM_FP_FFFr REG_FP ',' REG_FP • ',' REG_FP
+
+    ','  shift, and go to state 254
+
+
+State 202
+
+  109 r_instruccion: FORM_FP_FFFFr REG_FP ',' REG_FP • ',' REG_FP ',' REG_FP ',' FR_MODE
+  110              | FORM_FP_FFFFr REG_FP ',' REG_FP • ',' REG_FP ',' REG_FP
+
+    ','  shift, and go to state 255
+
+
+State 203
+
+  111 r_instruccion: FORM_FP_FFr REG_FP ',' REG_FP • ',' FR_MODE
+  112              | FORM_FP_FFr REG_FP ',' REG_FP •
+
+    ','  shift, and go to state 256
+
+    $default  reduce using rule 112 (r_instruccion)
+
+
+State 204
+
+  120 r_instruccion: FORM_FP_RFF REG_INT ',' REG_FP • ',' REG_FP
+
+    ','  shift, and go to state 257
+
+
+State 205
+
+  117 r_instruccion: FORM_FP_RFr REG_INT ',' REG_FP • ',' FR_MODE
+  118              | FORM_FP_RFr REG_INT ',' REG_FP •
+
+    ','  shift, and go to state 258
+
+    $default  reduce using rule 118 (r_instruccion)
+
+
+State 206
+
+  119 r_instruccion: FORM_FP_RF REG_INT ',' REG_FP •
+
+    $default  reduce using rule 119 (r_instruccion)
+
+
+State 207
+
+  116 r_instruccion: FORM_FP_FR REG_FP ',' REG_INT •
+
+    $default  reduce using rule 116 (r_instruccion)
+
+
+State 208
+
+  114 r_instruccion: FORM_FP_FRr REG_FP ',' REG_INT • ',' FR_MODE
+  115              | FORM_FP_FRr REG_FP ',' REG_INT •
+
+    ','  shift, and go to state 259
+
+    $default  reduce using rule 115 (r_instruccion)
+
+
+State 209
+
+  113 r_instruccion: FORM_FP_FF REG_FP ',' REG_FP •
+
+    $default  reduce using rule 113 (r_instruccion)
+
+
+State 210
+
+   64 r_inmediato_disp: T_INT_LIT •
+  122 r_instruccion: FORM_FP_L_FSB REG_FP ',' T_INT_LIT •
+
+    '('       reduce using rule 64 (r_inmediato_disp)
+    $default  reduce using rule 122 (r_instruccion)
+
+
+State 211
+
+   65 r_inmediato_disp: T_ALPHANUM •
+
+    $default  reduce using rule 65 (r_inmediato_disp)
+
+
+State 212
+
+  121 r_instruccion: FORM_FP_L_FSB REG_FP ',' r_inmediato_disp • '(' REG_INT ')'
+
+    '('  shift, and go to state 260
+
+
+State 213
+
+   64 r_inmediato_disp: T_INT_LIT •
+  124 r_instruccion: FORM_FP_S_FSB REG_FP ',' T_INT_LIT • ',' REG_INT
+
+    ','  shift, and go to state 261
+
+    $default  reduce using rule 64 (r_inmediato_disp)
+
+
+State 214
+
+  123 r_instruccion: FORM_FP_S_FSB REG_FP ',' r_inmediato_disp • '(' REG_INT ')'
+
+    '('  shift, and go to state 262
+
+
+State 215
+
+  125 r_instruccion: FORM_INT_RB REG_INT ',' '(' • REG_INT ')'
+
+    REG_INT  shift, and go to state 263
+
+
+State 216
+
+  126 r_instruccion: FORM_INT_RRB REG_INT ',' REG_INT • ',' '(' REG_INT ')'
+
+    ','  shift, and go to state 264
+
+
+State 217
+
+   79 r_instruccion: FORM_PSEUDO_RR REG_INT ',' REG_INT •
+
+    $default  reduce using rule 79 (r_instruccion)
+
+
+State 218
+
+   74 r_posicion: T_INT_LIT •
+
+    $default  reduce using rule 74 (r_posicion)
+
+
+State 219
+
+   75 r_posicion: T_ALPHANUM •
+
+    $default  reduce using rule 75 (r_posicion)
+
+
+State 220
+
+   80 r_instruccion: FORM_PSEUDO_BRA REG_INT ',' r_posicion •
+
+    $default  reduce using rule 80 (r_instruccion)
+
+
+State 221
+
+   85 r_instruccion: FORM_PSEUDO_BRRA REG_INT ',' REG_INT • ',' r_posicion
+
+    ','  shift, and go to state 265
+
+
+State 222
+
+   86 r_instruccion: FORM_PSEUDO_RRi REG_INT ',' REG_INT •
+
+    $default  reduce using rule 86 (r_instruccion)
+
+
+State 223
+
+   81 r_instruccion: FORM_PSEUDO_FF REG_FP ',' REG_FP •
+
+    $default  reduce using rule 81 (r_instruccion)
+
+
+State 224
+
+   88 r_instruccion: FORM_PSEUDO_LLA REG_INT ',' T_ALPHANUM •
+
+    $default  reduce using rule 88 (r_instruccion)
+
+
+State 225
+
+   87 r_instruccion: FORM_PSEUDO_LI REG_INT ',' T_INT_LIT •
+
+    $default  reduce using rule 87 (r_instruccion)
+
+
+State 226
+
+    6 r_linea_ensamblador: r_directiva NL $@2 r_inicio •
+
+    $default  reduce using rule 6 (r_linea_ensamblador)
+
+
+State 227
+
+    8 r_linea_ensamblador: r_instruccion NL $@3 r_inicio •
+
+    $default  reduce using rule 8 (r_linea_ensamblador)
+
+
+State 228
+
+   52 r_valores_enteros: r_indice_ireg T_INT_LIT $@16 • r_valores_enteros_cont
+
+    ','  shift, and go to state 266
+
+    $default  reduce using rule 56 (r_valores_enteros_cont)
+
+    r_valores_enteros_cont  go to state 267
+
+
+State 229
+
+   54 r_valores_enteros: r_indice_ireg T_ALPHANUM r_offset • $@17 r_valores_enteros_cont
+
+    $default  reduce using rule 53 ($@17)
+
+    $@17  go to state 268
+
+
+State 230
+
+   60 r_valores_fp: r_indice_fpreg T_FP_LIT $@18 • r_valores_fp_cont
+
+    ','  shift, and go to state 269
+
+    $default  reduce using rule 62 (r_valores_fp_cont)
+
+    r_valores_fp_cont  go to state 270
+
+
+State 231
+
+   45 r_offset: '+' T_INT_LIT •
+
+    $default  reduce using rule 45 (r_offset)
+
+
+State 232
+
+   46 r_offset: '-' T_INT_LIT •
+
+    $default  reduce using rule 46 (r_offset)
+
+
+State 233
+
+   63 r_valores_btb: T_ALPHANUM r_offset '&' • T_INT_LIT '&' T_ALPHANUM r_offset
+
+    T_INT_LIT  shift, and go to state 271
+
+
+State 234
+
+   37 r_lista_enteros_cont: ',' • r_lista_enteros
+
+    T_INT_LIT  shift, and go to state 124
+
+    r_lista_enteros  go to state 272
+
+
+State 235
+
+   36 r_lista_enteros: T_INT_LIT $@13 r_lista_enteros_cont •
+
+    $default  reduce using rule 36 (r_lista_enteros)
+
+
+State 236
+
+   43 r_lista_reales_cont: ',' • r_lista_reales
+
+    T_INT_LIT  shift, and go to state 129
+    T_FP_LIT   shift, and go to state 130
+
+    r_lista_reales  go to state 273
+
+
+State 237
+
+   42 r_lista_reales: T_INT_LIT $@15 r_lista_reales_cont •
+
+    $default  reduce using rule 42 (r_lista_reales)
+
+
+State 238
+
+   40 r_lista_reales: T_FP_LIT $@14 r_lista_reales_cont •
+
+    $default  reduce using rule 40 (r_lista_reales)
+
+
+State 239
+
+   92 r_instruccion: FORM_INT_RRI REG_INT ',' REG_INT ',' • r_inmediato_disp
+
+    T_INT_LIT   shift, and go to state 192
+    T_ALPHANUM  shift, and go to state 211
+    M_LO        shift, and go to state 194
+    M_HI        shift, and go to state 195
+    M_DISP      shift, and go to state 196
+
+    r_inmediato_disp  go to state 274
+
+
+State 240
+
+   93 r_instruccion: FORM_INT_RRSH REG_INT ',' REG_INT ',' • T_INT_LIT
+
+    T_INT_LIT  shift, and go to state 275
+
+
+State 241
+
+   94 r_instruccion: FORM_INT_RRR REG_INT ',' REG_INT ',' • REG_INT
+
+    REG_INT  shift, and go to state 276
+
+
+State 242
+
+   72 r_inmediato_hi: M_LO '[' • T_ALPHANUM ']'
+
+    T_ALPHANUM  shift, and go to state 277
+
+
+State 243
+
+   71 r_inmediato_hi: M_HI '[' • T_ALPHANUM ']'
+
+    T_ALPHANUM  shift, and go to state 278
+
+
+State 244
+
+   73 r_inmediato_hi: M_DISP '[' • T_ALPHANUM ']'
+
+    T_ALPHANUM  shift, and go to state 279
+
+
+State 245
+
+   98 r_instruccion: FORM_J_RRA REG_INT ',' REG_INT ',' • r_posicion
+
+    T_INT_LIT   shift, and go to state 218
+    T_ALPHANUM  shift, and go to state 219
+
+    r_posicion  go to state 280
+
+
+State 246
+
+   99 r_instruccion: FORM_INT_B_RRA REG_INT ',' REG_INT ',' • r_posicion
+
+    T_INT_LIT   shift, and go to state 218
+    T_ALPHANUM  shift, and go to state 219
+
+    r_posicion  go to state 281
+
+
+State 247
+
+   67 r_inmediato_disp: M_LO '[' • T_ALPHANUM ']'
+
+    T_ALPHANUM  shift, and go to state 282
+
+
+State 248
+
+   66 r_inmediato_disp: M_HI '[' • T_ALPHANUM ']'
+
+    T_ALPHANUM  shift, and go to state 283
+
+
+State 249
+
+   68 r_inmediato_disp: M_DISP '[' • T_ALPHANUM ']'
+
+    T_ALPHANUM  shift, and go to state 284
+
+
+State 250
+
+  100 r_instruccion: FORM_INT_L_RSB REG_INT ',' r_inmediato_disp '(' • REG_INT ')'
+
+    REG_INT  shift, and go to state 285
+
+
+State 251
+
+  103 r_instruccion: FORM_INT_S_RSB REG_INT ',' T_ALPHANUM ',' • REG_INT
+
+    REG_INT  shift, and go to state 286
+
+
+State 252
+
+  102 r_instruccion: FORM_INT_S_RSB REG_INT ',' r_inmediato_disp '(' • REG_INT ')'
+
+    REG_INT  shift, and go to state 287
+
+
+State 253
+
+  106 r_instruccion: FORM_FP_FFF REG_FP ',' REG_FP ',' • REG_FP
+
+    REG_FP  shift, and go to state 288
+
+
+State 254
+
+  107 r_instruccion: FORM_FP_FFFr REG_FP ',' REG_FP ',' • REG_FP ',' FR_MODE
+  108              | FORM_FP_FFFr REG_FP ',' REG_FP ',' • REG_FP
+
+    REG_FP  shift, and go to state 289
+
+
+State 255
+
+  109 r_instruccion: FORM_FP_FFFFr REG_FP ',' REG_FP ',' • REG_FP ',' REG_FP ',' FR_MODE
+  110              | FORM_FP_FFFFr REG_FP ',' REG_FP ',' • REG_FP ',' REG_FP
+
+    REG_FP  shift, and go to state 290
+
+
+State 256
+
+  111 r_instruccion: FORM_FP_FFr REG_FP ',' REG_FP ',' • FR_MODE
+
+    FR_MODE  shift, and go to state 291
+
+
+State 257
+
+  120 r_instruccion: FORM_FP_RFF REG_INT ',' REG_FP ',' • REG_FP
+
+    REG_FP  shift, and go to state 292
+
+
+State 258
+
+  117 r_instruccion: FORM_FP_RFr REG_INT ',' REG_FP ',' • FR_MODE
+
+    FR_MODE  shift, and go to state 293
+
+
+State 259
+
+  114 r_instruccion: FORM_FP_FRr REG_FP ',' REG_INT ',' • FR_MODE
+
+    FR_MODE  shift, and go to state 294
+
+
+State 260
+
+  121 r_instruccion: FORM_FP_L_FSB REG_FP ',' r_inmediato_disp '(' • REG_INT ')'
+
+    REG_INT  shift, and go to state 295
+
+
+State 261
+
+  124 r_instruccion: FORM_FP_S_FSB REG_FP ',' T_INT_LIT ',' • REG_INT
+
+    REG_INT  shift, and go to state 296
+
+
+State 262
+
+  123 r_instruccion: FORM_FP_S_FSB REG_FP ',' r_inmediato_disp '(' • REG_INT ')'
+
+    REG_INT  shift, and go to state 297
+
+
+State 263
+
+  125 r_instruccion: FORM_INT_RB REG_INT ',' '(' REG_INT • ')'
+
+    ')'  shift, and go to state 298
+
+
+State 264
+
+  126 r_instruccion: FORM_INT_RRB REG_INT ',' REG_INT ',' • '(' REG_INT ')'
+
+    '('  shift, and go to state 299
+
+
+State 265
+
+   85 r_instruccion: FORM_PSEUDO_BRRA REG_INT ',' REG_INT ',' • r_posicion
+
+    T_INT_LIT   shift, and go to state 218
+    T_ALPHANUM  shift, and go to state 219
+
+    r_posicion  go to state 300
+
+
+State 266
+
+   55 r_valores_enteros_cont: ',' • r_valores_enteros
+
+    REG_INT  shift, and go to state 116
+
+    $default  reduce using rule 50 (r_indice_ireg)
+
+    r_indice_ireg      go to state 117
+    r_valores_enteros  go to state 301
+
+
+State 267
+
+   52 r_valores_enteros: r_indice_ireg T_INT_LIT $@16 r_valores_enteros_cont •
+
+    $default  reduce using rule 52 (r_valores_enteros)
+
+
+State 268
+
+   54 r_valores_enteros: r_indice_ireg T_ALPHANUM r_offset $@17 • r_valores_enteros_cont
+
+    ','  shift, and go to state 266
+
+    $default  reduce using rule 56 (r_valores_enteros_cont)
+
+    r_valores_enteros_cont  go to state 302
+
+
+State 269
+
+   61 r_valores_fp_cont: ',' • r_valores_fp
+
+    REG_FP  shift, and go to state 119
+
+    $default  reduce using rule 58 (r_indice_fpreg)
+
+    r_indice_fpreg  go to state 120
+    r_valores_fp    go to state 303
+
+
+State 270
+
+   60 r_valores_fp: r_indice_fpreg T_FP_LIT $@18 r_valores_fp_cont •
+
+    $default  reduce using rule 60 (r_valores_fp)
+
+
+State 271
+
+   63 r_valores_btb: T_ALPHANUM r_offset '&' T_INT_LIT • '&' T_ALPHANUM r_offset
+
+    '&'  shift, and go to state 304
+
+
+State 272
+
+   37 r_lista_enteros_cont: ',' r_lista_enteros •
+
+    $default  reduce using rule 37 (r_lista_enteros_cont)
+
+
+State 273
+
+   43 r_lista_reales_cont: ',' r_lista_reales •
+
+    $default  reduce using rule 43 (r_lista_reales_cont)
+
+
+State 274
+
+   92 r_instruccion: FORM_INT_RRI REG_INT ',' REG_INT ',' r_inmediato_disp •
+
+    $default  reduce using rule 92 (r_instruccion)
+
+
+State 275
+
+   93 r_instruccion: FORM_INT_RRSH REG_INT ',' REG_INT ',' T_INT_LIT •
+
+    $default  reduce using rule 93 (r_instruccion)
+
+
+State 276
+
+   94 r_instruccion: FORM_INT_RRR REG_INT ',' REG_INT ',' REG_INT •
+
+    $default  reduce using rule 94 (r_instruccion)
+
+
+State 277
+
+   72 r_inmediato_hi: M_LO '[' T_ALPHANUM • ']'
+
+    ']'  shift, and go to state 305
+
+
+State 278
+
+   71 r_inmediato_hi: M_HI '[' T_ALPHANUM • ']'
+
+    ']'  shift, and go to state 306
+
+
+State 279
+
+   73 r_inmediato_hi: M_DISP '[' T_ALPHANUM • ']'
+
+    ']'  shift, and go to state 307
+
+
+State 280
+
+   98 r_instruccion: FORM_J_RRA REG_INT ',' REG_INT ',' r_posicion •
+
+    $default  reduce using rule 98 (r_instruccion)
+
+
+State 281
+
+   99 r_instruccion: FORM_INT_B_RRA REG_INT ',' REG_INT ',' r_posicion •
+
+    $default  reduce using rule 99 (r_instruccion)
+
+
+State 282
+
+   67 r_inmediato_disp: M_LO '[' T_ALPHANUM • ']'
+
+    ']'  shift, and go to state 308
+
+
+State 283
+
+   66 r_inmediato_disp: M_HI '[' T_ALPHANUM • ']'
+
+    ']'  shift, and go to state 309
+
+
+State 284
+
+   68 r_inmediato_disp: M_DISP '[' T_ALPHANUM • ']'
+
+    ']'  shift, and go to state 310
+
+
+State 285
+
+  100 r_instruccion: FORM_INT_L_RSB REG_INT ',' r_inmediato_disp '(' REG_INT • ')'
+
+    ')'  shift, and go to state 311
+
+
+State 286
+
+  103 r_instruccion: FORM_INT_S_RSB REG_INT ',' T_ALPHANUM ',' REG_INT •
+
+    $default  reduce using rule 103 (r_instruccion)
+
+
+State 287
+
+  102 r_instruccion: FORM_INT_S_RSB REG_INT ',' r_inmediato_disp '(' REG_INT • ')'
+
+    ')'  shift, and go to state 312
+
+
+State 288
+
+  106 r_instruccion: FORM_FP_FFF REG_FP ',' REG_FP ',' REG_FP •
+
+    $default  reduce using rule 106 (r_instruccion)
+
+
+State 289
+
+  107 r_instruccion: FORM_FP_FFFr REG_FP ',' REG_FP ',' REG_FP • ',' FR_MODE
+  108              | FORM_FP_FFFr REG_FP ',' REG_FP ',' REG_FP •
+
+    ','  shift, and go to state 313
+
+    $default  reduce using rule 108 (r_instruccion)
+
+
+State 290
+
+  109 r_instruccion: FORM_FP_FFFFr REG_FP ',' REG_FP ',' REG_FP • ',' REG_FP ',' FR_MODE
+  110              | FORM_FP_FFFFr REG_FP ',' REG_FP ',' REG_FP • ',' REG_FP
+
+    ','  shift, and go to state 314
+
+
+State 291
+
+  111 r_instruccion: FORM_FP_FFr REG_FP ',' REG_FP ',' FR_MODE •
+
+    $default  reduce using rule 111 (r_instruccion)
+
+
+State 292
+
+  120 r_instruccion: FORM_FP_RFF REG_INT ',' REG_FP ',' REG_FP •
+
+    $default  reduce using rule 120 (r_instruccion)
+
+
+State 293
+
+  117 r_instruccion: FORM_FP_RFr REG_INT ',' REG_FP ',' FR_MODE •
+
+    $default  reduce using rule 117 (r_instruccion)
+
+
+State 294
+
+  114 r_instruccion: FORM_FP_FRr REG_FP ',' REG_INT ',' FR_MODE •
+
+    $default  reduce using rule 114 (r_instruccion)
+
+
+State 295
+
+  121 r_instruccion: FORM_FP_L_FSB REG_FP ',' r_inmediato_disp '(' REG_INT • ')'
+
+    ')'  shift, and go to state 315
+
+
+State 296
+
+  124 r_instruccion: FORM_FP_S_FSB REG_FP ',' T_INT_LIT ',' REG_INT •
+
+    $default  reduce using rule 124 (r_instruccion)
+
+
+State 297
+
+  123 r_instruccion: FORM_FP_S_FSB REG_FP ',' r_inmediato_disp '(' REG_INT • ')'
+
+    ')'  shift, and go to state 316
+
+
+State 298
+
+  125 r_instruccion: FORM_INT_RB REG_INT ',' '(' REG_INT ')' •
+
+    $default  reduce using rule 125 (r_instruccion)
+
+
+State 299
+
+  126 r_instruccion: FORM_INT_RRB REG_INT ',' REG_INT ',' '(' • REG_INT ')'
+
+    REG_INT  shift, and go to state 317
+
+
+State 300
+
+   85 r_instruccion: FORM_PSEUDO_BRRA REG_INT ',' REG_INT ',' r_posicion •
+
+    $default  reduce using rule 85 (r_instruccion)
+
+
+State 301
+
+   55 r_valores_enteros_cont: ',' r_valores_enteros •
+
+    $default  reduce using rule 55 (r_valores_enteros_cont)
+
+
+State 302
+
+   54 r_valores_enteros: r_indice_ireg T_ALPHANUM r_offset $@17 r_valores_enteros_cont •
+
+    $default  reduce using rule 54 (r_valores_enteros)
+
+
+State 303
+
+   61 r_valores_fp_cont: ',' r_valores_fp •
+
+    $default  reduce using rule 61 (r_valores_fp_cont)
+
+
+State 304
+
+   63 r_valores_btb: T_ALPHANUM r_offset '&' T_INT_LIT '&' • T_ALPHANUM r_offset
+
+    T_ALPHANUM  shift, and go to state 318
+
+
+State 305
+
+   72 r_inmediato_hi: M_LO '[' T_ALPHANUM ']' •
+
+    $default  reduce using rule 72 (r_inmediato_hi)
+
+
+State 306
+
+   71 r_inmediato_hi: M_HI '[' T_ALPHANUM ']' •
+
+    $default  reduce using rule 71 (r_inmediato_hi)
+
+
+State 307
+
+   73 r_inmediato_hi: M_DISP '[' T_ALPHANUM ']' •
+
+    $default  reduce using rule 73 (r_inmediato_hi)
+
+
+State 308
+
+   67 r_inmediato_disp: M_LO '[' T_ALPHANUM ']' •
+
+    $default  reduce using rule 67 (r_inmediato_disp)
+
+
+State 309
+
+   66 r_inmediato_disp: M_HI '[' T_ALPHANUM ']' •
+
+    $default  reduce using rule 66 (r_inmediato_disp)
+
+
+State 310
+
+   68 r_inmediato_disp: M_DISP '[' T_ALPHANUM ']' •
+
+    $default  reduce using rule 68 (r_inmediato_disp)
+
+
+State 311
+
+  100 r_instruccion: FORM_INT_L_RSB REG_INT ',' r_inmediato_disp '(' REG_INT ')' •
+
+    $default  reduce using rule 100 (r_instruccion)
+
+
+State 312
+
+  102 r_instruccion: FORM_INT_S_RSB REG_INT ',' r_inmediato_disp '(' REG_INT ')' •
+
+    $default  reduce using rule 102 (r_instruccion)
+
+
+State 313
+
+  107 r_instruccion: FORM_FP_FFFr REG_FP ',' REG_FP ',' REG_FP ',' • FR_MODE
+
+    FR_MODE  shift, and go to state 319
+
+
+State 314
+
+  109 r_instruccion: FORM_FP_FFFFr REG_FP ',' REG_FP ',' REG_FP ',' • REG_FP ',' FR_MODE
+  110              | FORM_FP_FFFFr REG_FP ',' REG_FP ',' REG_FP ',' • REG_FP
+
+    REG_FP  shift, and go to state 320
+
+
+State 315
+
+  121 r_instruccion: FORM_FP_L_FSB REG_FP ',' r_inmediato_disp '(' REG_INT ')' •
+
+    $default  reduce using rule 121 (r_instruccion)
+
+
+State 316
+
+  123 r_instruccion: FORM_FP_S_FSB REG_FP ',' r_inmediato_disp '(' REG_INT ')' •
+
+    $default  reduce using rule 123 (r_instruccion)
+
+
+State 317
+
+  126 r_instruccion: FORM_INT_RRB REG_INT ',' REG_INT ',' '(' REG_INT • ')'
+
+    ')'  shift, and go to state 321
+
+
+State 318
+
+   63 r_valores_btb: T_ALPHANUM r_offset '&' T_INT_LIT '&' T_ALPHANUM • r_offset
+
+    T_INT_LIT  shift, and go to state 172
+    '+'        shift, and go to state 173
+    '-'        shift, and go to state 174
+
+    $default  reduce using rule 48 (r_offset)
+
+    r_offset  go to state 322
+
+
+State 319
+
+  107 r_instruccion: FORM_FP_FFFr REG_FP ',' REG_FP ',' REG_FP ',' FR_MODE •
+
+    $default  reduce using rule 107 (r_instruccion)
+
+
+State 320
+
+  109 r_instruccion: FORM_FP_FFFFr REG_FP ',' REG_FP ',' REG_FP ',' REG_FP • ',' FR_MODE
+  110              | FORM_FP_FFFFr REG_FP ',' REG_FP ',' REG_FP ',' REG_FP •
+
+    ','  shift, and go to state 323
+
+    $default  reduce using rule 110 (r_instruccion)
+
+
+State 321
+
+  126 r_instruccion: FORM_INT_RRB REG_INT ',' REG_INT ',' '(' REG_INT ')' •
+
+    $default  reduce using rule 126 (r_instruccion)
+
+
+State 322
+
+   63 r_valores_btb: T_ALPHANUM r_offset '&' T_INT_LIT '&' T_ALPHANUM r_offset •
+
+    $default  reduce using rule 63 (r_valores_btb)
+
+
+State 323
+
+  109 r_instruccion: FORM_FP_FFFFr REG_FP ',' REG_FP ',' REG_FP ',' REG_FP ',' • FR_MODE
+
+    FR_MODE  shift, and go to state 324
+
+
+State 324
+
+  109 r_instruccion: FORM_FP_FFFFr REG_FP ',' REG_FP ',' REG_FP ',' REG_FP ',' FR_MODE •
+
+    $default  reduce using rule 109 (r_instruccion)
