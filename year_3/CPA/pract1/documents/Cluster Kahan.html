@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="es" data-darkreader-mode="dynamic" data-darkreader-scheme="dark" class=" oaqpxfzgl idc0_343"><head><style class="darkreader darkreader--fallback" media="screen"></style><style class="darkreader darkreader--user-agent" media="screen">@layer {
+html {
+    background-color: var(--darkreader-background-ffffff, #181a1b) !important;
+}
+html {
+    color-scheme: dark !important;
+}
+iframe {
+    color-scheme: dark !important;
+}
+html, body {
+    background-color: var(--darkreader-background-ffffff, #181a1b);
+}
+html, body {
+    border-color: var(--darkreader-border-4c4c4c, #736b5e);
+    color: var(--darkreader-text-000000, #e8e6e3);
+}
+a {
+    color: var(--darkreader-text-0040ff, #3391ff);
+}
+table {
+    border-color: var(--darkreader-border-808080, #545b5e);
+}
+mark {
+    color: var(--darkreader-text-000000, #e8e6e3);
+}
+::placeholder {
+    color: var(--darkreader-text-a9a9a9, #b2aba1);
+}
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+    background-color: var(--darkreader-background-faffbd, #404400) !important;
+    color: var(--darkreader-text-000000, #e8e6e3) !important;
+}
+* {
+    scrollbar-color: var(--darkreader-background-b0b0b0, #454a4d) var(--darkreader-background-f1f1f1, #202324);
+}
+::selection {
+    background-color: var(--darkreader-background-0060d4, #004daa) !important;
+    color: var(--darkreader-text-ffffff, #e8e6e3) !important;
+}
+::-moz-selection {
+    background-color: var(--darkreader-background-0060d4, #004daa) !important;
+    color: var(--darkreader-text-ffffff, #e8e6e3) !important;
+}
+}</style><style class="darkreader darkreader--text" media="screen"></style><style class="darkreader darkreader--invert" media="screen">.jfk-bubble.gtx-bubble, .captcheck_answer_label > input + img, span#closed_text > img[src^="https://www.gstatic.com/images/branding/googlelogo"], span[data-href^="https://www.hcaptcha.com/"] > #icon, img.Wirisformula, a[data-testid="headerMediumLogo"]>svg, .d2l-navigation-link-image-container, .d2l-iframe-loading-container {
+    filter: invert(100%) hue-rotate(180deg) contrast(90%) !important;
+}</style><style class="darkreader darkreader--inline" media="screen">[data-darkreader-inline-bgcolor] {
+  background-color: var(--darkreader-inline-bgcolor) !important;
+}
+[data-darkreader-inline-bgimage] {
+  background-image: var(--darkreader-inline-bgimage) !important;
+}
+[data-darkreader-inline-border] {
+  border-color: var(--darkreader-inline-border) !important;
+}
+[data-darkreader-inline-border-bottom] {
+  border-bottom-color: var(--darkreader-inline-border-bottom) !important;
+}
+[data-darkreader-inline-border-left] {
+  border-left-color: var(--darkreader-inline-border-left) !important;
+}
+[data-darkreader-inline-border-right] {
+  border-right-color: var(--darkreader-inline-border-right) !important;
+}
+[data-darkreader-inline-border-top] {
+  border-top-color: var(--darkreader-inline-border-top) !important;
+}
+[data-darkreader-inline-boxshadow] {
+  box-shadow: var(--darkreader-inline-boxshadow) !important;
+}
+[data-darkreader-inline-color] {
+  color: var(--darkreader-inline-color) !important;
+}
+[data-darkreader-inline-fill] {
+  fill: var(--darkreader-inline-fill) !important;
+}
+[data-darkreader-inline-stroke] {
+  stroke: var(--darkreader-inline-stroke) !important;
+}
+[data-darkreader-inline-outline] {
+  outline-color: var(--darkreader-inline-outline) !important;
+}
+[data-darkreader-inline-stopcolor] {
+  stop-color: var(--darkreader-inline-stopcolor) !important;
+}
+[data-darkreader-inline-bg] {
+  background: var(--darkreader-inline-bg) !important;
+}
+[data-darkreader-inline-border-short] {
+  border: var(--darkreader-inline-border-short) !important;
+}
+[data-darkreader-inline-border-bottom-short] {
+  border-bottom: var(--darkreader-inline-border-bottom-short) !important;
+}
+[data-darkreader-inline-border-left-short] {
+  border-left: var(--darkreader-inline-border-left-short) !important;
+}
+[data-darkreader-inline-border-right-short] {
+  border-right: var(--darkreader-inline-border-right-short) !important;
+}
+[data-darkreader-inline-border-top-short] {
+  border-top: var(--darkreader-inline-border-top-short) !important;
+}
+[data-darkreader-inline-invert] {
+    filter: invert(100%) hue-rotate(180deg);
+}</style><style class="darkreader darkreader--variables" media="screen">:root {
+   --darkreader-neutral-background: var(--darkreader-background-ffffff, #181a1b);
+   --darkreader-neutral-text: var(--darkreader-text-000000, #e8e6e3);
+   --darkreader-selection-background: var(--darkreader-background-0060d4, #004daa);
+   --darkreader-selection-text: var(--darkreader-text-ffffff, #e8e6e3);
+}</style><style class="darkreader darkreader--root-vars" media="screen"></style>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="Cluster%20Kahan_files/jroman.css"><style class="darkreader darkreader--sync" media="screen"></style>
+<title>Cluster Kahan</title>
+<meta name="darkreader" content="c928b574d8f84704be843e55f74bf015"><style class="darkreader darkreader--override" media="screen">.vimvixen-hint {
+    background-color: var(--darkreader-background-ffd76e, #684b00) !important;
+    border-color: var(--darkreader-background-c59d00, #9e7e00) !important;
+    color: var(--darkreader-text-302505, #d7d4cf) !important;
+}
+#vimvixen-console-frame {
+    color-scheme: light !important;
+}
+::placeholder {
+    opacity: 0.5 !important;
+}
+#edge-translate-panel-body,
+.MuiTypography-body1,
+.nfe-quote-text {
+    color: var(--darkreader-neutral-text) !important;
+}
+gr-main-header {
+    background-color: var(--darkreader-background-add8e6, #1b4958) !important;
+}
+.tou-z65h9k,
+.tou-mignzq,
+.tou-1b6i2ox,
+.tou-lnqlqk {
+    background-color: var(--darkreader-neutral-background) !important;
+}
+.tou-75mvi {
+    background-color: var(--darkreader-background-cfecf5, #0f3a47) !important;
+}
+.tou-ta9e87,
+.tou-1w3fhi0,
+.tou-1b8t2us,
+.tou-py7lfi,
+.tou-1lpmd9d,
+.tou-1frrtv8,
+.tou-17ezmgn {
+    background-color: var(--darkreader-background-f5f5f5, #1e2021) !important;
+}
+.tou-uknfeu {
+    background-color: var(--darkreader-background-faedda, #432c09) !important;
+}
+.tou-6i3zyv {
+    background-color: var(--darkreader-background-85c3d8, #245d70) !important;
+}
+div.mermaid-viewer-control-panel .btn {
+    background-color: var(--darkreader-neutral-background);
+    fill: var(--darkreader-neutral-text);
+}
+svg g rect.er {
+    fill: var(--darkreader-neutral-background) !important;
+}
+svg g rect.er.entityBox {
+    fill: var(--darkreader-neutral-background) !important;
+}
+svg g rect.er.attributeBoxOdd {
+    fill: var(--darkreader-neutral-background) !important;
+}
+svg g rect.er.attributeBoxEven {
+    fill: var(--darkreader-selection-background);
+    fill-opacity: 0.8 !important;
+}
+svg rect.er.relationshipLabelBox {
+    fill: var(--darkreader-neutral-background) !important;
+}
+svg g g.nodes rect,
+svg g g.nodes polygon {
+    fill: var(--darkreader-neutral-background) !important;
+}
+svg g rect.task {
+    fill: var(--darkreader-selection-background) !important;
+}
+svg line.messageLine0,
+svg line.messageLine1 {
+    stroke: var(--darkreader-neutral-text) !important;
+}
+div.mermaid .actor {
+    fill: var(--darkreader-neutral-background) !important;
+}
+mitid-authenticators-code-app > .code-app-container {
+    background-color: white !important;
+    padding-top: 1rem;
+}
+iframe#unpaywall[src$="unpaywall.html"] {
+    color-scheme: light !important;
+}
+select {
+    --darkreader-bg--form-control-background-color: rgba(22, 22, 22, 0) !important;
+}
+select * {
+    background-color: var(--darkreader-neutral-background) !important;
+}
+body#tumblr {
+    --darkreader-bg--secondary-accent: 31, 32, 34 !important;
+    --darkreader-bg--white: 23, 23, 23 !important;
+    --darkreader-text--black: 228, 224, 218 !important;
+}
+:host {
+    --d2l-border-color: var(--darkreader-bg--d2l-color-gypsum) !important;
+    --d2l-button-icon-background-color-hover: var(--darkreader-bg--d2l-color-gypsum) !important;
+    --d2l-color-ferrite: var(--darkreader-neutral-text) !important;
+    --d2l-color-sylvite: var(--darkreader-bg--d2l-color-sylvite) !important;
+    --d2l-dropdown-background-color: var(--darkreader-neutral-background) !important;
+    --d2l-dropdown-border-color: var(--darkreader-border--d2l-color-mica) !important;
+    --d2l-input-backgroud-color: var(--darkreader-neutral-background) !important;
+    --d2l-menu-border-color: var(--darkreader-bg--d2l-color-gypsum) !important;
+    --d2l-tooltip-background-color: var(--darkreader-neutral-background) !important;
+    --d2l-tooltip-border-color: var(--darkreader-bg--d2l-color-gypsum) !important;
+}
+:host([_floating]) .d2l-floating-buttons-container {
+    background-color: var(--darkreader-neutral-background) !important;
+    border-top-color: var(--darkreader-border--d2l-color-mica) !important;
+    opacity: 0.88 !important;
+}
+d2l-card {
+    background: var(--darkreader-neutral-background) !important;
+    border-color: var(--darkreader-border--d2l-color-gypsum) !important;
+}
+d2l-dropdown-content > div,
+d2l-menu-item {
+    background-color: var(--darkreader-neutral-background) !important;
+    border-radius: 10px !important;
+}
+d2l-empty-state-simple {
+    border-color: var(--darkreader-bg--d2l-color-gypsum) !important;
+}
+.d2l-button-filter > ul > li > a.vui-button {
+    border-color: var(--darkreader-border--d2l-color-mica) !important;
+}
+.d2l-label-text:has(.d2l-button-subtle-content):hover,
+.d2l-label-text:has(.d2l-button-subtle-content):focus,
+.d2l-label-text:has(.d2l-button-subtle-content):active {
+    background-color: var(--darkreader-bg--d2l-color-gypsum) !important;
+}
+.d2l-navigation-centerer {
+    color: inherit !important;
+}
+.d2l-tabs-layout {
+    border-color: var(--darkreader-border--d2l-color-gypsum) !important;
+}
+.d2l-input,
+.d2l-calendar-date,
+.d2l-htmleditor-container {
+    background-color: var(--darkreader-neutral-background) !important;
+}
+.d2l-collapsible-panel {
+    border: 1px solid var(--darkreader-border--d2l-color-mica) !important;
+    border-radius: 0.4rem !important;
+}
+.d2l-collapsible-panel-divider {
+    border-bottom: 1px solid var(--darkreader-border--d2l-color-mica) !important;
+}
+.d2l-w2d-flex {
+    border-bottom: 2px solid var(--darkreader-border--d2l-color-mica) !important;
+}
+.d2l-collapsible-panel scrolled,
+.d2l-collapsible-panel-header,
+.d2l-w2d-collection-fixed {
+    background-color: var(--darkreader-neutral-background) !important;
+}
+.d2l-loading-spinner-bg {
+    fill: var(--darkreader-bg--d2l-color-gypsum) !important;
+}
+.d2l-loading-spinner-bg-stroke {
+    stroke: var(--darkreader-border--d2l-color-mica) !important;
+}
+.d2l-loading-spinner-wrapper svg path,
+.d2l-loading-spinner-wrapper svg circle {
+    fill: var(--darkreader-neutral-background) !important;
+}
+embed[type="application/pdf"] { filter: invert(100%) contrast(90%); }</style></head>
+
+<body>
+<div id="container">
+
+  <div style="text-align: right; margin-top: -15px;"><b>[Castellano]</b>&nbsp;&nbsp;<a href="https://personales.upv.es/jroman/kahan-en.html">[English]</a></div>
+
+  <h1 style="margin-top: 2em; margin-bottom: 1em;">Clúster de Computación "Kahan"</h1>
+
+  <p><b>Kahan</b> es un clúster de computación de pequeño tamaño perteneciente a la <a href="https://www.upv.es/" target="_blank">Universitat Politècnica de València</a>. Ha sido financiado, adquirido y gestionado conjuntamente por el <a href="http://www.dsic.upv.es/" target="_blank">Departamento de Sistemas Informáticos y Computación y por el </a><a href="https://www.upv.es/titulaciones/MUCPD" target="_blank">Máster Universitario en Computación en la Nube y de Altas Prestaciones</a>.</p>
+
+  <table style="margin: auto;">
+  <tbody><tr>
+    <td style="padding: 12pt;"><a href="https://www.upv.es/" target="_blank"><img src="Cluster%20Kahan_files/upv.png" alt="[UPV]" height="55"></a></td>
+    <td style="padding: 12pt; font-variant: small-caps; font-size: 115%; text-align: center;"><a style="text-decoration: none; color: rgb(102, 51, 0); --darkreader-inline-color: var(--darkreader-text-663300, #ffc285);" href="https://www.upv.es/titulaciones/MUCPD" target="_blank" data-darkreader-inline-color="">
+      Máster en<br>
+      Computación en la Nube <br>
+      y de Altas Prestaciones
+    </a></td>
+    <td style="padding: 12pt;"><a href="http://www.dsic.upv.es/" target="_blank"><img src="Cluster%20Kahan_files/dsic.png" alt="[DSIC]" height="55"></a></td>
+  </tr>
+  </tbody></table>
+
+  <p>El nombre del clúster es en honor a <a href="https://en.wikipedia.org/wiki/William_Kahan" target="_blank">William Kahan</a>, el principal diseñador del estándar IEEE-754 de aritmética en coma flotante.</p>
+
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+  <h3 style="padding-top: 5em">Configuración Hardware</h3>
+
+  <p>El clúster consta de 4 nodos conectados mediante una red Ethernet rápida.</p>
+
+  <p>Cada nodo consta de:</p>
+  <ul>
+    <li>1 procesador AMD EPYC 7551P de 32 núcleos físicos (64 virtuales)
+    </li><li>64GB de memoria
+    </li><li>Disco SSD de 240GB
+    </li><li>Ethernet 10/25Gb 2-port 622FLR -SFP28
+  </li></ul>
+  <p>Agregado: 4 procesadores, 256 núcleos, 256 GB</p>
+
+  <p style="text-align:center;"><img src="Cluster%20Kahan_files/kahan.png" alt="[kahan]" height="180"></p>
+
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+  <h3 style="padding-top: 5em">Acceso al <i>Front-End</i></h3>
+
+  <p>Para usar el clúster hay que iniciar una sesión en el nodo cabecera (<i>front-end</i>), por ejemplo conectando con <code>ssh</code>:</p>
+  <pre class="console">$ ssh -Y -l usuario@alumno.upv.es kahan.dsic.upv.es
+  </pre>
+  <p><u>Nota</u>: hay que sustituir <code>usuario</code> por el login que tenga cada alumno.</p>
+
+  <p>Estrictamente, la máquina <i>front-end</i> no pertenece al clúster 
+Sus características son: un procesador Intel Core i7-3770 a 3.40 GHz (4 
+núcleos, 8 hilos), con 32 GB de memoria.</p>
+
+  <p>El directorio HOME del usuario está montado tanto en el <i>front-end</i> como en los nodos.</p>
+  <p>El directorio de red de los alumnos, <code>W</code>, se monta en el <i>front-end</i> pero no en los nodos, por lo que no se puede ejecutar en las colas estando en ese directorio (ver comando <code>sbatch</code> abajo).</p>
+  <p>El directorio <code>/scratch</code> del <i>front-end</i> se exporta
+ por NFS a todos los nodos. Este directorio se puede usar para almacenar
+ archivos de datos grandes necesarios durante la ejecución.</p>
+  <p>
+  <u>Importante</u>: la máquina <i>front-end</i> se ha de utilizar sólo 
+para tareas rutinarias (edición y compilación de programas), no para 
+ejecuciones largas. Cualquier proceso cuyo tiempo de CPU supere 1 minuto
+ será eliminado del sistema automáticamente.
+  </p>
+
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+  <h3 style="padding-top: 5em">Software Instalado</h3>
+
+  <p>El software está instalado en directorios estándar (paquetes del sistema) y también en el directorio <code>/opt</code>
+  </p><ul>
+    <li>Sistema operativo: Ubuntu 22.04.3 LTS
+    </li><li>Compiladores: GNU 11.4.0 (gcc y gfortran, incluye soporte para OpenMP 4.5)
+    </li><li>MPI: Open MPI 4.1.5
+  </li></ul>
+
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+  <h3 style="padding-top: 5em">Sistema de Colas</h3>
+
+  <p>Las ejecuciones largas se han de hacer a través de alguna de las colas disponibles:</p>
+  <table style="margin: auto;">
+  <tbody><tr>
+    <th style="padding: 3pt; text-align: left;">Cola</th>
+    <th style="padding: 3pt; text-align: left;">Usuarios</th>
+  </tr>
+  <tr>
+    <td style="padding: 3pt;"><code>debug</code></td>
+    <td style="padding: 3pt;">Uso restringido</td>
+  </tr>
+  <tr>
+    <td style="padding: 3pt;"><code>cmcp</code></td>
+    <td style="padding: 3pt;">Alumnos de la asignatura CMCP del Máster Universitario en Computación en la Nube y de Altas Prestaciones.</td>
+  </tr>
+  <tr>
+    <td style="padding: 3pt;"><code>tpp</code></td>
+    <td style="padding: 3pt;">Alumnos de la asignatura TPP del Máster Universitario en Computación en la Nube y de Altas Prestaciones.</td>
+  </tr>
+  <tr>
+    <td style="padding: 3pt;"><code>cpa</code></td>
+    <td style="padding: 3pt;">Alumnos de la asignatura Computación Paralela de la ETSINF</td>
+  </tr>
+  <tr>
+    <td style="padding: 3pt;"><code>lpp</code></td>
+    <td style="padding: 3pt;">Alumnos de la asignatura Laboratorio de Programación Paralela de la ETSINF</td>
+  </tr>
+  <tr>
+    <td style="padding: 3pt;"><code>coc</code></td>
+    <td style="padding: 3pt;">Alumnos de la asignatura Computación Científica de la ETSINF</td>
+  </tr>
+  <tr>
+    <td style="padding: 3pt;"><code>hpce</code></td>
+    <td style="padding: 3pt;">Alumnos de la asignatura Entornos de Computación de Altas Prestaciones (HPCE) de la ETSID</td>
+  </tr>
+  <tr>
+    <td style="padding: 3pt;"><code>comput</code></td>
+    <td style="padding: 3pt;">Alumnos de la asignatura Computación de la ETSIT</td>
+  </tr>
+  </tbody></table>
+
+  <p><u>Nota</u>: Cada cola tiene características distintas. Por ejemplo, en la cola <code>cpa</code> el tiempo máximo de ejecución es de 10 minutos.</p>
+
+  <p>El software que gestiona las colas es <a href="https://slurm.schedmd.com/" target="_blank">SLURM</a>. Para lanzar trabajos se recomienda crear un <i>script</i>
+ (ver ejemplos más abajo) en cuya cabecera se han de incluir las 
+diversas opciones de SLURM. Las opciones más usadas son las siguientes 
+(para ver todas las opciones, hacer <code>man sbatch</code>):
+  </p>
+  <ul>
+    <li><code>--nodes</code>: número de nodos que se solicitan
+    </li><li><code>--time</code>: tiempo de ejecución requerido
+    </li><li><code>--partition</code>: nombre de la cola (partición) a la que se lanza el trabajo
+    </li><li><code>--ntasks</code>: número total de tareas
+    </li><li><code>--job-name</code>: nombre del trabajo
+    </li><li><code>--chdir</code>: directorio en que se ha de ejecutar el trabajo
+    </li><li><code>--output</code>: nombre del fichero de salida
+  </li></ul>
+
+  <p>Los comandos del sistema de colas más utilizados son: <code>sbatch</code>, <code>squeue</code> y <code>scancel</code>.</p>
+
+  <p>El <u>comando <code>sbatch</code></u> se usa para lanzar un trabajo. Por ejemplo:</p>
+  <pre class="console">$ sbatch jobopenmp.sh
+Submitted batch job 11728
+  </pre>
+  <p>donde <code>jobopenmp.sh</code> es un <i>script</i> que contiene las opciones de SLURM seguidas de los comandos que se quieren ejecutar. 
+  El número devuelto por <code>sbatch</code> es el identificador del trabajo.
+Al terminar la ejecución se crea en el directorio actual un fichero <code>slurm-11728.out</code> que contiene la salida estándar y la salida de error.
+  </p>
+
+  <p>El <u>comando <code>squeue</code></u> sirve para consultar el estado de un trabajo.</p>
+  <pre class="console">$ squeue
+JOBID PARTITION NAME         USER ST TIME NODES NODELIST
+11728 cpa       jobopenmp.sh ramos R 0:01  1    kahan01           
+  </pre>
+  <p>Los posibles estados son, entre otros: encolado o pendiente (PD), ejecutando (R), terminando (CD).
+  Si un trabajo no aparece, es que ya ha terminado.
+
+  </p><p>El <u>comando <code>scancel</code></u> permite la cancelación de un trabajo.</p>
+
+
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+  <h3 style="padding-top: 5em">Ejemplo de Script para Programa OpenMP</h3>
+
+  <p>Para los programas OpenMP se recomienda usar un <i>script</i> como el siguiente (<code>jobopenmp.sh</code>):</p>
+<pre class="srccode">#!/bin/bash
+#SBATCH --nodes=1
+#SBATCH --time=5:00
+#SBATCH --partition=cpa
+
+OMP_NUM_THREADS=8 ./progopenmp
+</pre>
+  <p>Como se ve, hay que reservar únicamente 1 nodo. La configuración de
+ las colas de kahan está hecha de forma que se reserva el nodo completo 
+(es decir, no habrá procesos de otros usuarios en el mismo nodo). Para 
+indicar el número de hilos OpenMP, se recomienda hacerlo a través de la 
+variable de entorno <code>OMP_NUM_THREADS</code> dentro del propio script.</p>
+
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+  <h3 style="padding-top: 5em">Ejemplo de Script para Programa MPI</h3>
+
+  <p>Para los programas MPI se recomienda usar un <i>script</i> como el siguiente (<code>jobmpi.sh</code>):</p>
+<pre class="srccode">#!/bin/bash
+#SBATCH --nodes=4
+#SBATCH --ntasks=4
+#SBATCH --time=5:00
+#SBATCH --partition=cpa
+
+mpiexec ./progmpi
+</pre>
+  <p>Como se ve en el ejemplo, se usa la opción <code>nodes</code> para indicar los nodos que se van a utilizar (cuatro en este caso) y la opción <code>ntasks</code> para indicar el número de procesos MPI (uno por nodo). En el comando <code>mpiexec</code> no es necesario indicar el número de procesos MPI, ya que se crearán tantos procesos como <code>ntasks</code>.
+ Al igual que antes, se reservan los nodos completos, por lo que el 
+máximo número de procesos MPI está limitado a los nodos disponibles (más
+ abajo se explica cómo ejecutar varios procesos en el mismo nodo).</p>
+
+  <p>Por defecto, los programas MPI utilizan la red Ethernet de 25Gb. 
+Aunque no es habitual, es posible hacer que las comunicaciones MPI vayan
+ por la red Ethernet normal (la ejecución será más lenta). Para ello hay
+ que desactivar el driver RoCE en el <code>mpiexec</code>, por ejemplo así:</p>
+<pre class="srccode">mpiexec --mca btl ^openib ./progmpi
+</pre>
+
+  <p>En el caso de querer poner varios procesos MPI en un mismo nodo hay que usar un valor de <code>ntasks</code> mayor que el número de nodos. Por ejemplo, para 16 procesos MPI en un único nodo:</p>
+<pre class="srccode">#!/bin/bash
+#SBATCH --nodes=1
+#SBATCH --ntasks=16
+#SBATCH --time=5:00
+#SBATCH --partition=cpa
+
+mpiexec ./progmpi
+</pre>
+  <p>Se puede incluir en el <i>script</i> la instrucción <code>scontrol show hostnames $SLURM_JOB_NODELIST</code> para ver qué nodos han sido asignados al trabajo.</p>
+
+  <p><u>Nota</u>: Están disponibles las páginas de manual de las rutinas MPI. </p>
+<pre class="console">$ man MPI_Send
+</pre>
+
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+  <!--h3 style="padding-top: 5em">Preguntas Frecuentes</h3>
+
+  <ul>
+    <li style="padding-top: 1em"><i style="color: blue">Pregunta</i>: Al lanzar un trabajo me dice <code>qsub: submit error (Job exceeds queue resource limits MSG=cannot satisfy queue max walltime requirement)</code>.
+    <br><i style="color: green">Respuesta</i>: Algunas colas (por ejemplo <code>cpa</code>) tienen el tiempo de ejecución limitado. Reduce el valor de <code>walltime</code>.
+
+    <li style="padding-top: 1em"><i style="color: blue">Pregunta</i>: Mi trabajo queda encolado indefinidamente, mientras que los trabajos de otros usuarios entran a ejecución sin problemas.
+    <br><i style="color: green">Respuesta</i>: Tal vez estés haciendo un mal uso de la opción <code>ppn</code>. Revisa los ejemplos explicados arriba.
+
+    <li style="padding-top: 1em"><i style="color: blue">Pregunta</i>: He lanzado un trabajo para usar 6 nodos pero no entra a ejecutar, a pesar de que la cola está vacía.
+    <br><i style="color: green">Respuesta</i>: Puede que alguno de los nodos esté caído. Esto se puede comprobar con el comando <code>pbsnodes</code>.
+  </ul-->
+
+  <div id="separator"></div>
+  <div id="footer">
+    <p>Última actualización: 28 Abril 2024</p>
+  </div>
+
+</div>
+
+
+</body></html>

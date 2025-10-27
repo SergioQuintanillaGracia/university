@@ -1,0 +1,376 @@
+/*
+
+   jroman.css
+
+   Style file for my homepage
+   Author: Jose E. Roman
+
+*/
+
+/* general */
+
+body {
+  background: #fff;
+  color: #000;
+  min-width: 610px;
+  margin: 20px;
+}
+
+#container {
+  max-width: 70em;
+  margin: 0 auto;
+}
+
+body, td, th, input {
+  font-family: verdana, sans-serif;
+  font-size: small;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 1em 0 0.2em 0;
+  border-bottom: 1px solid #ccc;
+  font-family: arial, verdana, sans-serif;
+}
+
+h1 { font-size: 160%; font-weight: normal; }
+h2 { font-size: 150%; font-weight: normal; }
+h3 { font-size: 120%; }
+h4 { font-size: 100%; }
+h5 { font-size: 90%; }
+h6 { font-size: 90%; border: 0; }
+	
+/* links */
+
+a:link { color: #039; text-decoration: none; }
+a:visited { color: #636; text-decoration: none; }
+a:hover { color: #333; text-decoration: underline; }
+a:active { color: #000; text-decoration: underline; }
+
+:link img,
+:visited img {
+  border: 0;
+}
+
+a.slepc {
+  font-variant: small-caps;
+  font-size: small;
+  color: #663300;
+  text-decoration: none;
+}
+
+a.slepc:hover {
+  color: brown;
+}
+
+/* header */
+
+.key-point:before {
+  line-height: 0.1;
+  font-size: 1px;
+  background: transparent url("img/key-point_tr.gif") no-repeat top right;
+  margin: -15px -15px 0 -15px;
+  height: 15px;
+  display: block;
+  border: none;
+  content: url("img/key-point_tl.gif");
+}
+
+.key-point {
+  background: #e4ecec url("img/key-point_back.gif") right repeat-y;
+  padding: 15px;
+  margin-bottom: 1em;
+}
+
+.key-point:after {
+  line-height: 0.1;
+  font-size: 1px;
+  background: transparent url("img/key-point_br.gif") scroll no-repeat bottom right ;
+  margin: -15px;
+  height: 8px;
+  display: block;
+  content:  url("img/key-point_bl.gif");
+  clear: both;
+  padding-top: 15px;
+}
+
+.key-point h1 {
+  border: none;
+  font-weight: bold;
+}
+
+.key-point h2, .key-point h3, .key-point h4, .key-point h5 {
+  border: none;
+  margin-top: 0;
+}
+
+#photo {
+  width: 60%;
+  float: left;
+  text-align: center;
+  margin: 1em;
+}
+
+#personal-data {
+  margin-left: 60%;
+}
+
+#personal-data p.telephone {
+  background-color: #c0dcdc;
+  margin-left: 2em;
+  margin-right: 2em;
+  padding-left: 1em;
+  padding-bottom: .4em;
+  padding-top: .3em;
+  line-height: 1.7;
+}
+
+/* content */
+
+.separator {
+  margin: .8em 0;
+  padding: .8em 0;
+  clear: both;
+}
+
+.leftcolumn {
+  float: left;
+  width: 62%;
+  margin-bottom: 1em;
+  margin-left: 0;
+  line-height: 1.4;
+}
+
+.leftcolumn h2 {
+  margin-top: 0;
+}
+
+.rightcolumn {
+  float: none;
+  width: auto;
+  margin-left: 65%;
+  margin-bottom: .5em;
+  line-height: 1.3;
+}
+
+.rightcolumn h2 {
+  margin-top: 0;
+  line-height: 1.4;
+}
+
+.onecolumn {
+  margin-bottom: 1em;
+  margin-left: 0;
+  line-height: 1.4;
+}
+
+.onecolumn h2 {
+  margin-top: 0;
+}
+
+#events {
+  margin-top: 4em;
+}
+
+/* footer */
+
+#footer {
+  clear: both;
+  margin-top: 1em;
+  margin-right: 8%;
+  margin-left: 8%;
+  border-top: 1px solid #ccc;
+  padding: 1em 0;
+  text-align: center;
+}
+
+#footer p {
+  margin: 0.6em 0;
+  font-size: smaller;
+}
+
+#footer p, #footer p a {
+  color: #666;
+}
+
+#footer p a:hover {
+  color: #000;
+}
+
+/* styles */
+
+dt {
+  font-weight: bold;
+  padding-top: 0.5em;
+}
+
+dd {
+  margin: 0 0 1em 1em;
+}
+
+li {
+  margin-top: 0.2em;
+  margin-bottom: 0.2em;
+}
+
+hr {
+  height: 1px;
+  background-color: #000;
+  color: #000;
+  margin: 2em 0;
+}
+
+ul.compact {
+  margin-left: 0;
+  padding-left: 20px;
+  margin-top: 0.5em;
+}
+
+#events ul.compact li {
+  font-size: smaller;
+}
+
+#students dt {
+  font-size: smaller;
+}
+
+#students ul.compact li {
+  font-size: smaller;
+}
+
+#research ul.compact em {
+  font-style: italic;
+  color: #666644;
+}
+
+pre.console, pre.srccode {
+  font-family: monospace;
+  font-size: 110%;
+  line-height: 1.2;
+  padding: 0.7em;
+  margin-left: 2em;
+}
+
+@media screen {
+  pre.console, pre.srccode {
+    margin-right: 9em;
+  }
+  pre.console {
+    background-color: #ecf0f0;
+  }
+  pre.srccode {
+    background-color: #eeceee;
+  }
+}
+
+@media print {
+  pre.console {
+    border: 1px solid;
+  }
+  pre.srccode {
+    border: 1px dotted;
+  }
+}
+
+/* weekly timetable */
+
+#timetable td.empty { 
+  text-align: center; 
+  padding: 0;
+}
+
+#timetable td.emptyl { 
+  text-align: center; 
+  border-bottom: 1px dashed gray;
+}
+
+#timetable td.teoria { 
+  text-align: center; 
+  border: 2px solid #f05f37;
+  background-color: #ffa168;
+  padding: 0;
+}
+
+#timetable td.pract { 
+  text-align: center; 
+  border: 2px solid #64a7c5;
+  background-color: #81d8ff;
+  padding: 0;
+}
+
+#timetable td.consult { 
+  text-align: center; 
+  border: 1px solid #e0b600;
+  background-color: #ffe000;
+  padding: 0;
+  font-size: 80%;
+}
+
+#timetable th.hora { 
+  color: gray; 
+  text-align: right; 
+  font-weight: normal; 
+  font-size: 70%;
+}
+
+#timetable th { 
+  font-size: smaller;
+}
+ 
+/* conference calendar */
+
+div.conf1, div.confok1 {
+  color: purple;
+  background-color: orange;
+  text-align: center;
+  border: 1px solid purple; 
+}
+div.confok1 { border: 2px solid purple; font-weight: bold; }
+
+div.conf2, div.confok2 {
+  color: olive;
+  background-color: yellow;
+  text-align: center;
+  border: 1px solid olive; 
+}
+div.confok2 { border: 2px solid olive; font-weight: bold; }
+
+div.conf3, div.confok3 {
+  color: blue;
+  background-color: lightblue;
+  text-align: center;
+  border: 1px solid blue; 
+}
+div.confok3 { border: 2px solid blue; font-weight: bold; }
+
+div.conf4, div.confok4 {
+  color: green;
+  background-color: lightgreen;
+  text-align: center;
+  border: 1px solid green; 
+}
+div.confok4 { border: 2px solid green; font-weight: bold; }
+
+div.conf5, div.confok5 {
+  color: gray;
+  background-color: lightgray;
+  text-align: center;
+  border: 1px solid gray; 
+}
+div.confok5 { border: 2px solid gray; font-weight: bold; }
+
+div.conf6, div.confok6 {
+  color: maroon;
+  background-color: lightpink;
+  text-align: center;
+  border: 1px solid gray; 
+}
+div.confok6 { border: 2px solid gray; font-weight: bold; }
+
+div.conf7, div.confok7 {
+  color: white;
+  background-color: darkgreen;
+  text-align: center;
+  border: 1px solid green; 
+}
+div.confok7 { border: 2px solid green; font-weight: bold; }
+
