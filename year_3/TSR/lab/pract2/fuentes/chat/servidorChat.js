@@ -1,4 +1,5 @@
-const {zmq, lineaOrdenes, error, adios, creaPuntoConexion} = require('../tsr')
+const {lineaOrdenes, error, adios, creaPuntoConexion} = require('../tsr')
+zmq = require("zeromq/v5-compat")
 lineaOrdenes("portDifusion portEntrada")
 
 let entrada = zmq.socket('pull')

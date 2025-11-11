@@ -1,4 +1,5 @@
-Ciclo: 37, Señal: IFstall; Instrucción ecall
-Ciclo: 38, Señal: IFstall; Instrucción ecall
-Ciclo: 39, Señal: IFstall; Instrucción ecall
-Ciclo: 40, Señal: IFstall; Instrucción ecall
+Ciclo: 5, Señal: corto WBaEXalu_s; Rdst ld t3,0(gp) [a](en WB) == Rfte addi t4,t3,-10(en EX)
+Ciclo: 7, Señal: IFstall; Instrucción ecall
+Ciclo: 8, Señal: IFstall; Instrucción ecall
+Ciclo: 9, Señal: IFstall; Instrucción ecall
+Ciclo: 10, Señal: IFstall; Instrucción ecall
