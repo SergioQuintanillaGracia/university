@@ -40,10 +40,10 @@ int main(int argc, char* argv[]) {
     for (int i = 0; i < NREPS; i++) {
         if (myid == 0) {
             MPI_Send(buf, n, MPI_BYTE, 1, 0, MPI_COMM_WORLD);
-            // MPI_Recv(buf, NMAX, MPI_BYTE, 1, MPI_ANY_TAG, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+            MPI_Recv(buf, NMAX, MPI_BYTE, 1, MPI_ANY_TAG, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
         } else if (myid == 1) {
             MPI_Recv(buf, NMAX, MPI_BYTE, 0, MPI_ANY_TAG, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-            // MPI_Send(buf, n, MPI_BYTE, 0, 0, MPI_COMM_WORLD);
+            MPI_Send(buf, n, MPI_BYTE, 0, 0, MPI_COMM_WORLD);
         }
     }
 
