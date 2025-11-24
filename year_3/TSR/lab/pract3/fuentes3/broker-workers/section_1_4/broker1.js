@@ -1,47 +1,45 @@
 const { lineaOrdenes, traza, error, adios, creaPuntoConexion, conecta } = require('../../tsr')
 zmq = require("zeromq/v5-compat")
 lineaOrdenes("frontendPort broker2Port")
+
 let pendiente = [] // peticiones no enviadas a ningun worker
 let availableWorkers = 0
 let frontend = zmq.socket('router')
-let tobroker2 = zmq.socket('dealer')
+let broker2 = zmq.socket('dealer')
 creaPuntoConexion(frontend, frontendPort)
-conecta(tobroker2, "localhost", broker2Port)
-
-// Send an initial message so we can get the number of available workers
-// when we connect to the broker
-tobroker2.send(['HELLO'])
+creaPuntoConexion(broker2, broker2Port)
 
 function procesaPeticion(cliente, sep, msg) { // llega peticion desde cliente
 	traza('procesaPeticion', 'cliente sep msg', [cliente, sep, msg])
 	if (availableWorkers > 0) {
-		tobroker2.send(['request', cliente, '', msg])
+		broker2.send([cliente, msg])
 		availableWorkers--
+		console.log("# Currently available workers: " + availableWorkers)
 	}
-	else pendiente.push([cliente, '', msg])
+	else pendiente.push([cliente, msg])
 }
 
-function procesaMsgBroker2(type, ...args) {
-	traza('procesaMsgBroker2', 'type args', [type, args])
-	let msgType = type.toString()
+function procesaMsgWorker(cliente, resp) {
+	traza('procesaMsgWorker', 'worker sep cliente resp', [cliente, resp])
 
-	if (msgType == 'available_worker') {
-		if (pendiente.length) { // hay trabajos pendientes. Le pasamos el mas antiguo al worker
-			let [client, sep, msg] = pendiente.shift()
-			tobroker2.send(['request', client, '', msg])
-		} else {
-			availableWorkers++
-		}
-	} else if (msgType == 'reply') {
-		let [cliente, sep, resp] = args
-		if (cliente) {
-			frontend.send([cliente, '', resp]) // habia un cliente esperando esa respuesta
-		}
+	// We know a worker is free
+	// If there are pending tasks, just send one of them so it is processed
+	if (pendiente.length) {
+		let [c, m] = pendiente.shift()  // c = client, m = message
+		broker2.send([c, m])
+	} else {
+		// There are no pending tasks, so add the worker as available
+		availableWorkers++
+		console.log("# Currently available workers: " + availableWorkers)
+	}
+
+	if (cliente) {
+		frontend.send([cliente, '', resp])
 	}
 }
 
 frontend.on('message', procesaPeticion)
 frontend.on('error', (msg) => { error(`${msg}`) })
-tobroker2.on('message', procesaMsgBroker2)
-tobroker2.on('error', (msg) => { error(`${msg}`) })
-process.on('SIGINT', adios([frontend, tobroker2], "abortado con CTRL-C"))
+broker2.on('message', procesaMsgWorker)
+broker2.on('error', (msg) => { error(`${msg}`) })
+process.on('SIGINT', adios([frontend, broker2], "abortado con CTRL-C"))
