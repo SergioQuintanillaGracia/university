@@ -129,56 +129,52 @@ int fractal_newton(double x1, double x2, double y1, double y2,
     double ix, iy;
     int next_row, num_row, rows_done, proc;
     Byte B[W]; /* buffer for one row of the image */
+    MPI_Request req;
     MPI_Status status;
+    int flag;
 
     ix = (x2 - x1) / (w - 1);
     iy = (y2 - y1) / (h - 1);
     max = 0;
 
-    if (me == 0) {
-        /* CODE FOR THE MASTER */
+    /* Initial distribution of work */
+    next_row = 0;
+    for (proc = 1; proc < np; proc++) {
+        MPI_Send(&next_row, 1, MPI_INT, proc, 0, MPI_COMM_WORLD);
+        next_row++;
+    }
 
-        /* Initial distribution of work */
-        next_row = 0;
-        for (proc = 1; proc < np; proc++) {
-            MPI_Send(&next_row, 1, MPI_INT, proc, 0, MPI_COMM_WORLD);
-            next_row++;
+    rows_done = 0;
+    while (rows_done < h) {
+        /* Receive a computed row from any process */
+        MPI_Irecv(B, w, MPI_BYTE, MPI_ANY_SOURCE, MPI_ANY_TAG, MPI_COMM_WORLD,
+                    &req);
+        while (next_row < h && MPI_Test(&req, &flag, &status)) {}
+        /* Get the process index and the row number */
+        proc = status.MPI_SOURCE;
+        /* The row number is in the message TAG */
+        num_row = status.MPI_TAG;
+        /* Ask that process to compute another row */
+        MPI_Send(&next_row, 1, MPI_INT, proc, 0, MPI_COMM_WORLD);
+        next_row++;
+        /* Copy the row received into its place in the image */
+        memcpy(&A(num_row, 0), B, w);
+    }
+
+    /* Receive the number of the row to be computed, or an out-of-range number to end */
+    MPI_Recv(&num_row, 1, MPI_INT, 0, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+    while (num_row < h) {
+        /* Compute the row */
+        for (j = 0; j < w; j++) {
+            z0 = (x1 + ix * j) + (y1 + iy * num_row) * I;
+            ni = newton(z0, tol, maxiter);
+            if (ni > max) max = ni;
+            B[j] = ni;
         }
-
-        /* While there are rows to be received */
-        for (rows_done = 0; rows_done < h; rows_done++) {
-            /* Receive a computed row from any process */
-            MPI_Recv(B, w, MPI_BYTE, MPI_ANY_SOURCE, MPI_ANY_TAG, MPI_COMM_WORLD,
-                     &status);
-            /* Get the process index and the row number */
-            proc = status.MPI_SOURCE;
-            /* The row number is in the message TAG */
-            num_row = status.MPI_TAG;
-            /* Ask that process to compute another row */
-            MPI_Send(&next_row, 1, MPI_INT, proc, 0, MPI_COMM_WORLD);
-            next_row++;
-            /* Copy the row received into its place in the image */
-            memcpy(&A(num_row, 0), B, w);
-        }
-
-    } else {
-        /* CODE FOR WORKERS */
-
-        /* Receive the number of the row to be computed, or an out-of-range number to end */
+        /* Send the computed row */
+        MPI_Send(B, w, MPI_BYTE, 0, num_row, MPI_COMM_WORLD);
+        /* Receive the number of the next row to be computed */
         MPI_Recv(&num_row, 1, MPI_INT, 0, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-        while (num_row < h) {
-            /* Compute the row */
-            for (j = 0; j < w; j++) {
-                z0 = (x1 + ix * j) + (y1 + iy * num_row) * I;
-                ni = newton(z0, tol, maxiter);
-                if (ni > max) max = ni;
-                B[j] = ni;
-            }
-            /* Send the computed row */
-            MPI_Send(B, w, MPI_BYTE, 0, num_row, MPI_COMM_WORLD);
-            /* Receive the number of the next row to be computed */
-            MPI_Recv(&num_row, 1, MPI_INT, 0, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-        }
     }
 
     /* Compute the maximum of the local maximums */
