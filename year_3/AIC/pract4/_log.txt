@@ -1,0 +1,122 @@
+Ciclo: 13, Señal: Estructural_WBfp IDstall, IFstall; Instrucción fld f1,0(t1)
+Ciclo: 14, Señal: Estructural_WBfp IDstall, IFstall; Instrucción fld f1,0(t1)
+Ciclo: 27, Señal: corto MEMaEXalu_i; Rdst addi t1,t1,24(en MEM) == Rfte sub t4,t3,t1(en EX)
+Ciclo: 28, Señal: corto MEMaIDcomp_s; Rdst sub t4,t3,t1(en MEM) == Rfte bne t4,zero,-76 [loop](en ID)
+Ciclo: 28, Señal: IFnop; Instrucción bne t4,zero,-76 [loop]
+Ciclo: 28, Señal: Salto Efectivo; Instrucción bne t4,zero,-76 [loop]
+Ciclo: 36, Señal: Estructural_WBfp IDstall, IFstall; Instrucción fld f1,0(t1)
+Ciclo: 37, Señal: Estructural_WBfp IDstall, IFstall; Instrucción fld f1,0(t1)
+Ciclo: 50, Señal: corto MEMaEXalu_i; Rdst addi t1,t1,24(en MEM) == Rfte sub t4,t3,t1(en EX)
+Ciclo: 51, Señal: corto MEMaIDcomp_s; Rdst sub t4,t3,t1(en MEM) == Rfte bne t4,zero,-76 [loop](en ID)
+Ciclo: 51, Señal: IFnop; Instrucción bne t4,zero,-76 [loop]
+Ciclo: 51, Señal: Salto Efectivo; Instrucción bne t4,zero,-76 [loop]
+Ciclo: 59, Señal: Estructural_WBfp IDstall, IFstall; Instrucción fld f1,0(t1)
+Ciclo: 60, Señal: Estructural_WBfp IDstall, IFstall; Instrucción fld f1,0(t1)
+Ciclo: 73, Señal: corto MEMaEXalu_i; Rdst addi t1,t1,24(en MEM) == Rfte sub t4,t3,t1(en EX)
+Ciclo: 74, Señal: corto MEMaIDcomp_s; Rdst sub t4,t3,t1(en MEM) == Rfte bne t4,zero,-76 [loop](en ID)
+Ciclo: 74, Señal: IFnop; Instrucción bne t4,zero,-76 [loop]
+Ciclo: 74, Señal: Salto Efectivo; Instrucción bne t4,zero,-76 [loop]
+Ciclo: 82, Señal: Estructural_WBfp IDstall, IFstall; Instrucción fld f1,0(t1)
+Ciclo: 83, Señal: Estructural_WBfp IDstall, IFstall; Instrucción fld f1,0(t1)
+Ciclo: 96, Señal: corto MEMaEXalu_i; Rdst addi t1,t1,24(en MEM) == Rfte sub t4,t3,t1(en EX)
+Ciclo: 97, Señal: corto MEMaIDcomp_s; Rdst sub t4,t3,t1(en MEM) == Rfte bne t4,zero,-76 [loop](en ID)
+Ciclo: 97, Señal: IFnop; Instrucción bne t4,zero,-76 [loop]
+Ciclo: 97, Señal: Salto Efectivo; Instrucción bne t4,zero,-76 [loop]
+Ciclo: 105, Señal: Estructural_WBfp IDstall, IFstall; Instrucción fld f1,0(t1)
+Ciclo: 106, Señal: Estructural_WBfp IDstall, IFstall; Instrucción fld f1,0(t1)
+Ciclo: 119, Señal: corto MEMaEXalu_i; Rdst addi t1,t1,24(en MEM) == Rfte sub t4,t3,t1(en EX)
+Ciclo: 120, Señal: corto MEMaIDcomp_s; Rdst sub t4,t3,t1(en MEM) == Rfte bne t4,zero,-76 [loop](en ID)
+Ciclo: 120, Señal: IFnop; Instrucción bne t4,zero,-76 [loop]
+Ciclo: 120, Señal: Salto Efectivo; Instrucción bne t4,zero,-76 [loop]
+Ciclo: 128, Señal: Estructural_WBfp IDstall, IFstall; Instrucción fld f1,0(t1)
+Ciclo: 129, Señal: Estructural_WBfp IDstall, IFstall; Instrucción fld f1,0(t1)
+Ciclo: 142, Señal: corto MEMaEXalu_i; Rdst addi t1,t1,24(en MEM) == Rfte sub t4,t3,t1(en EX)
+Ciclo: 143, Señal: corto MEMaIDcomp_s; Rdst sub t4,t3,t1(en MEM) == Rfte bne t4,zero,-76 [loop](en ID)
+Ciclo: 143, Señal: IFnop; Instrucción bne t4,zero,-76 [loop]
+Ciclo: 143, Señal: Salto Efectivo; Instrucción bne t4,zero,-76 [loop]
+Ciclo: 151, Señal: Estructural_WBfp IDstall, IFstall; Instrucción fld f1,0(t1)
+Ciclo: 152, Señal: Estructural_WBfp IDstall, IFstall; Instrucción fld f1,0(t1)
+Ciclo: 165, Señal: corto MEMaEXalu_i; Rdst addi t1,t1,24(en MEM) == Rfte sub t4,t3,t1(en EX)
+Ciclo: 166, Señal: corto MEMaIDcomp_s; Rdst sub t4,t3,t1(en MEM) == Rfte bne t4,zero,-76 [loop](en ID)
+Ciclo: 166, Señal: IFnop; Instrucción bne t4,zero,-76 [loop]
+Ciclo: 166, Señal: Salto Efectivo; Instrucción bne t4,zero,-76 [loop]
+Ciclo: 174, Señal: Estructural_WBfp IDstall, IFstall; Instrucción fld f1,0(t1)
+Ciclo: 175, Señal: Estructural_WBfp IDstall, IFstall; Instrucción fld f1,0(t1)
+Ciclo: 188, Señal: corto MEMaEXalu_i; Rdst addi t1,t1,24(en MEM) == Rfte sub t4,t3,t1(en EX)
+Ciclo: 189, Señal: corto MEMaIDcomp_s; Rdst sub t4,t3,t1(en MEM) == Rfte bne t4,zero,-76 [loop](en ID)
+Ciclo: 189, Señal: IFnop; Instrucción bne t4,zero,-76 [loop]
+Ciclo: 189, Señal: Salto Efectivo; Instrucción bne t4,zero,-76 [loop]
+Ciclo: 197, Señal: Estructural_WBfp IDstall, IFstall; Instrucción fld f1,0(t1)
+Ciclo: 198, Señal: Estructural_WBfp IDstall, IFstall; Instrucción fld f1,0(t1)
+Ciclo: 211, Señal: corto MEMaEXalu_i; Rdst addi t1,t1,24(en MEM) == Rfte sub t4,t3,t1(en EX)
+Ciclo: 212, Señal: corto MEMaIDcomp_s; Rdst sub t4,t3,t1(en MEM) == Rfte bne t4,zero,-76 [loop](en ID)
+Ciclo: 212, Señal: IFnop; Instrucción bne t4,zero,-76 [loop]
+Ciclo: 212, Señal: Salto Efectivo; Instrucción bne t4,zero,-76 [loop]
+Ciclo: 220, Señal: Estructural_WBfp IDstall, IFstall; Instrucción fld f1,0(t1)
+Ciclo: 221, Señal: Estructural_WBfp IDstall, IFstall; Instrucción fld f1,0(t1)
+Ciclo: 234, Señal: corto MEMaEXalu_i; Rdst addi t1,t1,24(en MEM) == Rfte sub t4,t3,t1(en EX)
+Ciclo: 235, Señal: corto MEMaIDcomp_s; Rdst sub t4,t3,t1(en MEM) == Rfte bne t4,zero,-76 [loop](en ID)
+Ciclo: 235, Señal: IFnop; Instrucción bne t4,zero,-76 [loop]
+Ciclo: 235, Señal: Salto Efectivo; Instrucción bne t4,zero,-76 [loop]
+Ciclo: 243, Señal: Estructural_WBfp IDstall, IFstall; Instrucción fld f1,0(t1)
+Ciclo: 244, Señal: Estructural_WBfp IDstall, IFstall; Instrucción fld f1,0(t1)
+Ciclo: 257, Señal: corto MEMaEXalu_i; Rdst addi t1,t1,24(en MEM) == Rfte sub t4,t3,t1(en EX)
+Ciclo: 258, Señal: corto MEMaIDcomp_s; Rdst sub t4,t3,t1(en MEM) == Rfte bne t4,zero,-76 [loop](en ID)
+Ciclo: 258, Señal: IFnop; Instrucción bne t4,zero,-76 [loop]
+Ciclo: 258, Señal: Salto Efectivo; Instrucción bne t4,zero,-76 [loop]
+Ciclo: 266, Señal: Estructural_WBfp IDstall, IFstall; Instrucción fld f1,0(t1)
+Ciclo: 267, Señal: Estructural_WBfp IDstall, IFstall; Instrucción fld f1,0(t1)
+Ciclo: 280, Señal: corto MEMaEXalu_i; Rdst addi t1,t1,24(en MEM) == Rfte sub t4,t3,t1(en EX)
+Ciclo: 281, Señal: corto MEMaIDcomp_s; Rdst sub t4,t3,t1(en MEM) == Rfte bne t4,zero,-76 [loop](en ID)
+Ciclo: 281, Señal: IFnop; Instrucción bne t4,zero,-76 [loop]
+Ciclo: 281, Señal: Salto Efectivo; Instrucción bne t4,zero,-76 [loop]
+Ciclo: 289, Señal: Estructural_WBfp IDstall, IFstall; Instrucción fld f1,0(t1)
+Ciclo: 290, Señal: Estructural_WBfp IDstall, IFstall; Instrucción fld f1,0(t1)
+Ciclo: 303, Señal: corto MEMaEXalu_i; Rdst addi t1,t1,24(en MEM) == Rfte sub t4,t3,t1(en EX)
+Ciclo: 304, Señal: corto MEMaIDcomp_s; Rdst sub t4,t3,t1(en MEM) == Rfte bne t4,zero,-76 [loop](en ID)
+Ciclo: 304, Señal: IFnop; Instrucción bne t4,zero,-76 [loop]
+Ciclo: 304, Señal: Salto Efectivo; Instrucción bne t4,zero,-76 [loop]
+Ciclo: 312, Señal: Estructural_WBfp IDstall, IFstall; Instrucción fld f1,0(t1)
+Ciclo: 313, Señal: Estructural_WBfp IDstall, IFstall; Instrucción fld f1,0(t1)
+Ciclo: 326, Señal: corto MEMaEXalu_i; Rdst addi t1,t1,24(en MEM) == Rfte sub t4,t3,t1(en EX)
+Ciclo: 327, Señal: corto MEMaIDcomp_s; Rdst sub t4,t3,t1(en MEM) == Rfte bne t4,zero,-76 [loop](en ID)
+Ciclo: 327, Señal: IFnop; Instrucción bne t4,zero,-76 [loop]
+Ciclo: 327, Señal: Salto Efectivo; Instrucción bne t4,zero,-76 [loop]
+Ciclo: 335, Señal: Estructural_WBfp IDstall, IFstall; Instrucción fld f1,0(t1)
+Ciclo: 336, Señal: Estructural_WBfp IDstall, IFstall; Instrucción fld f1,0(t1)
+Ciclo: 349, Señal: corto MEMaEXalu_i; Rdst addi t1,t1,24(en MEM) == Rfte sub t4,t3,t1(en EX)
+Ciclo: 350, Señal: corto MEMaIDcomp_s; Rdst sub t4,t3,t1(en MEM) == Rfte bne t4,zero,-76 [loop](en ID)
+Ciclo: 350, Señal: IFnop; Instrucción bne t4,zero,-76 [loop]
+Ciclo: 350, Señal: Salto Efectivo; Instrucción bne t4,zero,-76 [loop]
+Ciclo: 358, Señal: Estructural_WBfp IDstall, IFstall; Instrucción fld f1,0(t1)
+Ciclo: 359, Señal: Estructural_WBfp IDstall, IFstall; Instrucción fld f1,0(t1)
+Ciclo: 372, Señal: corto MEMaEXalu_i; Rdst addi t1,t1,24(en MEM) == Rfte sub t4,t3,t1(en EX)
+Ciclo: 373, Señal: corto MEMaIDcomp_s; Rdst sub t4,t3,t1(en MEM) == Rfte bne t4,zero,-76 [loop](en ID)
+Ciclo: 373, Señal: IFnop; Instrucción bne t4,zero,-76 [loop]
+Ciclo: 373, Señal: Salto Efectivo; Instrucción bne t4,zero,-76 [loop]
+Ciclo: 381, Señal: Estructural_WBfp IDstall, IFstall; Instrucción fld f1,0(t1)
+Ciclo: 382, Señal: Estructural_WBfp IDstall, IFstall; Instrucción fld f1,0(t1)
+Ciclo: 395, Señal: corto MEMaEXalu_i; Rdst addi t1,t1,24(en MEM) == Rfte sub t4,t3,t1(en EX)
+Ciclo: 396, Señal: corto MEMaIDcomp_s; Rdst sub t4,t3,t1(en MEM) == Rfte bne t4,zero,-76 [loop](en ID)
+Ciclo: 396, Señal: IFnop; Instrucción bne t4,zero,-76 [loop]
+Ciclo: 396, Señal: Salto Efectivo; Instrucción bne t4,zero,-76 [loop]
+Ciclo: 404, Señal: Estructural_WBfp IDstall, IFstall; Instrucción fld f1,0(t1)
+Ciclo: 405, Señal: Estructural_WBfp IDstall, IFstall; Instrucción fld f1,0(t1)
+Ciclo: 418, Señal: corto MEMaEXalu_i; Rdst addi t1,t1,24(en MEM) == Rfte sub t4,t3,t1(en EX)
+Ciclo: 419, Señal: corto MEMaIDcomp_s; Rdst sub t4,t3,t1(en MEM) == Rfte bne t4,zero,-76 [loop](en ID)
+Ciclo: 419, Señal: IFnop; Instrucción bne t4,zero,-76 [loop]
+Ciclo: 419, Señal: Salto Efectivo; Instrucción bne t4,zero,-76 [loop]
+Ciclo: 427, Señal: Estructural_WBfp IDstall, IFstall; Instrucción fld f1,0(t1)
+Ciclo: 428, Señal: Estructural_WBfp IDstall, IFstall; Instrucción fld f1,0(t1)
+Ciclo: 441, Señal: corto MEMaEXalu_i; Rdst addi t1,t1,24(en MEM) == Rfte sub t4,t3,t1(en EX)
+Ciclo: 442, Señal: corto MEMaIDcomp_s; Rdst sub t4,t3,t1(en MEM) == Rfte bne t4,zero,-76 [loop](en ID)
+Ciclo: 442, Señal: IFnop; Instrucción bne t4,zero,-76 [loop]
+Ciclo: 442, Señal: Salto Efectivo; Instrucción bne t4,zero,-76 [loop]
+Ciclo: 450, Señal: Estructural_WBfp IDstall, IFstall; Instrucción fld f1,0(t1)
+Ciclo: 451, Señal: Estructural_WBfp IDstall, IFstall; Instrucción fld f1,0(t1)
+Ciclo: 464, Señal: corto MEMaEXalu_i; Rdst addi t1,t1,24(en MEM) == Rfte sub t4,t3,t1(en EX)
+Ciclo: 465, Señal: corto MEMaIDcomp_s; Rdst sub t4,t3,t1(en MEM) == Rfte bne t4,zero,-76 [loop](en ID)
+Ciclo: 467, Señal: IFstall; Instrucción ecall
+Ciclo: 468, Señal: IFstall; Instrucción ecall
+Ciclo: 469, Señal: IFstall; Instrucción ecall
+Ciclo: 470, Señal: IFstall; Instrucción ecall
