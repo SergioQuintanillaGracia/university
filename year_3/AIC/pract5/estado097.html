@@ -1,0 +1,879 @@
+<html><head><title>Estado:  daxpy.s. Ciclo 97</title>
+<link rel='stylesheet' href='aic-style.css' />
+</head>
+<body bgcolor="white">
+<a href="index.html">INICIO</a>&nbsp;
+<a href="final.html">FINAL</a>&nbsp;
+<a href="estado087.html">[-10]</a>&nbsp;
+<a href="estado092.html">[-5]</a>&nbsp;
+<a href="estado096.html">[-1]</a>&nbsp;
+<a href="estado098.html">[+1]</a>
+<a href="estado102.html">[+5]</a>
+<a href="estado107.html">[+10]</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<!a href="estado097.html">Estado<!/a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="crono097.html">Crono</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="predictor097.html">BTB</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<tt><b>Programa:  daxpy.s</b></tt>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<b>Ciclo: 97</b>
+<br>
+<p>Estado al final del ciclo
+<table>
+<tr valign="top">
+<td>
+<table>
+ <tr bgcolor="#ccddff">
+  <td width="50" bgcolor="white">&nbsp;</td>
+  <td width="75" align="center">f0<br>(ft0)</td>
+  <td width="75" align="center">f1<br>(ft1)</td>
+  <td width="75" align="center">f2<br>(ft2)</td>
+  <td width="75" align="center">f3<br>(ft3)</td>
+  <td width="75" align="center">f4<br>(ft4)</td>
+  <td width="75" align="center">f5<br>(ft5)</td>
+  <td width="75" align="center">f6<br>(ft6)</td>
+  <td width="75" align="center">f7<br>(ft7)</td>
+  <td width="75" align="center">f8<br>(fs0)</td>
+  <td width="75" align="center">f9<br>(fs1)</td>
+  <td width="75" align="center">f10<br>(fa0)</td>
+  <td width="75" align="center">f11<br>(fa1)</td>
+  <td width="75" align="center">f12<br>(fa2)</td>
+  <td width="75" align="center">f13<br>(fa3)</td>
+  <td width="75" align="center">f14<br>(fa4)</td>
+  <td width="75" align="center">f15<br>(fa5)</td>
+  <td width="75" align="center">f16<br>(fa6)</td>
+  <td width="75" align="center">f17<br>(fa7)</td>
+  <td width="75" align="center">f18<br>(fs2)</td>
+  <td width="75" align="center">f19<br>(fs3)</td>
+  <td width="75" align="center">f20<br>(fs4)</td>
+  <td width="75" align="center">f21<br>(fs5)</td>
+  <td width="75" align="center">f22<br>(fs6)</td>
+  <td width="75" align="center">f23<br>(fs7)</td>
+  <td width="75" align="center">f24<br>(fs8)</td>
+  <td width="75" align="center">f25<br>(fs9)</td>
+  <td width="75" align="center">f26<br>(fs10)</td>
+  <td width="75" align="center">f27<br>(fs11)</td>
+  <td width="75" align="center">f28<br>(ft8)</td>
+  <td width="75" align="center">f29<br>(ft9)</td>
+  <td width="75" align="center">f30<br>(ft10)</td>
+  <td width="75" align="center">f31<br>(ft11)</td>
+ </tr>
+ <tr bgcolor="#eeeeee">
+  <td width="50" bgcolor="#ddeeff">rob</td>
+  <td>&nbsp;</td>
+  <td bgcolor="#ffddaa" align="center">#&nbsp;3</td>
+  <td bgcolor="#ffddaa" align="center">#&nbsp;4</td>
+  <td bgcolor="#ffddaa" align="center">#&nbsp;16</td>
+  <td bgcolor="#ffddaa" align="center">#&nbsp;17</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr bgcolor="#eeeeee">
+  <td width="50" bgcolor="#ddeeff">valor</td>
+  <td align="center">2.00</td>
+  <td bgcolor="#ffddaa" align="center">7.00</td>
+  <td bgcolor="#ffddaa" align="center">100.00</td>
+  <td bgcolor="#ffddaa" align="center">14.00</td>
+  <td bgcolor="#ffddaa" align="center">112.00</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+ </tr>
+ <tr bgcolor="#ccddff">
+  <td width="50" bgcolor="white">&nbsp;</td>
+  <td width="75" align="center">x0<br>(zero)</td>
+  <td width="75" align="center">x1<br>(ra)</td>
+  <td width="75" align="center">x2<br>(sp)</td>
+  <td width="75" align="center">x3<br>(gp)</td>
+  <td width="75" align="center">x4<br>(tp)</td>
+  <td width="75" align="center">x5<br>(t0)</td>
+  <td width="75" align="center">x6<br>(t1)</td>
+  <td width="75" align="center">x7<br>(t2)</td>
+  <td width="75" align="center">x8<br>(s0)</td>
+  <td width="75" align="center">x9<br>(s1)</td>
+  <td width="75" align="center">x10<br>(a0)</td>
+  <td width="75" align="center">x11<br>(a1)</td>
+  <td width="75" align="center">x12<br>(a2)</td>
+  <td width="75" align="center">x13<br>(a3)</td>
+  <td width="75" align="center">x14<br>(a4)</td>
+  <td width="75" align="center">x15<br>(a5)</td>
+  <td width="75" align="center">x16<br>(a6)</td>
+  <td width="75" align="center">x17<br>(a7)</td>
+  <td width="75" align="center">x18<br>(s2)</td>
+  <td width="75" align="center">x19<br>(s3)</td>
+  <td width="75" align="center">x20<br>(s4)</td>
+  <td width="75" align="center">x21<br>(s5)</td>
+  <td width="75" align="center">x22<br>(s6)</td>
+  <td width="75" align="center">x23<br>(s7)</td>
+  <td width="75" align="center">x24<br>(s8)</td>
+  <td width="75" align="center">x25<br>(s9)</td>
+  <td width="75" align="center">x26<br>(s10)</td>
+  <td width="75" align="center">x27<br>(s11)</td>
+  <td width="75" align="center">x28<br>(t3)</td>
+  <td width="75" align="center">x29<br>(t4)</td>
+  <td width="75" align="center">x30<br>(t5)</td>
+  <td width="75" align="center">x31<br>(t6)</td>
+ </tr>
+ <tr bgcolor="#eeeeee">
+  <td width="50" bgcolor="#ddeeff">rob</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td bgcolor="#ffddaa" align="center">#&nbsp;19</td>
+  <td bgcolor="#ffddaa" align="center">#&nbsp;0</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td bgcolor="#ffddaa" align="center">#&nbsp;1</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr bgcolor="#eeeeee">
+  <td width="50" bgcolor="#ddeeff">valor</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">65536</td>
+  <td align="center">8192</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td bgcolor="#ffddaa" align="center">8240</td>
+  <td bgcolor="#ffddaa" align="center">8304</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td bgcolor="#ffddaa" align="center">8368</td>
+  <td align="center">8384</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+ </tr>
+</table><br>
+<table bgcolor="white">
+ <tr valign="top"><td>
+<table>
+ <tr bgcolor="#ccddff">
+  <td width="25">Cod</td>
+  <td align="center" width="40">Ocup.</td>
+  <td align="center" width="125">Instrucción</td>
+  <td align="center" width="50">Complet.</td>
+  <td align="center" width="100">Destino</td>
+  <td align="center" width="75">Valor</td>
+  <td align="center" width="75">Pred.</td>
+  <td align="center" width="25">Exc.</td>
+  <td align="center" width="25">PC</td>
+ </tr>
+ <tr bgcolor="#eeeeee" class="normal">
+  <td bgcolor="#ddeeff" align="center">0</td>
+  <td align="center">SI</td>
+  <td align="left" nowrap="nowrap"><font color="darkolivegreen">addi t2,t2,8</font></td>
+  <td align="center">SI</td>
+  <td align="center">x7 (t2)</td>
+  <td align="center">8320</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="left" nowrap='nowrap'>4140</td>
+ </tr>
+ <tr bgcolor="#eeeeee" class="normal">
+  <td bgcolor="#ddeeff" align="center">1</td>
+  <td align="center">SI</td>
+  <td align="left" nowrap="nowrap"><font color="darkolivegreen">addi t3,t3,8</font></td>
+  <td align="center">NO</td>
+  <td align="center">x28 (t3)</td>
+  <td align="center">&nbsp</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="left" nowrap='nowrap'>4144</td>
+ </tr>
+ <tr bgcolor="#eeeeee" class="normal">
+  <td bgcolor="#ddeeff" align="center">2</td>
+  <td align="center">SI</td>
+  <td align="left" nowrap="nowrap"><font color="darkolivegreen">bne t4,t3,-32 [loop]</font></td>
+  <td align="center">NO</td>
+  <td align="center">loop</td>
+  <td align="center" nowrap='nowrap'>&nbsp;</td>
+  <td align="center" nowrap='nowrap'>Salta</td>
+  <td align="center">&nbsp;</td>
+  <td align="left" nowrap='nowrap'>4148</td>
+ </tr>
+ <tr bgcolor="#eeeeee" class="normal">
+  <td bgcolor="#ddeeff" align="center">3</td>
+  <td align="center">SI</td>
+  <td align="left" nowrap="nowrap"><font color="darkolivegreen">fld ft1,0(t1)</font></td>
+  <td align="center">NO</td>
+  <td align="center">f1 (ft1)</td>
+  <td align="center">&nbsp</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="left" nowrap='nowrap'>loop</td>
+ </tr>
+ <tr bgcolor="#eeeeee" class="normal">
+  <td bgcolor="#ddeeff" align="center">4</td>
+  <td align="center">SI</td>
+  <td align="left" nowrap="nowrap"><font color="darkolivegreen">fld ft2,0(t2)</font></td>
+  <td align="center">NO</td>
+  <td align="center">f2 (ft2)</td>
+  <td align="center">&nbsp</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="left" nowrap='nowrap'>4120</td>
+ </tr>
+ <tr bgcolor="#eeeeee" class="old">
+  <td bgcolor="#ddeeff" align="center">5</td>
+  <td align="center">NO</td>
+  <td align="left" nowrap="nowrap"><font color="darkolivegreen">fld ft1,0(t1)</font></td>
+  <td align="center">SI</td>
+  <td align="center">f1 (ft1)</td>
+  <td align="center">7.00</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="left" nowrap='nowrap'>loop</td>
+ </tr>
+ <tr bgcolor="#eeeeee" class="old">
+  <td bgcolor="#ddeeff" align="center">6</td>
+  <td align="center">NO</td>
+  <td align="left" nowrap="nowrap"><font color="darkolivegreen">fld ft2,0(t2)</font></td>
+  <td align="center">SI</td>
+  <td align="center">f2 (ft2)</td>
+  <td align="center">100.00</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="left" nowrap='nowrap'>4120</td>
+ </tr>
+ <tr bgcolor="#eeeeee" class="old">
+  <td bgcolor="#ddeeff" align="center">7</td>
+  <td align="center">NO</td>
+  <td align="left" nowrap="nowrap"><font color="darkolivegreen">fmul.d ft3,ft1,ft0</font></td>
+  <td align="center">SI</td>
+  <td align="center">f3 (ft3)</td>
+  <td align="center">14.00</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="left" nowrap='nowrap'>4124</td>
+ </tr>
+ <tr bgcolor="#eeeeee" class="normal">
+  <td bgcolor="#ffddaa" align="center">8</td>
+  <td align="center">SI</td>
+  <td align="left" nowrap="nowrap"><font color="darkolivegreen">fadd.d ft4,ft2,ft3</font></td>
+  <td align="center">SI</td>
+  <td align="center">f4 (ft4)</td>
+  <td align="center">114.00</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="left" nowrap='nowrap'>4128</td>
+ </tr>
+ <tr bgcolor="#eeeeee" class="normal">
+  <td bgcolor="#ddeeff" align="center">9</td>
+  <td align="center">SI</td>
+  <td align="left" nowrap="nowrap"><font color="darkolivegreen">fsd ft4,0(t3)</font></td>
+  <td align="center">NO</td>
+  <td align="center">s1</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="left" nowrap='nowrap'>4132</td>
+ </tr>
+ <tr bgcolor="#eeeeee" class="normal">
+  <td bgcolor="#ddeeff" align="center">10</td>
+  <td align="center">SI</td>
+  <td align="left" nowrap="nowrap"><font color="darkolivegreen">addi t1,t1,8</font></td>
+  <td align="center">SI</td>
+  <td align="center">x6 (t1)</td>
+  <td align="center">8248</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="left" nowrap='nowrap'>4136</td>
+ </tr>
+ <tr bgcolor="#eeeeee" class="normal">
+  <td bgcolor="#ddeeff" align="center">11</td>
+  <td align="center">SI</td>
+  <td align="left" nowrap="nowrap"><font color="darkolivegreen">addi t2,t2,8</font></td>
+  <td align="center">SI</td>
+  <td align="center">x7 (t2)</td>
+  <td align="center">8312</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="left" nowrap='nowrap'>4140</td>
+ </tr>
+ <tr bgcolor="#eeeeee" class="normal">
+  <td bgcolor="#ddeeff" align="center">12</td>
+  <td align="center">SI</td>
+  <td align="left" nowrap="nowrap"><font color="darkolivegreen">addi t3,t3,8</font></td>
+  <td align="center">SI</td>
+  <td align="center">x28 (t3)</td>
+  <td align="center">8376</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="left" nowrap='nowrap'>4144</td>
+ </tr>
+ <tr bgcolor="#eeeeee" class="normal">
+  <td bgcolor="#ddeeff" align="center">13</td>
+  <td align="center">SI</td>
+  <td align="left" nowrap="nowrap"><font color="darkolivegreen">bne t4,t3,-32 [loop]</font></td>
+  <td align="center">SI</td>
+  <td align="center">loop</td>
+  <td align="center" nowrap='nowrap'>Salta</td>
+  <td align="center" nowrap='nowrap'>Salta</td>
+  <td align="center">&nbsp;</td>
+  <td align="left" nowrap='nowrap'>4148</td>
+ </tr>
+ <tr bgcolor="#eeeeee" class="normal">
+  <td bgcolor="#ddeeff" align="center">14</td>
+  <td align="center">SI</td>
+  <td align="left" nowrap="nowrap"><font color="darkolivegreen">fld ft1,0(t1)</font></td>
+  <td align="center">SI</td>
+  <td align="center">f1 (ft1)</td>
+  <td align="center">8.00</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="left" nowrap='nowrap'>loop</td>
+ </tr>
+ <tr bgcolor="#eeeeee" class="normal">
+  <td bgcolor="#ddeeff" align="center">15</td>
+  <td align="center">SI</td>
+  <td align="left" nowrap="nowrap"><font color="darkolivegreen">fld ft2,0(t2)</font></td>
+  <td align="center">SI</td>
+  <td align="center">f2 (ft2)</td>
+  <td align="center">100.00</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="left" nowrap='nowrap'>4120</td>
+ </tr>
+ <tr bgcolor="#eeeeee" class="normal">
+  <td bgcolor="#ddeeff" align="center">16</td>
+  <td align="center">SI</td>
+  <td align="left" nowrap="nowrap"><font color="darkolivegreen">fmul.d ft3,ft1,ft0</font></td>
+  <td align="center">NO</td>
+  <td align="center">f3 (ft3)</td>
+  <td align="center">&nbsp</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="left" nowrap='nowrap'>4124</td>
+ </tr>
+ <tr bgcolor="#eeeeee" class="normal">
+  <td bgcolor="#ddeeff" align="center">17</td>
+  <td align="center">SI</td>
+  <td align="left" nowrap="nowrap"><font color="darkolivegreen">fadd.d ft4,ft2,ft3</font></td>
+  <td align="center">NO</td>
+  <td align="center">f4 (ft4)</td>
+  <td align="center">&nbsp</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="left" nowrap='nowrap'>4128</td>
+ </tr>
+ <tr bgcolor="#eeeeee" class="normal">
+  <td bgcolor="#ddeeff" align="center">18</td>
+  <td align="center">SI</td>
+  <td align="left" nowrap="nowrap"><font color="darkolivegreen">fsd ft4,0(t3)</font></td>
+  <td align="center">NO</td>
+  <td align="center">s2</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="left" nowrap='nowrap'>4132</td>
+ </tr>
+ <tr bgcolor="#eeeeee" class="normal">
+  <td bgcolor="#ddeeff" align="center">19</td>
+  <td align="center">SI</td>
+  <td align="left" nowrap="nowrap"><font color="darkolivegreen">addi t1,t1,8</font></td>
+  <td align="center">SI</td>
+  <td align="center">x6 (t1)</td>
+  <td align="center">8256</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="left" nowrap='nowrap'>4136</td>
+ </tr>
+</table>
+  </td><td>
+<table>
+ <tr bgcolor="#ccddff">
+  <td width="25">Cod</td>
+  <td align="center" width="40">Busy</td>
+  <td align="center" width="25">Op</td>
+  <td align="center" width="25">Q1</td>
+  <td align="center" width="75">V1</td>
+  <td align="center" width="25">Q2</td>
+  <td align="center" width="75">V2</td>
+  <td align="center" width="25">rob</td>
+  <td align="center">Resultado</td>
+  <td align="center">Estado</td>
+ </tr>
+ <tr bgcolor="#eeeeee" class="normal">
+  <td bgcolor="#ddeeff" align="center">e1</td>
+  <td bgcolor="#ffddaa" align="center">SI</td>
+  <td align="center">+</td>
+  <td>&nbsp;</td>
+  <td align="center">8376</td>
+  <td>&nbsp;</td>
+  <td align="center">8</td>
+  <td>#&nbsp;1</td>
+  <td align="center">8384</td>
+  <td align="center">end</td>
+ </tr>
+ <tr bgcolor="#eeeeee" class="old">
+  <td bgcolor="#ddeeff" align="center">e2</td>
+  <td bgcolor="#ffddaa" align="center">NO</td>
+  <td align="center">+</td>
+  <td>&nbsp;</td>
+  <td align="center">8312</td>
+  <td>&nbsp;</td>
+  <td align="center">8</td>
+  <td>#&nbsp;0</td>
+  <td align="center">&nbsp;</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr bgcolor="#eeeeee" class="normal">
+  <td bgcolor="#ddeeff" align="center">e3</td>
+  <td bgcolor="#ffddaa" align="center">SI</td>
+  <td align="center">!=</td>
+  <td>&nbsp;</td>
+  <td align="center">8384</td>
+  <td align="center">#&nbsp;1</td>
+  <td>&nbsp;</td>
+  <td>#&nbsp;2</td>
+  <td align="center">&nbsp;</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr bgcolor="#eeeeee" class="normal">
+  <td bgcolor="#ddeeff" align="center">e4</td>
+  <td align="center">NO</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+ </tr>
+ <tr bgcolor="#eeeeee" class="normal">
+  <td bgcolor="#ddeeff" align="center">e5</td>
+  <td align="center">NO</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+ </tr>
+</table>
+<table>
+ <tr bgcolor="#ccddff">
+  <td width="25">Cod</td>
+  <td align="center" width="40">Busy</td>
+  <td align="center" width="25">Op</td>
+  <td align="center" width="25">Q1</td>
+  <td align="center" width="75">V1</td>
+  <td align="center" width="25">Q2</td>
+  <td align="center" width="75">V2</td>
+  <td align="center" width="25">rob</td>
+  <td align="center">Resultado</td>
+  <td align="center">Estado</td>
+ </tr>
+ <tr bgcolor="#eeeeee" class="normal">
+  <td bgcolor="#ddeeff" align="center">a1</td>
+  <td bgcolor="#ffddaa" align="center">SI</td>
+  <td align="center">+</td>
+  <td>&nbsp;</td>
+  <td align="center">100.00</td>
+  <td align="center">#&nbsp;16</td>
+  <td>&nbsp;</td>
+  <td>#&nbsp;17</td>
+  <td align="center">&nbsp;</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr bgcolor="#eeeeee" class="old">
+  <td bgcolor="#ddeeff" align="center">a2</td>
+  <td bgcolor="#ffddaa" align="center">NO</td>
+  <td align="center">+</td>
+  <td>&nbsp;</td>
+  <td align="center">100.00</td>
+  <td>&nbsp;</td>
+  <td align="center">14.00</td>
+  <td>#&nbsp;8</td>
+  <td align="center">&nbsp;</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr bgcolor="#eeeeee" class="normal">
+  <td bgcolor="#ddeeff" align="center">a3</td>
+  <td align="center">NO</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">&nbsp;</td>
+ </tr>
+</table>
+<table>
+ <tr bgcolor="#ccddff">
+  <td width="25">Cod</td>
+  <td align="center" width="40">Busy</td>
+  <td align="center" width="25">Op</td>
+  <td align="center" width="25">Q1</td>
+  <td align="center" width="75">V1</td>
+  <td align="center" width="25">Q2</td>
+  <td align="center" width="75">V2</td>
+  <td align="center" width="25">Q3</td>
+  <td align="center" width="75">V3</td>
+  <td align="center" width="25">rob</td>
+  <td align="center">Resultado</td>
+  <td align="center">Estado</td>
+ </tr>
+ <tr bgcolor="#eeeeee" class="normal">
+  <td bgcolor="#ddeeff" align="center">m1</td>
+  <td bgcolor="#ffddaa" align="center">SI</td>
+  <td align="center">*</td>
+  <td>&nbsp;</td>
+  <td align="center">8.00</td>
+  <td>&nbsp;</td>
+  <td align="center">2.00</td>
+  <td>&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td>#&nbsp;16</td>
+  <td align="center">&nbsp;</td>
+  <td align="center">4/7</td>
+ </tr>
+ <tr bgcolor="#eeeeee" class="old">
+  <td bgcolor="#ddeeff" align="center">m2</td>
+  <td bgcolor="#ffddaa" align="center">NO</td>
+  <td align="center">*</td>
+  <td>&nbsp;</td>
+  <td align="center">7.00</td>
+  <td>&nbsp;</td>
+  <td align="center">2.00</td>
+  <td>&nbsp;</td>
+  <td align="center">&nbsp;</td>
+  <td>#&nbsp;7</td>
+  <td align="center">&nbsp;</td>
+  <td>&nbsp;</td>
+ </tr>
+</table>
+  </td></tr>
+</table><br>
+<table bgcolor="white">
+ <tr valign="top"><td>
+<table>
+ <tr bgcolor="#ccddff">
+  <td width="25">Cod</td>
+  <td align="center" width="40">Busy</td>
+  <td align="center" width="25">Op</td>
+  <td align="center" width="25">Q1</td>
+  <td align="center" width="75">V1</td>
+  <td align="center" width="50">Desp(etiq)</td>
+  <td align="center" width="50">Dirección</td>
+  <td align="center" width="25">rob</td>
+  <td align="center">Resultado</td>
+ </tr>
+ <tr bgcolor="#eeeeee" class="normal">
+  <td bgcolor="#ddeeff" align="center">l1</td>
+  <td bgcolor="#ffddaa" align="center">SI</td>
+  <td align="center">fld</td>
+  <td>&nbsp;</td>
+  <td align="center">8256</td>
+  <td align='center' nowrap='nowrap'>0</td>
+  <td align="center" nowrap='nowrap'>8256 [y]</td>
+  <td>#&nbsp;3</td>
+  <td align="center">&nbsp;</td>
+ </tr>
+ <tr bgcolor="#eeeeee" class="normal">
+  <td bgcolor="#ddeeff" align="center">l2</td>
+  <td bgcolor="#ffddaa" align="center">SI</td>
+  <td align="center">fld</td>
+  <td>&nbsp;</td>
+  <td align="center">8320</td>
+  <td align='center' nowrap='nowrap'>0</td>
+  <td align="center" nowrap='nowrap'>&nbsp;</td>
+  <td>#&nbsp;4</td>
+  <td align="center">&nbsp;</td>
+ </tr>
+ <tr bgcolor="#eeeeee" class="old">
+  <td bgcolor="#ddeeff" align="center">l3</td>
+  <td bgcolor="#ffddaa" align="center">NO</td>
+  <td align="center">fld</td>
+  <td>&nbsp;</td>
+  <td align="center">8256</td>
+  <td align='center' nowrap='nowrap'>0</td>
+  <td align="center" nowrap='nowrap'>&nbsp;</td>
+  <td>#&nbsp;6</td>
+  <td align="center">&nbsp;</td>
+ </tr>
+</table>
+  </td>
+  <td>
+<table>
+ <tr bgcolor="#ccddff">
+  <td width="25">Cod</td>
+  <td align="center" width="40">Busy</td>
+  <td align="center" width="25">Op</td>
+  <td align="center" width="25">Q1</td>
+  <td align="center" width="75">V1</td>
+  <td align="center" width="25">Q2</td>
+  <td align="center" width="75">V2</td>
+  <td align="center" width="50">Desp(etiq)</td>
+  <td align="center" width="50">Dirección</td>
+  <td align="center" width="50">Conf</td>
+ </tr>
+ <tr bgcolor="#eeeeee" class="normal">
+  <td bgcolor="#ddeeff" align="center">s1</td>
+  <td bgcolor="#ffddaa" align="center">SI</td>
+  <td align="center">fsd</td>
+  <td>&nbsp;</td>
+  <td align="center">8368</td>
+  <td>&nbsp;</td>
+  <td align="center">114.00</td>
+  <td align='center' nowrap='nowrap'>0</td>
+  <td align="center" nowrap='nowrap'>8368 [z + 48]</td>
+  <td align="center">NO</td>
+ </tr>
+ <tr bgcolor="#eeeeee" class="normal">
+  <td bgcolor="#ddeeff" align="center">s2</td>
+  <td bgcolor="#ffddaa" align="center">SI</td>
+  <td align="center">fsd</td>
+  <td>&nbsp;</td>
+  <td align="center">8376</td>
+  <td align="center">#&nbsp;17</td>
+  <td>&nbsp;</td>
+  <td align='center' nowrap='nowrap'>0</td>
+  <td align="center" nowrap='nowrap'>8376 [z + 56]</td>
+  <td align="center">NO</td>
+ </tr>
+ <tr bgcolor="#eeeeee" class="old">
+  <td bgcolor="#ddeeff" align="center">s3</td>
+  <td bgcolor="#ffddaa" align="center">NO</td>
+  <td align="center">fsd</td>
+  <td>&nbsp;</td>
+  <td align="center">8360</td>
+  <td>&nbsp;</td>
+  <td align="center">112.00</td>
+  <td align='center' nowrap='nowrap'>0</td>
+  <td align="center" nowrap='nowrap'>8360 [z + 40]</td>
+  <td align="center">SI</td>
+ </tr>
+</table>
+  </td></tr>
+</table>
+</td>
+<td>
+<table>
+ <tr bgcolor="#ccddff">
+  <td width="50" align="center">Dirección</td>
+  <td width="20" align="center">+0</td>
+  <td width="20" align="center">+1</td>
+  <td width="20" align="center">+2</td>
+  <td width="20" align="center">+3</td>
+  <td width="20" align="center">+4</td>
+  <td width="20" align="center">+5</td>
+  <td width="20" align="center">+6</td>
+  <td width="20" align="center">+7</td>
+ </tr>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: seagreen; margin: 0 0.5em'>x</span></td>
+  <td align="center" colspan="8">1.00</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: seagreen; margin: 0 0.5em'>8200</span></td>
+  <td align="center" colspan="8">2.00</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: seagreen; margin: 0 0.5em'>8208</span></td>
+  <td align="center" colspan="8">3.00</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: seagreen; margin: 0 0.5em'>8216</span></td>
+  <td align="center" colspan="8">4.00</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: seagreen; margin: 0 0.5em'>8224</span></td>
+  <td align="center" colspan="8">5.00</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: seagreen; margin: 0 0.5em'>8232</span></td>
+  <td align="center" colspan="8">6.00</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: seagreen; margin: 0 0.5em'>8240</span></td>
+  <td align="center" colspan="8">7.00</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: seagreen; margin: 0 0.5em'>8248</span></td>
+  <td align="center" colspan="8">8.00</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: lightcoral; margin: 0 0.5em'>y</span></td>
+  <td align="center" colspan="8">100.00</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: lightcoral; margin: 0 0.5em'>8264</span></td>
+  <td align="center" colspan="8">100.00</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: lightcoral; margin: 0 0.5em'>8272</span></td>
+  <td align="center" colspan="8">100.00</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: lightcoral; margin: 0 0.5em'>8280</span></td>
+  <td align="center" colspan="8">100.00</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: lightcoral; margin: 0 0.5em'>8288</span></td>
+  <td align="center" colspan="8">100.00</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: lightcoral; margin: 0 0.5em'>8296</span></td>
+  <td align="center" colspan="8">100.00</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: lightcoral; margin: 0 0.5em'>8304</span></td>
+  <td align="center" colspan="8">100.00</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: lightcoral; margin: 0 0.5em'>8312</span></td>
+  <td align="center" colspan="8">100.00</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: magenta; margin: 0 0.5em'>z</span></td>
+  <td align="center" colspan="8">102.00</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: magenta; margin: 0 0.5em'>8328</span></td>
+  <td align="center" colspan="8">104.00</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: magenta; margin: 0 0.5em'>8336</span></td>
+  <td align="center" colspan="8">106.00</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: magenta; margin: 0 0.5em'>8344</span></td>
+  <td align="center" colspan="8">108.00</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: magenta; margin: 0 0.5em'>8352</span></td>
+  <td align="center" colspan="8">110.00</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: magenta; margin: 0 0.5em'>8360</span></td>
+  <td align="center" colspan="8">112.00</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: magenta; margin: 0 0.5em'>8368</span></td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: magenta; margin: 0 0.5em'>8376</span></td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: salmon; margin: 0 0.5em'>a</span></td>
+  <td align="center" colspan="8">2.00</td>
+</table><br>
+<table>
+ <tr bgcolor="#ccddff">
+  <td width="50" align="center">Dirección</td>
+  <td width="20" align="center">+0</td>
+  <td width="20" align="center">+1</td>
+  <td width="20" align="center">+2</td>
+  <td width="20" align="center">+3</td>
+  <td width="20" align="center">+4</td>
+  <td width="20" align="center">+5</td>
+  <td width="20" align="center">+6</td>
+  <td width="20" align="center">+7</td>
+ </tr>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: darkorange; margin: 0 0.5em'>_stack</span></td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+</table><br>
+</td>
+</tr>
+</table>
+<address>Arquitectura e Ingeniería de Computadores</address>
+</body></html>
