@@ -1,0 +1,37 @@
+version: '2'
+services:
+  cli:
+    image: client
+    build: ./client/
+    links:
+      - bro
+    environment:
+      - BROKER_HOST=bro
+      - BROKER_PORT=9998
+  wor:
+    image: worker
+    build: ./worker/
+    links:
+      - bro
+    environment:
+      - BROKER_HOST=bro
+      - BROKER_PORT=9999
+  bro:
+    image: brokerl
+    build: ./broker/
+    expose:
+      - "9998"
+      - "9999"
+    environment:
+      - LOGGER_HOST=log
+      - LOGGER_PORT=9995
+  log:
+    image: logger
+    build: ./logger/
+    expose:
+      - "9995"
+    volumes:
+# /tmp/logger.log DIRECTORY must exist on host and writeable
+      - /tmp/logger.log:/tmp/cbwlog
+    environment:
+      - LOGGER_DIR=/tmp/cbwlog
