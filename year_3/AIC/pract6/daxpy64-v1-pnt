@@ -1,0 +1,72 @@
+
+*** CONFIGURACIÓN ***
+
+  Grado superescalar: 
+        ISSUE:        1
+        BUSES:        1
+        COMMIT:       1
+  Reorder Buffer:     128
+  E.R. Suma/Resta:    16
+  E.R. Mult/Div:      16
+  E.R. Enteros:       32
+  Buffer carga:       16
+  Buffer almacen.:    16
+  Tipo predictor:     Predict-Not-Taken
+  Buffer predictor:   2
+  Registros:          32
+
+                    Cantidad   Latencia  Tipo
+                    --------   --------  ----
+  Oper. Suma/Resta:    1           4     CONV
+  Oper. Mult/Div:      1           7     CONV
+  Oper. Enteros:       1           1     CONV
+  Oper. Memoria:       1           2     CONV
+
+  Cache L1I: perfecta
+  Cache L1D: perfecta
+  Cache L2: inactiva
+  Memoria principal: inactiva (nivel L1 perfecto)
+
+*** MEMORIA ***
+
+begin  end    size  region
+------ ------ ----- -------------------------
+000000-001000 01000 [reserved]
+001000-001040 00040 [text]
+001000-001040 00040     [<daxpy64.s> : text]
+002000-002608 00608 [data]
+002000-002608 00608     [<daxpy64.s> : data]
+00fff8-010000 00008 [stack]
+
+*** EJECUCIÓN ***
+
+ecall 10: Programa terminado
+
+*** ESTADISTICAS ***
+
+Ciclos:              1608
+Instrucciones:        583
+CPI / IPC:           2.76 / 0.36
+Ops C.F:              128
+Ops C.F./ciclo:      0.08
+Saltos:
+    Accedidos:         64
+    Encontrados:        0
+    Ejecutados:        64
+    Acertados:          1
+
+Ocupación de recursos:
+               Max / TAM  % max  % med
+  RS Enteros:    3 /  32   (  9% -   1%)
+  RS S/R C.F.:   1 /  16   (  6% -   3%)
+  RS M/D C.F.:   1 /  16   (  6% -   2%)
+  RS Carga:      3 /  16   ( 18% -   2%)
+  RS Almac.:     1 /  16   (  6% -   4%)
+  Op Enteros:    1 /   1   (100% -  20%)
+  Op S/R C.F.:   1 /   1   (100% -  15%)
+  Op M/D C.F.:   1 /   1   (100% -  27%)
+  Op Mem (AC):   1 /   1   (100% -  12%)
+  Op Mem:        1 /   1   (100% -  24%)
+  RB:            9 / 128   (  7% -   4%)
+
+

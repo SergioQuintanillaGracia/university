@@ -1,0 +1,141 @@
+
+html, body, table {
+    font-family: Courier, Times, serif;
+    font-size: 10pt;
+    line-height: 100%;
+}
+
+td.address {
+    text-align: left;
+    white-space: nowrap;
+    padding: 0.1em 0.5em;
+    background-color: #ddeeff;
+}
+
+.crono td small {
+    font-size: 80%;
+}
+
+.crono td i {
+    color: #666;
+}
+
+.old td {
+    color: #aaa;
+    font-style: italic;
+}
+
+.field {
+    display: inline-block;
+    font-size: 90%;
+    height: 1.1em;
+    text-align: center;
+    padding: 4px 0 0 0;
+    border: 1px solid black
+}
+
+table.config th, table.config td {
+    padding-top: 0.3em;
+    padding-left: 0.3em;
+    white-space: nowrap;
+}
+
+table.config th {
+    background-color: #ccddff;
+    text-align: left;
+    font-weight: normal;
+}
+
+table.config td, table.stats td {
+    background-color: #eeeeee;
+}
+
+table.config td.header {
+    background-color: #ddeeff;
+    min-width: 12em;
+}
+
+table.config td.text {
+    text-align: left;
+    min-width: 16em;
+}
+
+table.config th.value, table.config td.value {
+    text-align: center;
+    width: 6em;
+    padding-left: 0.3em;
+    padding-right: 0.3em;
+}
+
+table.stats th {
+    background-color: #ccddff;
+    padding-left: 0.3em;
+    padding-right: 0.3em;
+    font-weight: normal;
+}
+
+table.stats td {
+    text-align: center;
+}
+
+.cache th, .memoria th {
+    background-color: #ccddff;
+    padding: 0.3em 0.3em 0.1em 0.3em;
+    width: 2.5em;
+    white-space: nowrap;
+}
+
+.cache th.time, .memoria th.time {
+    padding: 0.3em 0.5em 0.1em 0.5em;
+}
+
+.cache td, .memoria td {
+    text-align: center;
+    white-space: nowrap;
+}
+
+.cache tr, .memoria tr {
+    background-color: #eee;
+}
+
+.cache td.blocked, .memoria td.blocked {
+    font-style: italic;
+}
+
+table.oper {
+    margin-top: 0.3em;
+}
+
+th.index {
+    min-width: 6em;
+}
+
+th.address {
+    min-width: 6em;
+}
+
+th.oper {
+    min-width: 6em;
+}
+
+th.state {
+    min-width: 10em;
+}
+
+th.signal {
+    min-width: 5em;
+}
+
+td.old {
+    color: #888;
+    font-style: italic;
+}
+
+td.code {
+    white-space: nowrap;
+    font-size: 75%;
+}
+
+td.cancelled {
+    text-decoration: line-through;
+}

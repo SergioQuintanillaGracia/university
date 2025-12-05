@@ -1,0 +1,762 @@
+<html><head><title>riscV-especulacion:  matmul.s. Ciclo 0</title>
+<link rel='stylesheet' href='aic-style.css' />
+</head>
+<body bgcolor="white">
+<a href="index.html">INICIO</a>&nbsp;
+<a href="final.html">FINAL</a>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<tt><b>Programa:  matmul.s</b></tt>
+<br>
+<br>
+<table>
+ <tr valign="top"><td>
+<table class='config'>
+ <tr>
+  <th>Estructura</th>
+  <th class='value'>Número</th>
+ </tr>
+ <tr>
+  <td class='header'>Num v&iacuteas Issue</td>
+  <td class='value'>4</td>
+ </tr>
+ <tr>
+  <td class='header'>Num v&iacuteas Writeback</td>
+  <td class='value'>4</td>
+ </tr>
+ <tr>
+  <td class='header'>Num v&iacuteas Commit</td>
+  <td class='value'>4</td>
+ </tr>
+ <tr>
+  <td class='header'>Registros</td>
+  <td class='value'>32</td>
+ </tr>
+ <tr>
+  <td class='header'>Reorder&nbsp;Buffer</td>
+  <td class='value'>4</td>
+ </tr>
+ <tr>
+  <td class='header'>E.R.&nbsp;Suma/Resta</td>
+  <td class='value'>64</td>
+ </tr>
+ <tr>
+  <td class='header'>E.R.&nbsp;Multiplicación/División</td>
+  <td class='value'>64</td>
+ </tr>
+ <tr>
+  <td class='header'>E.R.&nbsp;Enteros</td>
+  <td class='value'>128</td>
+ </tr>
+ <tr>
+  <td class='header'>Buffers de carga</td>
+  <td class='value'>64</td>
+ </tr>
+ <tr>
+  <td class='header'>Buffers de almacen.</td>
+  <td class='value'>64</td>
+ </tr>
+ <tr>
+  <td class='header'>Tipo&nbsp;de&nbsp;predictor</td>
+  <td class='value'>Perfecto</td>
+ </tr>
+ <tr>
+  <td class='header'>Buffer&nbsp;predictor</td>
+  <td class='value'>2</td>
+ </tr>
+</table><br>
+  </td><td>
+<table class='config'>
+ <tr>
+  <th>Operador</th>
+  <th class='value'>Cantidad</th>
+  <th class='value'>Latencia</th>
+ </tr>
+ <tr>
+  <td class='header'>Suma/Resta</td>
+  <td class='value'>4</td>
+  <td class='value'>4</td>
+ </tr>
+ <tr>
+  <td class='header'>Multiplicación/División</td>
+  <td class='value'>4</td>
+  <td class='value'>7</td>
+ </tr>
+ <tr>
+  <td class='header'>Enteros</td>
+  <td class='value'>4</td>
+  <td class='value'>1</td>
+ </tr>
+ <tr>
+  <td class='header'>Memoria de datos</td>
+  <td class='value'>4</td>
+  <td class='value'>2</td>
+ </tr>
+</table><br>
+<td>
+<table class='config'>
+  <tr>
+    <th>Cache L1I</th>
+    <td class='text'>perfecta</td>
+  </tr>
+</table>
+<br>
+<table class='config'>
+  <tr>
+    <th>Cache L1D</th>
+    <td class='text'>perfecta</td>
+  </tr>
+</table>
+<br>
+<table class='config'>
+  <tr>
+    <th>Cache L2</th>
+    <td class='text'>inactiva</td>
+  </tr>
+</table>
+<br>
+<br>
+</td>
+  </td></tr>
+</table><br>
+<table>
+ <tr  valign="top" bgcolor="#ddeeff">
+  <td>Memoria&nbsp;de&nbsp;datos</td>
+  <td>Memoria&nbsp;de&nbsp;instrucciones</td>
+ </tr>
+ <tr valign="top"><td>
+<table>
+ <tr bgcolor="#ccddff">
+  <td width="50" align="center">Dirección</td>
+  <td width="20" align="center">+0</td>
+  <td width="20" align="center">+1</td>
+  <td width="20" align="center">+2</td>
+  <td width="20" align="center">+3</td>
+  <td width="20" align="center">+4</td>
+  <td width="20" align="center">+5</td>
+  <td width="20" align="center">+6</td>
+  <td width="20" align="center">+7</td>
+ </tr>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: mediumseagreen; margin: 0 0.5em'>zero</span></td>
+  <td align="center" colspan="8">0.00</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: darkorange; margin: 0 0.5em'>filas_a</span></td>
+  <td align="center" colspan="8">5</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: orchid; margin: 0 0.5em'>cols_a</span></td>
+  <td align="center" colspan="8">5</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: red; margin: 0 0.5em'>cols_b</span></td>
+  <td align="center" colspan="8">5</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: darkcyan; margin: 0 0.5em'>a</span></td>
+  <td align="center" colspan="8">1.00</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: darkcyan; margin: 0 0.5em'>8232</span></td>
+  <td align="center" colspan="8">2.00</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: darkcyan; margin: 0 0.5em'>8240</span></td>
+  <td align="center" colspan="8">3.00</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: darkcyan; margin: 0 0.5em'>8248</span></td>
+  <td align="center" colspan="8">4.00</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: darkcyan; margin: 0 0.5em'>8256</span></td>
+  <td align="center" colspan="8">5.00</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: darkcyan; margin: 0 0.5em'>8264</span></td>
+  <td align="center" colspan="8">10.00</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: darkcyan; margin: 0 0.5em'>8272</span></td>
+  <td align="center" colspan="8">20.00</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: darkcyan; margin: 0 0.5em'>8280</span></td>
+  <td align="center" colspan="8">30.00</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: darkcyan; margin: 0 0.5em'>8288</span></td>
+  <td align="center" colspan="8">40.00</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: darkcyan; margin: 0 0.5em'>8296</span></td>
+  <td align="center" colspan="8">50.00</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: darkcyan; margin: 0 0.5em'>8304</span></td>
+  <td align="center" colspan="8">100.00</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: darkcyan; margin: 0 0.5em'>8312</span></td>
+  <td align="center" colspan="8">200.00</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: darkcyan; margin: 0 0.5em'>8320</span></td>
+  <td align="center" colspan="8">300.00</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: darkcyan; margin: 0 0.5em'>8328</span></td>
+  <td align="center" colspan="8">400.00</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: darkcyan; margin: 0 0.5em'>8336</span></td>
+  <td align="center" colspan="8">500.00</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: darkcyan; margin: 0 0.5em'>8344</span></td>
+  <td align="center" colspan="8">0.10</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: darkcyan; margin: 0 0.5em'>8352</span></td>
+  <td align="center" colspan="8">0.20</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: darkcyan; margin: 0 0.5em'>8360</span></td>
+  <td align="center" colspan="8">0.30</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: darkcyan; margin: 0 0.5em'>8368</span></td>
+  <td align="center" colspan="8">0.40</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: darkcyan; margin: 0 0.5em'>8376</span></td>
+  <td align="center" colspan="8">0.50</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: darkcyan; margin: 0 0.5em'>8384</span></td>
+  <td align="center" colspan="8">0.11</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: darkcyan; margin: 0 0.5em'>8392</span></td>
+  <td align="center" colspan="8">0.12</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: darkcyan; margin: 0 0.5em'>8400</span></td>
+  <td align="center" colspan="8">0.13</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: darkcyan; margin: 0 0.5em'>8408</span></td>
+  <td align="center" colspan="8">0.14</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: darkcyan; margin: 0 0.5em'>8416</span></td>
+  <td align="center" colspan="8">0.15</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: orange; margin: 0 0.5em'>b</span></td>
+  <td align="center" colspan="8">1.00</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: orange; margin: 0 0.5em'>8432</span></td>
+  <td align="center" colspan="8">0.00</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: orange; margin: 0 0.5em'>8440</span></td>
+  <td align="center" colspan="8">0.00</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: orange; margin: 0 0.5em'>8448</span></td>
+  <td align="center" colspan="8">0.00</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: orange; margin: 0 0.5em'>8456</span></td>
+  <td align="center" colspan="8">0.00</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: orange; margin: 0 0.5em'>8464</span></td>
+  <td align="center" colspan="8">0.00</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: orange; margin: 0 0.5em'>8472</span></td>
+  <td align="center" colspan="8">1.00</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: orange; margin: 0 0.5em'>8480</span></td>
+  <td align="center" colspan="8">0.00</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: orange; margin: 0 0.5em'>8488</span></td>
+  <td align="center" colspan="8">0.00</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: orange; margin: 0 0.5em'>8496</span></td>
+  <td align="center" colspan="8">0.00</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: orange; margin: 0 0.5em'>8504</span></td>
+  <td align="center" colspan="8">0.00</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: orange; margin: 0 0.5em'>8512</span></td>
+  <td align="center" colspan="8">0.00</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: orange; margin: 0 0.5em'>8520</span></td>
+  <td align="center" colspan="8">1.00</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: orange; margin: 0 0.5em'>8528</span></td>
+  <td align="center" colspan="8">0.00</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: orange; margin: 0 0.5em'>8536</span></td>
+  <td align="center" colspan="8">0.00</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: orange; margin: 0 0.5em'>8544</span></td>
+  <td align="center" colspan="8">0.00</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: orange; margin: 0 0.5em'>8552</span></td>
+  <td align="center" colspan="8">0.00</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: orange; margin: 0 0.5em'>8560</span></td>
+  <td align="center" colspan="8">0.00</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: orange; margin: 0 0.5em'>8568</span></td>
+  <td align="center" colspan="8">1.00</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: orange; margin: 0 0.5em'>8576</span></td>
+  <td align="center" colspan="8">0.00</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: orange; margin: 0 0.5em'>8584</span></td>
+  <td align="center" colspan="8">0.00</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: orange; margin: 0 0.5em'>8592</span></td>
+  <td align="center" colspan="8">0.00</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: orange; margin: 0 0.5em'>8600</span></td>
+  <td align="center" colspan="8">0.00</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: orange; margin: 0 0.5em'>8608</span></td>
+  <td align="center" colspan="8">0.00</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: orange; margin: 0 0.5em'>8616</span></td>
+  <td align="center" colspan="8">1.00</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: limegreen; margin: 0 0.5em'>c</span></td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: limegreen; margin: 0 0.5em'>8632</span></td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: limegreen; margin: 0 0.5em'>8640</span></td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: limegreen; margin: 0 0.5em'>8648</span></td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: limegreen; margin: 0 0.5em'>8656</span></td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: limegreen; margin: 0 0.5em'>8664</span></td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: limegreen; margin: 0 0.5em'>8672</span></td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: limegreen; margin: 0 0.5em'>8680</span></td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: limegreen; margin: 0 0.5em'>8688</span></td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: limegreen; margin: 0 0.5em'>8696</span></td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: limegreen; margin: 0 0.5em'>8704</span></td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: limegreen; margin: 0 0.5em'>8712</span></td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: limegreen; margin: 0 0.5em'>8720</span></td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: limegreen; margin: 0 0.5em'>8728</span></td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: limegreen; margin: 0 0.5em'>8736</span></td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: limegreen; margin: 0 0.5em'>8744</span></td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: limegreen; margin: 0 0.5em'>8752</span></td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: limegreen; margin: 0 0.5em'>8760</span></td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: limegreen; margin: 0 0.5em'>8768</span></td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: limegreen; margin: 0 0.5em'>8776</span></td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: limegreen; margin: 0 0.5em'>8784</span></td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: limegreen; margin: 0 0.5em'>8792</span></td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: limegreen; margin: 0 0.5em'>8800</span></td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: limegreen; margin: 0 0.5em'>8808</span></td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: limegreen; margin: 0 0.5em'>8816</span></td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+</table><br>
+<table>
+ <tr bgcolor="#ccddff">
+  <td width="50" align="center">Dirección</td>
+  <td width="20" align="center">+0</td>
+  <td width="20" align="center">+1</td>
+  <td width="20" align="center">+2</td>
+  <td width="20" align="center">+3</td>
+  <td width="20" align="center">+4</td>
+  <td width="20" align="center">+5</td>
+  <td width="20" align="center">+6</td>
+  <td width="20" align="center">+7</td>
+ </tr>
+ <tr bgcolor="#eeeeee">
+  <td class='address' bgcolor="#ddeeff"><span style='color: royalblue; margin: 0 0.5em'>_stack</span></td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+</table><br>
+  </td><td>
+<!-- Mem Instr en columna -->
+<table>
+ <tr bgcolor="#ccddff">
+  <td width="75" align="left" nowrap='nowrap'>Dirección</td>
+  <td width="200" align="left" nowrap='nowrap'>Instrucciones</td>
+  <td aling='center' nowrap='nowrap'>Formato</td>
+ </tr>
+ <tr>
+  <td class='address'>main</td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'><font color="darkblue">addi t1,gp,32 [a]</font></td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'>02018313 | <span style='color:#6200ea' title='imm'>000000100000</span><span style='color:#827717' title='rs1'>00011</span><span style='color:#ea80fc' title='f3'>000</span><span style='color:#1b5e20' title='rd'>00110</span><span style='color:#ff5252' title='op'>0010011</span> I <span class='field' style='color: #6200ea; border-color: #6200ea; width: 130px'>imm</span><span class='field' style='color: #827717; border-color: #827717; width: 53px'>rs1</span><span class='field' style='color: #ea80fc; border-color: #ea80fc; width: 31px'>f3</span><span class='field' style='color: #1b5e20; border-color: #1b5e20; width: 53px'>rd</span><span class='field' style='color: #ff5252; border-color: #ff5252; width: 75px'>op</span></td>
+ </tr>
+ <tr>
+  <td class='address'>4100</td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'><font color="darkblue">addi t2,gp,232 [b]</font></td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'>0e818393 | <span style='color:#6200ea' title='imm'>000011101000</span><span style='color:#827717' title='rs1'>00011</span><span style='color:#ea80fc' title='f3'>000</span><span style='color:#1b5e20' title='rd'>00111</span><span style='color:#ff5252' title='op'>0010011</span> I <span class='field' style='color: #6200ea; border-color: #6200ea; width: 130px'>imm</span><span class='field' style='color: #827717; border-color: #827717; width: 53px'>rs1</span><span class='field' style='color: #ea80fc; border-color: #ea80fc; width: 31px'>f3</span><span class='field' style='color: #1b5e20; border-color: #1b5e20; width: 53px'>rd</span><span class='field' style='color: #ff5252; border-color: #ff5252; width: 75px'>op</span></td>
+ </tr>
+ <tr>
+  <td class='address'>4104</td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'><font color="darkblue">addi t3,gp,432 [c]</font></td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'>1b018e13 | <span style='color:#6200ea' title='imm'>000110110000</span><span style='color:#827717' title='rs1'>00011</span><span style='color:#ea80fc' title='f3'>000</span><span style='color:#1b5e20' title='rd'>11100</span><span style='color:#ff5252' title='op'>0010011</span> I <span class='field' style='color: #6200ea; border-color: #6200ea; width: 130px'>imm</span><span class='field' style='color: #827717; border-color: #827717; width: 53px'>rs1</span><span class='field' style='color: #ea80fc; border-color: #ea80fc; width: 31px'>f3</span><span class='field' style='color: #1b5e20; border-color: #1b5e20; width: 53px'>rd</span><span class='field' style='color: #ff5252; border-color: #ff5252; width: 75px'>op</span></td>
+ </tr>
+ <tr>
+  <td class='address'>4108</td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'><font color="darkblue">ld t4,8(gp) [filas_a]</font></td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'>0081be83 | <span style='color:#6200ea' title='imm'>000000001000</span><span style='color:#827717' title='rs1'>00011</span><span style='color:#ea80fc' title='f3'>011</span><span style='color:#1b5e20' title='rd'>11101</span><span style='color:#ff5252' title='op'>0000011</span> I <span class='field' style='color: #6200ea; border-color: #6200ea; width: 130px'>imm</span><span class='field' style='color: #827717; border-color: #827717; width: 53px'>rs1</span><span class='field' style='color: #ea80fc; border-color: #ea80fc; width: 31px'>f3</span><span class='field' style='color: #1b5e20; border-color: #1b5e20; width: 53px'>rd</span><span class='field' style='color: #ff5252; border-color: #ff5252; width: 75px'>op</span></td>
+ </tr>
+ <tr>
+  <td class='address'>4112</td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'><font color="darkblue">ld t5,16(gp) [cols_a]</font></td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'>0101bf03 | <span style='color:#6200ea' title='imm'>000000010000</span><span style='color:#827717' title='rs1'>00011</span><span style='color:#ea80fc' title='f3'>011</span><span style='color:#1b5e20' title='rd'>11110</span><span style='color:#ff5252' title='op'>0000011</span> I <span class='field' style='color: #6200ea; border-color: #6200ea; width: 130px'>imm</span><span class='field' style='color: #827717; border-color: #827717; width: 53px'>rs1</span><span class='field' style='color: #ea80fc; border-color: #ea80fc; width: 31px'>f3</span><span class='field' style='color: #1b5e20; border-color: #1b5e20; width: 53px'>rd</span><span class='field' style='color: #ff5252; border-color: #ff5252; width: 75px'>op</span></td>
+ </tr>
+ <tr>
+  <td class='address'>4116</td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'><font color="darkblue">ld t6,24(gp) [cols_b]</font></td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'>0181bf83 | <span style='color:#6200ea' title='imm'>000000011000</span><span style='color:#827717' title='rs1'>00011</span><span style='color:#ea80fc' title='f3'>011</span><span style='color:#1b5e20' title='rd'>11111</span><span style='color:#ff5252' title='op'>0000011</span> I <span class='field' style='color: #6200ea; border-color: #6200ea; width: 130px'>imm</span><span class='field' style='color: #827717; border-color: #827717; width: 53px'>rs1</span><span class='field' style='color: #ea80fc; border-color: #ea80fc; width: 31px'>f3</span><span class='field' style='color: #1b5e20; border-color: #1b5e20; width: 53px'>rd</span><span class='field' style='color: #ff5252; border-color: #ff5252; width: 75px'>op</span></td>
+ </tr>
+ <tr>
+  <td class='address'>4120</td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'><font color="darkblue">add s1,x0,x0</font></td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'>000004b3 | <span style='color:#e040fb' title='f7'>0000000</span><span style='color:#00c853' title='rs2'>00000</span><span style='color:#827717' title='rs1'>00000</span><span style='color:#ea80fc' title='f3'>000</span><span style='color:#1b5e20' title='rd'>01001</span><span style='color:#ff5252' title='op'>0110011</span> R <span class='field' style='color: #e040fb; border-color: #e040fb; width: 75px'>f7</span><span class='field' style='color: #00c853; border-color: #00c853; width: 53px'>rs2</span><span class='field' style='color: #827717; border-color: #827717; width: 53px'>rs1</span><span class='field' style='color: #ea80fc; border-color: #ea80fc; width: 31px'>f3</span><span class='field' style='color: #1b5e20; border-color: #1b5e20; width: 53px'>rd</span><span class='field' style='color: #ff5252; border-color: #ff5252; width: 75px'>op</span></td>
+ </tr>
+ <tr>
+  <td class='address'>bucle_i</td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'><font color="darkolivegreen">add s2,x0,x0</font></td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'>00000933 | <span style='color:#e040fb' title='f7'>0000000</span><span style='color:#00c853' title='rs2'>00000</span><span style='color:#827717' title='rs1'>00000</span><span style='color:#ea80fc' title='f3'>000</span><span style='color:#1b5e20' title='rd'>10010</span><span style='color:#ff5252' title='op'>0110011</span> R <span class='field' style='color: #e040fb; border-color: #e040fb; width: 75px'>f7</span><span class='field' style='color: #00c853; border-color: #00c853; width: 53px'>rs2</span><span class='field' style='color: #827717; border-color: #827717; width: 53px'>rs1</span><span class='field' style='color: #ea80fc; border-color: #ea80fc; width: 31px'>f3</span><span class='field' style='color: #1b5e20; border-color: #1b5e20; width: 53px'>rd</span><span class='field' style='color: #ff5252; border-color: #ff5252; width: 75px'>op</span></td>
+ </tr>
+ <tr>
+  <td class='address'>bucle_j</td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'><font color="darkorange">fld f3,0(gp) [zero]</font></td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'>0001b187 | <span style='color:#6200ea' title='imm'>000000000000</span><span style='color:#827717' title='rs1'>00011</span><span style='color:#ea80fc' title='f3'>011</span><span style='color:#1b5e20' title='rd'>00011</span><span style='color:#ff5252' title='op'>0000111</span> I <span class='field' style='color: #6200ea; border-color: #6200ea; width: 130px'>imm</span><span class='field' style='color: #827717; border-color: #827717; width: 53px'>rs1</span><span class='field' style='color: #ea80fc; border-color: #ea80fc; width: 31px'>f3</span><span class='field' style='color: #1b5e20; border-color: #1b5e20; width: 53px'>rd</span><span class='field' style='color: #ff5252; border-color: #ff5252; width: 75px'>op</span></td>
+ </tr>
+ <tr>
+  <td class='address'>4132</td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'><font color="darkorange">mul s3,s1,t5</font></td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'>03e489b3 | <span style='color:#e040fb' title='f7'>0000001</span><span style='color:#00c853' title='rs2'>11110</span><span style='color:#827717' title='rs1'>01001</span><span style='color:#ea80fc' title='f3'>000</span><span style='color:#1b5e20' title='rd'>10011</span><span style='color:#ff5252' title='op'>0110011</span> R <span class='field' style='color: #e040fb; border-color: #e040fb; width: 75px'>f7</span><span class='field' style='color: #00c853; border-color: #00c853; width: 53px'>rs2</span><span class='field' style='color: #827717; border-color: #827717; width: 53px'>rs1</span><span class='field' style='color: #ea80fc; border-color: #ea80fc; width: 31px'>f3</span><span class='field' style='color: #1b5e20; border-color: #1b5e20; width: 53px'>rd</span><span class='field' style='color: #ff5252; border-color: #ff5252; width: 75px'>op</span></td>
+ </tr>
+ <tr>
+  <td class='address'>4136</td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'><font color="darkorange">add s3,s3,s2</font></td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'>012989b3 | <span style='color:#e040fb' title='f7'>0000000</span><span style='color:#00c853' title='rs2'>10010</span><span style='color:#827717' title='rs1'>10011</span><span style='color:#ea80fc' title='f3'>000</span><span style='color:#1b5e20' title='rd'>10011</span><span style='color:#ff5252' title='op'>0110011</span> R <span class='field' style='color: #e040fb; border-color: #e040fb; width: 75px'>f7</span><span class='field' style='color: #00c853; border-color: #00c853; width: 53px'>rs2</span><span class='field' style='color: #827717; border-color: #827717; width: 53px'>rs1</span><span class='field' style='color: #ea80fc; border-color: #ea80fc; width: 31px'>f3</span><span class='field' style='color: #1b5e20; border-color: #1b5e20; width: 53px'>rd</span><span class='field' style='color: #ff5252; border-color: #ff5252; width: 75px'>op</span></td>
+ </tr>
+ <tr>
+  <td class='address'>4140</td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'><font color="darkorange">slli s3,s3,3</font></td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'>00399993 | <span style='color:#e040fb' title='f6'>000000</span><span style='color:#6200ea' title='shamt'>000011</span><span style='color:#827717' title='rs1'>10011</span><span style='color:#ea80fc' title='f3'>001</span><span style='color:#1b5e20' title='rd'>10011</span><span style='color:#ff5252' title='op'>0010011</span> I <span class='field' style='color: #e040fb; border-color: #e040fb; width: 64px'>f6</span><span class='field' style='color: #6200ea; border-color: #6200ea; width: 64px'>shamt</span><span class='field' style='color: #827717; border-color: #827717; width: 53px'>rs1</span><span class='field' style='color: #ea80fc; border-color: #ea80fc; width: 31px'>f3</span><span class='field' style='color: #1b5e20; border-color: #1b5e20; width: 53px'>rd</span><span class='field' style='color: #ff5252; border-color: #ff5252; width: 75px'>op</span></td>
+ </tr>
+ <tr>
+  <td class='address'>4144</td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'><font color="darkorange">add s3,s3,t3</font></td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'>01c989b3 | <span style='color:#e040fb' title='f7'>0000000</span><span style='color:#00c853' title='rs2'>11100</span><span style='color:#827717' title='rs1'>10011</span><span style='color:#ea80fc' title='f3'>000</span><span style='color:#1b5e20' title='rd'>10011</span><span style='color:#ff5252' title='op'>0110011</span> R <span class='field' style='color: #e040fb; border-color: #e040fb; width: 75px'>f7</span><span class='field' style='color: #00c853; border-color: #00c853; width: 53px'>rs2</span><span class='field' style='color: #827717; border-color: #827717; width: 53px'>rs1</span><span class='field' style='color: #ea80fc; border-color: #ea80fc; width: 31px'>f3</span><span class='field' style='color: #1b5e20; border-color: #1b5e20; width: 53px'>rd</span><span class='field' style='color: #ff5252; border-color: #ff5252; width: 75px'>op</span></td>
+ </tr>
+ <tr>
+  <td class='address'>4148</td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'><font color="darkorange">add s4,x0,x0</font></td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'>00000a33 | <span style='color:#e040fb' title='f7'>0000000</span><span style='color:#00c853' title='rs2'>00000</span><span style='color:#827717' title='rs1'>00000</span><span style='color:#ea80fc' title='f3'>000</span><span style='color:#1b5e20' title='rd'>10100</span><span style='color:#ff5252' title='op'>0110011</span> R <span class='field' style='color: #e040fb; border-color: #e040fb; width: 75px'>f7</span><span class='field' style='color: #00c853; border-color: #00c853; width: 53px'>rs2</span><span class='field' style='color: #827717; border-color: #827717; width: 53px'>rs1</span><span class='field' style='color: #ea80fc; border-color: #ea80fc; width: 31px'>f3</span><span class='field' style='color: #1b5e20; border-color: #1b5e20; width: 53px'>rd</span><span class='field' style='color: #ff5252; border-color: #ff5252; width: 75px'>op</span></td>
+ </tr>
+ <tr>
+  <td class='address'>bucle_k</td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'><font color="deeppink">mul s5,s1,t5</font></td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'>03e48ab3 | <span style='color:#e040fb' title='f7'>0000001</span><span style='color:#00c853' title='rs2'>11110</span><span style='color:#827717' title='rs1'>01001</span><span style='color:#ea80fc' title='f3'>000</span><span style='color:#1b5e20' title='rd'>10101</span><span style='color:#ff5252' title='op'>0110011</span> R <span class='field' style='color: #e040fb; border-color: #e040fb; width: 75px'>f7</span><span class='field' style='color: #00c853; border-color: #00c853; width: 53px'>rs2</span><span class='field' style='color: #827717; border-color: #827717; width: 53px'>rs1</span><span class='field' style='color: #ea80fc; border-color: #ea80fc; width: 31px'>f3</span><span class='field' style='color: #1b5e20; border-color: #1b5e20; width: 53px'>rd</span><span class='field' style='color: #ff5252; border-color: #ff5252; width: 75px'>op</span></td>
+ </tr>
+ <tr>
+  <td class='address'>4156</td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'><font color="deeppink">add s5,s5,s4</font></td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'>014a8ab3 | <span style='color:#e040fb' title='f7'>0000000</span><span style='color:#00c853' title='rs2'>10100</span><span style='color:#827717' title='rs1'>10101</span><span style='color:#ea80fc' title='f3'>000</span><span style='color:#1b5e20' title='rd'>10101</span><span style='color:#ff5252' title='op'>0110011</span> R <span class='field' style='color: #e040fb; border-color: #e040fb; width: 75px'>f7</span><span class='field' style='color: #00c853; border-color: #00c853; width: 53px'>rs2</span><span class='field' style='color: #827717; border-color: #827717; width: 53px'>rs1</span><span class='field' style='color: #ea80fc; border-color: #ea80fc; width: 31px'>f3</span><span class='field' style='color: #1b5e20; border-color: #1b5e20; width: 53px'>rd</span><span class='field' style='color: #ff5252; border-color: #ff5252; width: 75px'>op</span></td>
+ </tr>
+ <tr>
+  <td class='address'>4160</td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'><font color="deeppink">slli s5,s5,3</font></td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'>003a9a93 | <span style='color:#e040fb' title='f6'>000000</span><span style='color:#6200ea' title='shamt'>000011</span><span style='color:#827717' title='rs1'>10101</span><span style='color:#ea80fc' title='f3'>001</span><span style='color:#1b5e20' title='rd'>10101</span><span style='color:#ff5252' title='op'>0010011</span> I <span class='field' style='color: #e040fb; border-color: #e040fb; width: 64px'>f6</span><span class='field' style='color: #6200ea; border-color: #6200ea; width: 64px'>shamt</span><span class='field' style='color: #827717; border-color: #827717; width: 53px'>rs1</span><span class='field' style='color: #ea80fc; border-color: #ea80fc; width: 31px'>f3</span><span class='field' style='color: #1b5e20; border-color: #1b5e20; width: 53px'>rd</span><span class='field' style='color: #ff5252; border-color: #ff5252; width: 75px'>op</span></td>
+ </tr>
+ <tr>
+  <td class='address'>4164</td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'><font color="deeppink">add s5,s5,t1</font></td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'>006a8ab3 | <span style='color:#e040fb' title='f7'>0000000</span><span style='color:#00c853' title='rs2'>00110</span><span style='color:#827717' title='rs1'>10101</span><span style='color:#ea80fc' title='f3'>000</span><span style='color:#1b5e20' title='rd'>10101</span><span style='color:#ff5252' title='op'>0110011</span> R <span class='field' style='color: #e040fb; border-color: #e040fb; width: 75px'>f7</span><span class='field' style='color: #00c853; border-color: #00c853; width: 53px'>rs2</span><span class='field' style='color: #827717; border-color: #827717; width: 53px'>rs1</span><span class='field' style='color: #ea80fc; border-color: #ea80fc; width: 31px'>f3</span><span class='field' style='color: #1b5e20; border-color: #1b5e20; width: 53px'>rd</span><span class='field' style='color: #ff5252; border-color: #ff5252; width: 75px'>op</span></td>
+ </tr>
+ <tr>
+  <td class='address'>4168</td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'><font color="deeppink">fld f0,0(s5)</font></td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'>000ab007 | <span style='color:#6200ea' title='imm'>000000000000</span><span style='color:#827717' title='rs1'>10101</span><span style='color:#ea80fc' title='f3'>011</span><span style='color:#1b5e20' title='rd'>00000</span><span style='color:#ff5252' title='op'>0000111</span> I <span class='field' style='color: #6200ea; border-color: #6200ea; width: 130px'>imm</span><span class='field' style='color: #827717; border-color: #827717; width: 53px'>rs1</span><span class='field' style='color: #ea80fc; border-color: #ea80fc; width: 31px'>f3</span><span class='field' style='color: #1b5e20; border-color: #1b5e20; width: 53px'>rd</span><span class='field' style='color: #ff5252; border-color: #ff5252; width: 75px'>op</span></td>
+ </tr>
+ <tr>
+  <td class='address'>4172</td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'><font color="deeppink">mul s5,s4,t6</font></td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'>03fa0ab3 | <span style='color:#e040fb' title='f7'>0000001</span><span style='color:#00c853' title='rs2'>11111</span><span style='color:#827717' title='rs1'>10100</span><span style='color:#ea80fc' title='f3'>000</span><span style='color:#1b5e20' title='rd'>10101</span><span style='color:#ff5252' title='op'>0110011</span> R <span class='field' style='color: #e040fb; border-color: #e040fb; width: 75px'>f7</span><span class='field' style='color: #00c853; border-color: #00c853; width: 53px'>rs2</span><span class='field' style='color: #827717; border-color: #827717; width: 53px'>rs1</span><span class='field' style='color: #ea80fc; border-color: #ea80fc; width: 31px'>f3</span><span class='field' style='color: #1b5e20; border-color: #1b5e20; width: 53px'>rd</span><span class='field' style='color: #ff5252; border-color: #ff5252; width: 75px'>op</span></td>
+ </tr>
+ <tr>
+  <td class='address'>4176</td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'><font color="deeppink">add s5,s5,s2</font></td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'>012a8ab3 | <span style='color:#e040fb' title='f7'>0000000</span><span style='color:#00c853' title='rs2'>10010</span><span style='color:#827717' title='rs1'>10101</span><span style='color:#ea80fc' title='f3'>000</span><span style='color:#1b5e20' title='rd'>10101</span><span style='color:#ff5252' title='op'>0110011</span> R <span class='field' style='color: #e040fb; border-color: #e040fb; width: 75px'>f7</span><span class='field' style='color: #00c853; border-color: #00c853; width: 53px'>rs2</span><span class='field' style='color: #827717; border-color: #827717; width: 53px'>rs1</span><span class='field' style='color: #ea80fc; border-color: #ea80fc; width: 31px'>f3</span><span class='field' style='color: #1b5e20; border-color: #1b5e20; width: 53px'>rd</span><span class='field' style='color: #ff5252; border-color: #ff5252; width: 75px'>op</span></td>
+ </tr>
+ <tr>
+  <td class='address'>4180</td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'><font color="deeppink">slli s5,s5,3</font></td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'>003a9a93 | <span style='color:#e040fb' title='f6'>000000</span><span style='color:#6200ea' title='shamt'>000011</span><span style='color:#827717' title='rs1'>10101</span><span style='color:#ea80fc' title='f3'>001</span><span style='color:#1b5e20' title='rd'>10101</span><span style='color:#ff5252' title='op'>0010011</span> I <span class='field' style='color: #e040fb; border-color: #e040fb; width: 64px'>f6</span><span class='field' style='color: #6200ea; border-color: #6200ea; width: 64px'>shamt</span><span class='field' style='color: #827717; border-color: #827717; width: 53px'>rs1</span><span class='field' style='color: #ea80fc; border-color: #ea80fc; width: 31px'>f3</span><span class='field' style='color: #1b5e20; border-color: #1b5e20; width: 53px'>rd</span><span class='field' style='color: #ff5252; border-color: #ff5252; width: 75px'>op</span></td>
+ </tr>
+ <tr>
+  <td class='address'>4184</td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'><font color="deeppink">add s5,s5,t2</font></td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'>007a8ab3 | <span style='color:#e040fb' title='f7'>0000000</span><span style='color:#00c853' title='rs2'>00111</span><span style='color:#827717' title='rs1'>10101</span><span style='color:#ea80fc' title='f3'>000</span><span style='color:#1b5e20' title='rd'>10101</span><span style='color:#ff5252' title='op'>0110011</span> R <span class='field' style='color: #e040fb; border-color: #e040fb; width: 75px'>f7</span><span class='field' style='color: #00c853; border-color: #00c853; width: 53px'>rs2</span><span class='field' style='color: #827717; border-color: #827717; width: 53px'>rs1</span><span class='field' style='color: #ea80fc; border-color: #ea80fc; width: 31px'>f3</span><span class='field' style='color: #1b5e20; border-color: #1b5e20; width: 53px'>rd</span><span class='field' style='color: #ff5252; border-color: #ff5252; width: 75px'>op</span></td>
+ </tr>
+ <tr>
+  <td class='address'>4188</td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'><font color="deeppink">fld f1,0(s5)</font></td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'>000ab087 | <span style='color:#6200ea' title='imm'>000000000000</span><span style='color:#827717' title='rs1'>10101</span><span style='color:#ea80fc' title='f3'>011</span><span style='color:#1b5e20' title='rd'>00001</span><span style='color:#ff5252' title='op'>0000111</span> I <span class='field' style='color: #6200ea; border-color: #6200ea; width: 130px'>imm</span><span class='field' style='color: #827717; border-color: #827717; width: 53px'>rs1</span><span class='field' style='color: #ea80fc; border-color: #ea80fc; width: 31px'>f3</span><span class='field' style='color: #1b5e20; border-color: #1b5e20; width: 53px'>rd</span><span class='field' style='color: #ff5252; border-color: #ff5252; width: 75px'>op</span></td>
+ </tr>
+ <tr>
+  <td class='address'>4192</td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'><font color="deeppink">fmul.d f2,f0,f1</font></td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'>12107153 | <span style='color:#e040fb' title='f7'>0001001</span><span style='color:#00c853' title='rs2'>00001</span><span style='color:#827717' title='rs1'>00000</span><span style='color:#90a4ae' title='rm'>111</span><span style='color:#1b5e20' title='rd'>00010</span><span style='color:#ff5252' title='op'>1010011</span> R <span class='field' style='color: #e040fb; border-color: #e040fb; width: 75px'>f7</span><span class='field' style='color: #00c853; border-color: #00c853; width: 53px'>rs2</span><span class='field' style='color: #827717; border-color: #827717; width: 53px'>rs1</span><span class='field' style='color: #90a4ae; border-color: #90a4ae; width: 31px'>rm</span><span class='field' style='color: #1b5e20; border-color: #1b5e20; width: 53px'>rd</span><span class='field' style='color: #ff5252; border-color: #ff5252; width: 75px'>op</span></td>
+ </tr>
+ <tr>
+  <td class='address'>4196</td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'><font color="deeppink">fadd.d f3,f3,f2</font></td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'>0221f1d3 | <span style='color:#e040fb' title='f7'>0000001</span><span style='color:#00c853' title='rs2'>00010</span><span style='color:#827717' title='rs1'>00011</span><span style='color:#90a4ae' title='rm'>111</span><span style='color:#1b5e20' title='rd'>00011</span><span style='color:#ff5252' title='op'>1010011</span> R <span class='field' style='color: #e040fb; border-color: #e040fb; width: 75px'>f7</span><span class='field' style='color: #00c853; border-color: #00c853; width: 53px'>rs2</span><span class='field' style='color: #827717; border-color: #827717; width: 53px'>rs1</span><span class='field' style='color: #90a4ae; border-color: #90a4ae; width: 31px'>rm</span><span class='field' style='color: #1b5e20; border-color: #1b5e20; width: 53px'>rd</span><span class='field' style='color: #ff5252; border-color: #ff5252; width: 75px'>op</span></td>
+ </tr>
+ <tr>
+  <td class='address'>4200</td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'><font color="deeppink">fsd f3,0(s3)</font></td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'>0039b027 | <span style='color:#0d47a1' title='i[11:5]'>0000000</span><span style='color:#00c853' title='rs2'>00011</span><span style='color:#827717' title='rs1'>10011</span><span style='color:#ea80fc' title='f3'>011</span><span style='color:#1565c0' title='i[4:0]'>00000</span><span style='color:#ff5252' title='op'>0100111</span> S <span class='field' style='color: #0d47a1; border-color: #0d47a1; width: 75px'>i[11:5]</span><span class='field' style='color: #00c853; border-color: #00c853; width: 53px'>rs2</span><span class='field' style='color: #827717; border-color: #827717; width: 53px'>rs1</span><span class='field' style='color: #ea80fc; border-color: #ea80fc; width: 31px'>f3</span><span class='field' style='color: #1565c0; border-color: #1565c0; width: 53px'>i[4:0]</span><span class='field' style='color: #ff5252; border-color: #ff5252; width: 75px'>op</span></td>
+ </tr>
+ <tr>
+  <td class='address'>4204</td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'><font color="deeppink">addi s4,s4,1</font></td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'>001a0a13 | <span style='color:#6200ea' title='imm'>000000000001</span><span style='color:#827717' title='rs1'>10100</span><span style='color:#ea80fc' title='f3'>000</span><span style='color:#1b5e20' title='rd'>10100</span><span style='color:#ff5252' title='op'>0010011</span> I <span class='field' style='color: #6200ea; border-color: #6200ea; width: 130px'>imm</span><span class='field' style='color: #827717; border-color: #827717; width: 53px'>rs1</span><span class='field' style='color: #ea80fc; border-color: #ea80fc; width: 31px'>f3</span><span class='field' style='color: #1b5e20; border-color: #1b5e20; width: 53px'>rd</span><span class='field' style='color: #ff5252; border-color: #ff5252; width: 75px'>op</span></td>
+ </tr>
+ <tr>
+  <td class='address'>4208</td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'><font color="deeppink">bne s4,t5,-56 [bucle_k]</font></td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'>fdea14e3 | <span style='color:#0d47a1' title='i[12]'>1</span><span style='color:#1565c0' title='i[10:5]'>111110</span><span style='color:#00c853' title='rs2'>11110</span><span style='color:#827717' title='rs1'>10100</span><span style='color:#ea80fc' title='f3'>001</span><span style='color:#1976d2' title='i[4:1]'>0100</span><span style='color:#6200ea' title='i[11]'>1</span><span style='color:#ff5252' title='op'>1100011</span> B <span class='field' style='color: #0d47a1; border-color: #0d47a1; width: 9px' title='i[12]'>i</span><span class='field' style='color: #1565c0; border-color: #1565c0; width: 64px'>i[10:5]</span><span class='field' style='color: #00c853; border-color: #00c853; width: 53px'>rs2</span><span class='field' style='color: #827717; border-color: #827717; width: 53px'>rs1</span><span class='field' style='color: #ea80fc; border-color: #ea80fc; width: 31px'>f3</span><span class='field' style='color: #1976d2; border-color: #1976d2; width: 42px'>i[4:1]</span><span class='field' style='color: #6200ea; border-color: #6200ea; width: 9px' title='i[11]'>i</span><span class='field' style='color: #ff5252; border-color: #ff5252; width: 75px'>op</span></td>
+ </tr>
+ <tr>
+  <td class='address'>end_k</td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'><font color="royalblue">addi s2,s2,1</font></td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'>00190913 | <span style='color:#6200ea' title='imm'>000000000001</span><span style='color:#827717' title='rs1'>10010</span><span style='color:#ea80fc' title='f3'>000</span><span style='color:#1b5e20' title='rd'>10010</span><span style='color:#ff5252' title='op'>0010011</span> I <span class='field' style='color: #6200ea; border-color: #6200ea; width: 130px'>imm</span><span class='field' style='color: #827717; border-color: #827717; width: 53px'>rs1</span><span class='field' style='color: #ea80fc; border-color: #ea80fc; width: 31px'>f3</span><span class='field' style='color: #1b5e20; border-color: #1b5e20; width: 53px'>rd</span><span class='field' style='color: #ff5252; border-color: #ff5252; width: 75px'>op</span></td>
+ </tr>
+ <tr>
+  <td class='address'>4216</td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'><font color="royalblue">bne s2,t6,-88 [bucle_j]</font></td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'>fbf914e3 | <span style='color:#0d47a1' title='i[12]'>1</span><span style='color:#1565c0' title='i[10:5]'>111101</span><span style='color:#00c853' title='rs2'>11111</span><span style='color:#827717' title='rs1'>10010</span><span style='color:#ea80fc' title='f3'>001</span><span style='color:#1976d2' title='i[4:1]'>0100</span><span style='color:#6200ea' title='i[11]'>1</span><span style='color:#ff5252' title='op'>1100011</span> B <span class='field' style='color: #0d47a1; border-color: #0d47a1; width: 9px' title='i[12]'>i</span><span class='field' style='color: #1565c0; border-color: #1565c0; width: 64px'>i[10:5]</span><span class='field' style='color: #00c853; border-color: #00c853; width: 53px'>rs2</span><span class='field' style='color: #827717; border-color: #827717; width: 53px'>rs1</span><span class='field' style='color: #ea80fc; border-color: #ea80fc; width: 31px'>f3</span><span class='field' style='color: #1976d2; border-color: #1976d2; width: 42px'>i[4:1]</span><span class='field' style='color: #6200ea; border-color: #6200ea; width: 9px' title='i[11]'>i</span><span class='field' style='color: #ff5252; border-color: #ff5252; width: 75px'>op</span></td>
+ </tr>
+ <tr>
+  <td class='address'>end_j</td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'><font color="brown">addi s1,s1,1</font></td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'>00148493 | <span style='color:#6200ea' title='imm'>000000000001</span><span style='color:#827717' title='rs1'>01001</span><span style='color:#ea80fc' title='f3'>000</span><span style='color:#1b5e20' title='rd'>01001</span><span style='color:#ff5252' title='op'>0010011</span> I <span class='field' style='color: #6200ea; border-color: #6200ea; width: 130px'>imm</span><span class='field' style='color: #827717; border-color: #827717; width: 53px'>rs1</span><span class='field' style='color: #ea80fc; border-color: #ea80fc; width: 31px'>f3</span><span class='field' style='color: #1b5e20; border-color: #1b5e20; width: 53px'>rd</span><span class='field' style='color: #ff5252; border-color: #ff5252; width: 75px'>op</span></td>
+ </tr>
+ <tr>
+  <td class='address'>4224</td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'><font color="brown">bne s1,t4,-100 [bucle_i]</font></td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'>f9d49ee3 | <span style='color:#0d47a1' title='i[12]'>1</span><span style='color:#1565c0' title='i[10:5]'>111100</span><span style='color:#00c853' title='rs2'>11101</span><span style='color:#827717' title='rs1'>01001</span><span style='color:#ea80fc' title='f3'>001</span><span style='color:#1976d2' title='i[4:1]'>1110</span><span style='color:#6200ea' title='i[11]'>1</span><span style='color:#ff5252' title='op'>1100011</span> B <span class='field' style='color: #0d47a1; border-color: #0d47a1; width: 9px' title='i[12]'>i</span><span class='field' style='color: #1565c0; border-color: #1565c0; width: 64px'>i[10:5]</span><span class='field' style='color: #00c853; border-color: #00c853; width: 53px'>rs2</span><span class='field' style='color: #827717; border-color: #827717; width: 53px'>rs1</span><span class='field' style='color: #ea80fc; border-color: #ea80fc; width: 31px'>f3</span><span class='field' style='color: #1976d2; border-color: #1976d2; width: 42px'>i[4:1]</span><span class='field' style='color: #6200ea; border-color: #6200ea; width: 9px' title='i[11]'>i</span><span class='field' style='color: #ff5252; border-color: #ff5252; width: 75px'>op</span></td>
+ </tr>
+ <tr>
+  <td class='address'>exit</td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'><font color="magenta">ori a7,zero,10</font></td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'>00a06893 | <span style='color:#6200ea' title='imm'>000000001010</span><span style='color:#827717' title='rs1'>00000</span><span style='color:#ea80fc' title='f3'>110</span><span style='color:#1b5e20' title='rd'>10001</span><span style='color:#ff5252' title='op'>0010011</span> I <span class='field' style='color: #6200ea; border-color: #6200ea; width: 130px'>imm</span><span class='field' style='color: #827717; border-color: #827717; width: 53px'>rs1</span><span class='field' style='color: #ea80fc; border-color: #ea80fc; width: 31px'>f3</span><span class='field' style='color: #1b5e20; border-color: #1b5e20; width: 53px'>rd</span><span class='field' style='color: #ff5252; border-color: #ff5252; width: 75px'>op</span></td>
+ </tr>
+ <tr>
+  <td class='address'>4232</td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'><font color="magenta">ecall</font></td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'>00000073 | <span style='color:#6200ea' title='imm'>000000000000</span><span style='color:#827717' title='rs1'>00000</span><span style='color:#ea80fc' title='f3'>000</span><span style='color:#1b5e20' title='rd'>00000</span><span style='color:#ff5252' title='op'>1110011</span> I <span class='field' style='color: #6200ea; border-color: #6200ea; width: 130px'>imm</span><span class='field' style='color: #827717; border-color: #827717; width: 53px'>rs1</span><span class='field' style='color: #ea80fc; border-color: #ea80fc; width: 31px'>f3</span><span class='field' style='color: #1b5e20; border-color: #1b5e20; width: 53px'>rd</span><span class='field' style='color: #ff5252; border-color: #ff5252; width: 75px'>op</span></td>
+ </tr>
+</table>
+  </td></tr>
+</table><br>
+<address>Arquitectura e Ingeniería de Computadores</address>
+</body></html>

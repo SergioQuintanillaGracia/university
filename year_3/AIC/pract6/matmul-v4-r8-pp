@@ -1,0 +1,77 @@
+*** Generando traza para predictor perfecto/clarividente ... ***
+*** EJECUCIÓN ***
+
+..ecall 10: Programa terminado
+*** Traza generada... ***
+
+*** CONFIGURACIÓN ***
+
+  Grado superescalar: 
+        ISSUE:        4
+        BUSES:        4
+        COMMIT:       4
+  Reorder Buffer:     8
+  E.R. Suma/Resta:    64
+  E.R. Mult/Div:      64
+  E.R. Enteros:       128
+  Buffer carga:       64
+  Buffer almacen.:    64
+  Tipo predictor:     Perfecto
+  Buffer predictor:   2
+  Registros:          32
+
+                    Cantidad   Latencia  Tipo
+                    --------   --------  ----
+  Oper. Suma/Resta:    4           4     CONV
+  Oper. Mult/Div:      4           7     CONV
+  Oper. Enteros:       4           1     CONV
+  Oper. Memoria:       4           2     CONV
+
+  Cache L1I: perfecta
+  Cache L1D: perfecta
+  Cache L2: inactiva
+  Memoria principal: inactiva (nivel L1 perfecto)
+
+*** MEMORIA ***
+
+begin  end    size  region
+------ ------ ----- -------------------------
+000000-001000 01000 [reserved]
+001000-00108c 0008c [text]
+001000-00108c 0008c     [<matmul.s> : text]
+002000-002278 00278 [data]
+002000-002278 00278     [<matmul.s> : data]
+00fff8-010000 00008 [stack]
+
+*** EJECUCIÓN ***
+
+..ecall 10: Programa terminado
+
+*** ESTADISTICAS ***
+
+Ciclos:              4239
+Instrucciones:       2099
+CPI / IPC:           2.02 / 0.50
+Ops C.F:              250
+Ops C.F./ciclo:      0.06
+Saltos:
+    Accedidos:        256
+    Encontrados:      256
+    Ejecutados:       155
+    Acertados:        155
+
+Ocupación de recursos:
+               Max / TAM  % max  % med
+  RS Enteros:    6 / 128   (  4% -   1%)
+  RS S/R C.F.:   1 /  64   (  1% -   1%)
+  RS M/D C.F.:   2 /  64   (  3% -   1%)
+  RS Carga:      4 /  64   (  6% -   1%)
+  RS Almac.:     1 /  64   (  1% -   1%)
+  Op Enteros:    3 /   4   ( 75% -   6%)
+  Op S/R C.F.:   1 /   4   ( 25% -   2%)
+  Op M/D C.F.:   2 /   4   ( 50% -  16%)
+  Op Mem (AC):   2 /   4   ( 50% -   2%)
+  Op Mem:        3 /   4   ( 75% -   4%)
+  RB:            8 /   8   (100% -  98%)
+
+

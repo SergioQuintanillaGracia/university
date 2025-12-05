@@ -1,0 +1,77 @@
+*** Generando traza para predictor perfecto/clarividente ... ***
+*** EJECUCIÓN ***
+
+..ecall 10: Programa terminado
+*** Traza generada... ***
+
+*** CONFIGURACIÓN ***
+
+  Grado superescalar: 
+        ISSUE:        1
+        BUSES:        1
+        COMMIT:       1
+  Reorder Buffer:     128
+  E.R. Suma/Resta:    16
+  E.R. Mult/Div:      16
+  E.R. Enteros:       32
+  Buffer carga:       16
+  Buffer almacen.:    16
+  Tipo predictor:     Perfecto
+  Buffer predictor:   2
+  Registros:          32
+
+                    Cantidad   Latencia  Tipo
+                    --------   --------  ----
+  Oper. Suma/Resta:    1           4     CONV
+  Oper. Mult/Div:      1           7     CONV
+  Oper. Enteros:       1           1     CONV
+  Oper. Memoria:       1           2     CONV
+
+  Cache L1I: perfecta
+  Cache L1D: perfecta
+  Cache L2: inactiva
+  Memoria principal: inactiva (nivel L1 perfecto)
+
+*** MEMORIA ***
+
+begin  end    size  region
+------ ------ ----- -------------------------
+000000-001000 01000 [reserved]
+001000-00108c 0008c [text]
+001000-00108c 0008c     [<matmul.s> : text]
+002000-002278 00278 [data]
+002000-002278 00278     [<matmul.s> : data]
+00fff8-010000 00008 [stack]
+
+*** EJECUCIÓN ***
+
+.ecall 10: Programa terminado
+
+*** ESTADISTICAS ***
+
+Ciclos:              2838
+Instrucciones:       2099
+CPI / IPC:           1.35 / 0.74
+Ops C.F:              250
+Ops C.F./ciclo:      0.09
+Saltos:
+    Accedidos:        156
+    Encontrados:      156
+    Ejecutados:       155
+    Acertados:        155
+
+Ocupación de recursos:
+               Max / TAM  % max  % med
+  RS Enteros:   32 /  32   (100% -  91%)
+  RS S/R C.F.:   6 /  16   ( 37% -  32%)
+  RS M/D C.F.:  16 /  16   (100% -  89%)
+  RS Carga:     11 /  16   ( 68% -  56%)
+  RS Almac.:     6 /  16   ( 37% -  33%)
+  Op Enteros:    1 /   1   (100% -  41%)
+  Op S/R C.F.:   1 /   1   (100% -  17%)
+  Op M/D C.F.:   1 /   1   (100% -  98%)
+  Op Mem (AC):   1 /   1   (100% -  14%)
+  Op Mem:        1 /   1   (100% -  28%)
+  RB:          100 / 128   ( 78% -  67%)
+
+
