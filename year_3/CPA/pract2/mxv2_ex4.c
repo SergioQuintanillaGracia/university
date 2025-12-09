@@ -51,10 +51,10 @@ int main(int argc, char* argv[]) {
         nb,        /* Block size (i.e. number of columns per process) */
         nLoc,      /* Number of local columns in this process (<= nb) */
         n2,        /* = nb*num_procs */
-        tama, sz, proc;
+        tama, sz;
     char opcion;
     double t;
-    double *M, *Mloc, *x, *xloc1, *xloc2, *v, norma, aux;
+    double *M, *Mloc, *x, *xloc1, *xloc2, *v, norma, totalnorma, aux;
     int i, j, iter;
 
     MPI_Init(&argc, &argv);
@@ -156,28 +156,11 @@ int main(int argc, char* argv[]) {
         /* Finish the computation of the new x: sum all the local vectors xloc2
          * and add v, leaving the result in process 0.
          * Then, distribute the vector among the processes, for the next iteration */
-        MPI_Reduce(xloc2, xloc1, n, MPI_DOUBLE, MPI_SUM, 0, MPI_COMM_WORLD);
+        MPI_Reduce(xloc2, x, n, MPI_DOUBLE, MPI_SUM, 0, MPI_COMM_WORLD);
 
         if (me == 0) {
-            /* Operate with my own xloc2 */
             for (i = 0; i < n; i++)
-                x[i] = xloc1[i] + v[i];
-            /* Receive xloc2 from other processes and add it to x. */
-            // for (proc = 1; proc < num_procs; proc++) {
-            //     MPI_Recv(xloc2, n, MPI_DOUBLE, proc, 49, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-            //     for (i = 0; i < n; i++)
-            //         x[i] += xloc2[i];
-            // }
-            /* For process 0, copy the data */
-            // for (j = 0; j < nb; j++)
-            //     xloc1[j] = x[j];
-            /* For other processes, send the data */
-            // for (proc = 1; proc < num_procs; proc++)
-            //     MPI_Send(&x[proc * nb], nb, MPI_DOUBLE, proc, 53, MPI_COMM_WORLD);
-        } else {
-            /* Send xloc2, receive xloc1 */
-            // MPI_Send(xloc2, n, MPI_DOUBLE, 0, 49, MPI_COMM_WORLD);
-            // MPI_Recv(xloc1, nb, MPI_DOUBLE, 0, 53, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+                x[i] += v[i];
         }
 
         MPI_Scatter(x, nb, MPI_DOUBLE, xloc1, nb, MPI_DOUBLE, 0, MPI_COMM_WORLD);
@@ -192,14 +175,9 @@ int main(int argc, char* argv[]) {
     /* COMMUNICATIONS */
     /* Compute the 1-norm of the complete x from the 1-norm of each fragment,
      * i.e. compute the sum of the local norms, leaving the result in process 0 */
-    if (me == 0) {
-        for (proc = 1; proc < num_procs; proc++) {
-            MPI_Recv(&aux, 1, MPI_DOUBLE, proc, 65, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-            norma += aux;
-        }
-    } else {
-        MPI_Send(&norma, 1, MPI_DOUBLE, 0, 65, MPI_COMM_WORLD);
-    }
+    totalnorma = 0;
+    MPI_Reduce(&norma, &totalnorma, 1, MPI_DOUBLE, MPI_SUM, 0, MPI_COMM_WORLD);
+    norma = totalnorma;
 
     t = MPI_Wtime() - t;
 
