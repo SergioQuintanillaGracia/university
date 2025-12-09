@@ -16,10 +16,15 @@ function lineaOrdenes(params) {	//Comprobacion de parametros en linea de órdene
 	for (let a in args) {console.log(`\t${args[a]}\t|${global[args[a]]}|`)}
 }
 
-function traza(f,names,value) { //muestra los argumentos al invocar la función f
+function traza(slogger, f,names,value) { //muestra los argumentos al invocar la función f
+	console.log("Ayuda psicologica: " + slogger)
 	console.log(`funcion ${f}`)
+	slogger.send(`funcion ${f}`)
 	var args = names.split(" ")
-	for (let a in args) console.log(`\t${args[a]}\t|${value[a]}|`)
+	for (let a in args) {
+		console.log(`\t${args[a]}\t|${value[a]}|`)
+		slogger.send(`\t${args[a]}\t|${value[a]}|`)
+	}
 }
 
 function adios(sockets, despedida) {		//cierra la conexión y el proceso

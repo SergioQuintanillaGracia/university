@@ -1,5 +1,5 @@
 // ------------------------------- tsr.js
-const zmq  = require('zeromq')
+const zmq = require("zeromq/v5-compat")
 const path = require('path')
 
 function error(msg) {
