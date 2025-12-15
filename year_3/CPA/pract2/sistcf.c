@@ -8,7 +8,7 @@
 #define EPSILON 1e-16
 #define CHECK(rc, paso) (rc) ? printf("Error %d, paso %d\n", rc, paso) : 0
 #define MIN(a, b) (((a) < (b)) ? (a) : (b))
-#define VERBOSE
+// #define VERBOSE
 
 /* Generador de matrices bien condicionadas           */
 /* Entrada: Dimension del problema                    */
@@ -156,14 +156,12 @@ int printVec(double* ppdVec, int n, char* header) {
 
 /* Returns the process that owns row i */
 int owner(int i, int p, int mb) {
-    /* Block distribution */
-    return i / mb;
+    return i % p;
 }
 
 /* Returns the local index of row i in the local matrix of its owner process */
 int localIndex(int i, int p, int mb) {
-    /* Block distribution */
-    return i % mb;
+    return i / p;
 }
 
 /* Returns the number of local rows in the process iproc */
@@ -172,14 +170,14 @@ int numLocalRows(int n, int mb, int p, int iproc) {
     /* Comment out the code for the distribution that is not wanted */
 
     /* Block distribution */
-    mloc = MIN(mb, n - mb * iproc);
-    if (mloc < 0) mloc = 0;
-    return mloc;
+    // mloc = MIN(mb, n - mb * iproc);
+    // if (mloc < 0) mloc = 0;
+    // return mloc;
 
     /* Cyclic distribution */
-    // mloc = n/p;
-    // if (iproc < n%p) mloc++;
-    // return mloc;
+    mloc = n/p;
+    if (iproc < n%p) mloc++;
+    return mloc;
 }
 
 /* LU factorization
@@ -328,8 +326,22 @@ int main(int argc, char* argv[]) {
     /* STEP 2: Distribute data (A, b) */
     MPI_Bcast(b, n, MPI_DOUBLE, 0, MPI_COMM_WORLD);
 
-    MPI_Scatter(A[0], mb * n, MPI_DOUBLE,
-                Aloc[0], mb * n, MPI_DOUBLE, 0, MPI_COMM_WORLD);
+    // MPI_Scatter(A[0], mb * n, MPI_DOUBLE,
+    //             Aloc[0], mb * n, MPI_DOUBLE, 0, MPI_COMM_WORLD);
+
+    int rowsPerBlock = mb;
+    int rowSize = n;
+    int processCount = p;
+
+    // We need to iterate once per row in a block
+    // Imagine we had 100 rows and 2 processes. Every process would need to receive 50
+    // rows, so there are 2 blocks of 50 rows each.
+    // We would therefore need 50 scatters that send the first row to process 0 and
+    // the second one to process 1
+    for (int i = 0; i < rowsPerBlock; i++) {
+        MPI_Scatter(A[i * processCount], rowSize, MPI_DOUBLE, Aloc[i], rowSize,
+            MPI_DOUBLE, 0, MPI_COMM_WORLD);
+    }
 
 #ifdef VERBOSE
     rc = printMat(Aloc, mloc, n, "\nMatrix A");
