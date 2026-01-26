@@ -439,7 +439,7 @@ double norma(double A[N * 3][N * 3]) {
     MPI_Type_commit(&submat);
 
     if (id == 0) {
-            MPI_Sendrecv(A, 1, submat, 0, 0, Aloc, N * N, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+        MPI_Sendrecv(A, 1, submat, 0, 0, Aloc, N * N, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
 
         for (int proc = 1; proc < 9; proc++) {
             MPI_Send(&A[proc / 3 * N][proc % 3 * N], 1, submat, proc, 0, MPI_COMM_WORLD);
@@ -461,4 +461,152 @@ double norma(double A[N * 3][N * 3]) {
     MPI_Type_free(&submat);
 
     return norm;
+}
+
+double A[n][n], B[n][n], C[n][n], D[n][n], E[n][n], F[n][n];
+int id;
+
+MPI_Comm_rank(MPI_COMM_WORLD, &id);
+
+if (id == 0) {
+    f1(n, A); /* Task T1 */
+
+    f2(n, D, A); /* Task T2 */
+    MPI_Send(D, n * n, MPI_DOUBLE, 1, 0, MPI_COMM_WORLD);
+
+    f2(n, B, D); /* Task T4 */
+    f1(n, B);    /* Task T7 */
+
+    MPI_Recv(E, n * n, MPI_DOUBLE, 1, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+    f2(n, E, B); /* Task T8 */
+
+    MPI_Recv(C, n * n, MPI_DOUBLE, 1, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+    f3(n, C, E, E); /* Task T9 */
+
+    f1(n, C); /* Task T10 */
+
+} else {
+    f1(n, A); /* Task T1 */
+
+    f2(n, F, A); /* Task T3 */
+
+    MPI_Recv(D, n * n, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+    f3(n, E, F, D); /* Task T5 */
+    MPI_Send(E, n * n, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+
+    f3(n, C, E, F); /* Task T6 */
+    MPI_Send(C, n * n, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+}
+
+void fun1(double A[N][N], double x[], double y[]) {
+    int i, j, np;
+    double z[N], zloc[N], Aloc[N][N], yloc[N];
+
+    MPI_Comm_size(MPI_COMM_WORLD, &np);
+
+    int nb = N / np;
+
+    // Scatter A by rows
+    MPI_Scatter(A, nb * N, MPI_DOUBLE, Aloc, nb * N, MPI_DOUBLE, 0, MPI_COMM_WORLD);
+    // Bcast x
+    MPI_Bcast(x, N, MPI_DOUBLE, 0, MPI_COMM_WORLD);
+
+    for (i = 0; i < nb; i++) {
+        zloc[i] = 0.0;
+
+        for (j = 0; j < N; j++)
+            zloc[i] += Aloc[i][j] * x[j];
+    }
+
+    // Allgather z
+    MPI_Allgather(zloc, nb, MPI_DOUBLE, z, nb, MPI_DOUBLE, MPI_COMM_WORLD);
+
+    for (i = 0; i < nb; i++) {
+        yloc[i] = 0.0;
+
+        for (j = 0; j < N; j++)
+            yloc[i] += Aloc[i][j] * z[j];
+    }
+
+    // Gather y to 0
+    MPI_Gather(yloc, nb, MPI_DOUBLE, y, nb, MPI_DOUBLE, 0, MPI_COMM_WORLD);
+}
+
+void copy_blocks(double A[n * n][n * n], double B[n][n]) {
+    int id;
+
+    MPI_Comm_rank(MPI_COMM_WORLD, &id);
+    MPI_Datatype block;
+    MPI_Type_vector(n, n, n * n, MPI_DOUBLE, &block);
+    MPI_Type_commit(&block);
+
+    if (id == 0) {
+        for (int proc = 1; proc < n; proc++) {
+            MPI_Send(&A[proc * n][proc * n], 1, block, proc, 0, MPI_COMM_WORLD);
+        }
+
+        MPI_Sendrecv(A, 1, block, 0, 0, B, n * n, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+    } else if (id < n) {
+        MPI_Recv(B, n * n, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+    }
+
+    MPI_Type_free(&block);
+}
+
+void vector(double y[M], double A[M][N], double x[N]) {
+    int i, j;
+    double a, ma, maloc, Aloc[M][N], yloc[M];
+    maloc = 0;
+
+    // Bcast x
+    // Scatter a by M
+
+    for (i = 0; i < M; i++) {
+        a = 0;
+
+        for (j = 0; j < N; j++)
+            a += A[i][j] * x[j];
+
+        y[i] = a;
+
+        if (a < 0) a = -a;
+        if (a > maloc) maloc = a;
+    }
+
+    // Allreduce maloc to ma
+
+    for (i = 0; i < M; i++)
+        y[i] /= ma;
+
+    // Gather y to P0
+}
+
+void comunicate(double A[N][N], double B[N][N]) {
+    int id;
+
+    MPI_Comm_rank(MPI_COMM_WORLD, &id);
+    MPI_Datatype antidiag;
+    MPI_Type_vector(N - 1, 2, N - 1, MPI_DOUBLE, &antidiag);
+    MPI_Type_commit(&antidiag);
+
+    if (id == 0) {
+        MPI_Send(&A[1][N - 2], 1, antidiag, 1, 0, MPI_COMM_WORLD);
+    } else {
+        MPI_Recv(&B[0][N - 2], 1, antidiag, 0, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+    }
+
+    MPI_Type_free(&antidiag);
+}
+
+double root_sumsquare_low_triang(double A[M][N]) {
+    int i, j;
+    double sum, root;
+    sum = 0;
+    for (i = 0; i < M; i++) {
+        for (j = 0; j <= i; j++) {
+            sum += A[i][j] * A[i][j];
+        }
+    }
+    root = sqrt(sum);
+    return root;
 }
