@@ -1,0 +1,419 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 14.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     15151,        411]
+NotebookOptionsPosition[     13659,        385]
+NotebookOutlinePosition[     14070,        401]
+CellTagsIndexPosition[     14027,        398]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[TextData[{
+ StyleBox["Algunas gram\[AAcute]ticas formales", "Title",
+  FontColor->RGBColor[0., 0., 0.6274509803921569]],
+ "\n",
+ StyleBox["\tProporcionamos algunas gram\[AAcute]ticas incontextuales con el \
+formato de lista correspondiente y las soluciones a las  actividades \
+propuestas en el bolet\[IAcute]n de pr\[AAcute]cticas",
+  FontSize->18,
+  FontColor->GrayLevel[0]]
+}], "Text",
+ CellFrame->{{0, 0}, {0.5, 0}},
+ CellDingbat->None,
+ CellChangeTimes->{{3.919318687448533*^9, 3.9193187206931353`*^9}, {
+   3.9193190724178915`*^9, 3.919319077976914*^9}, {3.91931915338204*^9, 
+   3.919319164430991*^9}, {3.919319303904173*^9, 3.919319304057633*^9}, {
+   3.919319512820711*^9, 3.9193195834360566`*^9}, {3.919319711334188*^9, 
+   3.919319711964039*^9}, {3.919319792947121*^9, 3.919319864701899*^9}, {
+   3.919320731624971*^9, 3.919320859154929*^9}, {3.919320988627527*^9, 
+   3.919321032981636*^9}, {3.9193210834612074`*^9, 3.919321244395852*^9}, {
+   3.919321282518653*^9, 3.9193213949950933`*^9}, {3.9193215916163406`*^9, 
+   3.919321608074589*^9}, {3.919344213884396*^9, 3.919344213928817*^9}, {
+   3.919344502430918*^9, 3.919344519643463*^9}, 3.919344560741996*^9, {
+   3.919344616080111*^9, 3.919344654713477*^9}, {3.919344690072657*^9, 
+   3.919344728129792*^9}, {3.939362248512537*^9, 3.939362253581213*^9}, {
+   3.9470422080804443`*^9, 3.9470422720115433`*^9}, {3.9470455724062595`*^9, 
+   3.9470455898472157`*^9}, {3.94704616368622*^9, 3.947046189109169*^9}},
+ TextAlignment->AlignmentMarker,
+ Background->RGBColor[
+  1, 1, 0.85],ExpressionUUID->"c6154ef5-1498-9340-a320-ee8677bf01e2"],
+
+Cell[TextData[{
+ StyleBox["Ejemplo  1",
+  FontSize->24,
+  FontVariations->{"Underline"->True}],
+ StyleBox["\n\t\t\t",
+  FontSize->24],
+ StyleBox["S \[RightArrow] aA | bBA | ab\n\t\t\t\tA \[RightArrow] aA | BBA\n\t\
+\t\t\tB \[RightArrow] \[Lambda] | Sa | BS",
+  FontSize->18,
+  FontColor->RGBColor[0.8509803921568627, 0., 0.]]
+}], "Text",
+ CellFrame->{{0, 0}, {0, 0}},
+ CellChangeTimes->{{3.9470422796352425`*^9, 3.947042292747738*^9}, {
+  3.947042345399252*^9, 3.9470423652508354`*^9}, {3.9470424083694477`*^9, 
+  3.947042425677185*^9}, {3.9470425009456367`*^9, 3.9470425019334393`*^9}, {
+  3.947045596131321*^9, 3.947045727331793*^9}, {3.9470457822393913`*^9, 
+  3.9470457850821*^9}, {3.947045864994047*^9, 3.9470458703541546`*^9}},
+ Background->None,ExpressionUUID->"c327b945-b4d3-774b-b780-f53cd1de0a67"],
+
+Cell[BoxData[
+ RowBox[{"Ejemplo1", "=", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"S", ",", "A", ",", "B"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"a", ",", "b"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", "S", "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"a", ",", "A"}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"b", ",", "B", ",", "A"}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"a", ",", "b"}], "}"}]}], "}"}]}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", "A", "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"a", ",", "A"}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"B", ",", "B", ",", "A"}], "}"}]}], "}"}]}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", "B", "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"{", "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"S", ",", "a"}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"B", ",", "S"}], "}"}]}], "}"}]}], "}"}]}], "}"}], ",", 
+    "S"}], "}"}]}]], "Input",
+ CellChangeTimes->{{3.947042507750208*^9, 3.9470428076940804`*^9}, 
+   3.947042844936764*^9, {3.947043142770687*^9, 3.9470431459659576`*^9}, {
+   3.978662314263014*^9, 
+   3.978662316258726*^9}},ExpressionUUID->"97715b65-d12a-aa4a-a3c0-\
+9edb00f86b25"],
+
+Cell["\<\
+\t\t\t\t\tDirectamente  generativos : {S, B}
+\t\t\t\t\tDirectamente  no  generativos : {A}\
+\>", "Text",
+ CellChangeTimes->{{3.947042934762228*^9, 3.947042991948341*^9}, {
+  3.947046296937418*^9, 3.947046315648657*^9}, {3.9481786777588406`*^9, 
+  3.948178677843725*^9}},ExpressionUUID->"7a152d39-f295-eb40-8d5d-\
+a6d42f049829"],
+
+Cell[TextData[{
+ "\n",
+ StyleBox["Ejemplo 2",
+  FontVariations->{"Underline"->True}],
+ "\n",
+ StyleBox["\t\t\t",
+  FontColor->RGBColor[0.8509803921568627, 0., 0.]],
+ StyleBox["S \[RightArrow] B | A | C | SA\n\t\t\t\tA \[RightArrow] S | abba\n\
+\t\t\t\tB \[RightArrow] AbBC | BBA | BSB\n\t\t\t\tC \[RightArrow] CS | SCSA | \
+AAbBCB",
+  FontSize->18,
+  FontColor->RGBColor[0.8509803921568627, 0., 0.]],
+ StyleBox["\n",
+  FontSize->16]
+}], "Text",
+ CellChangeTimes->{{3.94704300085902*^9, 3.9470430583986893`*^9}, {
+   3.9470430887840824`*^9, 3.9470430911767426`*^9}, 3.94704452320142*^9, {
+   3.947045944846901*^9, 3.9470460629903812`*^9}, {3.947046099083872*^9, 
+   3.9470461346270905`*^9}},
+ FontSize->24,ExpressionUUID->"d777ba74-0975-9644-b252-3010c3859e21"],
+
+Cell[BoxData[
+ RowBox[{"Ejemplo2", "=", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"S", ",", "A", ",", "B", ",", "C"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"a", ",", "b"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", "S", "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"{", "B", "}"}], ",", 
+          RowBox[{"{", "A", "}"}], ",", 
+          RowBox[{"{", "C", "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"S", ",", "A"}], "}"}]}], "}"}]}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", "A", "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"{", "S", "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"a", ",", "b", ",", "b", ",", "a"}], "}"}]}], "}"}]}], 
+       "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", "B", "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"A", ",", "b", ",", "B", ",", "C"}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"B", ",", "B", ",", "A"}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"B", ",", "S", ",", "B"}], "}"}]}], "}"}]}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", "C", "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"C", ",", "S"}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"S", ",", "C", ",", "S", ",", "A"}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"A", ",", "A", ",", "b", ",", "B", ",", "C", ",", "B"}], 
+           "}"}]}], "}"}]}], "}"}]}], "}"}], ",", "S"}], "}"}]}]], "Input",
+ CellChangeTimes->{{3.9470431218913345`*^9, 3.94704315742885*^9}, {
+   3.94704360746451*^9, 3.9470436483774967`*^9}, {3.9470436944988728`*^9, 
+   3.9470437618998127`*^9}, {3.9470438179241276`*^9, 
+   3.9470439509833336`*^9}, {3.9470441266973896`*^9, 3.947044129120119*^9}, 
+   3.947044417292734*^9},
+ CellLabel->"In[9]:=",ExpressionUUID->"3824cfcc-4b0c-d240-931d-e785d0c9bc13"],
+
+Cell["\<\
+\t\t\t\t\tDirectamente  generativos : {A}
+\t\t\t\t\tDirectamente  no  generativos : {B, C}\
+\>", "Text",
+ CellChangeTimes->{{3.947042934762228*^9, 3.9470429919483414`*^9}, {
+  3.9470444572661343`*^9, 3.9470444719909344`*^9}, {3.9470463250373173`*^9, 
+  3.9470463428454437`*^9}},ExpressionUUID->"0d8a78da-cbf7-a142-8fd0-\
+beb7bbf73727"],
+
+Cell[TextData[{
+ StyleBox["Ejemplo 3",
+  FontSize->24,
+  FontVariations->{"Underline"->True}],
+ StyleBox["\n",
+  FontSize->24],
+ StyleBox["\t\t\t",
+  FontSize->24,
+  FontColor->RGBColor[0.8509803921568627, 0., 0.]],
+ StyleBox["S \[RightArrow] CB | AB\n\t\t\t\tA \[RightArrow] a\n\t\t\t\tB \
+\[RightArrow] b\n\t\t\t\tC \[RightArrow] AS",
+  FontSize->18,
+  FontColor->RGBColor[0.8509803921568627, 0., 0.]]
+}], "Text",
+ CellChangeTimes->{{3.947044483623575*^9, 3.9470444929525013`*^9}, 
+   3.9470445256828957`*^9, {3.947046196020159*^9, 
+   3.9470462769030533`*^9}},ExpressionUUID->"93a2eaf5-9517-7648-875d-\
+daf98479c31a"],
+
+Cell[BoxData[
+ RowBox[{"Ejemplo3", "=", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"S", ",", "A", ",", "B", ",", "C"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"a", ",", "b"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", "S", "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"C", ",", "B"}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"A", ",", "B"}], "}"}]}], "}"}]}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", "A", "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"{", "a", "}"}], "}"}]}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", "B", "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"{", "b", "}"}], "}"}]}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", "C", "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"{", 
+          RowBox[{"A", ",", "S"}], "}"}], "}"}]}], "}"}]}], "}"}], ",", "S"}],
+    "}"}]}]], "Input",
+ CellChangeTimes->{{3.947044555183321*^9, 3.94704465659284*^9}, {
+  3.94704469087002*^9, 3.9470447800385056`*^9}},
+ CellLabel->"In[10]:=",ExpressionUUID->"5d4e2e45-fe09-c543-a35c-54ff50a91568"],
+
+Cell["\<\
+\t\t\t\t\tDirectamente   generativos : {A, B}
+\t\t\t\t\tDirectamente   no   generativos : {}
+\t\t\t\t\tCYK : aabb   (True)   
+\t\t\t\t\t           aaab   (False)         
+\t\t\t\t\t           abab   (False)\
+\>", "Text",
+ CellFrame->{{0, 0}, {0, 0}},
+ CellChangeTimes->{{3.947044790339798*^9, 3.9470449593587246`*^9}, {
+  3.9470449911708527`*^9, 3.947045017146265*^9}, {3.9470464030148296`*^9, 
+  3.9470464497350388`*^9}},ExpressionUUID->"241b9866-8ef6-a54b-abfc-\
+1fd0d4fcdcfa"],
+
+Cell[TextData[{
+ StyleBox["Ejemplo  4",
+  FontVariations->{"Underline"->True}],
+ "\n\t",
+ StyleBox["\t\t               ",
+  FontSize->16],
+ StyleBox["S \[RightArrow] CA | DB | a | b | EF\n\t\t\t     \tA \[RightArrow] \
+a\n\t\t\t     \tB \[RightArrow] b\n\t\t\t \tC \[RightArrow] AS\n\t\t\t\tD \
+\[RightArrow] BS\n\t\t\t\tE \[RightArrow] FF | FE\n\t\t\t\tF \[RightArrow] FF \
+| FE",
+  FontSize->18,
+  FontColor->RGBColor[0.8509803921568627, 0., 0.]]
+}], "Text",
+ CellChangeTimes->{{3.9470451343487225`*^9, 3.9470451936681576`*^9}, {
+  3.947046482479231*^9, 3.947046619057863*^9}, {3.9470466567751865`*^9, 
+  3.9470466706983147`*^9}, {3.9470467241873665`*^9, 3.9470467723273487`*^9}},
+ FontSize->24,ExpressionUUID->"d41ad3f9-cd09-7545-827b-0d55add3db77"],
+
+Cell[BoxData[
+ RowBox[{"Ejemplo4", "=", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+     "S", ",", "A", ",", "B", ",", "C", ",", "D", ",", "E", ",", "F"}], "}"}],
+     ",", 
+    RowBox[{"{", 
+     RowBox[{"a", ",", "b"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", "S", "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"C", ",", "A"}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"D", ",", "B"}], "}"}], ",", 
+          RowBox[{"{", "a", "}"}], ",", 
+          RowBox[{"{", "b", "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"E", ",", "F"}], "}"}]}], "}"}]}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", "A", "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"{", "a", "}"}], "}"}]}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", "B", "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"{", "b", "}"}], "}"}]}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", "C", "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"{", 
+          RowBox[{"A", ",", "S"}], "}"}], "}"}]}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", "D", "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"{", 
+          RowBox[{"B", ",", "S"}], "}"}], "}"}]}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", "E", "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"F", ",", "F"}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"F", ",", "E"}], "}"}]}], "}"}]}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", "F", "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"F", ",", "F"}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"F", ",", "E"}], "}"}]}], "}"}]}], "}"}]}], "}"}], ",", 
+    "S"}], "}"}]}]], "Input",
+ CellChangeTimes->{{3.9470452124340057`*^9, 3.947045453219496*^9}},
+ CellLabel->"In[11]:=",ExpressionUUID->"1172f5cd-8ce2-f747-be11-6b7bae130ace"],
+
+Cell["\<\
+\t\t\t\t\tDirectamente  generativos : {S, A, B}
+\t\t\t\t\tDirectamente  no  generativos : {F}
+\t\t\t\t\tCYK : ababa  (True)      
+\t\t\t\t\t            aaab  (False)  
+\t\t\t\t\t            bbbabbb  (True)\
+\>", "Text",
+ CellChangeTimes->{{3.9470454726544323`*^9, 3.947045549783617*^9}, {
+  3.947046785354599*^9, 
+  3.947046816515749*^9}},ExpressionUUID->"048107f8-7de3-8d47-8bf7-\
+1991d533644d"]
+},
+WindowSize->{1246.5, 696.75},
+WindowMargins->{{Automatic, 270}, {111, Automatic}},
+FrontEndVersion->"14.2 para Microsoft Windows (64-bit) (December 26, 2024)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"0fe92a7d-8171-db4f-bc18-10674c4cc8e1"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 1603, 28, 139, "Text",ExpressionUUID->"c6154ef5-1498-9340-a320-ee8677bf01e2"],
+Cell[2164, 50, 807, 17, 129, "Text",ExpressionUUID->"c327b945-b4d3-774b-b780-f53cd1de0a67"],
+Cell[2974, 69, 1490, 45, 28, "Input",ExpressionUUID->"97715b65-d12a-aa4a-a3c0-9edb00f86b25"],
+Cell[4467, 116, 337, 7, 55, "Text",ExpressionUUID->"7a152d39-f295-eb40-8d5d-a6d42f049829"],
+Cell[4807, 125, 760, 19, 211, "Text",ExpressionUUID->"d777ba74-0975-9644-b252-3010c3859e21"],
+Cell[5570, 146, 2074, 57, 77, "Input",ExpressionUUID->"3824cfcc-4b0c-d240-931d-e785d0c9bc13"],
+Cell[7647, 205, 345, 7, 55, "Text",ExpressionUUID->"0d8a78da-cbf7-a142-8fd0-beb7bbf73727"],
+Cell[7995, 214, 620, 17, 155, "Text",ExpressionUUID->"93a2eaf5-9517-7648-875d-daf98479c31a"],
+Cell[8618, 233, 1243, 38, 42, "Input",ExpressionUUID->"5d4e2e45-fe09-c543-a35c-54ff50a91568"],
+Cell[9864, 273, 489, 11, 121, "Text",ExpressionUUID->"241b9866-8ef6-a54b-abfc-1fd0d4fcdcfa"],
+Cell[10356, 286, 752, 16, 232, "Text",ExpressionUUID->"d41ad3f9-cd09-7545-827b-0d55add3db77"],
+Cell[11111, 304, 2135, 67, 77, "Input",ExpressionUUID->"1172f5cd-8ce2-f747-be11-6b7bae130ace"],
+Cell[13249, 373, 406, 10, 121, "Text",ExpressionUUID->"048107f8-7de3-8d47-8bf7-1991d533644d"]
+}
+]
+*)
+
