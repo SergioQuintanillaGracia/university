@@ -1,0 +1,4 @@
+hola, esta es la primera línea
+la segunda línea del fichero prueba.txt
+otra línea más
+por fin termina este fichero de 4 líneas hola hola
