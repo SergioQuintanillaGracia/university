@@ -1,0 +1,22 @@
+MAX = xae + xbe + xce;
+
+[Capital] 650 * (xas + xan + xae) + 500 * (xbs + xbn + xbe) + 450 * (xcs + xcn + xce) <= 50000000;
+
+[Crudo_A] xas + xan + xae >= 2500;
+[Crudo_B] xbs + xbn + xbe <= 3000;
+[Crudo_C] xcs + xcn + xce <= 7000;
+
+[Dem_S] xas + xbs + xcs >= 2000;
+[Dem_N] xan + xbn + xcn >= 2500;
+
+[Comp1_S] 0.80 * xas + 0.45 * xbs + 0.30 * xcs >= 0.60 * (xas + xbs + xcs);
+[Comp2_S] 0.10 * xas + 0.30 * xbs + 0.40 * xcs <= 0.25 * (xas + xbs + xcs);
+[Comp3_S] 0.05 * xas + 0.20 * xbs + 0.25 * xcs >= 0.10 * (xas + xbs + xcs);
+
+[Comp1_N] 0.80 * xan + 0.45 * xbn + 0.30 * xcn >= 0.50 * (xan + xbn + xcn);
+[Comp2_N] 0.10 * xan + 0.30 * xbn + 0.40 * xcn <= 0.30 * (xan + xbn + xcn);
+[Comp3_N] 0.05 * xan + 0.20 * xbn + 0.25 * xcn <= 0.15 * (xan + xbn + xcn);
+
+[Comp1_E] 0.80 * xae + 0.45 * xbe + 0.30 * xce <= 0.40 * (xae + xbe + xce);
+[Comp2_E] 0.10 * xae + 0.30 * xbe + 0.40 * xce >= 0.35 * (xae + xbe + xce);
+[Comp3_E] 0.05 * xae + 0.20 * xbe + 0.25 * xce >= 0.20 * (xae + xbe + xce);
