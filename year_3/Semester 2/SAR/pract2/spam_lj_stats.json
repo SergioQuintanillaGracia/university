@@ -1,0 +1,18 @@
+{
+    "metadata": {
+        "source_file": "spam.txt",
+        "options": {
+            "lower": false,
+            "stopwords": false,
+            "bigrams": false,
+            "entropy": false
+        }
+    },
+    "basic_stats": {
+        "lines": 11,
+        "words": 77,
+        "vocab_size": 22,
+        "symbols": 324,
+        "unique_symbols": 23
+    }
+}
