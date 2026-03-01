@@ -1,0 +1,176 @@
+Lines: 18695
+Number of words (including stopwords): 167242
+Number of words (without stopwords): 83587
+Vocabulary size: 7026
+Number of symbols: 441539
+Number of different symbols: 61
+Shannon entropy: 4.4604 bits/symbol
+Redundancy: 24.79%
+Words (alphabetical order):
+	0: 1
+	00: 1
+	000: 1
+	01: 1
+	02: 1
+	03: 1
+	04: 1
+	05: 1
+	1: 49
+	10: 2
+	10000: 2
+	10234: 2
+	103: 1
+	11: 2
+	12: 2
+	13th: 1
+	1413: 1
+	1438: 1
+	1439: 1
+	1460: 1
+Words (by frequency):
+	I: 2258
+	Tirant: 1871
+	The: 1083
+	said: 1070
+	When: 873
+	would: 869
+	emperor: 712
+	And: 628
+	went: 605
+	king: 603
+	princess: 590
+	great: 517
+	could: 487
+	one: 486
+	saw: 456
+	go: 445
+	men: 426
+	many: 409
+	He: 392
+	city: 373
+Symbols (alphabetical order):
+	0: 65
+	1: 133
+	2: 40
+	3: 38
+	4: 38
+	5: 30
+	6: 25
+	7: 31
+	8: 29
+	9: 61
+	A: 1444
+	B: 550
+	C: 692
+	D: 518
+	E: 585
+	F: 370
+	G: 525
+	H: 1143
+	I: 2927
+	J: 137
+Symbols (by frequency):
+	e: 56586
+	a: 33036
+	n: 31944
+	r: 29773
+	i: 28693
+	t: 28108
+	o: 27456
+	s: 27411
+	d: 22942
+	l: 21061
+	h: 15031
+	c: 12894
+	g: 12857
+	u: 12085
+	m: 10990
+	p: 10189
+	y: 8200
+	w: 7950
+	k: 6100
+	f: 5573
+Word pairs (alphabetical order):
+	$ 1: 24
+	$ 10: 1
+	$ 11: 1
+	$ 12: 1
+	$ 1512: 1
+	$ 2: 1
+	$ 3: 1
+	$ 4: 1
+	$ 5: 1
+	$ 501: 1
+	$ 6: 1
+	$ 7: 1
+	$ 8: 1
+	$ 809: 1
+	$ 9: 1
+	$ 98: 1
+	$ A: 15
+	$ AFTERMATH: 1
+	$ Abyssinia: 1
+	$ Accompanied: 1
+Word pairs (by frequency):
+	$ The: 507
+	said $: 414
+	$ When: 384
+	$ Tirant: 339
+	$ I: 229
+	$ My: 212
+	$ And: 152
+	Tirant $: 148
+	I $: 137
+	I would: 132
+	Your Majesty: 127
+	The emperor: 123
+	I ll: 115
+	When Tirant: 115
+	I beg: 106
+	Your Highness: 104
+	The princess: 103
+	$ Then: 99
+	$ Oh: 93
+	My lord: 91
+Symbol pairs (alphabetical order):
+	00: 15
+	01: 6
+	02: 3
+	03: 5
+	04: 2
+	05: 1
+	06: 1
+	08: 1
+	09: 1
+	0t: 3
+	10: 7
+	11: 6
+	12: 6
+	13: 2
+	14: 11
+	15: 10
+	16: 3
+	17: 3
+	18: 3
+	19: 19
+Symbol pairs (by frequency):
+	in: 8121
+	er: 6920
+	an: 6754
+	ed: 6512
+	en: 6412
+	re: 5795
+	ng: 5416
+	nt: 5308
+	he: 5279
+	or: 4855
+	ou: 4715
+	es: 4601
+	on: 4378
+	ea: 4260
+	le: 3964
+	te: 3756
+	ar: 3746
+	ve: 3481
+	ne: 3471
+	se: 3460

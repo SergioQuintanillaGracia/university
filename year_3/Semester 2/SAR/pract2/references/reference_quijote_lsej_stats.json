@@ -1,0 +1,67 @@
+{
+    "metadata": {
+        "source_file": "quijote.txt",
+        "options": {
+            "lower": true,
+            "stopwords": true,
+            "bigrams": false,
+            "entropy": true
+        }
+    },
+    "basic_stats": {
+        "lines": 37454,
+        "words": 381223,
+        "words_without_stopwords": 183221,
+        "vocab_size": 22675,
+        "symbols": 1132072,
+        "unique_symbols": 43
+    },
+    "entropy_analysis": {
+        "shannon_entropy": 4.174834053702493,
+        "redundancy": 0.2306247036536846
+    },
+    "top_words": {
+        "don": 2647,
+        "quijote": 2175,
+        "sancho": 2148,
+        "si": 1966,
+        "dijo": 1808,
+        "tan": 1243,
+        "así": 1065,
+        "respondió": 1063,
+        "señor": 1063,
+        "ser": 1056,
+        "bien": 1050,
+        "merced": 900,
+        "pues": 865,
+        "sino": 694,
+        "dos": 684,
+        "caballero": 661,
+        "decir": 578,
+        "hacer": 535,
+        "aunque": 531,
+        "dios": 531
+    },
+    "top_symbols": {
+        "a": 145253,
+        "e": 128821,
+        "o": 103110,
+        "r": 86286,
+        "s": 84826,
+        "n": 74007,
+        "i": 70472,
+        "d": 61378,
+        "c": 50508,
+        "l": 46550,
+        "t": 45723,
+        "u": 39332,
+        "m": 33477,
+        "p": 27273,
+        "b": 20895,
+        "g": 16368,
+        "v": 16211,
+        "h": 14362,
+        "j": 10530,
+        "í": 9292
+    }
+}

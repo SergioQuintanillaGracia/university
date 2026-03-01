@@ -55,7 +55,7 @@ class WordCounter:
             pass
 
 
-    def write_stats_json(self, filename, source_file, stats, use_stopwords, full):
+    def write_stats_json(self, filename, source_file, stats, lower, use_stopwords, full):
         """
         Este mÃ©todo escribe en formato JSON las estadÃ­sticas de un fichero
             
@@ -77,7 +77,7 @@ class WordCounter:
             "metadata": {
                 "source_file": source_file,
                 "options": {
-                    "lower": use_stopwords,
+                    "lower": lower,
                     "stopwords": use_stopwords,
                     "bigrams": 'biword' in stats,
                     "entropy": 'entropy' in stats
@@ -178,7 +178,7 @@ class WordCounter:
         new_filename = filename.split('.')[0] + '_' + options_str + '_stats' + ('.json' if use_json else '.txt')
        
         if use_json:
-            self.write_stats_json(new_filename, filename, stats, stopwordsfile is not None, full)
+            self.write_stats_json(new_filename, filename, stats, lower, stopwordsfile is not None, full)
         else:
             self.write_stats_text(new_filename, stats, stopwordsfile is not None, full)
 

@@ -1,0 +1,175 @@
+Lines: 18695
+Number of words (including stopwords): 167242
+Vocabulary size: 7151
+Number of symbols: 686860
+Number of different symbols: 61
+Shannon entropy: 4.3338 bits/symbol
+Redundancy: 26.93%
+Words (alphabetical order):
+	0: 1
+	00: 1
+	000: 1
+	01: 1
+	02: 1
+	03: 1
+	04: 1
+	05: 1
+	1: 49
+	10: 2
+	10000: 2
+	10234: 2
+	103: 1
+	11: 2
+	12: 2
+	13th: 1
+	1413: 1
+	1438: 1
+	1439: 1
+	1460: 1
+Words (by frequency):
+	the: 10442
+	and: 7007
+	to: 5498
+	of: 3676
+	he: 2772
+	that: 2629
+	I: 2258
+	a: 2176
+	in: 2108
+	you: 2090
+	Tirant: 1871
+	was: 1868
+	they: 1856
+	had: 1669
+	his: 1606
+	him: 1562
+	with: 1494
+	her: 1234
+	all: 1192
+	for: 1192
+Symbols (alphabetical order):
+	0: 65
+	1: 133
+	2: 40
+	3: 38
+	4: 38
+	5: 30
+	6: 25
+	7: 31
+	8: 29
+	9: 61
+	A: 1444
+	B: 550
+	C: 692
+	D: 518
+	E: 585
+	F: 370
+	G: 525
+	H: 1143
+	I: 2927
+	J: 137
+Symbols (by frequency):
+	e: 87450
+	t: 61969
+	a: 55206
+	o: 49895
+	h: 49357
+	n: 46599
+	i: 41235
+	r: 38682
+	s: 38013
+	d: 33273
+	l: 25739
+	u: 17780
+	m: 16776
+	w: 15990
+	y: 15192
+	c: 14097
+	g: 13294
+	f: 12203
+	p: 10568
+	b: 8402
+Word pairs (alphabetical order):
+	$ 1: 24
+	$ 10: 1
+	$ 11: 1
+	$ 12: 1
+	$ 1512: 1
+	$ 2: 1
+	$ 3: 1
+	$ 4: 1
+	$ 5: 1
+	$ 501: 1
+	$ 6: 1
+	$ 7: 1
+	$ 8: 1
+	$ 809: 1
+	$ 9: 1
+	$ 98: 1
+	$ A: 15
+	$ AFTERMATH: 1
+	$ Abyssinia: 1
+	$ Accompanied: 1
+Word pairs (by frequency):
+	the $: 1027
+	to the: 873
+	of the: 796
+	$ the: 584
+	and the: 583
+	in the: 570
+	and $: 564
+	$ The: 507
+	all the: 489
+	the emperor: 489
+	to $: 435
+	and he: 420
+	said $: 414
+	the princess: 408
+	$ and: 404
+	$ When: 384
+	the king: 347
+	$ Tirant: 339
+	that he: 321
+	of $: 312
+Symbol pairs (alphabetical order):
+	00: 15
+	01: 6
+	02: 3
+	03: 5
+	04: 2
+	05: 1
+	06: 1
+	08: 1
+	09: 1
+	0t: 3
+	10: 7
+	11: 6
+	12: 6
+	13: 2
+	14: 11
+	15: 10
+	16: 3
+	17: 3
+	18: 3
+	19: 19
+Symbol pairs (by frequency):
+	he: 25872
+	th: 23153
+	an: 14642
+	er: 11247
+	in: 10878
+	nd: 10188
+	ou: 8788
+	re: 8458
+	ha: 7872
+	to: 7453
+	en: 7318
+	or: 6960
+	at: 6715
+	ed: 6512
+	hi: 6111
+	nt: 5768
+	on: 5620
+	ng: 5586
+	is: 5280
+	ve: 5050
