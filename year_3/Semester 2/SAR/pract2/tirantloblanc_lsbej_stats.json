@@ -17,8 +17,8 @@
         "unique_symbols": 36
     },
     "entropy_analysis": {
-        "shannon_entropy": 4.2228478325132315,
-        "redundancy": 0.18318973073397848
+        "shannon_entropy": 4.222847832513231,
+        "redundancy": 0.1831897307339787
     },
     "top_words": {
         "tirant": 1874,

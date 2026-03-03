@@ -35,14 +35,26 @@ class WordCounter:
            Constructor de la clase WordCounter
         """
         self.clean_re = re.compile(r'\W+')
+    
+    def get_shannon_entropy(self, symbols: dict, total_symbols):
+        entropy = 0
+
+        for symbol, count in symbols.items():
+            p = count / total_symbols
+            entropy -= p * math.log2(p)
+        
+        return entropy
+
+    def get_redundancy(self, shannon_entropy, num_of_unique_symbols):
+        return 1 - shannon_entropy / math.log2(num_of_unique_symbols)
 
     def write_stats_text(self, filename, stats, use_stopwords, full):
         """
-        Este mÃ©todo escribe en texto plano las estadÃ­sticas de un fichero
+        Este mÃ©todo escribe en texto plano las estadísticas de un fichero
             
         :param 
             filename: el nombre del fichero destino.
-            stats: las estadÃ­sticas del texto.
+            stats: las estadísticas del texto.
             use_stopwords: booleano, si se han utilizado stopwords
             full: boolean, si se deben mostrar las stats completas
 
@@ -55,23 +67,22 @@ class WordCounter:
             pass
 
 
-    def write_stats_json(self, filename, source_file, stats, lower, use_stopwords, full):
+    def write_stats_json(self, filename, source_file, stats, lower, use_stopwords,
+                         words_without_stopwords_count, vocab_size, total_symbol_count,
+                         unique_symbol_count, entropy, redundancy, top_words, top_symbols,
+                         top_word_pairs, top_symbol_pairs):
         """
-        Este mÃ©todo escribe en formato JSON las estadÃ­sticas de un fichero
+        Este método escribe en formato JSON las estadísticas de un fichero
             
         :param 
             filename: el nombre del fichero destino.
             source_file: el nombre del fichero fuente.
-            stats: las estadÃ­sticas del texto.
+            stats: las estadíticas del texto.
             use_stopwords: booleano, si se han utilizado stopwords
             full: boolean, si se deben mostrar las stats completas
 
         :return: None
         """
-
-        total_symbol_count = 0
-        for k, v in stats['symbol'].items():
-            total_symbol_count += v
 
         js = {
             "metadata": {
@@ -85,12 +96,31 @@ class WordCounter:
             },
             "basic_stats": {
                 "lines": stats['nlines'],
-                "words": stats['nwords'],
-                "vocab_size": len(stats['word'].keys()),
-                "symbols": total_symbol_count,
-                "unique_symbols": len(stats['symbol'].keys())
+                "words": stats['nwords']
             }
         }
+
+        if use_stopwords:
+            js['basic_stats']['words_without_stopwords'] = words_without_stopwords_count
+
+        js['basic_stats'].update({
+                "vocab_size": vocab_size,
+                "symbols": total_symbol_count,
+                "unique_symbols": unique_symbol_count
+            })
+
+        if entropy:
+            js["entropy_analysis"] = {
+                    "shannon_entropy": entropy,
+                    "redundancy": redundancy
+                }
+        
+        js["top_words"] = top_words
+        js["top_symbols"] = top_symbols
+
+        if top_word_pairs:
+            js["top_word_pairs"] = top_word_pairs
+            js["top_symbol_pairs"] = top_symbol_pairs
 
         with open(filename, 'w', encoding='utf-8') as fh:
             json.dump(js, fh, indent=4, ensure_ascii=False)
@@ -98,16 +128,16 @@ class WordCounter:
 
     def file_stats(self, filename, lower, stopwordsfile, bigrams, full, entropy, use_json):
         """
-        Este mÃ©todo calcula las estadÃ­sticas de un fichero de texto
+        Este método calcula las estadísticas de un fichero de texto
 
         :param 
             filename: el nombre del fichero.
-            lower: booleano, se debe pasar todo a minÃºsculas?
+            lower: booleano, se debe pasar todo a minúsculas?
             stopwordsfile: nombre del fichero con las stopwords o None si no se aplican
             bigram: booleano, se deben calcular bigramas?
-            full: booleano, se deben montrar la estadÃ­sticas completas?
-            entropy: booleano, se debe calcular la entropÃ­a de Shannon?
-            use_json: booleano, se debe mostrar las estadÃ­sticas en formato JSON?
+            full: booleano, se deben montrar la estadísticas completas?
+            entropy: booleano, se debe calcular la entropía de Shannon?
+            use_json: booleano, se debe mostrar las estadísticas en formato JSON?
         :return: None
         """
 
@@ -129,63 +159,122 @@ class WordCounter:
         if entropy:
             stats['entropy'] = None
             stats['redundancy'] = None
+        
+        def add_to_dict(word, dict):
+            if word in dict.keys():
+                dict[word] += 1
+            else:
+                dict[word] = 1
 
         def add_word(word):
-            if word in stats['word'].keys():
-                stats['word'][word] += 1
-            else:
-                stats['word'][word] = 1
+            add_to_dict(word, stats['word'])
             
         def add_symbol(word):
-            if word in stats['symbol'].keys():
-                stats['symbol'][word] += 1
-            else:
-                stats['symbol'][word] = 1
+            add_to_dict(word, stats['symbol'])
+        
+        top_word_pairs = {}
+        top_symbol_pairs = {}
 
         with open(filename, 'r') as file:
             for line in file:
                 stats['nlines'] += 1
 
-                line = self.clean_re.sub(' ', line)
-
                 if lower:
                     line = line.lower()
+                
+                line = self.clean_re.sub(' ', line)
+                words = line.split()
 
-                words = re.split(r'\s+', line.strip())
-                print(words)
+                if not words:
+                    continue
+
+                stats['nwords'] += len(words)
+
+                if bigrams:
+                    word_bigrams = get_ngrams(words.copy(), 2, True)
+                    for bigram in word_bigrams:
+                        # Ignore bigrams containing stopwords
+                        if bigram[0] in stopwords or bigram[1] in stopwords:
+                            continue
+
+                        pair = f"{bigram[0]} {bigram[1]}"
+                        add_to_dict(pair, top_word_pairs)
+
+                # Remove stopwords
+                words = [word for word in words if word not in stopwords]
 
                 for word in words:
-                    stats['nwords'] += 1
-
-                    if word in stopwords:
-                        pass
-                    
                     add_word(word)
 
-                    print(word)
+                    if bigrams:
+                        symbol_bigrams = get_ngrams(list(word), 2, False)
+                        for bigram in symbol_bigrams:
+                            pair = f"{bigram[0]}{bigram[1]}"
+                            add_to_dict(pair, top_symbol_pairs)
                     
                     for symbol in word:
                         add_symbol(symbol)
 
         # Generating the new filename
-        options_str = ''
+        options_str = '_'
         options_str += 'l' if lower else ''
         options_str += 's' if stopwordsfile else ''
         options_str += 'b' if bigrams else ''
         options_str += 'f' if full else ''
         options_str += 'e' if entropy else ''
         options_str += 'j' if use_json else ''
-        new_filename = filename.split('.')[0] + '_' + options_str + '_stats' + ('.json' if use_json else '.txt')
-       
+        options_str = '' if len(options_str) == 1 else options_str  # Clean the options string if it only contains `_`
+        new_filename = filename.split('.')[0] + options_str + '_stats' + ('.json' if use_json else '.txt')
+        
+        # Count unique symbols and words
+        unique_symbol_count = len(stats['symbol'].keys())
+        vocab_size = len(stats['word'].keys())
+
+        # Count total symbols and words without stopwords
+        total_symbol_count = 0
+        for k, v in stats['symbol'].items():
+            total_symbol_count += v
+        
+        words_without_stopwords_count = 0
+        for k, v in stats['word'].items():
+            words_without_stopwords_count += v
+        
+        # Sort frequency dictionaries and trim them if necessary
+        word_freq_sorted = sort_dic_by_values(stats['word'])
+        symbol_freq_sorted = sort_dic_by_values(stats['symbol'])
+        top_word_pairs_sorted = sort_dic_by_values(top_word_pairs)
+        top_symbol_pairs_sorted = sort_dic_by_values(top_symbol_pairs)
+
+        if not full:
+            word_freq_sorted = word_freq_sorted[:20]
+            symbol_freq_sorted = symbol_freq_sorted[:20]
+            top_word_pairs_sorted = top_word_pairs_sorted[:20]
+            top_symbol_pairs_sorted = top_symbol_pairs_sorted[:20]
+
+        top_words = {word: count for (word, count) in word_freq_sorted}
+        top_symbols = {sym: count for (sym, count) in symbol_freq_sorted}
+        top_word_pairs = {pair: count for (pair, count) in top_word_pairs_sorted}
+        top_symbol_pairs = {pair: count for (pair, count) in top_symbol_pairs_sorted}
+        
+        # Calculate entropy and redundancy (if entropy calculations are enabled)
+        shannon_entropy = None
+        redundancy = None
+        if entropy:
+            shannon_entropy = self.get_shannon_entropy(stats['symbol'], total_symbol_count)
+            redundancy = self.get_redundancy(shannon_entropy, unique_symbol_count)          
+
         if use_json:
-            self.write_stats_json(new_filename, filename, stats, lower, stopwordsfile is not None, full)
+            self.write_stats_json(new_filename, filename, stats, lower, stopwordsfile is not None,
+                                  words_without_stopwords_count, vocab_size, total_symbol_count,
+                                  unique_symbol_count, shannon_entropy, redundancy, top_words,
+                                  top_symbols, top_word_pairs, top_symbol_pairs)
         else:
             self.write_stats_text(new_filename, stats, stopwordsfile is not None, full)
 
 
     def compute_files(self, filenames, **args):
         """
-        Este mÃ©todo calcula las estadÃ­sticas de una lista de ficheros de texto
+        Este mÃ©todo calcula las estadísticas de una lista de ficheros de texto
 
         :param 
             filenames: lista con los nombre de los ficheros.
@@ -235,6 +324,3 @@ if __name__ == "__main__":
                      full=args.full,
                      entropy=args.entropy,
                      use_json=args.json)
-    
-
-

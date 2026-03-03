@@ -2,7 +2,7 @@
     "metadata": {
         "source_file": "tirantloblanc.txt",
         "options": {
-            "lower": true,
+            "lower": false,
             "stopwords": true,
             "bigrams": true,
             "entropy": true
@@ -20,7 +20,7 @@
         "shannon_entropy": 4.460357456770276,
         "redundancy": 0.24792530795114132
     },
-    "words": {
+    "top_words": {
         "I": 2258,
         "Tirant": 1871,
         "The": 1083,
@@ -7048,7 +7048,7 @@
         "zip": 1,
         "zipped": 1
     },
-    "symbols": {
+    "top_symbols": {
         "e": 56586,
         "a": 33036,
         "n": 31944,
@@ -7111,7 +7111,7 @@
         "6": 25,
         "X": 18
     },
-    "word_pairs": {
+    "top_word_pairs": {
         "$ The": 507,
         "said $": 414,
         "$ When": 384,
@@ -30227,7 +30227,7 @@
         "zip $": 1,
         "zipped HTML": 1
     },
-    "symbol_pairs": {
+    "top_symbol_pairs": {
         "in": 8121,
         "er": 6920,
         "an": 6754,

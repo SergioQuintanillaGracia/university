@@ -2,7 +2,7 @@
     "metadata": {
         "source_file": "spam.txt",
         "options": {
-            "lower": false,
+            "lower": true,
             "stopwords": false,
             "bigrams": false,
             "entropy": false
