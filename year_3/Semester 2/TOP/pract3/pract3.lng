@@ -1,0 +1,5 @@
+MAX = a * 4 + b * 6 + c * 8;
+
+[total] a + b + c <= 50;
+[time] 20 * a + 30 * b + 32 * c <= 1000;
+[compromiso] a + b >= 10;
