@@ -1,6 +1,6 @@
 #! -*- encoding: utf8 -*-
 
-## Nombres: 
+## Nombres: Antonio Gasperini, Sergio Quintanilla
 
 ########################################################################
 ########################################################################
@@ -35,7 +35,7 @@ class WordCounter:
            Constructor de la clase WordCounter
         """
         self.clean_re = re.compile(r'\W+')
-    
+
     def get_shannon_entropy(self, symbols: dict, total_symbols):
         entropy = 0
 
@@ -47,30 +47,128 @@ class WordCounter:
 
     def get_redundancy(self, shannon_entropy, num_of_unique_symbols):
         return 1 - shannon_entropy / math.log2(num_of_unique_symbols)
-
-    def write_stats_text(self, filename, stats, use_stopwords, full):
+    
+    def write_stats_text(
+        self,
+        filename,
+        stats,
+        use_stopwords,
+        words_without_stopwords_count,
+        vocab_size,
+        total_symbol_count,
+        unique_symbol_count,
+        entropy,
+        redundancy,
+        top_words,
+        alphabetical_words,
+        top_symbols,
+        alphabetical_symbols,
+        top_word_pairs,
+        alphabetical_word_pairs,
+        top_symbol_pairs,
+        alphabetical_symbol_pairs
+    ):
         """
         Este mÃ©todo escribe en texto plano las estadísticas de un fichero
             
         :param 
             filename: el nombre del fichero destino.
-            stats: las estadísticas del texto.
+            source_file: el nombre del fichero fuente.
+            stats: las estadíticas del texto.
             use_stopwords: booleano, si se han utilizado stopwords
-            full: boolean, si se deben mostrar las stats completas
-
+            words_without_stopwords_count: numero palabras sin las stopwords
+            vocab_size: numero de diferentes palabras
+            total_symbol_count: numero total de caracteres
+            unique_symbol_count: numero de caracteres diferentes
+            entropy: valor de entropy calculado
+            redundancy: valor de redundancia calculado
+            top_words: palabras mas frecuentes
+            top_symbols: simbolos mas frecuentes
+            top_word_pairs: bigrams mas frecuentes en frases
+            top_symbol_pairs: bigrams mas frecuentes en simbolos
+    
         :return: None
         """
 
-        with open(filename, 'w', encoding='utf-8') as fh:
+        with open(filename, "w", encoding="utf-8") as fh:
 
-            # COMPLETAR
-            pass
+            # Basic stats
+            fh.write(f"Lines: {stats['nlines']}\n")
+            fh.write(f"Number of words (including stopwords): {stats['nwords']}\n")
 
+            if use_stopwords:
+                fh.write(
+                    f"Number of words (without stopwords): "
+                    f"{words_without_stopwords_count}\n"
+                )
 
-    def write_stats_json(self, filename, source_file, stats, lower, use_stopwords,
-                         words_without_stopwords_count, vocab_size, total_symbol_count,
-                         unique_symbol_count, entropy, redundancy, top_words, top_symbols,
-                         top_word_pairs, top_symbol_pairs):
+            fh.write(f"Vocabulary size: {vocab_size}\n")
+            fh.write(f"Number of symbols: {total_symbol_count}\n")
+            fh.write(f"Number of different symbols: {unique_symbol_count}\n")
+
+            # Entropy
+            if entropy is not None:
+                fh.write(f"Shannon entropy: {entropy:.4f} bits/symbol\n")
+
+            if redundancy is not None:
+                fh.write(f"Redundancy: {redundancy * 100:.2f}%\n")
+
+            # Words alphabetical
+            fh.write("Words (alphabetical order):\n")
+            for word in alphabetical_words:
+                fh.write(f"\t{word}: {alphabetical_words[word]}\n")
+
+            # Words by frequency
+            fh.write("Words (by frequency):\n")
+            for word, count in top_words.items():
+                fh.write(f"\t{word}: {count}\n")
+
+            # Symbols alphabetical
+            fh.write("Symbols (alphabetical order):\n")
+            for sym in alphabetical_symbols:
+                fh.write(f"\t{sym}: {alphabetical_symbols[sym]}\n")
+
+            # Symbols by frequency
+            fh.write("Symbols (by frequency):\n")
+            for sym, count in top_symbols.items():
+                fh.write(f"\t{sym}: {count}\n")
+
+            # Bigrams
+            if top_word_pairs:
+                fh.write("Word pairs (alphabetical order):\n")
+                for pair in alphabetical_word_pairs:
+                    fh.write(f"\t{pair}: {alphabetical_word_pairs[pair]}\n")
+
+                fh.write("Word pairs (by frequency):\n")
+                for pair, count in top_word_pairs.items():
+                    fh.write(f"\t{pair}: {count}\n")
+
+                fh.write("Symbol pairs (alphabetical order):\n")
+                for pair in alphabetical_symbol_pairs:
+                    fh.write(f"\t{pair}: {alphabetical_symbol_pairs[pair]}\n")
+
+                fh.write("Symbol pairs (by frequency):\n")
+                for pair, count in top_symbol_pairs.items():
+                    fh.write(f"\t{pair}: {count}\n")
+
+    def write_stats_json(
+        self,
+        filename,
+        source_file,
+        stats,
+        lower,
+        use_stopwords,
+        words_without_stopwords_count,
+        vocab_size,
+        total_symbol_count,
+        unique_symbol_count,
+        entropy,
+        redundancy,
+        top_words,
+        top_symbols,
+        top_word_pairs,
+        top_symbol_pairs,
+    ):
         """
         Este método escribe en formato JSON las estadísticas de un fichero
             
@@ -79,9 +177,20 @@ class WordCounter:
             source_file: el nombre del fichero fuente.
             stats: las estadíticas del texto.
             use_stopwords: booleano, si se han utilizado stopwords
-            full: boolean, si se deben mostrar las stats completas
-
+            words_without_stopwords_count: numero palabras sin las stopwords
+            vocab_size: numero de diferentes palabras
+            total_symbol_count: numero total de caracteres
+            unique_symbol_count: numero de caracteres diferentes
+            entropy: valor de entropy calculado
+            redundancy: valor de redundancia calculado
+            top_words: palabras mas frecuentes
+            top_symbols: simbolos mas frecuentes
+            top_word_pairs: bigrams mas frecuentes en frases
+            top_symbol_pairs: bigrams mas frecuentes en simbolos
+    
         :return: None
+
+        Write statistics in JSON format.
         """
 
         js = {
@@ -126,7 +235,16 @@ class WordCounter:
             json.dump(js, fh, indent=4, ensure_ascii=False)
 
 
-    def file_stats(self, filename, lower, stopwordsfile, bigrams, full, entropy, use_json):
+    def file_stats(
+        self,
+        filename,
+        lower,
+        stopwordsfile,
+        bigrams,
+        full,
+        entropy,
+        use_json,
+    ):
         """
         Este método calcula las estadísticas de un fichero de texto
 
@@ -136,7 +254,7 @@ class WordCounter:
             stopwordsfile: nombre del fichero con las stopwords o None si no se aplican
             bigram: booleano, se deben calcular bigramas?
             full: booleano, se deben montrar la estadísticas completas?
-            entropy: booleano, se debe calcular la entropía de Shannon?
+            entropy_bool: booleano, se debe calcular la entropía de Shannon?
             use_json: booleano, se debe mostrar las estadísticas en formato JSON?
         :return: None
         """
@@ -238,39 +356,79 @@ class WordCounter:
         words_without_stopwords_count = 0
         for k, v in stats['word'].items():
             words_without_stopwords_count += v
-        
+
         # Sort frequency dictionaries and trim them if necessary
         word_freq_sorted = sort_dic_by_values(stats['word'])
         symbol_freq_sorted = sort_dic_by_values(stats['symbol'])
         top_word_pairs_sorted = sort_dic_by_values(top_word_pairs)
         top_symbol_pairs_sorted = sort_dic_by_values(top_symbol_pairs)
 
+        alphabetical_words = dict(sorted(stats['word'].items()))
+        alphabetical_symbols = dict(sorted(stats['symbol'].items()))
+        alphabetical_word_pairs = dict(sorted(top_word_pairs.items()))
+        alphabetical_symbol_pairs = dict(sorted(top_symbol_pairs.items()))
+
         if not full:
             word_freq_sorted = word_freq_sorted[:20]
             symbol_freq_sorted = symbol_freq_sorted[:20]
             top_word_pairs_sorted = top_word_pairs_sorted[:20]
             top_symbol_pairs_sorted = top_symbol_pairs_sorted[:20]
-
+            
+            alphabetical_words = dict(list(alphabetical_words.items())[:20])
+            alphabetical_symbols = dict(list(alphabetical_symbols.items())[:20])
+            alphabetical_word_pairs = dict(list(alphabetical_word_pairs.items())[:20])
+            alphabetical_symbol_pairs = dict(list(alphabetical_symbol_pairs.items())[:20])
+        
         top_words = {word: count for (word, count) in word_freq_sorted}
         top_symbols = {sym: count for (sym, count) in symbol_freq_sorted}
         top_word_pairs = {pair: count for (pair, count) in top_word_pairs_sorted}
         top_symbol_pairs = {pair: count for (pair, count) in top_symbol_pairs_sorted}
-        
+
         # Calculate entropy and redundancy (if entropy calculations are enabled)
         shannon_entropy = None
         redundancy = None
         if entropy:
             shannon_entropy = self.get_shannon_entropy(stats['symbol'], total_symbol_count)
-            redundancy = self.get_redundancy(shannon_entropy, unique_symbol_count)          
+            redundancy = self.get_redundancy(shannon_entropy, unique_symbol_count)    
 
         if use_json:
-            self.write_stats_json(new_filename, filename, stats, lower, stopwordsfile is not None,
-                                  words_without_stopwords_count, vocab_size, total_symbol_count,
-                                  unique_symbol_count, shannon_entropy, redundancy, top_words,
-                                  top_symbols, top_word_pairs, top_symbol_pairs)
+            self.write_stats_json(
+                new_filename,
+                filename,
+                stats,
+                lower,
+                stopwordsfile is not None,
+                words_without_stopwords_count,
+                vocab_size,
+                total_symbol_count,
+                unique_symbol_count,
+                shannon_entropy,
+                redundancy,
+                top_words,
+                top_symbols,
+                top_word_pairs,
+                top_symbol_pairs,
+            )
         else:
-            self.write_stats_text(new_filename, stats, stopwordsfile is not None, full)
-
+            self.write_stats_text(
+                new_filename,
+                stats,
+                stopwordsfile is not None,
+                words_without_stopwords_count,
+                vocab_size,
+                total_symbol_count,
+                unique_symbol_count,
+                shannon_entropy,
+                redundancy,
+                top_words,
+                alphabetical_words,
+                top_symbols,
+                alphabetical_symbols,
+                top_word_pairs,
+                alphabetical_word_pairs,
+                top_symbol_pairs,
+                alphabetical_symbol_pairs
+            )
 
     def compute_files(self, filenames, **args):
         """
@@ -285,6 +443,7 @@ class WordCounter:
 
         for filename in filenames:
             self.file_stats(filename, **args)
+
 
 if __name__ == "__main__":
 
