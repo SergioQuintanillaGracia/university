@@ -18,6 +18,8 @@ from typing import List, Optional, TextIO
 ########################################################################
 ########################################################################
 
+MAX_SENTENCE_WORDS = 50
+
 
 def convert_to_lm_dict(d: dict):
     for k in d:
@@ -29,7 +31,7 @@ class Monkey():
 
     def __init__(self):
         self.r1 = re.compile('[.;?!]')
-        self.r2 = re.compile('\W+')
+        self.r2 = re.compile(r'\W+')
         self.info = {}
 
     def get_n(self):
@@ -47,10 +49,16 @@ class Monkey():
         sentence_arr.append('$')
         
         for curr_n in range(2, n + 1):
-            for i in range(len(sentence_arr)):
-                curr_words = sentence_arr[i : i + curr_n]
-                dict_entry = self.info['lm'][curr_n][curr_words]
-                dict_entry = dict_entry.get(curr_words, 0) + 1
+            for i in range(len(sentence_arr) - curr_n + 1):
+                curr_words = tuple(sentence_arr[i : i + curr_n])
+                first_words = curr_words[:-1]
+                last_word = curr_words[-1]
+                
+                n_dict = self.info['lm'][curr_n]
+                # Initialize the dictionary entry corresponding to the first words
+                n_dict[first_words] = n_dict.get(first_words, {})
+                    
+                n_dict[first_words][last_word] = n_dict[first_words].get(last_word, 0) + 1
             
             sentence_arr.insert(0, '$')
 
@@ -60,16 +68,19 @@ class Monkey():
             self.info['lm'][i] = {}
         for filename in filenames:
             with open(filename, encoding='utf-8') as fh:
-                for line in fh:
-                    #############
-                    # COMPLETAR #
-                    #############
-                    processed_line = self.r2.sub(' ', line.strip().lower())
+                #############
+                # COMPLETAR #
+                #############
+                text = fh.read()
+                text = text.replace('\n\n', '. ')
+                sentences = self.r1.split(text)
+                processed_setences = [self.r2.sub(' ', sentence.lower()).strip() for sentence in sentences]
+                
+                for sentence in processed_setences:
+                    if not sentence.strip():
+                        continue
                     
-                    sentences = self.r1.split(processed_line)
-                    
-                    for sentence in sentences:
-                        self.index_sentence(sentence)
+                    self.index_sentence(sentence)
                 
         for i in range(2, n+1):
             convert_to_lm_dict(self.info['lm'][i])
@@ -110,7 +121,54 @@ class Monkey():
         #############
         # COMPLETAR #
         #############
-        pass
+        if not n:
+            n = self.info['n']
+        
+        sentence = '' if prefix is None else prefix
+                
+        # Currently, the sentence contains just the prefix
+        # Format it
+        sentence = self.r2.sub(' ', sentence.lower()).strip()
+        
+        # Initialize leading $
+        sentence = '$ ' * (n - 1) + sentence
+        
+        initial_sentence_arr = [word.strip() for word in sentence.split() if word.strip()]
+        
+        for i in range(nsentences):
+            sentence_arr = initial_sentence_arr.copy()
+            
+            next_word = None
+            word_count = 0
+            
+            while next_word != '$' and word_count <= MAX_SENTENCE_WORDS:
+                prev_words = tuple(sentence_arr[-n + 1:])
+                # Contains data in the structure (11, [(5, ’spam’), (5, ’egg’), (1, ’lobster’)])
+                next_words_info = self.info['lm'][n][prev_words]
+                weight_sum = next_words_info[0]
+                possible_next_words = next_words_info[1]
+                
+                random_weight = random.random()  # Random weight in [0, 1)
+                # We will increase weight_progress from 0 to 1 word by word, until it exceeds the
+                # random value calculated
+                # When we get to that value, we select that word
+                weight_progress = 0
+                
+                for (weight, word) in possible_next_words:
+                    weight_increase = weight / weight_sum
+                    weight_progress += weight_increase
+                    
+                    if weight_progress >= random_weight:
+                        # We select the current word
+                        next_word = word
+                        break
+                
+                sentence_arr.append(next_word)
+                word_count += 1
+            
+            sentence = ' '.join(sentence_arr).replace('$', '').strip()
+            
+            print(sentence)
 
 
 if __name__ == "__main__":
