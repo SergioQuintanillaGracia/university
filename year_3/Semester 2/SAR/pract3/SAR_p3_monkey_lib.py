@@ -9,6 +9,8 @@ import sys
 from typing import List, Optional, TextIO
 
 ## Nombres: 
+# Antonio Gasperini
+# Sergio Quintanilla Graciá
 
 ########################################################################
 ########################################################################
