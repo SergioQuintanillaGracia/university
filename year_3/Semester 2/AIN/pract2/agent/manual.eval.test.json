@@ -1,0 +1,180 @@
+{
+  "eval_set_id": "outing_planner_manual",
+  "eval_cases": [
+    {
+      "eval_id": "valencia_outdoor_first_two",
+      "conversation": [
+        {
+          "user_content": {
+            "role": "user",
+            "parts": [
+              {
+                "text": "Estoy en Valencia. Prefiero outdoor y tengo 20€. Usa tools y elige exactamente las dos primeras opciones que devuelva la herramienta de lugares."
+              }
+            ]
+          },
+          "intermediate_data": {
+            "tool_uses": [
+              { "id": null, "name": "get_weather", "args": { "city": "Valencia" } },
+              { "id": null, "name": "search_places", "args": { "city": "Valencia", "category": "outdoor" } },
+              {
+                "id": null,
+                "name": "estimate_cost",
+                "args": { "place_names": ["Jardín del Turia (paseo)", "La Malvarrosa (paseo)"] }
+              }
+            ],
+            "intermediate_responses": []
+          },
+          "final_response": {
+            "role": "model",
+            "parts": [
+              {
+                "text": "Categoría elegida: outdoor.\n1) Jardín del Turia (paseo) – 0 €\n2) La Malvarrosa (paseo) – 0 €\nCoste total: 0 €."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "eval_id": "madrid_rain60_forces_museo",
+      "conversation": [
+        {
+          "user_content": {
+            "role": "user",
+            "parts": [
+              {
+                "text": "Estoy en Madrid. Prefiero outdoor y tengo 50€. Usa tools y elige exactamente las dos primeras opciones que devuelva la herramienta de lugares."
+              }
+            ]
+          },
+          "intermediate_data": {
+            "tool_uses": [
+              { "id": null, "name": "get_weather", "args": { "city": "Madrid" } },
+              { "id": null, "name": "search_places", "args": { "city": "Madrid", "category": "museo" } },
+              {
+                "id": null,
+                "name": "estimate_cost",
+                "args": { "place_names": ["Museo del Prado", "Museo Reina Sofía"] }
+              }
+            ],
+            "intermediate_responses": []
+          },
+          "final_response": {
+            "role": "model",
+            "parts": [
+              {
+                "text": "Categoría elegida: museo.\n1) Museo del Prado – 15 €\n2) Museo Reina Sofía – 12 €\nCoste total: 27 €."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "eval_id": "barcelona_pref_museo_rain55",
+      "conversation": [
+        {
+          "user_content": {
+            "role": "user",
+            "parts": [
+              {
+                "text": "Estoy en Barcelona. Prefiero museo y tengo 30€. Usa tools y elige exactamente las dos primeras opciones que devuelva la herramienta de lugares."
+              }
+            ]
+          },
+          "intermediate_data": {
+            "tool_uses": [
+              { "id": null, "name": "get_weather", "args": { "city": "Barcelona" } },
+              { "id": null, "name": "search_places", "args": { "city": "Barcelona", "category": "museo" } },
+              {
+                "id": null,
+                "name": "estimate_cost",
+                "args": { "place_names": ["MNAC", "Museu Picasso"] }
+              }
+            ],
+            "intermediate_responses": []
+          },
+          "final_response": {
+            "role": "model",
+            "parts": [
+              {
+                "text": "Categoría elegida: museo.\n1) MNAC – 12 €\n2) Museu Picasso – 12 €\nCoste total: 24 €."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "eval_id": "bilbao_rain80_forces_museo",
+      "conversation": [
+        {
+          "user_content": {
+            "role": "user",
+            "parts": [
+              {
+                "text": "Estoy en Bilbao. Prefiero outdoor y tengo 50€. Usa tools y elige exactamente las dos primeras opciones que devuelva la herramienta de lugares."
+              }
+            ]
+          },
+          "intermediate_data": {
+            "tool_uses": [
+              { "id": null, "name": "get_weather", "args": { "city": "Bilbao" } },
+              { "id": null, "name": "search_places", "args": { "city": "Bilbao", "category": "museo" } },
+              {
+                "id": null,
+                "name": "estimate_cost",
+                "args": { "place_names": ["Museo Guggenheim", "Museo de Bellas Artes de Bilbao"] }
+              }
+            ],
+            "intermediate_responses": []
+          },
+          "final_response": {
+            "role": "model",
+            "parts": [
+              {
+                "text": "Categoría elegida: museo.\n1) Museo Guggenheim – 16 €\n2) Museo de Bellas Artes de Bilbao – 10 €\nCoste total: 26 €."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "eval_id": "sevilla_outdoor_sunny",
+      "conversation": [
+        {
+          "user_content": {
+            "role": "user",
+            "parts": [
+              {
+                "text": "Estoy en Sevilla. Prefiero outdoor y tengo 10€. Usa tools y elige exactamente las dos primeras opciones que devuelva la herramienta de lugares."
+              }
+            ]
+          },
+          "intermediate_data": {
+            "tool_uses": [
+              { "id": null, "name": "get_weather", "args": { "city": "Sevilla" } },
+              { "id": null, "name": "search_places", "args": { "city": "Sevilla", "category": "outdoor" } },
+              {
+                "id": null,
+                "name": "estimate_cost",
+                "args": { "place_names": ["Plaza de España (paseo)", "Parque de María Luisa (paseo)"] }
+              }
+            ],
+            "intermediate_responses": []
+          },
+          "final_response": {
+            "role": "model",
+            "parts": [
+              {
+                "text": "Categoría elegida: outdoor.\n1) Plaza de España (paseo) – 0 €\n2) Parque de María Luisa (paseo) – 0 €\nCoste total: 0 €."
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

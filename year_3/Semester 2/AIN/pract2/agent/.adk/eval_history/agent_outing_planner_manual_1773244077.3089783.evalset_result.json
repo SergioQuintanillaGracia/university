@@ -1,0 +1,731 @@
+{
+  "eval_set_result_id": "agent_outing_planner_manual_1773244077.3089783",
+  "eval_set_result_name": "agent_outing_planner_manual_1773244077.3089783",
+  "eval_set_id": "outing_planner_manual",
+  "eval_case_results": [
+    {
+      "eval_set_file": "outing_planner_manual",
+      "eval_set_id": "outing_planner_manual",
+      "eval_id": "madrid_rain60_forces_museo",
+      "final_eval_status": 2,
+      "eval_metric_results": null,
+      "overall_eval_metric_results": [
+        {
+          "metric_name": "tool_trajectory_avg_score",
+          "threshold": 0.8,
+          "criterion": {
+            "threshold": 0.8
+          },
+          "custom_function_path": null,
+          "score": 1.0,
+          "eval_status": 1,
+          "details": {
+            "rubric_scores": null
+          }
+        },
+        {
+          "metric_name": "response_match_score",
+          "threshold": 0.3,
+          "criterion": {
+            "threshold": 0.3
+          },
+          "custom_function_path": null,
+          "score": 0.2571428571428572,
+          "eval_status": 2,
+          "details": {
+            "rubric_scores": null
+          }
+        }
+      ],
+      "eval_metric_result_per_invocation": [
+        {
+          "actual_invocation": {
+            "invocation_id": "e-c29c44ed-5651-4cdb-9b4e-9a9ec3b886ad",
+            "user_content": {
+              "parts": [
+                {
+                  "media_resolution": null,
+                  "code_execution_result": null,
+                  "executable_code": null,
+                  "file_data": null,
+                  "function_call": null,
+                  "function_response": null,
+                  "inline_data": null,
+                  "text": "Estoy en Madrid. Prefiero outdoor y tengo 50€. Usa tools y elige exactamente las dos primeras opciones que devuelva la herramienta de lugares.",
+                  "thought": null,
+                  "thought_signature": null,
+                  "video_metadata": null
+                }
+              ],
+              "role": "user"
+            },
+            "final_response": {
+              "parts": [
+                {
+                  "media_resolution": null,
+                  "code_execution_result": null,
+                  "executable_code": null,
+                  "file_data": null,
+                  "function_call": null,
+                  "function_response": null,
+                  "inline_data": null,
+                  "text": "**Categoría elegida:** museo (el tiempo indica chubascos, con 60 % de probabilidad de lluvia, por lo que es más seguro optar por interiores).\n\n**Resumen del tiempo:** Chubascos, temperatura de 9 °C, alta probabilidad de lluvia.\n\n**Planes propuestos:**\n1. Museo del Prado – entrada 15 €  \n2. Museo Reina Sofía – entrada 12 €  \n\n**Coste total estimado:** 27 € (dentro de tu presupuesto de 50 €).",
+                  "thought": true,
+                  "thought_signature": null,
+                  "video_metadata": null
+                },
+                {
+                  "media_resolution": null,
+                  "code_execution_result": null,
+                  "executable_code": null,
+                  "file_data": null,
+                  "function_call": null,
+                  "function_response": null,
+                  "inline_data": null,
+                  "text": "**Categoría elegida:** museo (el tiempo indica chubascos, con 60 % de probabilidad de lluvia, por lo que es más seguro optar por interiores).\n\n**Resumen del tiempo:** Chubascos, temperatura de 9 °C, alta probabilidad de lluvia.\n\n**Planes propuestos:**\n1. Museo del Prado – entrada 15 €  \n2. Museo Reina Sofía – entrada 12 €  \n\n**Coste total estimado:** 27 € (dentro de tu presupuesto de 50 €).",
+                  "thought": null,
+                  "thought_signature": null,
+                  "video_metadata": null
+                }
+              ],
+              "role": "model"
+            },
+            "intermediate_data": {
+              "invocation_events": [
+                {
+                  "author": "root_agent",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": null,
+                        "function_response": null,
+                        "inline_data": null,
+                        "text": "We need to follow steps. Step1: get_weather for Madrid. Then decide category: user prefers outdoor, but we must consider weather. If weather is good (no rain), we can choose outdoor. If bad, we might choose museum? The user prefers outdoor and has budget 50€. But instructions: decide category based only on weather, e.g., if llueve mejor ir a museo. So we need to see weather. Use get_weather.",
+                        "thought": true,
+                        "thought_signature": null,
+                        "video_metadata": null
+                      },
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": {
+                          "id": "chatcmpl-tool-e644395b0ca64a4faa014d7120febe35",
+                          "args": {
+                            "city": "Madrid"
+                          },
+                          "name": "get_weather",
+                          "partial_args": null,
+                          "will_continue": null
+                        },
+                        "function_response": null,
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": null,
+                        "video_metadata": null
+                      }
+                    ],
+                    "role": "model"
+                  }
+                },
+                {
+                  "author": "root_agent",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": null,
+                        "function_response": {
+                          "will_continue": null,
+                          "scheduling": null,
+                          "parts": null,
+                          "id": "chatcmpl-tool-e644395b0ca64a4faa014d7120febe35",
+                          "name": "get_weather",
+                          "response": {
+                            "temp_c": 9,
+                            "rain_prob": 60,
+                            "summary": "Chubascos"
+                          }
+                        },
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": null,
+                        "video_metadata": null
+                      }
+                    ],
+                    "role": "user"
+                  }
+                },
+                {
+                  "author": "root_agent",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": null,
+                        "function_response": null,
+                        "inline_data": null,
+                        "text": "We have weather: 9°C, rain probability 60%, summary \"Chubascos\". Preference outdoor, but rain likely. According to instructions, need to decide category based on weather. If rain high, better museum. But user prefers outdoor; but we must choose category based on weather. Probably pick indoor (museo). The steps: decide category—likely museo due to rain. Then search_places with category museo, city Madrid. Need up to 2 places, first two returned. Then estimate cost.",
+                        "thought": true,
+                        "thought_signature": null,
+                        "video_metadata": null
+                      },
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": {
+                          "id": "chatcmpl-tool-98b67eb78ca0ab1b",
+                          "args": {
+                            "city": "Madrid",
+                            "category": "museo"
+                          },
+                          "name": "search_places",
+                          "partial_args": null,
+                          "will_continue": null
+                        },
+                        "function_response": null,
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": null,
+                        "video_metadata": null
+                      }
+                    ],
+                    "role": "model"
+                  }
+                },
+                {
+                  "author": "root_agent",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": null,
+                        "function_response": {
+                          "will_continue": null,
+                          "scheduling": null,
+                          "parts": null,
+                          "id": "chatcmpl-tool-98b67eb78ca0ab1b",
+                          "name": "search_places",
+                          "response": {
+                            "result": [
+                              {
+                                "name": "Museo del Prado",
+                                "type": "museo",
+                                "price_eur": 15
+                              },
+                              {
+                                "name": "Museo Reina Sofía",
+                                "type": "museo",
+                                "price_eur": 12
+                              },
+                              {
+                                "name": "Museo Thyssen",
+                                "type": "museo",
+                                "price_eur": 14
+                              },
+                              {
+                                "name": "Museo Arqueológico Nacional",
+                                "type": "museo",
+                                "price_eur": 3
+                              }
+                            ]
+                          }
+                        },
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": null,
+                        "video_metadata": null
+                      }
+                    ],
+                    "role": "user"
+                  }
+                },
+                {
+                  "author": "root_agent",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": null,
+                        "function_response": null,
+                        "inline_data": null,
+                        "text": "We have user prefers outdoor but weather: 9°C, 60% chance of rain, chubascos. So outdoor not ideal. Must choose category based on weather: indoor (museo) is appropriate. We need to choose up to 2 places, exactly the first two returned by tool. Those are Museo del Prado and Museo Reina Sofía. Then we need to estimate cost for those names.",
+                        "thought": true,
+                        "thought_signature": null,
+                        "video_metadata": null
+                      },
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": {
+                          "id": "chatcmpl-tool-af59682f29da8aca",
+                          "args": {
+                            "place_names": [
+                              "Museo del Prado",
+                              "Museo Reina Sofía"
+                            ]
+                          },
+                          "name": "estimate_cost",
+                          "partial_args": null,
+                          "will_continue": null
+                        },
+                        "function_response": null,
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": null,
+                        "video_metadata": null
+                      }
+                    ],
+                    "role": "model"
+                  }
+                },
+                {
+                  "author": "root_agent",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": null,
+                        "function_response": {
+                          "will_continue": null,
+                          "scheduling": null,
+                          "parts": null,
+                          "id": "chatcmpl-tool-af59682f29da8aca",
+                          "name": "estimate_cost",
+                          "response": {
+                            "total_eur": 27
+                          }
+                        },
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": null,
+                        "video_metadata": null
+                      }
+                    ],
+                    "role": "user"
+                  }
+                }
+              ]
+            },
+            "creation_timestamp": 1773244069.095734,
+            "rubrics": null,
+            "app_details": {
+              "agent_details": {
+                "root_agent": {
+                  "name": "root_agent",
+                  "instructions": "Eres un planificador de salidas. SIEMPRE debes fundamentarte en herramientas.\nPasos: (1) llama a get_weather(city).\n(2) decide la categoría (SOLO entre estas: museo, outdoor, ocio): en funcion del tiempo que haga, por ejemplo si llueve mejor ir a un museo\n(3) llama a search_places(city, category) y elige hasta 2 lugares.\n(4) llama a estimate_cost con los nombres seleccionados.\n(5) responde en español con: categoría elegida, tiempo (resumen), 2 planes y coste total, sin inventar lugares fuera de la tool.\n\nYou are an agent. Your internal name is \"root_agent\". The description about you is \"Planifica una salida sencilla (2 opciones) en función del tiempo, preferencia y presupuesto, usando tools para fundamentar la respuesta.\".",
+                  "tool_declarations": [
+                    {
+                      "retrieval": null,
+                      "computer_use": null,
+                      "file_search": null,
+                      "google_search": null,
+                      "code_execution": null,
+                      "enterprise_web_search": null,
+                      "function_declarations": [
+                        {
+                          "description": null,
+                          "name": "get_weather",
+                          "parameters": {
+                            "additional_properties": null,
+                            "defs": null,
+                            "ref": null,
+                            "any_of": null,
+                            "default": null,
+                            "description": null,
+                            "enum": null,
+                            "example": null,
+                            "format": null,
+                            "items": null,
+                            "max_items": null,
+                            "max_length": null,
+                            "max_properties": null,
+                            "maximum": null,
+                            "min_items": null,
+                            "min_length": null,
+                            "min_properties": null,
+                            "minimum": null,
+                            "nullable": null,
+                            "pattern": null,
+                            "properties": {
+                              "city": {
+                                "additional_properties": null,
+                                "defs": null,
+                                "ref": null,
+                                "any_of": null,
+                                "default": null,
+                                "description": null,
+                                "enum": null,
+                                "example": null,
+                                "format": null,
+                                "items": null,
+                                "max_items": null,
+                                "max_length": null,
+                                "max_properties": null,
+                                "maximum": null,
+                                "min_items": null,
+                                "min_length": null,
+                                "min_properties": null,
+                                "minimum": null,
+                                "nullable": null,
+                                "pattern": null,
+                                "properties": null,
+                                "property_ordering": null,
+                                "required": null,
+                                "title": null,
+                                "type": "STRING"
+                              }
+                            },
+                            "property_ordering": null,
+                            "required": [
+                              "city"
+                            ],
+                            "title": null,
+                            "type": "OBJECT"
+                          },
+                          "parameters_json_schema": null,
+                          "response": null,
+                          "response_json_schema": null,
+                          "behavior": null
+                        },
+                        {
+                          "description": null,
+                          "name": "search_places",
+                          "parameters": {
+                            "additional_properties": null,
+                            "defs": null,
+                            "ref": null,
+                            "any_of": null,
+                            "default": null,
+                            "description": null,
+                            "enum": null,
+                            "example": null,
+                            "format": null,
+                            "items": null,
+                            "max_items": null,
+                            "max_length": null,
+                            "max_properties": null,
+                            "maximum": null,
+                            "min_items": null,
+                            "min_length": null,
+                            "min_properties": null,
+                            "minimum": null,
+                            "nullable": null,
+                            "pattern": null,
+                            "properties": {
+                              "city": {
+                                "additional_properties": null,
+                                "defs": null,
+                                "ref": null,
+                                "any_of": null,
+                                "default": null,
+                                "description": null,
+                                "enum": null,
+                                "example": null,
+                                "format": null,
+                                "items": null,
+                                "max_items": null,
+                                "max_length": null,
+                                "max_properties": null,
+                                "maximum": null,
+                                "min_items": null,
+                                "min_length": null,
+                                "min_properties": null,
+                                "minimum": null,
+                                "nullable": null,
+                                "pattern": null,
+                                "properties": null,
+                                "property_ordering": null,
+                                "required": null,
+                                "title": null,
+                                "type": "STRING"
+                              },
+                              "category": {
+                                "additional_properties": null,
+                                "defs": null,
+                                "ref": null,
+                                "any_of": null,
+                                "default": null,
+                                "description": null,
+                                "enum": null,
+                                "example": null,
+                                "format": null,
+                                "items": null,
+                                "max_items": null,
+                                "max_length": null,
+                                "max_properties": null,
+                                "maximum": null,
+                                "min_items": null,
+                                "min_length": null,
+                                "min_properties": null,
+                                "minimum": null,
+                                "nullable": null,
+                                "pattern": null,
+                                "properties": null,
+                                "property_ordering": null,
+                                "required": null,
+                                "title": null,
+                                "type": "STRING"
+                              }
+                            },
+                            "property_ordering": null,
+                            "required": [
+                              "city",
+                              "category"
+                            ],
+                            "title": null,
+                            "type": "OBJECT"
+                          },
+                          "parameters_json_schema": null,
+                          "response": null,
+                          "response_json_schema": null,
+                          "behavior": null
+                        },
+                        {
+                          "description": null,
+                          "name": "estimate_cost",
+                          "parameters": {
+                            "additional_properties": null,
+                            "defs": null,
+                            "ref": null,
+                            "any_of": null,
+                            "default": null,
+                            "description": null,
+                            "enum": null,
+                            "example": null,
+                            "format": null,
+                            "items": null,
+                            "max_items": null,
+                            "max_length": null,
+                            "max_properties": null,
+                            "maximum": null,
+                            "min_items": null,
+                            "min_length": null,
+                            "min_properties": null,
+                            "minimum": null,
+                            "nullable": null,
+                            "pattern": null,
+                            "properties": {
+                              "place_names": {
+                                "additional_properties": null,
+                                "defs": null,
+                                "ref": null,
+                                "any_of": null,
+                                "default": null,
+                                "description": null,
+                                "enum": null,
+                                "example": null,
+                                "format": null,
+                                "items": {
+                                  "additional_properties": null,
+                                  "defs": null,
+                                  "ref": null,
+                                  "any_of": null,
+                                  "default": null,
+                                  "description": null,
+                                  "enum": null,
+                                  "example": null,
+                                  "format": null,
+                                  "items": null,
+                                  "max_items": null,
+                                  "max_length": null,
+                                  "max_properties": null,
+                                  "maximum": null,
+                                  "min_items": null,
+                                  "min_length": null,
+                                  "min_properties": null,
+                                  "minimum": null,
+                                  "nullable": null,
+                                  "pattern": null,
+                                  "properties": null,
+                                  "property_ordering": null,
+                                  "required": null,
+                                  "title": null,
+                                  "type": "STRING"
+                                },
+                                "max_items": null,
+                                "max_length": null,
+                                "max_properties": null,
+                                "maximum": null,
+                                "min_items": null,
+                                "min_length": null,
+                                "min_properties": null,
+                                "minimum": null,
+                                "nullable": null,
+                                "pattern": null,
+                                "properties": null,
+                                "property_ordering": null,
+                                "required": null,
+                                "title": null,
+                                "type": "ARRAY"
+                              }
+                            },
+                            "property_ordering": null,
+                            "required": [
+                              "place_names"
+                            ],
+                            "title": null,
+                            "type": "OBJECT"
+                          },
+                          "parameters_json_schema": null,
+                          "response": null,
+                          "response_json_schema": null,
+                          "behavior": null
+                        }
+                      ],
+                      "google_maps": null,
+                      "google_search_retrieval": null,
+                      "url_context": null,
+                      "mcp_servers": null
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "expected_invocation": {
+            "invocation_id": "",
+            "user_content": {
+              "parts": [
+                {
+                  "media_resolution": null,
+                  "code_execution_result": null,
+                  "executable_code": null,
+                  "file_data": null,
+                  "function_call": null,
+                  "function_response": null,
+                  "inline_data": null,
+                  "text": "Estoy en Madrid. Prefiero outdoor y tengo 50€. Usa tools y elige exactamente las dos primeras opciones que devuelva la herramienta de lugares.",
+                  "thought": null,
+                  "thought_signature": null,
+                  "video_metadata": null
+                }
+              ],
+              "role": "user"
+            },
+            "final_response": {
+              "parts": [
+                {
+                  "media_resolution": null,
+                  "code_execution_result": null,
+                  "executable_code": null,
+                  "file_data": null,
+                  "function_call": null,
+                  "function_response": null,
+                  "inline_data": null,
+                  "text": "Categoría elegida: museo.\n1) Museo del Prado – 15 €\n2) Museo Reina Sofía – 12 €\nCoste total: 27 €.",
+                  "thought": null,
+                  "thought_signature": null,
+                  "video_metadata": null
+                }
+              ],
+              "role": "model"
+            },
+            "intermediate_data": {
+              "tool_uses": [
+                {
+                  "id": null,
+                  "args": {
+                    "city": "Madrid"
+                  },
+                  "name": "get_weather",
+                  "partial_args": null,
+                  "will_continue": null
+                },
+                {
+                  "id": null,
+                  "args": {
+                    "city": "Madrid",
+                    "category": "museo"
+                  },
+                  "name": "search_places",
+                  "partial_args": null,
+                  "will_continue": null
+                },
+                {
+                  "id": null,
+                  "args": {
+                    "place_names": [
+                      "Museo del Prado",
+                      "Museo Reina Sofía"
+                    ]
+                  },
+                  "name": "estimate_cost",
+                  "partial_args": null,
+                  "will_continue": null
+                }
+              ],
+              "tool_responses": [],
+              "intermediate_responses": []
+            },
+            "creation_timestamp": 0.0,
+            "rubrics": null,
+            "app_details": null
+          },
+          "eval_metric_results": [
+            {
+              "metric_name": "tool_trajectory_avg_score",
+              "threshold": 0.8,
+              "criterion": {
+                "threshold": 0.8
+              },
+              "custom_function_path": null,
+              "score": 1.0,
+              "eval_status": 1,
+              "details": {
+                "rubric_scores": null
+              }
+            },
+            {
+              "metric_name": "response_match_score",
+              "threshold": 0.3,
+              "criterion": {
+                "threshold": 0.3
+              },
+              "custom_function_path": null,
+              "score": 0.2571428571428572,
+              "eval_status": 2,
+              "details": {
+                "rubric_scores": null
+              }
+            }
+          ]
+        }
+      ],
+      "session_id": "___eval___session___9349393a-71ca-4922-8f01-65bad160f123",
+      "session_details": null,
+      "user_id": "test_user_id"
+    }
+  ],
+  "creation_timestamp": 1773244077.3089783
+}

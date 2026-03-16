@@ -1,0 +1,738 @@
+{
+  "eval_set_result_id": "agent_outing_planner_eval_1773058913.5790067",
+  "eval_set_result_name": "agent_outing_planner_eval_1773058913.5790067",
+  "eval_set_id": "outing_planner_eval",
+  "eval_case_results": [
+    {
+      "eval_set_file": "outing_planner_eval",
+      "eval_set_id": "outing_planner_eval",
+      "eval_id": "rainy_day_forces_museum",
+      "final_eval_status": 2,
+      "eval_metric_results": null,
+      "overall_eval_metric_results": [
+        {
+          "metric_name": "tool_trajectory_avg_score",
+          "threshold": 0.8,
+          "criterion": {
+            "threshold": 0.8
+          },
+          "custom_function_path": null,
+          "score": 0.0,
+          "eval_status": 2,
+          "details": {
+            "rubric_scores": null
+          }
+        },
+        {
+          "metric_name": "response_match_score",
+          "threshold": 0.3,
+          "criterion": {
+            "threshold": 0.3
+          },
+          "custom_function_path": null,
+          "score": 0.19298245614035087,
+          "eval_status": 2,
+          "details": {
+            "rubric_scores": null
+          }
+        }
+      ],
+      "eval_metric_result_per_invocation": [
+        {
+          "actual_invocation": {
+            "invocation_id": "e-54af5c00-688d-42d7-9357-522a713b26f3",
+            "user_content": {
+              "parts": [
+                {
+                  "media_resolution": null,
+                  "code_execution_result": null,
+                  "executable_code": null,
+                  "file_data": null,
+                  "function_call": null,
+                  "function_response": null,
+                  "inline_data": null,
+                  "text": "Estoy en Valencia. Quiero un plan para el 2026-02-21. Prefiero outdoor y tengo 20€ de presupuesto.",
+                  "thought": null,
+                  "thought_signature": null,
+                  "video_metadata": null
+                }
+              ],
+              "role": "user"
+            },
+            "final_response": {
+              "parts": [
+                {
+                  "media_resolution": null,
+                  "code_execution_result": null,
+                  "executable_code": null,
+                  "file_data": null,
+                  "function_call": null,
+                  "function_response": null,
+                  "inline_data": null,
+                  "text": "**Categoría elegida:** Outdoor  \n**Tiempo:** Soleado, 17 °C, probabilidad de lluvia 10 %  \n\n**Planes sugeridos (hasta 2):**  \n1. Paseo por el Jardín del Turia  \n2. Paseo por la playa de La Malvarrosa  \n\n**Coste total estimado:** 0 € (dentro de tu presupuesto de 20 €).",
+                  "thought": true,
+                  "thought_signature": null,
+                  "video_metadata": null
+                },
+                {
+                  "media_resolution": null,
+                  "code_execution_result": null,
+                  "executable_code": null,
+                  "file_data": null,
+                  "function_call": null,
+                  "function_response": null,
+                  "inline_data": null,
+                  "text": "**Categoría elegida:** Outdoor  \n**Tiempo:** Soleado, 17 °C, probabilidad de lluvia 10 %  \n\n**Planes sugeridos (hasta 2):**  \n1. Paseo por el Jardín del Turia  \n2. Paseo por la playa de La Malvarrosa  \n\n**Coste total estimado:** 0 € (dentro de tu presupuesto de 20 €).",
+                  "thought": null,
+                  "thought_signature": null,
+                  "video_metadata": null
+                }
+              ],
+              "role": "model"
+            },
+            "intermediate_data": {
+              "invocation_events": [
+                {
+                  "author": "root_agent",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": null,
+                        "function_response": null,
+                        "inline_data": null,
+                        "text": "We need to follow steps.\n\n1. Call get_weather(city) for Valencia, date? The tool likely returns current weather. No date parameter, but we assume current? We'll just call.\n\n",
+                        "thought": true,
+                        "thought_signature": null,
+                        "video_metadata": null
+                      },
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": {
+                          "id": "chatcmpl-tool-ac3eb05b04339a5d",
+                          "args": {
+                            "city": "Valencia"
+                          },
+                          "name": "get_weather",
+                          "partial_args": null,
+                          "will_continue": null
+                        },
+                        "function_response": null,
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": null,
+                        "video_metadata": null
+                      }
+                    ],
+                    "role": "model"
+                  }
+                },
+                {
+                  "author": "root_agent",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": null,
+                        "function_response": {
+                          "will_continue": null,
+                          "scheduling": null,
+                          "parts": null,
+                          "id": "chatcmpl-tool-ac3eb05b04339a5d",
+                          "name": "get_weather",
+                          "response": {
+                            "temp_c": 17,
+                            "rain_prob": 10,
+                            "summary": "Soleado"
+                          }
+                        },
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": null,
+                        "video_metadata": null
+                      }
+                    ],
+                    "role": "user"
+                  }
+                },
+                {
+                  "author": "root_agent",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": null,
+                        "function_response": null,
+                        "inline_data": null,
+                        "text": "We have weather: sunny, temp 17C, rain prob 10% – good for outdoor. Preference outdoor, budget 20€. So category outdoor. Need to search_places Valencia, category outdoor.",
+                        "thought": true,
+                        "thought_signature": null,
+                        "video_metadata": null
+                      },
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": {
+                          "id": "chatcmpl-tool-9c11d7da9d946dde",
+                          "args": {
+                            "city": "Valencia",
+                            "category": "outdoor"
+                          },
+                          "name": "search_places",
+                          "partial_args": null,
+                          "will_continue": null
+                        },
+                        "function_response": null,
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": null,
+                        "video_metadata": null
+                      }
+                    ],
+                    "role": "model"
+                  }
+                },
+                {
+                  "author": "root_agent",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": null,
+                        "function_response": {
+                          "will_continue": null,
+                          "scheduling": null,
+                          "parts": null,
+                          "id": "chatcmpl-tool-9c11d7da9d946dde",
+                          "name": "search_places",
+                          "response": {
+                            "result": [
+                              {
+                                "name": "Jardín del Turia (paseo)",
+                                "type": "outdoor",
+                                "price_eur": 0
+                              },
+                              {
+                                "name": "La Malvarrosa (paseo)",
+                                "type": "outdoor",
+                                "price_eur": 0
+                              },
+                              {
+                                "name": "Parque de Cabecera (paseo)",
+                                "type": "outdoor",
+                                "price_eur": 0
+                              },
+                              {
+                                "name": "Ciudad de las Artes (exterior)",
+                                "type": "outdoor",
+                                "price_eur": 0
+                              },
+                              {
+                                "name": "Ruta por el Carmen (a pie)",
+                                "type": "outdoor",
+                                "price_eur": 0
+                              }
+                            ]
+                          }
+                        },
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": null,
+                        "video_metadata": null
+                      }
+                    ],
+                    "role": "user"
+                  }
+                },
+                {
+                  "author": "root_agent",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": null,
+                        "function_response": null,
+                        "inline_data": null,
+                        "text": "We need to select up to 2 places, considering budget 20€. All listed are free. Choose two maybe Jardín del Turia and La Malvarrosa.\n\nNow estimate cost.",
+                        "thought": true,
+                        "thought_signature": null,
+                        "video_metadata": null
+                      },
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": {
+                          "id": "chatcmpl-tool-bcbe3bc626ed408f",
+                          "args": {
+                            "place_names": [
+                              "Jardín del Turia (paseo)",
+                              "La Malvarrosa (paseo)"
+                            ]
+                          },
+                          "name": "estimate_cost",
+                          "partial_args": null,
+                          "will_continue": null
+                        },
+                        "function_response": null,
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": null,
+                        "video_metadata": null
+                      }
+                    ],
+                    "role": "model"
+                  }
+                },
+                {
+                  "author": "root_agent",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": null,
+                        "function_response": {
+                          "will_continue": null,
+                          "scheduling": null,
+                          "parts": null,
+                          "id": "chatcmpl-tool-bcbe3bc626ed408f",
+                          "name": "estimate_cost",
+                          "response": {
+                            "total_eur": 0
+                          }
+                        },
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": null,
+                        "video_metadata": null
+                      }
+                    ],
+                    "role": "user"
+                  }
+                }
+              ]
+            },
+            "creation_timestamp": 1773058909.803725,
+            "rubrics": null,
+            "app_details": {
+              "agent_details": {
+                "root_agent": {
+                  "name": "root_agent",
+                  "instructions": "Eres un planificador de salidas. SIEMPRE debes fundamentarte en herramientas.\nPasos: (1) llama a get_weather(city).\n(2) decide la categoría (SOLO entre estas: museo, outdoor, ocio): en funcion del tiempo que haga, por ejemplo si llueve mejor ir a un museo\n(3) llama a search_places(city, category) y elige hasta 2 lugares.\n(4) llama a estimate_cost con los nombres seleccionados.\n(5) responde en español con: categoría elegida, tiempo (resumen), 2 planes y coste total, sin inventar lugares fuera de la tool.\n\nYou are an agent. Your internal name is \"root_agent\". The description about you is \"Planifica una salida sencilla (2 opciones) en función del tiempo, preferencia y presupuesto, usando tools para fundamentar la respuesta.\".",
+                  "tool_declarations": [
+                    {
+                      "retrieval": null,
+                      "computer_use": null,
+                      "file_search": null,
+                      "google_search": null,
+                      "google_maps": null,
+                      "code_execution": null,
+                      "enterprise_web_search": null,
+                      "function_declarations": [
+                        {
+                          "description": null,
+                          "name": "get_weather",
+                          "parameters": {
+                            "additional_properties": null,
+                            "defs": null,
+                            "ref": null,
+                            "any_of": null,
+                            "default": null,
+                            "description": null,
+                            "enum": null,
+                            "example": null,
+                            "format": null,
+                            "items": null,
+                            "max_items": null,
+                            "max_length": null,
+                            "max_properties": null,
+                            "maximum": null,
+                            "min_items": null,
+                            "min_length": null,
+                            "min_properties": null,
+                            "minimum": null,
+                            "nullable": null,
+                            "pattern": null,
+                            "properties": {
+                              "city": {
+                                "additional_properties": null,
+                                "defs": null,
+                                "ref": null,
+                                "any_of": null,
+                                "default": null,
+                                "description": null,
+                                "enum": null,
+                                "example": null,
+                                "format": null,
+                                "items": null,
+                                "max_items": null,
+                                "max_length": null,
+                                "max_properties": null,
+                                "maximum": null,
+                                "min_items": null,
+                                "min_length": null,
+                                "min_properties": null,
+                                "minimum": null,
+                                "nullable": null,
+                                "pattern": null,
+                                "properties": null,
+                                "property_ordering": null,
+                                "required": null,
+                                "title": null,
+                                "type": "STRING"
+                              }
+                            },
+                            "property_ordering": null,
+                            "required": [
+                              "city"
+                            ],
+                            "title": null,
+                            "type": "OBJECT"
+                          },
+                          "parameters_json_schema": null,
+                          "response": null,
+                          "response_json_schema": null,
+                          "behavior": null
+                        },
+                        {
+                          "description": null,
+                          "name": "search_places",
+                          "parameters": {
+                            "additional_properties": null,
+                            "defs": null,
+                            "ref": null,
+                            "any_of": null,
+                            "default": null,
+                            "description": null,
+                            "enum": null,
+                            "example": null,
+                            "format": null,
+                            "items": null,
+                            "max_items": null,
+                            "max_length": null,
+                            "max_properties": null,
+                            "maximum": null,
+                            "min_items": null,
+                            "min_length": null,
+                            "min_properties": null,
+                            "minimum": null,
+                            "nullable": null,
+                            "pattern": null,
+                            "properties": {
+                              "city": {
+                                "additional_properties": null,
+                                "defs": null,
+                                "ref": null,
+                                "any_of": null,
+                                "default": null,
+                                "description": null,
+                                "enum": null,
+                                "example": null,
+                                "format": null,
+                                "items": null,
+                                "max_items": null,
+                                "max_length": null,
+                                "max_properties": null,
+                                "maximum": null,
+                                "min_items": null,
+                                "min_length": null,
+                                "min_properties": null,
+                                "minimum": null,
+                                "nullable": null,
+                                "pattern": null,
+                                "properties": null,
+                                "property_ordering": null,
+                                "required": null,
+                                "title": null,
+                                "type": "STRING"
+                              },
+                              "category": {
+                                "additional_properties": null,
+                                "defs": null,
+                                "ref": null,
+                                "any_of": null,
+                                "default": null,
+                                "description": null,
+                                "enum": null,
+                                "example": null,
+                                "format": null,
+                                "items": null,
+                                "max_items": null,
+                                "max_length": null,
+                                "max_properties": null,
+                                "maximum": null,
+                                "min_items": null,
+                                "min_length": null,
+                                "min_properties": null,
+                                "minimum": null,
+                                "nullable": null,
+                                "pattern": null,
+                                "properties": null,
+                                "property_ordering": null,
+                                "required": null,
+                                "title": null,
+                                "type": "STRING"
+                              }
+                            },
+                            "property_ordering": null,
+                            "required": [
+                              "city",
+                              "category"
+                            ],
+                            "title": null,
+                            "type": "OBJECT"
+                          },
+                          "parameters_json_schema": null,
+                          "response": null,
+                          "response_json_schema": null,
+                          "behavior": null
+                        },
+                        {
+                          "description": null,
+                          "name": "estimate_cost",
+                          "parameters": {
+                            "additional_properties": null,
+                            "defs": null,
+                            "ref": null,
+                            "any_of": null,
+                            "default": null,
+                            "description": null,
+                            "enum": null,
+                            "example": null,
+                            "format": null,
+                            "items": null,
+                            "max_items": null,
+                            "max_length": null,
+                            "max_properties": null,
+                            "maximum": null,
+                            "min_items": null,
+                            "min_length": null,
+                            "min_properties": null,
+                            "minimum": null,
+                            "nullable": null,
+                            "pattern": null,
+                            "properties": {
+                              "place_names": {
+                                "additional_properties": null,
+                                "defs": null,
+                                "ref": null,
+                                "any_of": null,
+                                "default": null,
+                                "description": null,
+                                "enum": null,
+                                "example": null,
+                                "format": null,
+                                "items": {
+                                  "additional_properties": null,
+                                  "defs": null,
+                                  "ref": null,
+                                  "any_of": null,
+                                  "default": null,
+                                  "description": null,
+                                  "enum": null,
+                                  "example": null,
+                                  "format": null,
+                                  "items": null,
+                                  "max_items": null,
+                                  "max_length": null,
+                                  "max_properties": null,
+                                  "maximum": null,
+                                  "min_items": null,
+                                  "min_length": null,
+                                  "min_properties": null,
+                                  "minimum": null,
+                                  "nullable": null,
+                                  "pattern": null,
+                                  "properties": null,
+                                  "property_ordering": null,
+                                  "required": null,
+                                  "title": null,
+                                  "type": "STRING"
+                                },
+                                "max_items": null,
+                                "max_length": null,
+                                "max_properties": null,
+                                "maximum": null,
+                                "min_items": null,
+                                "min_length": null,
+                                "min_properties": null,
+                                "minimum": null,
+                                "nullable": null,
+                                "pattern": null,
+                                "properties": null,
+                                "property_ordering": null,
+                                "required": null,
+                                "title": null,
+                                "type": "ARRAY"
+                              }
+                            },
+                            "property_ordering": null,
+                            "required": [
+                              "place_names"
+                            ],
+                            "title": null,
+                            "type": "OBJECT"
+                          },
+                          "parameters_json_schema": null,
+                          "response": null,
+                          "response_json_schema": null,
+                          "behavior": null
+                        }
+                      ],
+                      "google_search_retrieval": null,
+                      "parallel_ai_search": null,
+                      "url_context": null,
+                      "mcp_servers": null
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "expected_invocation": {
+            "invocation_id": "turn_1_rainy",
+            "user_content": {
+              "parts": [
+                {
+                  "media_resolution": null,
+                  "code_execution_result": null,
+                  "executable_code": null,
+                  "file_data": null,
+                  "function_call": null,
+                  "function_response": null,
+                  "inline_data": null,
+                  "text": "Estoy en Valencia. Quiero un plan para el 2026-02-21. Prefiero outdoor y tengo 20€ de presupuesto.",
+                  "thought": null,
+                  "thought_signature": null,
+                  "video_metadata": null
+                }
+              ],
+              "role": "user"
+            },
+            "final_response": {
+              "parts": [
+                {
+                  "media_resolution": null,
+                  "code_execution_result": null,
+                  "executable_code": null,
+                  "file_data": null,
+                  "function_call": null,
+                  "function_response": null,
+                  "inline_data": null,
+                  "text": "Según la previsión (Lluvia probable, 70%), conviene un plan de interior (museo).\n\nOpciones:\n1) Museo de Bellas Artes (0€)\n2) IVAM (8€)\n\nCoste total si haces ambas: 8€.",
+                  "thought": null,
+                  "thought_signature": null,
+                  "video_metadata": null
+                }
+              ],
+              "role": "model"
+            },
+            "intermediate_data": {
+              "tool_uses": [
+                {
+                  "id": null,
+                  "args": {
+                    "city": "Valencia",
+                    "date": "2026-02-21"
+                  },
+                  "name": "get_weather",
+                  "partial_args": null,
+                  "will_continue": null
+                },
+                {
+                  "id": null,
+                  "args": {
+                    "city": "Valencia",
+                    "category": "museo"
+                  },
+                  "name": "search_places",
+                  "partial_args": null,
+                  "will_continue": null
+                },
+                {
+                  "id": null,
+                  "args": {
+                    "place_names": [
+                      "Museo de Bellas Artes",
+                      "IVAM"
+                    ]
+                  },
+                  "name": "estimate_cost",
+                  "partial_args": null,
+                  "will_continue": null
+                }
+              ],
+              "tool_responses": [],
+              "intermediate_responses": []
+            },
+            "creation_timestamp": 0.0,
+            "rubrics": null,
+            "app_details": null
+          },
+          "eval_metric_results": [
+            {
+              "metric_name": "tool_trajectory_avg_score",
+              "threshold": 0.8,
+              "criterion": {
+                "threshold": 0.8
+              },
+              "custom_function_path": null,
+              "score": 0.0,
+              "eval_status": 2,
+              "details": {
+                "rubric_scores": null
+              }
+            },
+            {
+              "metric_name": "response_match_score",
+              "threshold": 0.3,
+              "criterion": {
+                "threshold": 0.3
+              },
+              "custom_function_path": null,
+              "score": 0.19298245614035087,
+              "eval_status": 2,
+              "details": {
+                "rubric_scores": null
+              }
+            }
+          ]
+        }
+      ],
+      "session_id": "___eval___session___1211eccc-6de6-4dae-8f57-9ccd32a7ca9b",
+      "session_details": null,
+      "user_id": "eval_user_1"
+    }
+  ],
+  "creation_timestamp": 1773058913.5790067
+}

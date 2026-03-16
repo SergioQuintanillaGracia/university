@@ -1,0 +1,62 @@
+#
+# PALABRAS
+#
+
+de	100
+isla	0
+valencia	39
+sanidad	0
+cultura	0
+carne	0
+pescado	3
+café	0
+leche	0
+avión	0
+verduras	3
+sol	0
+lluvia	0
+viento	1
+padre	1
+madre	1
+hijas	0
+
+#
+# VARIAS PALABRAS
+#
+carne y pescado	0
+carne pescado y verduras	5
+café con leche	0
+avión tren y autobús	0
+llegar salir y esperar	0
+aeropuerto estación y terminal	57
+sol lluvia y viento	0
+primavera verano y otoño	6
+médico enfermera y paciente	1
+dieta ejercicio y salud	0
+clase tarea y examen	1
+Reunión informe y presentación	28
+amigos vecinos y compañeros	4
+boda anillo y ceremonia	2
+internet red y conexión	0
+correo mensaje y llamada	17
+aplicación software y hardware	25
+pasión amor y deseo	0
+tierra agua y aire	0
+plantas flores y árboles	2
+película libro y música	28
+actores directores y guionistas	19
+escenario micrófono y público	100
+pintura escultura y fotografía	42
+fútbol baloncesto y tenis	11
+videojuegos	34
+videojuegos cultura	65
+isla valencia	6
+isla	0
+isla valencia pero	6
+años	1
+google	0
+cultura	0
+google cultura	12
+años google	0
+años cultura	1
+cultura google	12

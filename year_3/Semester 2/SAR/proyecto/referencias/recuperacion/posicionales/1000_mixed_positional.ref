@@ -1,0 +1,109 @@
+#
+# PALABRAS
+#
+
+de	969
+isla	83
+valencia	47
+sanidad	12
+cultura	147
+carne	30
+pescado	15
+café	31
+leche	12
+avión	24
+verduras	3
+sol	67
+lluvia	29
+viento	33
+padre	186
+madre	155
+hijas	32
+
+#
+# VARIAS PALABRAS
+#
+carne y pescado	8
+carne pescado y verduras	1
+café con leche	3
+avión tren y autobús	1
+llegar salir y esperar	7
+aeropuerto estación y terminal	8
+sol lluvia y viento	3
+primavera verano y otoño	11
+médico enfermera y paciente	1
+dieta ejercicio y salud	2
+clase tarea y examen	5
+Reunión informe y presentación	4
+amigos vecinos y compañeros	3
+boda anillo y ceremonia	2
+internet red y conexión	13
+correo mensaje y llamada	2
+aplicación software y hardware	4
+pasión amor y deseo	6
+tierra agua y aire	17
+plantas flores y árboles	4
+película libro y música	14
+actores directores y guionistas	3
+escenario micrófono y público	3
+pintura escultura y fotografía	4
+fútbol baloncesto y tenis	4
+
+
+#
+# NEGACIONES
+#
+
+videojuegos	27
+videojuegos cultura	3
+videojuegos NOT videojuegos	0
+videojuegos NOT cultura	24
+isla valencia	9
+isla NOT valencia	74
+isla	83
+NOT pero	434
+isla NOT valencia NOT pero	17
+NOT isla NOT valencia NOT pero	406
+isla valencia pero	8
+años	596
+google	47
+cultura	147
+google cultura	8
+años google	34
+años cultura	123
+cultura google	8
+cultura NOT google	139
+google NOT cultura	39
+
+#
+# POSICIONALES
+#
+"las ambiciones políticas"	1
+"los partidos políticos"	17
+"los paises desarrollados"	0
+"la segunda guerra mundial"	68
+"lluvia y viento"	1
+"las naciones unidas"	30
+"primavera y verano"	1
+"software y hardware"	1
+"pintura y escultura"	4
+"fútbol y baloncesto"	0
+"era hijo de"	9
+"desde 2000 hasta"	2
+"mundial de fútbol"	29
+"boston celtics"	2
+"los angeles lakers"	1
+"mundial de fútbol" NOT "boston celtics"	29
+baloncesto	17
+"la copa de europa de baloncesto"	1
+"la copa de europa" baloncesto	1
+"la copa de europa" NOT baloncesto	2
+baloncesto NOT "boston celtics" NOT "los angeles lakers"	15
+baloncesto "boston celtics" "los angeles lakers"	0
+baloncesto "boston celtics"	2
+baloncesto "los angeles lakers"	0
+"recuperación de información"	0
+recuperación de información	18
+"inteligencia artificial"	7
+ia	3
+"procesamiento del lenguaje natural"	0

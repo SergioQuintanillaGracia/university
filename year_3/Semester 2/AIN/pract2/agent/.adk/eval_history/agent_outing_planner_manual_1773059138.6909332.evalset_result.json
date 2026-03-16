@@ -1,0 +1,727 @@
+{
+  "eval_set_result_id": "agent_outing_planner_manual_1773059138.6909332",
+  "eval_set_result_name": "agent_outing_planner_manual_1773059138.6909332",
+  "eval_set_id": "outing_planner_manual",
+  "eval_case_results": [
+    {
+      "eval_set_file": "outing_planner_manual",
+      "eval_set_id": "outing_planner_manual",
+      "eval_id": "bilbao_rain80_forces_museo",
+      "final_eval_status": 1,
+      "eval_metric_results": null,
+      "overall_eval_metric_results": [
+        {
+          "metric_name": "tool_trajectory_avg_score",
+          "threshold": 0.8,
+          "criterion": {
+            "threshold": 0.8
+          },
+          "custom_function_path": null,
+          "score": 1.0,
+          "eval_status": 1,
+          "details": {
+            "rubric_scores": null
+          }
+        },
+        {
+          "metric_name": "response_match_score",
+          "threshold": 0.3,
+          "criterion": {
+            "threshold": 0.3
+          },
+          "custom_function_path": null,
+          "score": 0.34234234234234234,
+          "eval_status": 1,
+          "details": {
+            "rubric_scores": null
+          }
+        }
+      ],
+      "eval_metric_result_per_invocation": [
+        {
+          "actual_invocation": {
+            "invocation_id": "e-32da173c-08c5-4966-b7d8-b12bb8cca0ff",
+            "user_content": {
+              "parts": [
+                {
+                  "media_resolution": null,
+                  "code_execution_result": null,
+                  "executable_code": null,
+                  "file_data": null,
+                  "function_call": null,
+                  "function_response": null,
+                  "inline_data": null,
+                  "text": "Estoy en Bilbao. Prefiero outdoor y tengo 50€. Usa tools y elige exactamente las dos primeras opciones que devuelva la herramienta de lugares.",
+                  "thought": null,
+                  "thought_signature": null,
+                  "video_metadata": null
+                }
+              ],
+              "role": "user"
+            },
+            "final_response": {
+              "parts": [
+                {
+                  "media_resolution": null,
+                  "code_execution_result": null,
+                  "executable_code": null,
+                  "file_data": null,
+                  "function_call": null,
+                  "function_response": null,
+                  "inline_data": null,
+                  "text": "**Categoría elegida:** museo (el tiempo está con lluvia intensa, 80 % de probabilidad).\n\n**Resumen del tiempo:** 10 °C, lluvia intensa.\n\n**Planes recomendados:**\n1. Museo Guggenheim – entrada 16 €\n2. Museo de Bellas Artes de Bilbao – entrada 10 €\n\n**Coste total estimado:** 26 € (dentro de tu presupuesto de 50 €).",
+                  "thought": true,
+                  "thought_signature": null,
+                  "video_metadata": null
+                },
+                {
+                  "media_resolution": null,
+                  "code_execution_result": null,
+                  "executable_code": null,
+                  "file_data": null,
+                  "function_call": null,
+                  "function_response": null,
+                  "inline_data": null,
+                  "text": "**Categoría elegida:** museo (el tiempo está con lluvia intensa, 80 % de probabilidad).\n\n**Resumen del tiempo:** 10 °C, lluvia intensa.\n\n**Planes recomendados:**\n1. Museo Guggenheim – entrada 16 €\n2. Museo de Bellas Artes de Bilbao – entrada 10 €\n\n**Coste total estimado:** 26 € (dentro de tu presupuesto de 50 €).",
+                  "thought": null,
+                  "thought_signature": null,
+                  "video_metadata": null
+                }
+              ],
+              "role": "model"
+            },
+            "intermediate_data": {
+              "invocation_events": [
+                {
+                  "author": "root_agent",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": null,
+                        "function_response": null,
+                        "inline_data": null,
+                        "text": "We need to follow steps. First get weather for Bilbao. Then decide category based on weather; user prefers outdoor, but we must consider weather. If weather is good (no rain) choose outdoor; if rain maybe museum. We'll get weather.",
+                        "thought": true,
+                        "thought_signature": null,
+                        "video_metadata": null
+                      },
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": {
+                          "id": "chatcmpl-tool-a1ce7a8e2f6a89cf",
+                          "args": {
+                            "city": "Bilbao"
+                          },
+                          "name": "get_weather",
+                          "partial_args": null,
+                          "will_continue": null
+                        },
+                        "function_response": null,
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": null,
+                        "video_metadata": null
+                      }
+                    ],
+                    "role": "model"
+                  }
+                },
+                {
+                  "author": "root_agent",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": null,
+                        "function_response": {
+                          "will_continue": null,
+                          "scheduling": null,
+                          "parts": null,
+                          "id": "chatcmpl-tool-a1ce7a8e2f6a89cf",
+                          "name": "get_weather",
+                          "response": {
+                            "temp_c": 10,
+                            "rain_prob": 80,
+                            "summary": "Lluvia intensa"
+                          }
+                        },
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": null,
+                        "video_metadata": null
+                      }
+                    ],
+                    "role": "user"
+                  }
+                },
+                {
+                  "author": "root_agent",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": null,
+                        "function_response": null,
+                        "inline_data": null,
+                        "text": "We have weather: 10°C, rain probability 80%, intense rain. Preference is outdoor, but due to rain, we should maybe choose indoor museum. According to steps: after get_weather, decide category among museo, outdoor, ocio based on weather. Since rain high, better museo. Preference is outdoor but weather overrides. So choose category \"museo\". Then call search_places with city Bilbao and category museo, and we need exactly the first two results.",
+                        "thought": true,
+                        "thought_signature": null,
+                        "video_metadata": null
+                      },
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": {
+                          "id": "chatcmpl-tool-bf52865947d04deb9ba4d454cd3e9062",
+                          "args": {
+                            "city": "Bilbao",
+                            "category": "museo"
+                          },
+                          "name": "search_places",
+                          "partial_args": null,
+                          "will_continue": null
+                        },
+                        "function_response": null,
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": null,
+                        "video_metadata": null
+                      }
+                    ],
+                    "role": "model"
+                  }
+                },
+                {
+                  "author": "root_agent",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": null,
+                        "function_response": {
+                          "will_continue": null,
+                          "scheduling": null,
+                          "parts": null,
+                          "id": "chatcmpl-tool-bf52865947d04deb9ba4d454cd3e9062",
+                          "name": "search_places",
+                          "response": {
+                            "result": [
+                              {
+                                "name": "Museo Guggenheim",
+                                "type": "museo",
+                                "price_eur": 16
+                              },
+                              {
+                                "name": "Museo de Bellas Artes de Bilbao",
+                                "type": "museo",
+                                "price_eur": 10
+                              },
+                              {
+                                "name": "Museo Marítimo (entrada)",
+                                "type": "museo",
+                                "price_eur": 7
+                              }
+                            ]
+                          }
+                        },
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": null,
+                        "video_metadata": null
+                      }
+                    ],
+                    "role": "user"
+                  }
+                },
+                {
+                  "author": "root_agent",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": null,
+                        "function_response": null,
+                        "inline_data": null,
+                        "text": "We need to follow steps. User prefers outdoor, but weather is heavy rain 80% probability, so we decide category \"museo\". Already did that. Need to pick exactly the first two options returned: Museo Guggenheim and Museo de Bellas Artes de Bilbao. Then estimate cost.",
+                        "thought": true,
+                        "thought_signature": null,
+                        "video_metadata": null
+                      },
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": {
+                          "id": "chatcmpl-tool-8cb77b263397cde7",
+                          "args": {
+                            "place_names": [
+                              "Museo Guggenheim",
+                              "Museo de Bellas Artes de Bilbao"
+                            ]
+                          },
+                          "name": "estimate_cost",
+                          "partial_args": null,
+                          "will_continue": null
+                        },
+                        "function_response": null,
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": null,
+                        "video_metadata": null
+                      }
+                    ],
+                    "role": "model"
+                  }
+                },
+                {
+                  "author": "root_agent",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": null,
+                        "function_response": {
+                          "will_continue": null,
+                          "scheduling": null,
+                          "parts": null,
+                          "id": "chatcmpl-tool-8cb77b263397cde7",
+                          "name": "estimate_cost",
+                          "response": {
+                            "total_eur": 26
+                          }
+                        },
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": null,
+                        "video_metadata": null
+                      }
+                    ],
+                    "role": "user"
+                  }
+                }
+              ]
+            },
+            "creation_timestamp": 1773059133.685272,
+            "rubrics": null,
+            "app_details": {
+              "agent_details": {
+                "root_agent": {
+                  "name": "root_agent",
+                  "instructions": "Eres un planificador de salidas. SIEMPRE debes fundamentarte en herramientas.\nPasos: (1) llama a get_weather(city).\n(2) decide la categoría (SOLO entre estas: museo, outdoor, ocio): en funcion del tiempo que haga, por ejemplo si llueve mejor ir a un museo\n(3) llama a search_places(city, category) y elige hasta 2 lugares.\n(4) llama a estimate_cost con los nombres seleccionados.\n(5) responde en español con: categoría elegida, tiempo (resumen), 2 planes y coste total, sin inventar lugares fuera de la tool.\n\nYou are an agent. Your internal name is \"root_agent\". The description about you is \"Planifica una salida sencilla (2 opciones) en función del tiempo, preferencia y presupuesto, usando tools para fundamentar la respuesta.\".",
+                  "tool_declarations": [
+                    {
+                      "retrieval": null,
+                      "computer_use": null,
+                      "file_search": null,
+                      "google_search": null,
+                      "google_maps": null,
+                      "code_execution": null,
+                      "enterprise_web_search": null,
+                      "function_declarations": [
+                        {
+                          "description": null,
+                          "name": "get_weather",
+                          "parameters": {
+                            "additional_properties": null,
+                            "defs": null,
+                            "ref": null,
+                            "any_of": null,
+                            "default": null,
+                            "description": null,
+                            "enum": null,
+                            "example": null,
+                            "format": null,
+                            "items": null,
+                            "max_items": null,
+                            "max_length": null,
+                            "max_properties": null,
+                            "maximum": null,
+                            "min_items": null,
+                            "min_length": null,
+                            "min_properties": null,
+                            "minimum": null,
+                            "nullable": null,
+                            "pattern": null,
+                            "properties": {
+                              "city": {
+                                "additional_properties": null,
+                                "defs": null,
+                                "ref": null,
+                                "any_of": null,
+                                "default": null,
+                                "description": null,
+                                "enum": null,
+                                "example": null,
+                                "format": null,
+                                "items": null,
+                                "max_items": null,
+                                "max_length": null,
+                                "max_properties": null,
+                                "maximum": null,
+                                "min_items": null,
+                                "min_length": null,
+                                "min_properties": null,
+                                "minimum": null,
+                                "nullable": null,
+                                "pattern": null,
+                                "properties": null,
+                                "property_ordering": null,
+                                "required": null,
+                                "title": null,
+                                "type": "STRING"
+                              }
+                            },
+                            "property_ordering": null,
+                            "required": [
+                              "city"
+                            ],
+                            "title": null,
+                            "type": "OBJECT"
+                          },
+                          "parameters_json_schema": null,
+                          "response": null,
+                          "response_json_schema": null,
+                          "behavior": null
+                        },
+                        {
+                          "description": null,
+                          "name": "search_places",
+                          "parameters": {
+                            "additional_properties": null,
+                            "defs": null,
+                            "ref": null,
+                            "any_of": null,
+                            "default": null,
+                            "description": null,
+                            "enum": null,
+                            "example": null,
+                            "format": null,
+                            "items": null,
+                            "max_items": null,
+                            "max_length": null,
+                            "max_properties": null,
+                            "maximum": null,
+                            "min_items": null,
+                            "min_length": null,
+                            "min_properties": null,
+                            "minimum": null,
+                            "nullable": null,
+                            "pattern": null,
+                            "properties": {
+                              "city": {
+                                "additional_properties": null,
+                                "defs": null,
+                                "ref": null,
+                                "any_of": null,
+                                "default": null,
+                                "description": null,
+                                "enum": null,
+                                "example": null,
+                                "format": null,
+                                "items": null,
+                                "max_items": null,
+                                "max_length": null,
+                                "max_properties": null,
+                                "maximum": null,
+                                "min_items": null,
+                                "min_length": null,
+                                "min_properties": null,
+                                "minimum": null,
+                                "nullable": null,
+                                "pattern": null,
+                                "properties": null,
+                                "property_ordering": null,
+                                "required": null,
+                                "title": null,
+                                "type": "STRING"
+                              },
+                              "category": {
+                                "additional_properties": null,
+                                "defs": null,
+                                "ref": null,
+                                "any_of": null,
+                                "default": null,
+                                "description": null,
+                                "enum": null,
+                                "example": null,
+                                "format": null,
+                                "items": null,
+                                "max_items": null,
+                                "max_length": null,
+                                "max_properties": null,
+                                "maximum": null,
+                                "min_items": null,
+                                "min_length": null,
+                                "min_properties": null,
+                                "minimum": null,
+                                "nullable": null,
+                                "pattern": null,
+                                "properties": null,
+                                "property_ordering": null,
+                                "required": null,
+                                "title": null,
+                                "type": "STRING"
+                              }
+                            },
+                            "property_ordering": null,
+                            "required": [
+                              "city",
+                              "category"
+                            ],
+                            "title": null,
+                            "type": "OBJECT"
+                          },
+                          "parameters_json_schema": null,
+                          "response": null,
+                          "response_json_schema": null,
+                          "behavior": null
+                        },
+                        {
+                          "description": null,
+                          "name": "estimate_cost",
+                          "parameters": {
+                            "additional_properties": null,
+                            "defs": null,
+                            "ref": null,
+                            "any_of": null,
+                            "default": null,
+                            "description": null,
+                            "enum": null,
+                            "example": null,
+                            "format": null,
+                            "items": null,
+                            "max_items": null,
+                            "max_length": null,
+                            "max_properties": null,
+                            "maximum": null,
+                            "min_items": null,
+                            "min_length": null,
+                            "min_properties": null,
+                            "minimum": null,
+                            "nullable": null,
+                            "pattern": null,
+                            "properties": {
+                              "place_names": {
+                                "additional_properties": null,
+                                "defs": null,
+                                "ref": null,
+                                "any_of": null,
+                                "default": null,
+                                "description": null,
+                                "enum": null,
+                                "example": null,
+                                "format": null,
+                                "items": {
+                                  "additional_properties": null,
+                                  "defs": null,
+                                  "ref": null,
+                                  "any_of": null,
+                                  "default": null,
+                                  "description": null,
+                                  "enum": null,
+                                  "example": null,
+                                  "format": null,
+                                  "items": null,
+                                  "max_items": null,
+                                  "max_length": null,
+                                  "max_properties": null,
+                                  "maximum": null,
+                                  "min_items": null,
+                                  "min_length": null,
+                                  "min_properties": null,
+                                  "minimum": null,
+                                  "nullable": null,
+                                  "pattern": null,
+                                  "properties": null,
+                                  "property_ordering": null,
+                                  "required": null,
+                                  "title": null,
+                                  "type": "STRING"
+                                },
+                                "max_items": null,
+                                "max_length": null,
+                                "max_properties": null,
+                                "maximum": null,
+                                "min_items": null,
+                                "min_length": null,
+                                "min_properties": null,
+                                "minimum": null,
+                                "nullable": null,
+                                "pattern": null,
+                                "properties": null,
+                                "property_ordering": null,
+                                "required": null,
+                                "title": null,
+                                "type": "ARRAY"
+                              }
+                            },
+                            "property_ordering": null,
+                            "required": [
+                              "place_names"
+                            ],
+                            "title": null,
+                            "type": "OBJECT"
+                          },
+                          "parameters_json_schema": null,
+                          "response": null,
+                          "response_json_schema": null,
+                          "behavior": null
+                        }
+                      ],
+                      "google_search_retrieval": null,
+                      "parallel_ai_search": null,
+                      "url_context": null,
+                      "mcp_servers": null
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "expected_invocation": {
+            "invocation_id": "",
+            "user_content": {
+              "parts": [
+                {
+                  "media_resolution": null,
+                  "code_execution_result": null,
+                  "executable_code": null,
+                  "file_data": null,
+                  "function_call": null,
+                  "function_response": null,
+                  "inline_data": null,
+                  "text": "Estoy en Bilbao. Prefiero outdoor y tengo 50€. Usa tools y elige exactamente las dos primeras opciones que devuelva la herramienta de lugares.",
+                  "thought": null,
+                  "thought_signature": null,
+                  "video_metadata": null
+                }
+              ],
+              "role": "user"
+            },
+            "final_response": {
+              "parts": [
+                {
+                  "media_resolution": null,
+                  "code_execution_result": null,
+                  "executable_code": null,
+                  "file_data": null,
+                  "function_call": null,
+                  "function_response": null,
+                  "inline_data": null,
+                  "text": "Categoría elegida: museo.\n1) Museo Guggenheim – 16 €\n2) Museo de Bellas Artes de Bilbao – 10 €\nCoste total: 26 €.",
+                  "thought": null,
+                  "thought_signature": null,
+                  "video_metadata": null
+                }
+              ],
+              "role": "model"
+            },
+            "intermediate_data": {
+              "tool_uses": [
+                {
+                  "id": null,
+                  "args": {
+                    "city": "Bilbao"
+                  },
+                  "name": "get_weather",
+                  "partial_args": null,
+                  "will_continue": null
+                },
+                {
+                  "id": null,
+                  "args": {
+                    "city": "Bilbao",
+                    "category": "museo"
+                  },
+                  "name": "search_places",
+                  "partial_args": null,
+                  "will_continue": null
+                },
+                {
+                  "id": null,
+                  "args": {
+                    "place_names": [
+                      "Museo Guggenheim",
+                      "Museo de Bellas Artes de Bilbao"
+                    ]
+                  },
+                  "name": "estimate_cost",
+                  "partial_args": null,
+                  "will_continue": null
+                }
+              ],
+              "tool_responses": [],
+              "intermediate_responses": []
+            },
+            "creation_timestamp": 0.0,
+            "rubrics": null,
+            "app_details": null
+          },
+          "eval_metric_results": [
+            {
+              "metric_name": "tool_trajectory_avg_score",
+              "threshold": 0.8,
+              "criterion": {
+                "threshold": 0.8
+              },
+              "custom_function_path": null,
+              "score": 1.0,
+              "eval_status": 1,
+              "details": {
+                "rubric_scores": null
+              }
+            },
+            {
+              "metric_name": "response_match_score",
+              "threshold": 0.3,
+              "criterion": {
+                "threshold": 0.3
+              },
+              "custom_function_path": null,
+              "score": 0.34234234234234234,
+              "eval_status": 1,
+              "details": {
+                "rubric_scores": null
+              }
+            }
+          ]
+        }
+      ],
+      "session_id": "___eval___session___1a2a88ea-d09c-4039-b713-5ddf10033c8e",
+      "session_details": null,
+      "user_id": "test_user_id"
+    }
+  ],
+  "creation_timestamp": 1773059138.6909332
+}

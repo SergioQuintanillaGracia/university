@@ -1,0 +1,58 @@
+city,category,name,price_eur
+Valencia,museo,Museo de Bellas Artes,0
+Valencia,museo,IVAM,8
+Valencia,museo,Centro del Carmen (CCEC),0
+Valencia,museo,Museo de la Seda,2
+Valencia,museo,Museo Nacional de Cerámica,3
+Valencia,outdoor,Jardín del Turia (paseo),0
+Valencia,outdoor,La Malvarrosa (paseo),0
+Valencia,outdoor,Parque de Cabecera (paseo),0
+Valencia,outdoor,Ciudad de las Artes (exterior),0
+Valencia,outdoor,Ruta por el Carmen (a pie),0
+Valencia,ocio,Bioparc,30
+Valencia,ocio,Oceanogràfic,38
+Valencia,ocio,Hemisfèric (sesión),9
+Valencia,ocio,Cine (entrada),10
+
+Madrid,museo,Museo del Prado,15
+Madrid,museo,Museo Reina Sofía,12
+Madrid,museo,Museo Thyssen,14
+Madrid,museo,Museo Arqueológico Nacional,3
+Madrid,outdoor,Parque del Retiro (paseo),0
+Madrid,outdoor,Madrid Río (paseo),0
+Madrid,outdoor,Templo de Debod (atardecer),0
+Madrid,outdoor,Plaza Mayor (paseo),0
+Madrid,ocio,Teleférico (ida y vuelta),13
+Madrid,ocio,Zoo Aquarium (entrada),25
+Madrid,ocio,Cine (entrada),10
+Madrid,ocio,Escape room (por persona),18
+Barcelona,museo,MNAC,12
+Barcelona,museo,Museu Picasso,12
+Barcelona,museo,MACBA,11
+Barcelona,museo,Museu d'Història (MUHBA),7
+Barcelona,outdoor,Parc de la Ciutadella (paseo),0
+Barcelona,outdoor,Passeig Marítim (paseo),0
+Barcelona,outdoor,Montjuïc (miradores),0
+Barcelona,outdoor,Barri Gòtic (ruta a pie),0
+Barcelona,ocio,Aquarium (entrada),27
+Barcelona,ocio,Mirador (ticket),15
+Barcelona,ocio,Escape room (por persona),18
+Barcelona,ocio,Cine (entrada),10
+Sevilla,museo,Museo de Bellas Artes de Sevilla,0
+Sevilla,museo,Archivo de Indias (visita),0
+Sevilla,museo,Centro Andaluz de Arte Contemporáneo,3
+Sevilla,outdoor,Plaza de España (paseo),0
+Sevilla,outdoor,Parque de María Luisa (paseo),0
+Sevilla,outdoor,Triana (ruta a pie),0
+Sevilla,outdoor,Setas de Sevilla (exterior),0
+Sevilla,ocio,Crucero por el Guadalquivir,18
+Sevilla,ocio,Espectáculo flamenco (entrada),25
+Sevilla,ocio,Cine (entrada),10
+Bilbao,museo,Museo Guggenheim,16
+Bilbao,museo,Museo de Bellas Artes de Bilbao,10
+Bilbao,museo,Museo Marítimo (entrada),7
+Bilbao,outdoor,Casco Viejo (ruta a pie),0
+Bilbao,outdoor,Paseo por la ría (paseo),0
+Bilbao,outdoor,Puente Zubizuri (paseo),0
+Bilbao,ocio,Funicular de Artxanda (ida y vuelta),4
+Bilbao,ocio,Cine (entrada),10
