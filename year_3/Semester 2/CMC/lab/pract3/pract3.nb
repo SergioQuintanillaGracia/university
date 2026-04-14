@@ -1,0 +1,190 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 14.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[      6637,        182]
+NotebookOptionsPosition[      5045,        148]
+NotebookOutlinePosition[      5435,        164]
+CellTagsIndexPosition[      5392,        161]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Pr\[AAcute]ctica 3", "Title",
+ CellChangeTimes->{{3.985152301310869*^9, 
+  3.985152306806728*^9}},ExpressionUUID->"6ecb9d33-8a47-44e4-88c6-\
+273a85506f7f"],
+
+Cell[TextData[{
+ StyleBox["Integrantes del equipo:",
+  FontWeight->"Bold"],
+ "\n\t- Adri\[AGrave] Mar\[IAcute]n Bayarri\n\t- Sergio Quintanilla Graci\
+\[AAcute]"
+}], "Text",
+ CellChangeTimes->{{3.985152793787952*^9, 
+  3.985152808179143*^9}},ExpressionUUID->"0e5d6337-f7c1-4729-8d73-\
+af8320441479"],
+
+Cell[CellGroupData[{
+
+Cell["Ejercicio 1", "Section",
+ CellChangeTimes->{{3.9851523777826843`*^9, 
+  3.98515238192332*^9}},ExpressionUUID->"10083f13-df8b-4914-959d-\
+2fb5b36a388a"],
+
+Cell[TextData[{
+ "Dise\[NTilde]e un m\[OAcute]dulo Mathematica que, tomando como entrada los \
+siguientes par\[AAcute]metros, nos proporcione como salida la simulaci\
+\[OAcute]n del AC unidimensional correspondiente.\n\t- ",
+ StyleBox["Inicial:",
+  FontWeight->"Bold"],
+ " Lista con la configuraci\[OAcute]n inicial del AC\n\t- ",
+ StyleBox["Regla:",
+  FontWeight->"Bold"],
+ " Valor entero que codifica la regla como un n\[UAcute]mero de Wolfram\n\t- ",
+ StyleBox["t:",
+  FontWeight->"Bold"],
+ " N\[UAcute]mero de configuraciones a calcular a partir de la configuraci\
+\[OAcute]n inicial\[LineSeparator]\nConsidere un conjunto de estados binario \
+{0, 1} y condici\[OAcute]n de frontera peri\[OAcute]dica."
+}], "Text",
+ CellChangeTimes->{{3.985152404392928*^9, 3.9851524637765303`*^9}, {
+  3.985153012271072*^9, 
+  3.9851530314747763`*^9}},ExpressionUUID->"920f4b18-8576-47f6-985f-\
+ba0880db0523"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"AC", "[", 
+    RowBox[{
+    "inicial_List", ",", " ", "regla_Integer", ",", " ", "t_Integer"}], "]"}],
+    ":=", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", "}"}], ","}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+    "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.9851522754631453`*^9, 3.98515227826125*^9}, {
+  3.9851525056532907`*^9, 
+  3.9851525981123247`*^9}},ExpressionUUID->"56e2d6ab-5cf1-4e50-9ebe-\
+4894861566f2"],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.985152304846778*^9, 
+  3.9851523059391003`*^9}},ExpressionUUID->"e3418726-dce7-4db2-bc03-\
+d18707e5e569"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Ejercicio 2", "Section",
+ CellChangeTimes->{{3.985152711815991*^9, 
+  3.9851527144563103`*^9}},ExpressionUUID->"1f63616d-10a0-470c-bf40-\
+9aa3fe042bc1"],
+
+Cell["\<\
+Dise\[NTilde]e un m\[OAcute]dulo Mathematica que, tomando como entrada una \
+rejilla bidimensional R de k x k celdas y un n\[UAcute]mero entero n, \
+proporcione como salida la simulaci\[OAcute]n de la evoluci\[OAcute]n de R \
+durante n pasos de computaci\[OAcute]n aplicando las reglas de Conway en el \
+Juego de la Vida. Puede usar ArrayPlot y ListAnimate para realizar la evoluci\
+\[OAcute]n animada.
+
+Considere un conjunto de estados binario {0, 1} y condici\[OAcute]n de \
+frontera peri\[OAcute]dica.\
+\>", "Text",
+ CellChangeTimes->{{3.985152718135892*^9, 3.985152718445381*^9}, {
+  3.985152899547159*^9, 3.985152943369335*^9}, {3.985153035330081*^9, 
+  3.985153035785602*^9}},ExpressionUUID->"be5805ba-3c82-465a-9feb-\
+f66fdaa29ff6"],
+
+Cell[BoxData["placeholder"], "Input",
+ CellChangeTimes->{{3.9851527202778883`*^9, 3.985152723852908*^9}, {
+  3.985152782929834*^9, 
+  3.9851527831856318`*^9}},ExpressionUUID->"833f31c9-07b1-4090-8271-\
+e4062d88877e"],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.985152764515308*^9, 
+  3.9851527650724287`*^9}},ExpressionUUID->"9f61f0ff-a7f5-438e-967b-\
+057a9cad84a6"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Ejercicio 3", "Section",
+ CellChangeTimes->{{3.985152769063798*^9, 
+  3.985152770400742*^9}},ExpressionUUID->"22516b1e-577c-4692-811d-\
+d3b64c8a0d99"],
+
+Cell["\<\
+Implemente un m\[OAcute]dulo Mathematica que, tomando como entrada una cadena \
+arbitraria y un AC unidimensional por la izquierda que reconoce un lenguaje \
+mediante entreda paralela en tiempo real proporcione como salida True si el \
+AC acepta la cadena y False en caso contrario. Considere que el estado de \
+fronteria quiescente es siempre el estado q E S.\
+\>", "Text",
+ CellChangeTimes->{{3.985152776114064*^9, 3.9851527763961353`*^9}, {
+  3.9851529449968157`*^9, 
+  3.98515299803168*^9}},ExpressionUUID->"4412ca1b-247f-4c51-85e7-\
+c61b0e18268c"],
+
+Cell[BoxData["placeholder"], "Input",
+ CellChangeTimes->{{3.985152778448782*^9, 
+  3.985152779787472*^9}},ExpressionUUID->"31e7c4e0-339c-4fdb-9ce3-\
+70d219beb4a7"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{606, 683.25},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"14.3 for Linux x86 (64-bit) (July 8, 2025)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"cc1b1729-7b58-475e-b3c1-71eb926aa54f"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 161, 3, 96, "Title",ExpressionUUID->"6ecb9d33-8a47-44e4-88c6-273a85506f7f"],
+Cell[740, 27, 299, 8, 77, "Text",ExpressionUUID->"0e5d6337-f7c1-4729-8d73-af8320441479"],
+Cell[CellGroupData[{
+Cell[1064, 39, 157, 3, 65, "Section",ExpressionUUID->"10083f13-df8b-4914-959d-2fb5b36a388a"],
+Cell[1224, 44, 897, 19, 230, "Text",ExpressionUUID->"920f4b18-8576-47f6-985f-ba0880db0523"],
+Cell[2124, 65, 489, 14, 71, "Input",ExpressionUUID->"56e2d6ab-5cf1-4e50-9ebe-4894861566f2"],
+Cell[2616, 81, 154, 3, 29, "Input",ExpressionUUID->"e3418726-dce7-4db2-bc03-d18707e5e569"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2807, 89, 158, 3, 65, "Section",ExpressionUUID->"1f63616d-10a0-470c-bf40-9aa3fe042bc1"],
+Cell[2968, 94, 749, 14, 186, "Text",ExpressionUUID->"be5805ba-3c82-465a-9feb-f66fdaa29ff6"],
+Cell[3720, 110, 216, 4, 29, "Input",ExpressionUUID->"833f31c9-07b1-4090-8271-e4062d88877e"],
+Cell[3939, 116, 154, 3, 29, "Input",ExpressionUUID->"9f61f0ff-a7f5-438e-967b-057a9cad84a6"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4130, 124, 156, 3, 65, "Section",ExpressionUUID->"22516b1e-577c-4692-811d-d3b64c8a0d99"],
+Cell[4289, 129, 562, 10, 99, "Text",ExpressionUUID->"4412ca1b-247f-4c51-85e7-c61b0e18268c"],
+Cell[4854, 141, 163, 3, 29, "Input",ExpressionUUID->"31e7c4e0-339c-4fdb-9ce3-70d219beb4a7"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
