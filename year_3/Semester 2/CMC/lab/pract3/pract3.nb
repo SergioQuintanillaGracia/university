@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       154,          7]
-NotebookDataLength[      6637,        182]
-NotebookOptionsPosition[      5045,        148]
-NotebookOutlinePosition[      5435,        164]
-CellTagsIndexPosition[      5392,        161]
+NotebookDataLength[    106803,       2019]
+NotebookOptionsPosition[    105045,       1982]
+NotebookOutlinePosition[    105435,       1998]
+CellTagsIndexPosition[    105392,       1995]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -63,21 +63,1855 @@ siguientes par\[AAcute]metros, nos proporcione como salida la simulaci\
   3.9851530314747763`*^9}},ExpressionUUID->"920f4b18-8576-47f6-985f-\
 ba0880db0523"],
 
-Cell[BoxData[
+Cell[CellGroupData[{
+
+Cell[BoxData[{
  RowBox[{
   RowBox[{
-   RowBox[{"AC", "[", 
+   RowBox[{
+    RowBox[{"AC", "[", 
+     RowBox[{
+     "inicial_List", ",", " ", "regla_Integer", ",", " ", "t_Integer"}], 
+     "]"}], ":=", 
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+       "bindigits", ",", "prevstate", ",", "newstate", ",", "i", ",", "j", ",",
+         "left", ",", "center", ",", "right", ",", "len", ",", "currnum", ",",
+         "num", ",", "alldata", ",", "frames"}], "}"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"(*", " ", 
+       RowBox[{
+       "Obtenemos", " ", "la", " ", "representaci\[OAcute]n", " ", "binaria", 
+        " ", "al", " ", "rev\[EAcute]s", " ", "de", " ", "la", " ", "regla"}],
+        " ", "*)"}], "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"bindigits", "=", 
+        RowBox[{"IntegerDigits", "[", 
+         RowBox[{"regla", ",", "2", ",", "8"}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"bindigits", "=", 
+        RowBox[{"Reverse", "[", "bindigits", "]"}]}], ";", 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"len", "=", 
+        RowBox[{"Length", "[", "inicial", "]"}]}], ";", "\[IndentingNewLine]",
+        "\[IndentingNewLine]", 
+       RowBox[{"(*", " ", 
+        RowBox[{
+        "Inicializamos", " ", "alldata", " ", "con", " ", "varias", " ", 
+         "rows", " ", "de", " ", "0", "s", " ", "que", " ", "utilizaremos", " ",
+          "m\[AAcute]s", " ", "adelante", " ", "para", " ", "generar", " ", 
+         "los", " ", "frames"}], " ", "*)"}], "\[IndentingNewLine]", 
+       RowBox[{"alldata", "=", 
+        RowBox[{"ConstantArray", "[", 
+         RowBox[{"0", ",", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"len", "-", "1"}], ",", "len"}], "}"}]}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"AppendTo", "[", 
+        RowBox[{"alldata", ",", "inicial"}], "]"}], ";", 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"(*", " ", 
+        RowBox[{
+        "Escribimos", " ", "el", " ", "n\[UAcute]mero", " ", "al", " ", "que",
+          " ", "transicionamos", " ", "en", " ", "cada", " ", 
+         "posici\[OAcute]n", " ", "de", " ", "inicial", " ", "en", " ", 
+         "newstate", " ", "para", " ", "calcular", " ", "el", " ", 
+         "siguiente", " ", "estado"}], " ", "*)"}], "\[IndentingNewLine]", 
+       RowBox[{"prevstate", "=", "inicial"}], ";", "\[IndentingNewLine]", 
+       RowBox[{"For", "[", 
+        RowBox[{
+         RowBox[{"j", "=", "0"}], ",", 
+         RowBox[{"j", "<", "t"}], ",", 
+         RowBox[{"j", "++"}], ",", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"newstate", "=", 
+           RowBox[{"{", "}"}]}], ";", "\[IndentingNewLine]", 
+          RowBox[{"For", "[", 
+           RowBox[{
+            RowBox[{"i", "=", "0"}], ",", 
+            RowBox[{"i", "<", "len"}], ",", 
+            RowBox[{"i", "++"}], ",", "\[IndentingNewLine]", 
+            RowBox[{"(*", " ", 
+             RowBox[{
+              RowBox[{
+              "Calculamos", " ", "un", " ", "n\[UAcute]mero", " ", "en", " ", 
+               "base", " ", "10", " ", "correspondiente", " ", "al", " ", 
+               "d\[IAcute]gito", " ", "izquierdo"}], ",", " ", 
+              RowBox[{
+              "central", " ", "y", " ", "derecho", " ", "de", " ", "la", " ", 
+               "posici\[OAcute]n", " ", "que", " ", "estamos", " ", 
+               "considerando"}]}], " ", "*)"}], "\[IndentingNewLine]", 
+            RowBox[{
+             RowBox[{"left", "=", 
+              RowBox[{
+               RowBox[{"Mod", "[", 
+                RowBox[{
+                 RowBox[{"i", "+", "len", "-", "1"}], ",", "len"}], "]"}], 
+               " ", "+", " ", "1"}]}], ";", "\[IndentingNewLine]", 
+             RowBox[{"center", "=", 
+              RowBox[{"i", " ", "+", " ", "1"}]}], ";", "\[IndentingNewLine]", 
+             RowBox[{"right", "=", 
+              RowBox[{
+               RowBox[{"Mod", "[", 
+                RowBox[{
+                 RowBox[{"i", "+", "1"}], ",", "len"}], "]"}], " ", "+", " ", 
+               "1"}]}], ";", "\[IndentingNewLine]", 
+             RowBox[{"currnum", "=", 
+              RowBox[{"FromDigits", "[", 
+               RowBox[{
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"prevstate", "[", 
+                   RowBox[{"[", "left", "]"}], "]"}], ",", 
+                  RowBox[{"prevstate", "[", 
+                   RowBox[{"[", "center", "]"}], "]"}], ",", 
+                  RowBox[{"prevstate", "[", 
+                   RowBox[{"[", "right", "]"}], "]"}]}], "}"}], ",", "2"}], 
+               "]"}]}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+             RowBox[{"(*", " ", 
+              RowBox[{
+               RowBox[{
+               "El", " ", "n\[UAcute]mero", " ", "por", " ", "el", " ", "que",
+                 " ", "sustituiremos", " ", "al", " ", "actual", " ", 
+                "est\[AAcute]", " ", "en", " ", "la", " ", "posici\[OAcute]n",
+                 " ", "currnum"}], " ", "+", " ", 
+               RowBox[{"1", " ", "en", " ", "bindigits"}]}], " ", "*)"}], 
+             "\[IndentingNewLine]", 
+             RowBox[{"num", "=", 
+              RowBox[{"bindigits", "[", 
+               RowBox[{"[", 
+                RowBox[{"currnum", "+", "1"}], "]"}], "]"}]}], ";", 
+             "\[IndentingNewLine]", 
+             RowBox[{"AppendTo", "[", 
+              RowBox[{"newstate", ",", "num"}], "]"}], ";"}]}], 
+           "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", 
+          RowBox[{"AppendTo", "[", 
+           RowBox[{"alldata", ",", "newstate"}], "]"}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"prevstate", "=", "newstate"}], ";"}]}], 
+        "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", 
+       "\[IndentingNewLine]", 
+       RowBox[{"(*", " ", 
+        RowBox[{
+        "Calculamos", " ", "los", " ", "frames", " ", "con", " ", "una", " ", 
+         "sliding", " ", "window", " ", "sobre", " ", "alldata"}], " ", 
+        "*)"}], "\[IndentingNewLine]", 
+       RowBox[{"frames", "=", 
+        RowBox[{"{", "}"}]}], ";", "\[IndentingNewLine]", 
+       "\[IndentingNewLine]", 
+       RowBox[{"For", "[", 
+        RowBox[{
+         RowBox[{"i", "=", "1"}], ",", 
+         RowBox[{"i", "<=", 
+          RowBox[{
+           RowBox[{"Length", "[", "alldata", "]"}], "-", "len"}]}], ",", 
+         RowBox[{"i", "++"}], ",", "\[IndentingNewLine]", 
+         RowBox[{"AppendTo", "[", 
+          RowBox[{"frames", ",", 
+           RowBox[{"ArrayPlot", "[", 
+            RowBox[{"alldata", "[", 
+             RowBox[{"[", 
+              RowBox[{"i", ";;", 
+               RowBox[{"i", "+", "len", "-", "1"}]}], "]"}], "]"}], "]"}]}], 
+          "]"}]}], "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", 
+       "\[IndentingNewLine]", 
+       RowBox[{"ListAnimate", "[", "frames", "]"}]}]}], "\[IndentingNewLine]",
+      "]"}]}], ";"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"AC", "[", 
+  RowBox[{
+   RowBox[{"{", 
     RowBox[{
-    "inicial_List", ",", " ", "regla_Integer", ",", " ", "t_Integer"}], "]"}],
-    ":=", 
-   RowBox[{"Module", "[", 
-    RowBox[{
-     RowBox[{"{", "}"}], ","}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
-    "]"}]}], ";"}]], "Input",
+    "1", ",", "0", ",", "1", ",", "0", ",", "1", ",", "1", ",", "1", ",", "0",
+      ",", "1", ",", "0", ",", "0", ",", "1", ",", "0", ",", "0"}], "}"}], ",",
+    " ", "47", ",", " ", "50"}], "]"}]}], "Input",
  CellChangeTimes->{{3.9851522754631453`*^9, 3.98515227826125*^9}, {
-  3.9851525056532907`*^9, 
-  3.9851525981123247`*^9}},ExpressionUUID->"56e2d6ab-5cf1-4e50-9ebe-\
-4894861566f2"],
+   3.9851525056532907`*^9, 3.9851525981123247`*^9}, {3.985753626832793*^9, 
+   3.985753637093421*^9}, {3.985754513955278*^9, 3.985754571025949*^9}, {
+   3.98575460172412*^9, 3.98575461600701*^9}, {3.985754726571157*^9, 
+   3.98575473807625*^9}, {3.985754898890085*^9, 3.98575502534857*^9}, {
+   3.985755110774823*^9, 3.9857551830080957`*^9}, {3.9857552240982237`*^9, 
+   3.985755284298448*^9}, {3.985755399729431*^9, 3.9857554002298317`*^9}, {
+   3.985755439541782*^9, 3.985755538097065*^9}, {3.9857555817031612`*^9, 
+   3.9857557579882*^9}, {3.985755796799034*^9, 3.985755797223172*^9}, {
+   3.985755884199093*^9, 3.985755936495892*^9}, {3.9857560707070017`*^9, 
+   3.985756116942*^9}, {3.985756147417842*^9, 3.9857562056801653`*^9}, {
+   3.985756329627898*^9, 3.985756351470602*^9}, {3.985756422543706*^9, 
+   3.9857565446649942`*^9}, {3.985756598545718*^9, 3.985756602739231*^9}, {
+   3.985756704483177*^9, 3.985756711713167*^9}, {3.9857567493108788`*^9, 
+   3.98575678038306*^9}, {3.985756881651785*^9, 3.985756974533806*^9}, {
+   3.9857572642216787`*^9, 3.985757346207244*^9}, {3.985757387731023*^9, 
+   3.985757406000415*^9}, {3.9857574476622047`*^9, 3.985757459561749*^9}, {
+   3.98575758356878*^9, 3.985757640302022*^9}, 3.985757745269539*^9, {
+   3.985757852755685*^9, 3.985757924496722*^9}, {3.9857583912300177`*^9, 
+   3.9857583926352253`*^9}},
+ CellLabel->"In[44]:=",ExpressionUUID->"56e2d6ab-5cf1-4e50-9ebe-4894861566f2"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{Manipulate`Dump`i$104406$$ = 9, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {
+    "\"min\"" :> {Manipulate`Dump`i$104406$$ = 1}, 
+     "\"max\"" :> {Manipulate`Dump`i$104406$$ = 50}}, Typeset`bookmarkMode$$ =
+     "Menu", Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[Manipulate`Dump`i$104406$$], 1, ""}, 1, 50, 1, ControlType -> 
+      Animator}}, Typeset`size$$ = Automatic, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    PaneBox[
+     PanelBox[GridBox[{
+        {
+         ItemBox[
+          ItemBox[
+           TagBox[
+            StyleBox[GridBox[{
+               {"\<\"\"\>", 
+                AnimatorBox[Dynamic[Manipulate`Dump`i$104406$$], {1, 50, 1},
+                 AnimationRate->Automatic,
+                 AnimationRunTime->5.805267810821533,
+                 AnimationTimeIndex->0.8052678108215332,
+                 
+                 AppearanceElements->{
+                  "ProgressSlider", "PlayPauseButton", "FasterSlowerButtons", 
+                   "DirectionButton"},
+                 AutoAction->False,
+                 DisplayAllSteps->True]}
+              },
+              AutoDelete->False,
+              
+              GridBoxAlignment->{
+               "Columns" -> {Right, {Left}}, "Rows" -> {{Baseline}}},
+              
+              GridBoxItemSize->{
+               "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}], 
+             "ListAnimateLabel",
+             StripOnInput->False],
+            {"ControlArea", Top}],
+           Alignment->{Automatic, Inherited},
+           StripOnInput->False],
+          Background->None,
+          StripOnInput->False]},
+        {
+         ItemBox[
+          TagBox[
+           StyleBox[
+            PaneBox[
+             TagBox[
+              PaneSelectorBox[{1->
+               
+               GraphicsBox[
+                RasterBox[{{0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 0, 1, 1}, {1, 1, 
+                 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 1, 1, 1, 1,
+                  1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 
+                 1}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 
+                 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+                  1, 1, 1, 1}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1,
+                  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 1, 1, 
+                 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+                  1, 1}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 1,
+                  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 1, 1, 1, 1, 
+                 1, 1, 1, 1, 1, 1}}, {{0, 0}, {14, 14}}, {0, 1}],
+                Frame->Automatic,
+                FrameLabel->{None, None},
+                FrameTicks->{{None, None}, {None, None}},
+                GridLinesStyle->Directive[
+                  GrayLevel[0.5, 0.4]],
+                
+                Method->{
+                 "GridLinesInFront" -> True, "DefaultBoundaryStyle" -> 
+                  Automatic, 
+                  "DefaultGraphicsInteraction" -> {
+                   "Version" -> 1.2, "TrackMousePosition" -> {True, False}, 
+                    "Effects" -> {
+                    "Highlight" -> {"ratio" -> 2}, 
+                    "HighlightPoint" -> {"ratio" -> 2}, 
+                    "Droplines" -> {
+                    "freeformCursorMode" -> True, 
+                    "placement" -> {"x" -> "All", "y" -> "None"}}}}, 
+                  "DefaultPlotStyle" -> Automatic}], 2->
+               
+               GraphicsBox[
+                RasterBox[{{0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 1, 0}, {0, 1, 
+                 0, 1, 0, 0, 0, 1, 0, 1, 1, 0, 1, 1}, {1, 1, 1, 1, 1, 1, 1, 1,
+                  1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 
+                 1}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 
+                 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+                  1, 1, 1, 1}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1,
+                  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 1, 1, 
+                 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+                  1, 1}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 1,
+                  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 1, 1, 1, 1, 
+                 1, 1, 1, 1, 1, 1}}, {{0, 0}, {14, 14}}, {0, 1}],
+                Frame->Automatic,
+                FrameLabel->{None, None},
+                FrameTicks->{{None, None}, {None, None}},
+                GridLinesStyle->Directive[
+                  GrayLevel[0.5, 0.4]],
+                
+                Method->{
+                 "GridLinesInFront" -> True, "DefaultBoundaryStyle" -> 
+                  Automatic, 
+                  "DefaultGraphicsInteraction" -> {
+                   "Version" -> 1.2, "TrackMousePosition" -> {True, False}, 
+                    "Effects" -> {
+                    "Highlight" -> {"ratio" -> 2}, 
+                    "HighlightPoint" -> {"ratio" -> 2}, 
+                    "Droplines" -> {
+                    "freeformCursorMode" -> True, 
+                    "placement" -> {"x" -> "All", "y" -> "None"}}}}, 
+                  "DefaultPlotStyle" -> Automatic}], 3->
+               
+               GraphicsBox[
+                RasterBox[{{1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0}, {0, 0, 
+                 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 1, 0}, {0, 1, 0, 1, 0, 0, 0, 1,
+                  0, 1, 1, 0, 1, 1}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 
+                 1}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 
+                 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+                  1, 1, 1, 1}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1,
+                  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 1, 1, 
+                 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+                  1, 1}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 1,
+                  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 1, 1, 1, 1, 
+                 1, 1, 1, 1, 1, 1}}, {{0, 0}, {14, 14}}, {0, 1}],
+                Frame->Automatic,
+                FrameLabel->{None, None},
+                FrameTicks->{{None, None}, {None, None}},
+                GridLinesStyle->Directive[
+                  GrayLevel[0.5, 0.4]],
+                
+                Method->{
+                 "GridLinesInFront" -> True, "DefaultBoundaryStyle" -> 
+                  Automatic, 
+                  "DefaultGraphicsInteraction" -> {
+                   "Version" -> 1.2, "TrackMousePosition" -> {True, False}, 
+                    "Effects" -> {
+                    "Highlight" -> {"ratio" -> 2}, 
+                    "HighlightPoint" -> {"ratio" -> 2}, 
+                    "Droplines" -> {
+                    "freeformCursorMode" -> True, 
+                    "placement" -> {"x" -> "All", "y" -> "None"}}}}, 
+                  "DefaultPlotStyle" -> Automatic}], 4->
+               
+               GraphicsBox[
+                RasterBox[{{1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1}, {1, 1, 
+                 1, 1, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0}, {0, 0, 0, 0, 0, 1, 1, 0,
+                  0, 1, 0, 0, 1, 0}, {0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 0, 1, 
+                 1}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 
+                 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+                  1, 1, 1, 1}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1,
+                  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 1, 1, 
+                 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+                  1, 1}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 1,
+                  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 1, 1, 1, 1, 
+                 1, 1, 1, 1, 1, 1}}, {{0, 0}, {14, 14}}, {0, 1}],
+                Frame->Automatic,
+                FrameLabel->{None, None},
+                FrameTicks->{{None, None}, {None, None}},
+                GridLinesStyle->Directive[
+                  GrayLevel[0.5, 0.4]],
+                
+                Method->{
+                 "GridLinesInFront" -> True, "DefaultBoundaryStyle" -> 
+                  Automatic, 
+                  "DefaultGraphicsInteraction" -> {
+                   "Version" -> 1.2, "TrackMousePosition" -> {True, False}, 
+                    "Effects" -> {
+                    "Highlight" -> {"ratio" -> 2}, 
+                    "HighlightPoint" -> {"ratio" -> 2}, 
+                    "Droplines" -> {
+                    "freeformCursorMode" -> True, 
+                    "placement" -> {"x" -> "All", "y" -> "None"}}}}, 
+                  "DefaultPlotStyle" -> Automatic}], 5->
+               
+               GraphicsBox[
+                RasterBox[{{0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 1, 1}, {1, 0, 
+                 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1}, {1, 1, 1, 1, 1, 1, 0, 0,
+                  1, 0, 0, 1, 0, 0}, {0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 1, 
+                 0}, {0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 0, 1, 1}, {1, 1, 1, 1, 
+                 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+                  1, 1, 1, 1}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1,
+                  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 1, 1, 
+                 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+                  1, 1}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 1,
+                  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 1, 1, 1, 1, 
+                 1, 1, 1, 1, 1, 1}}, {{0, 0}, {14, 14}}, {0, 1}],
+                Frame->Automatic,
+                FrameLabel->{None, None},
+                FrameTicks->{{None, None}, {None, None}},
+                GridLinesStyle->Directive[
+                  GrayLevel[0.5, 0.4]],
+                
+                Method->{
+                 "GridLinesInFront" -> True, "DefaultBoundaryStyle" -> 
+                  Automatic, 
+                  "DefaultGraphicsInteraction" -> {
+                   "Version" -> 1.2, "TrackMousePosition" -> {True, False}, 
+                    "Effects" -> {
+                    "Highlight" -> {"ratio" -> 2}, 
+                    "HighlightPoint" -> {"ratio" -> 2}, 
+                    "Droplines" -> {
+                    "freeformCursorMode" -> True, 
+                    "placement" -> {"x" -> "All", "y" -> "None"}}}}, 
+                  "DefaultPlotStyle" -> Automatic}], 6->
+               
+               GraphicsBox[
+                RasterBox[{{0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 0}, {0, 0, 
+                 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 1, 1}, {1, 0, 0, 0, 0, 0, 0, 1,
+                  0, 0, 1, 0, 0, 1}, {1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 1, 0, 
+                 0}, {0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 1, 0}, {0, 1, 0, 1, 
+                 0, 0, 0, 1, 0, 1, 1, 0, 1, 1}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+                  1, 1, 1, 1}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1,
+                  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 1, 1, 
+                 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+                  1, 1}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 1,
+                  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 1, 1, 1, 1, 
+                 1, 1, 1, 1, 1, 1}}, {{0, 0}, {14, 14}}, {0, 1}],
+                Frame->Automatic,
+                FrameLabel->{None, None},
+                FrameTicks->{{None, None}, {None, None}},
+                GridLinesStyle->Directive[
+                  GrayLevel[0.5, 0.4]],
+                
+                Method->{
+                 "GridLinesInFront" -> True, "DefaultBoundaryStyle" -> 
+                  Automatic, 
+                  "DefaultGraphicsInteraction" -> {
+                   "Version" -> 1.2, "TrackMousePosition" -> {True, False}, 
+                    "Effects" -> {
+                    "Highlight" -> {"ratio" -> 2}, 
+                    "HighlightPoint" -> {"ratio" -> 2}, 
+                    "Droplines" -> {
+                    "freeformCursorMode" -> True, 
+                    "placement" -> {"x" -> "All", "y" -> "None"}}}}, 
+                  "DefaultPlotStyle" -> Automatic}], 7->
+               
+               GraphicsBox[
+                RasterBox[{{1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0}, {0, 1, 
+                 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 0}, {0, 0, 1, 1, 1, 1, 1, 0,
+                  0, 1, 0, 0, 1, 1}, {1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 
+                 1}, {1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0}, {0, 0, 0, 0, 
+                 0, 1, 1, 0, 0, 1, 0, 0, 1, 0}, {0, 1, 0, 1, 0, 0, 0, 1, 0, 1,
+                  1, 0, 1, 1}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1,
+                  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 1, 1, 
+                 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+                  1, 1}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 1,
+                  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 1, 1, 1, 1, 
+                 1, 1, 1, 1, 1, 1}}, {{0, 0}, {14, 14}}, {0, 1}],
+                Frame->Automatic,
+                FrameLabel->{None, None},
+                FrameTicks->{{None, None}, {None, None}},
+                GridLinesStyle->Directive[
+                  GrayLevel[0.5, 0.4]],
+                
+                Method->{
+                 "GridLinesInFront" -> True, "DefaultBoundaryStyle" -> 
+                  Automatic, 
+                  "DefaultGraphicsInteraction" -> {
+                   "Version" -> 1.2, "TrackMousePosition" -> {True, False}, 
+                    "Effects" -> {
+                    "Highlight" -> {"ratio" -> 2}, 
+                    "HighlightPoint" -> {"ratio" -> 2}, 
+                    "Droplines" -> {
+                    "freeformCursorMode" -> True, 
+                    "placement" -> {"x" -> "All", "y" -> "None"}}}}, 
+                  "DefaultPlotStyle" -> Automatic}], 8->
+               
+               GraphicsBox[
+                RasterBox[{{1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1}, {1, 1, 
+                 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0}, {0, 1, 1, 0, 0, 0, 0, 0,
+                  1, 0, 0, 1, 1, 0}, {0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 1, 
+                 1}, {1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1}, {1, 1, 1, 1, 
+                 1, 1, 0, 0, 1, 0, 0, 1, 0, 0}, {0, 0, 0, 0, 0, 1, 1, 0, 0, 1,
+                  0, 0, 1, 0}, {0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 0, 1, 1}, {1,
+                  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 1, 1, 
+                 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+                  1, 1}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 1,
+                  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 1, 1, 1, 1, 
+                 1, 1, 1, 1, 1, 1}}, {{0, 0}, {14, 14}}, {0, 1}],
+                Frame->Automatic,
+                FrameLabel->{None, None},
+                FrameTicks->{{None, None}, {None, None}},
+                GridLinesStyle->Directive[
+                  GrayLevel[0.5, 0.4]],
+                
+                Method->{
+                 "GridLinesInFront" -> True, "DefaultBoundaryStyle" -> 
+                  Automatic, 
+                  "DefaultGraphicsInteraction" -> {
+                   "Version" -> 1.2, "TrackMousePosition" -> {True, False}, 
+                    "Effects" -> {
+                    "Highlight" -> {"ratio" -> 2}, 
+                    "HighlightPoint" -> {"ratio" -> 2}, 
+                    "Droplines" -> {
+                    "freeformCursorMode" -> True, 
+                    "placement" -> {"x" -> "All", "y" -> "None"}}}}, 
+                  "DefaultPlotStyle" -> Automatic}], 9->
+               
+               GraphicsBox[
+                RasterBox[{{0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1}, {1, 0, 
+                 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1}, {1, 1, 0, 0, 1, 1, 1, 1,
+                  0, 0, 1, 1, 0, 0}, {0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 
+                 0}, {0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 1, 1}, {1, 0, 0, 0, 
+                 0, 0, 0, 1, 0, 0, 1, 0, 0, 1}, {1, 1, 1, 1, 1, 1, 0, 0, 1, 0,
+                  0, 1, 0, 0}, {0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 1, 0}, {0,
+                  1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 0, 1, 1}, {1, 1, 1, 1, 1, 1, 
+                 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+                  1, 1}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 1,
+                  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 1, 1, 1, 1, 
+                 1, 1, 1, 1, 1, 1}}, {{0, 0}, {14, 14}}, {0, 1}],
+                Frame->Automatic,
+                FrameLabel->{None, None},
+                FrameTicks->{{None, None}, {None, None}},
+                GridLinesStyle->Directive[
+                  GrayLevel[0.5, 0.4]],
+                
+                Method->{
+                 "GridLinesInFront" -> True, "DefaultBoundaryStyle" -> 
+                  Automatic, 
+                  "DefaultGraphicsInteraction" -> {
+                   "Version" -> 1.2, "TrackMousePosition" -> {True, False}, 
+                    "Effects" -> {
+                    "Highlight" -> {"ratio" -> 2}, 
+                    "HighlightPoint" -> {"ratio" -> 2}, 
+                    "Droplines" -> {
+                    "freeformCursorMode" -> True, 
+                    "placement" -> {"x" -> "All", "y" -> "None"}}}}, 
+                  "DefaultPlotStyle" -> Automatic}], 10->
+               
+               GraphicsBox[
+                RasterBox[{{0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0}, {0, 0, 
+                 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1}, {1, 0, 0, 1, 1, 0, 0, 0,
+                  0, 1, 1, 0, 0, 1}, {1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 
+                 0}, {0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 0}, {0, 0, 1, 1, 
+                 1, 1, 1, 0, 0, 1, 0, 0, 1, 1}, {1, 0, 0, 0, 0, 0, 0, 1, 0, 0,
+                  1, 0, 0, 1}, {1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0}, {0,
+                  0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 1, 0}, {0, 1, 0, 1, 0, 0, 
+                 0, 1, 0, 1, 1, 0, 1, 1}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+                  1, 1}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 1,
+                  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 1, 1, 1, 1, 
+                 1, 1, 1, 1, 1, 1}}, {{0, 0}, {14, 14}}, {0, 1}],
+                Frame->Automatic,
+                FrameLabel->{None, None},
+                FrameTicks->{{None, None}, {None, None}},
+                GridLinesStyle->Directive[
+                  GrayLevel[0.5, 0.4]],
+                
+                Method->{
+                 "GridLinesInFront" -> True, "DefaultBoundaryStyle" -> 
+                  Automatic, 
+                  "DefaultGraphicsInteraction" -> {
+                   "Version" -> 1.2, "TrackMousePosition" -> {True, False}, 
+                    "Effects" -> {
+                    "Highlight" -> {"ratio" -> 2}, 
+                    "HighlightPoint" -> {"ratio" -> 2}, 
+                    "Droplines" -> {
+                    "freeformCursorMode" -> True, 
+                    "placement" -> {"x" -> "All", "y" -> "None"}}}}, 
+                  "DefaultPlotStyle" -> Automatic}], 11->
+               
+               GraphicsBox[
+                RasterBox[{{1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0}, {0, 1, 
+                 1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0}, {0, 0, 1, 1, 0, 0, 1, 1,
+                  1, 1, 0, 0, 1, 1}, {1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 
+                 1}, {1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0}, {0, 1, 1, 0, 
+                 0, 0, 0, 0, 1, 0, 0, 1, 1, 0}, {0, 0, 1, 1, 1, 1, 1, 0, 0, 1,
+                  0, 0, 1, 1}, {1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1}, {1,
+                  1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0}, {0, 0, 0, 0, 0, 1, 
+                 1, 0, 0, 1, 0, 0, 1, 0}, {0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 0,
+                  1, 1}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 1,
+                  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 1, 1, 1, 1, 
+                 1, 1, 1, 1, 1, 1}}, {{0, 0}, {14, 14}}, {0, 1}],
+                Frame->Automatic,
+                FrameLabel->{None, None},
+                FrameTicks->{{None, None}, {None, None}},
+                GridLinesStyle->Directive[
+                  GrayLevel[0.5, 0.4]],
+                
+                Method->{
+                 "GridLinesInFront" -> True, "DefaultBoundaryStyle" -> 
+                  Automatic, 
+                  "DefaultGraphicsInteraction" -> {
+                   "Version" -> 1.2, "TrackMousePosition" -> {True, False}, 
+                    "Effects" -> {
+                    "Highlight" -> {"ratio" -> 2}, 
+                    "HighlightPoint" -> {"ratio" -> 2}, 
+                    "Droplines" -> {
+                    "freeformCursorMode" -> True, 
+                    "placement" -> {"x" -> "All", "y" -> "None"}}}}, 
+                  "DefaultPlotStyle" -> Automatic}], 12->
+               
+               GraphicsBox[
+                RasterBox[{{1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1}, {1, 1, 
+                 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0}, {0, 1, 1, 0, 0, 1, 1, 0,
+                  0, 0, 0, 1, 1, 0}, {0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 
+                 1}, {1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1}, {1, 1, 0, 0, 
+                 1, 1, 1, 1, 0, 0, 1, 1, 0, 0}, {0, 1, 1, 0, 0, 0, 0, 0, 1, 0,
+                  0, 1, 1, 0}, {0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 1, 1}, {1,
+                  0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1}, {1, 1, 1, 1, 1, 1, 
+                 0, 0, 1, 0, 0, 1, 0, 0}, {0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0,
+                  1, 0}, {0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 0, 1, 1}, {1, 1, 1,
+                  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 1, 1, 1, 1, 
+                 1, 1, 1, 1, 1, 1}}, {{0, 0}, {14, 14}}, {0, 1}],
+                Frame->Automatic,
+                FrameLabel->{None, None},
+                FrameTicks->{{None, None}, {None, None}},
+                GridLinesStyle->Directive[
+                  GrayLevel[0.5, 0.4]],
+                
+                Method->{
+                 "GridLinesInFront" -> True, "DefaultBoundaryStyle" -> 
+                  Automatic, 
+                  "DefaultGraphicsInteraction" -> {
+                   "Version" -> 1.2, "TrackMousePosition" -> {True, False}, 
+                    "Effects" -> {
+                    "Highlight" -> {"ratio" -> 2}, 
+                    "HighlightPoint" -> {"ratio" -> 2}, 
+                    "Droplines" -> {
+                    "freeformCursorMode" -> True, 
+                    "placement" -> {"x" -> "All", "y" -> "None"}}}}, 
+                  "DefaultPlotStyle" -> Automatic}], 13->
+               
+               GraphicsBox[
+                RasterBox[{{0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1}, {1, 0, 
+                 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1}, {1, 1, 0, 0, 1, 1, 0, 0,
+                  1, 1, 1, 1, 0, 0}, {0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 
+                 0}, {0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1}, {1, 0, 0, 1, 
+                 1, 0, 0, 0, 0, 1, 1, 0, 0, 1}, {1, 1, 0, 0, 1, 1, 1, 1, 0, 0,
+                  1, 1, 0, 0}, {0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 0}, {0,
+                  0, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 1, 1}, {1, 0, 0, 0, 0, 0, 
+                 0, 1, 0, 0, 1, 0, 0, 1}, {1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 1,
+                  0, 0}, {0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 1, 0}, {0, 1, 0,
+                  1, 0, 0, 0, 1, 0, 1, 1, 0, 1, 1}, {1, 1, 1, 1, 1, 1, 1, 1, 
+                 1, 1, 1, 1, 1, 1}}, {{0, 0}, {14, 14}}, {0, 1}],
+                Frame->Automatic,
+                FrameLabel->{None, None},
+                FrameTicks->{{None, None}, {None, None}},
+                GridLinesStyle->Directive[
+                  GrayLevel[0.5, 0.4]],
+                
+                Method->{
+                 "GridLinesInFront" -> True, "DefaultBoundaryStyle" -> 
+                  Automatic, 
+                  "DefaultGraphicsInteraction" -> {
+                   "Version" -> 1.2, "TrackMousePosition" -> {True, False}, 
+                    "Effects" -> {
+                    "Highlight" -> {"ratio" -> 2}, 
+                    "HighlightPoint" -> {"ratio" -> 2}, 
+                    "Droplines" -> {
+                    "freeformCursorMode" -> True, 
+                    "placement" -> {"x" -> "All", "y" -> "None"}}}}, 
+                  "DefaultPlotStyle" -> Automatic}], 14->
+               
+               GraphicsBox[
+                RasterBox[{{0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0}, {0, 0, 
+                 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1}, {1, 0, 0, 1, 1, 0, 0, 1,
+                  1, 0, 0, 0, 0, 1}, {1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 
+                 0}, {0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0}, {0, 0, 1, 1, 
+                 0, 0, 1, 1, 1, 1, 0, 0, 1, 1}, {1, 0, 0, 1, 1, 0, 0, 0, 0, 1,
+                  1, 0, 0, 1}, {1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0}, {0,
+                  1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 0}, {0, 0, 1, 1, 1, 1, 
+                 1, 0, 0, 1, 0, 0, 1, 1}, {1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0,
+                  0, 1}, {1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0}, {0, 0, 0,
+                  0, 0, 1, 1, 0, 0, 1, 0, 0, 1, 0}, {0, 1, 0, 1, 0, 0, 0, 1, 
+                 0, 1, 1, 0, 1, 1}}, {{0, 0}, {14, 14}}, {0, 1}],
+                Frame->Automatic,
+                FrameLabel->{None, None},
+                FrameTicks->{{None, None}, {None, None}},
+                GridLinesStyle->Directive[
+                  GrayLevel[0.5, 0.4]],
+                
+                Method->{
+                 "GridLinesInFront" -> True, "DefaultBoundaryStyle" -> 
+                  Automatic, 
+                  "DefaultGraphicsInteraction" -> {
+                   "Version" -> 1.2, "TrackMousePosition" -> {True, False}, 
+                    "Effects" -> {
+                    "Highlight" -> {"ratio" -> 2}, 
+                    "HighlightPoint" -> {"ratio" -> 2}, 
+                    "Droplines" -> {
+                    "freeformCursorMode" -> True, 
+                    "placement" -> {"x" -> "All", "y" -> "None"}}}}, 
+                  "DefaultPlotStyle" -> Automatic}], 15->
+               
+               GraphicsBox[
+                RasterBox[{{1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1}, {0, 1, 
+                 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0}, {0, 0, 1, 1, 0, 0, 1, 1,
+                  0, 0, 1, 1, 1, 1}, {1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 
+                 1}, {1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0}, {0, 1, 1, 0, 
+                 0, 1, 1, 0, 0, 0, 0, 1, 1, 0}, {0, 0, 1, 1, 0, 0, 1, 1, 1, 1,
+                  0, 0, 1, 1}, {1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1}, {1,
+                  1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0}, {0, 1, 1, 0, 0, 0, 
+                 0, 0, 1, 0, 0, 1, 1, 0}, {0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0,
+                  1, 1}, {1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1}, {1, 1, 1,
+                  1, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0}, {0, 0, 0, 0, 0, 1, 1, 0, 
+                 0, 1, 0, 0, 1, 0}}, {{0, 0}, {14, 14}}, {0, 1}],
+                Frame->Automatic,
+                FrameLabel->{None, None},
+                FrameTicks->{{None, None}, {None, None}},
+                GridLinesStyle->Directive[
+                  GrayLevel[0.5, 0.4]],
+                
+                Method->{
+                 "GridLinesInFront" -> True, "DefaultBoundaryStyle" -> 
+                  Automatic, 
+                  "DefaultGraphicsInteraction" -> {
+                   "Version" -> 1.2, "TrackMousePosition" -> {True, False}, 
+                    "Effects" -> {
+                    "Highlight" -> {"ratio" -> 2}, 
+                    "HighlightPoint" -> {"ratio" -> 2}, 
+                    "Droplines" -> {
+                    "freeformCursorMode" -> True, 
+                    "placement" -> {"x" -> "All", "y" -> "None"}}}}, 
+                  "DefaultPlotStyle" -> Automatic}], 16->
+               
+               GraphicsBox[
+                RasterBox[{{0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0}, {1, 1, 
+                 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1}, {0, 1, 1, 0, 0, 1, 1, 0,
+                  0, 1, 1, 0, 0, 0}, {0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 
+                 1}, {1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1}, {1, 1, 0, 0, 
+                 1, 1, 0, 0, 1, 1, 1, 1, 0, 0}, {0, 1, 1, 0, 0, 1, 1, 0, 0, 0,
+                  0, 1, 1, 0}, {0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1}, {1,
+                  0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1}, {1, 1, 0, 0, 1, 1, 
+                 1, 1, 0, 0, 1, 1, 0, 0}, {0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1,
+                  1, 0}, {0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 1, 1}, {1, 0, 0,
+                  0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1}, {1, 1, 1, 1, 1, 1, 0, 0, 
+                 1, 0, 0, 1, 0, 0}}, {{0, 0}, {14, 14}}, {0, 1}],
+                Frame->Automatic,
+                FrameLabel->{None, None},
+                FrameTicks->{{None, None}, {None, None}},
+                GridLinesStyle->Directive[
+                  GrayLevel[0.5, 0.4]],
+                
+                Method->{
+                 "GridLinesInFront" -> True, "DefaultBoundaryStyle" -> 
+                  Automatic, 
+                  "DefaultGraphicsInteraction" -> {
+                   "Version" -> 1.2, "TrackMousePosition" -> {True, False}, 
+                    "Effects" -> {
+                    "Highlight" -> {"ratio" -> 2}, 
+                    "HighlightPoint" -> {"ratio" -> 2}, 
+                    "Droplines" -> {
+                    "freeformCursorMode" -> True, 
+                    "placement" -> {"x" -> "All", "y" -> "None"}}}}, 
+                  "DefaultPlotStyle" -> Automatic}], 17->
+               
+               GraphicsBox[
+                RasterBox[{{1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0}, {0, 0, 
+                 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0}, {1, 1, 0, 0, 1, 1, 0, 0,
+                  1, 1, 0, 0, 1, 1}, {0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 
+                 0}, {0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1}, {1, 0, 0, 1, 
+                 1, 0, 0, 1, 1, 0, 0, 0, 0, 1}, {1, 1, 0, 0, 1, 1, 0, 0, 1, 1,
+                  1, 1, 0, 0}, {0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0}, {0,
+                  0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1}, {1, 0, 0, 1, 1, 0, 
+                 0, 0, 0, 1, 1, 0, 0, 1}, {1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1,
+                  0, 0}, {0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 0}, {0, 0, 1,
+                  1, 1, 1, 1, 0, 0, 1, 0, 0, 1, 1}, {1, 0, 0, 0, 0, 0, 0, 1, 
+                 0, 0, 1, 0, 0, 1}}, {{0, 0}, {14, 14}}, {0, 1}],
+                Frame->Automatic,
+                FrameLabel->{None, None},
+                FrameTicks->{{None, None}, {None, None}},
+                GridLinesStyle->Directive[
+                  GrayLevel[0.5, 0.4]],
+                
+                Method->{
+                 "GridLinesInFront" -> True, "DefaultBoundaryStyle" -> 
+                  Automatic, 
+                  "DefaultGraphicsInteraction" -> {
+                   "Version" -> 1.2, "TrackMousePosition" -> {True, False}, 
+                    "Effects" -> {
+                    "Highlight" -> {"ratio" -> 2}, 
+                    "HighlightPoint" -> {"ratio" -> 2}, 
+                    "Droplines" -> {
+                    "freeformCursorMode" -> True, 
+                    "placement" -> {"x" -> "All", "y" -> "None"}}}}, 
+                  "DefaultPlotStyle" -> Automatic}], 18->
+               
+               GraphicsBox[
+                RasterBox[{{1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1}, {1, 1, 
+                 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0}, {0, 0, 0, 1, 1, 0, 0, 1,
+                  1, 0, 0, 1, 1, 0}, {1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 
+                 1}, {0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0}, {0, 0, 1, 1, 
+                 0, 0, 1, 1, 0, 0, 1, 1, 1, 1}, {1, 0, 0, 1, 1, 0, 0, 1, 1, 0,
+                  0, 0, 0, 1}, {1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0}, {0,
+                  1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0}, {0, 0, 1, 1, 0, 0, 
+                 1, 1, 1, 1, 0, 0, 1, 1}, {1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0,
+                  0, 1}, {1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0}, {0, 1, 1,
+                  0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 0}, {0, 0, 1, 1, 1, 1, 1, 0, 
+                 0, 1, 0, 0, 1, 1}}, {{0, 0}, {14, 14}}, {0, 1}],
+                Frame->Automatic,
+                FrameLabel->{None, None},
+                FrameTicks->{{None, None}, {None, None}},
+                GridLinesStyle->Directive[
+                  GrayLevel[0.5, 0.4]],
+                
+                Method->{
+                 "GridLinesInFront" -> True, "DefaultBoundaryStyle" -> 
+                  Automatic, 
+                  "DefaultGraphicsInteraction" -> {
+                   "Version" -> 1.2, "TrackMousePosition" -> {True, False}, 
+                    "Effects" -> {
+                    "Highlight" -> {"ratio" -> 2}, 
+                    "HighlightPoint" -> {"ratio" -> 2}, 
+                    "Droplines" -> {
+                    "freeformCursorMode" -> True, 
+                    "placement" -> {"x" -> "All", "y" -> "None"}}}}, 
+                  "DefaultPlotStyle" -> Automatic}], 19->
+               
+               GraphicsBox[
+                RasterBox[{{0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1}, {1, 0, 
+                 0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1}, {1, 1, 1, 1, 0, 0, 1, 1,
+                  0, 0, 1, 1, 0, 0}, {0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 
+                 0}, {1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1}, {0, 1, 1, 0, 
+                 0, 1, 1, 0, 0, 1, 1, 0, 0, 0}, {0, 0, 1, 1, 0, 0, 1, 1, 0, 0,
+                  1, 1, 1, 1}, {1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1}, {1,
+                  1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0}, {0, 1, 1, 0, 0, 1, 
+                 1, 0, 0, 0, 0, 1, 1, 0}, {0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0,
+                  1, 1}, {1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1}, {1, 1, 0,
+                  0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0}, {0, 1, 1, 0, 0, 0, 0, 0, 
+                 1, 0, 0, 1, 1, 0}}, {{0, 0}, {14, 14}}, {0, 1}],
+                Frame->Automatic,
+                FrameLabel->{None, None},
+                FrameTicks->{{None, None}, {None, None}},
+                GridLinesStyle->Directive[
+                  GrayLevel[0.5, 0.4]],
+                
+                Method->{
+                 "GridLinesInFront" -> True, "DefaultBoundaryStyle" -> 
+                  Automatic, 
+                  "DefaultGraphicsInteraction" -> {
+                   "Version" -> 1.2, "TrackMousePosition" -> {True, False}, 
+                    "Effects" -> {
+                    "Highlight" -> {"ratio" -> 2}, 
+                    "HighlightPoint" -> {"ratio" -> 2}, 
+                    "Droplines" -> {
+                    "freeformCursorMode" -> True, 
+                    "placement" -> {"x" -> "All", "y" -> "None"}}}}, 
+                  "DefaultPlotStyle" -> Automatic}], 20->
+               
+               GraphicsBox[
+                RasterBox[{{0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0}, {0, 0, 
+                 1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1}, {1, 0, 0, 0, 0, 1, 1, 0,
+                  0, 1, 1, 0, 0, 1}, {1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 
+                 0}, {0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0}, {1, 1, 0, 0, 
+                 1, 1, 0, 0, 1, 1, 0, 0, 1, 1}, {0, 1, 1, 0, 0, 1, 1, 0, 0, 1,
+                  1, 0, 0, 0}, {0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1}, {1,
+                  0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1}, {1, 1, 0, 0, 1, 1, 
+                 0, 0, 1, 1, 1, 1, 0, 0}, {0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1,
+                  1, 0}, {0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1}, {1, 0, 0,
+                  1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1}, {1, 1, 0, 0, 1, 1, 1, 1, 
+                 0, 0, 1, 1, 0, 0}}, {{0, 0}, {14, 14}}, {0, 1}],
+                Frame->Automatic,
+                FrameLabel->{None, None},
+                FrameTicks->{{None, None}, {None, None}},
+                GridLinesStyle->Directive[
+                  GrayLevel[0.5, 0.4]],
+                
+                Method->{
+                 "GridLinesInFront" -> True, "DefaultBoundaryStyle" -> 
+                  Automatic, 
+                  "DefaultGraphicsInteraction" -> {
+                   "Version" -> 1.2, "TrackMousePosition" -> {True, False}, 
+                    "Effects" -> {
+                    "Highlight" -> {"ratio" -> 2}, 
+                    "HighlightPoint" -> {"ratio" -> 2}, 
+                    "Droplines" -> {
+                    "freeformCursorMode" -> True, 
+                    "placement" -> {"x" -> "All", "y" -> "None"}}}}, 
+                  "DefaultPlotStyle" -> Automatic}], 21->
+               
+               GraphicsBox[
+                RasterBox[{{1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0}, {0, 1, 
+                 1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0}, {0, 0, 1, 1, 1, 1, 0, 0,
+                  1, 1, 0, 0, 1, 1}, {1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 
+                 1}, {1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0}, {0, 0, 0, 1, 
+                 1, 0, 0, 1, 1, 0, 0, 1, 1, 0}, {1, 1, 0, 0, 1, 1, 0, 0, 1, 1,
+                  0, 0, 1, 1}, {0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0}, {0,
+                  0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1}, {1, 0, 0, 1, 1, 0, 
+                 0, 1, 1, 0, 0, 0, 0, 1}, {1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1,
+                  0, 0}, {0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0}, {0, 0, 1,
+                  1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1}, {1, 0, 0, 1, 1, 0, 0, 0, 
+                 0, 1, 1, 0, 0, 1}}, {{0, 0}, {14, 14}}, {0, 1}],
+                Frame->Automatic,
+                FrameLabel->{None, None},
+                FrameTicks->{{None, None}, {None, None}},
+                GridLinesStyle->Directive[
+                  GrayLevel[0.5, 0.4]],
+                
+                Method->{
+                 "GridLinesInFront" -> True, "DefaultBoundaryStyle" -> 
+                  Automatic, 
+                  "DefaultGraphicsInteraction" -> {
+                   "Version" -> 1.2, "TrackMousePosition" -> {True, False}, 
+                    "Effects" -> {
+                    "Highlight" -> {"ratio" -> 2}, 
+                    "HighlightPoint" -> {"ratio" -> 2}, 
+                    "Droplines" -> {
+                    "freeformCursorMode" -> True, 
+                    "placement" -> {"x" -> "All", "y" -> "None"}}}}, 
+                  "DefaultPlotStyle" -> Automatic}], 22->
+               
+               GraphicsBox[
+                RasterBox[{{1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1}, {1, 1, 
+                 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0}, {0, 1, 1, 0, 0, 0, 0, 1,
+                  1, 0, 0, 1, 1, 0}, {0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 1, 
+                 1}, {1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1}, {1, 1, 1, 1, 
+                 0, 0, 1, 1, 0, 0, 1, 1, 0, 0}, {0, 0, 0, 1, 1, 0, 0, 1, 1, 0,
+                  0, 1, 1, 0}, {1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1}, {0,
+                  1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0}, {0, 0, 1, 1, 0, 0, 
+                 1, 1, 0, 0, 1, 1, 1, 1}, {1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0,
+                  0, 1}, {1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0}, {0, 1, 1,
+                  0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0}, {0, 0, 1, 1, 0, 0, 1, 1, 
+                 1, 1, 0, 0, 1, 1}}, {{0, 0}, {14, 14}}, {0, 1}],
+                Frame->Automatic,
+                FrameLabel->{None, None},
+                FrameTicks->{{None, None}, {None, None}},
+                GridLinesStyle->Directive[
+                  GrayLevel[0.5, 0.4]],
+                
+                Method->{
+                 "GridLinesInFront" -> True, "DefaultBoundaryStyle" -> 
+                  Automatic, 
+                  "DefaultGraphicsInteraction" -> {
+                   "Version" -> 1.2, "TrackMousePosition" -> {True, False}, 
+                    "Effects" -> {
+                    "Highlight" -> {"ratio" -> 2}, 
+                    "HighlightPoint" -> {"ratio" -> 2}, 
+                    "Droplines" -> {
+                    "freeformCursorMode" -> True, 
+                    "placement" -> {"x" -> "All", "y" -> "None"}}}}, 
+                  "DefaultPlotStyle" -> Automatic}], 23->
+               
+               GraphicsBox[
+                RasterBox[{{0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1}, {1, 0, 
+                 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1}, {1, 1, 0, 0, 1, 1, 1, 1,
+                  0, 0, 1, 1, 0, 0}, {0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 
+                 0}, {0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1}, {1, 0, 0, 0, 
+                 0, 1, 1, 0, 0, 1, 1, 0, 0, 1}, {1, 1, 1, 1, 0, 0, 1, 1, 0, 0,
+                  1, 1, 0, 0}, {0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0}, {1,
+                  1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1}, {0, 1, 1, 0, 0, 1, 
+                 1, 0, 0, 1, 1, 0, 0, 0}, {0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1,
+                  1, 1}, {1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1}, {1, 1, 0,
+                  0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0}, {0, 1, 1, 0, 0, 1, 1, 0, 
+                 0, 0, 0, 1, 1, 0}}, {{0, 0}, {14, 14}}, {0, 1}],
+                Frame->Automatic,
+                FrameLabel->{None, None},
+                FrameTicks->{{None, None}, {None, None}},
+                GridLinesStyle->Directive[
+                  GrayLevel[0.5, 0.4]],
+                
+                Method->{
+                 "GridLinesInFront" -> True, "DefaultBoundaryStyle" -> 
+                  Automatic, 
+                  "DefaultGraphicsInteraction" -> {
+                   "Version" -> 1.2, "TrackMousePosition" -> {True, False}, 
+                    "Effects" -> {
+                    "Highlight" -> {"ratio" -> 2}, 
+                    "HighlightPoint" -> {"ratio" -> 2}, 
+                    "Droplines" -> {
+                    "freeformCursorMode" -> True, 
+                    "placement" -> {"x" -> "All", "y" -> "None"}}}}, 
+                  "DefaultPlotStyle" -> Automatic}], 24->
+               
+               GraphicsBox[
+                RasterBox[{{0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0}, {0, 0, 
+                 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1}, {1, 0, 0, 1, 1, 0, 0, 0,
+                  0, 1, 1, 0, 0, 1}, {1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 
+                 0}, {0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0}, {0, 0, 1, 1, 
+                 1, 1, 0, 0, 1, 1, 0, 0, 1, 1}, {1, 0, 0, 0, 0, 1, 1, 0, 0, 1,
+                  1, 0, 0, 1}, {1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0}, {0,
+                  0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0}, {1, 1, 0, 0, 1, 1, 
+                 0, 0, 1, 1, 0, 0, 1, 1}, {0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0,
+                  0, 0}, {0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1}, {1, 0, 0,
+                  1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1}, {1, 1, 0, 0, 1, 1, 0, 0, 
+                 1, 1, 1, 1, 0, 0}}, {{0, 0}, {14, 14}}, {0, 1}],
+                Frame->Automatic,
+                FrameLabel->{None, None},
+                FrameTicks->{{None, None}, {None, None}},
+                GridLinesStyle->Directive[
+                  GrayLevel[0.5, 0.4]],
+                
+                Method->{
+                 "GridLinesInFront" -> True, "DefaultBoundaryStyle" -> 
+                  Automatic, 
+                  "DefaultGraphicsInteraction" -> {
+                   "Version" -> 1.2, "TrackMousePosition" -> {True, False}, 
+                    "Effects" -> {
+                    "Highlight" -> {"ratio" -> 2}, 
+                    "HighlightPoint" -> {"ratio" -> 2}, 
+                    "Droplines" -> {
+                    "freeformCursorMode" -> True, 
+                    "placement" -> {"x" -> "All", "y" -> "None"}}}}, 
+                  "DefaultPlotStyle" -> Automatic}], 25->
+               
+               GraphicsBox[
+                RasterBox[{{1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0}, {0, 1, 
+                 1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0}, {0, 0, 1, 1, 0, 0, 1, 1,
+                  1, 1, 0, 0, 1, 1}, {1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 
+                 1}, {1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0}, {0, 1, 1, 0, 
+                 0, 0, 0, 1, 1, 0, 0, 1, 1, 0}, {0, 0, 1, 1, 1, 1, 0, 0, 1, 1,
+                  0, 0, 1, 1}, {1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1}, {1,
+                  1, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0}, {0, 0, 0, 1, 1, 0, 
+                 0, 1, 1, 0, 0, 1, 1, 0}, {1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0,
+                  1, 1}, {0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0}, {0, 0, 1,
+                  1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1}, {1, 0, 0, 1, 1, 0, 0, 1, 
+                 1, 0, 0, 0, 0, 1}}, {{0, 0}, {14, 14}}, {0, 1}],
+                Frame->Automatic,
+                FrameLabel->{None, None},
+                FrameTicks->{{None, None}, {None, None}},
+                GridLinesStyle->Directive[
+                  GrayLevel[0.5, 0.4]],
+                
+                Method->{
+                 "GridLinesInFront" -> True, "DefaultBoundaryStyle" -> 
+                  Automatic, 
+                  "DefaultGraphicsInteraction" -> {
+                   "Version" -> 1.2, "TrackMousePosition" -> {True, False}, 
+                    "Effects" -> {
+                    "Highlight" -> {"ratio" -> 2}, 
+                    "HighlightPoint" -> {"ratio" -> 2}, 
+                    "Droplines" -> {
+                    "freeformCursorMode" -> True, 
+                    "placement" -> {"x" -> "All", "y" -> "None"}}}}, 
+                  "DefaultPlotStyle" -> Automatic}], 26->
+               
+               GraphicsBox[
+                RasterBox[{{1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1}, {1, 1, 
+                 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0}, {0, 1, 1, 0, 0, 1, 1, 0,
+                  0, 0, 0, 1, 1, 0}, {0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 
+                 1}, {1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1}, {1, 1, 0, 0, 
+                 1, 1, 1, 1, 0, 0, 1, 1, 0, 0}, {0, 1, 1, 0, 0, 0, 0, 1, 1, 0,
+                  0, 1, 1, 0}, {0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1}, {1,
+                  0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1}, {1, 1, 1, 1, 0, 0, 
+                 1, 1, 0, 0, 1, 1, 0, 0}, {0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1,
+                  1, 0}, {1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1}, {0, 1, 1,
+                  0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0}, {0, 0, 1, 1, 0, 0, 1, 1, 
+                 0, 0, 1, 1, 1, 1}}, {{0, 0}, {14, 14}}, {0, 1}],
+                Frame->Automatic,
+                FrameLabel->{None, None},
+                FrameTicks->{{None, None}, {None, None}},
+                GridLinesStyle->Directive[
+                  GrayLevel[0.5, 0.4]],
+                
+                Method->{
+                 "GridLinesInFront" -> True, "DefaultBoundaryStyle" -> 
+                  Automatic, 
+                  "DefaultGraphicsInteraction" -> {
+                   "Version" -> 1.2, "TrackMousePosition" -> {True, False}, 
+                    "Effects" -> {
+                    "Highlight" -> {"ratio" -> 2}, 
+                    "HighlightPoint" -> {"ratio" -> 2}, 
+                    "Droplines" -> {
+                    "freeformCursorMode" -> True, 
+                    "placement" -> {"x" -> "All", "y" -> "None"}}}}, 
+                  "DefaultPlotStyle" -> Automatic}], 27->
+               
+               GraphicsBox[
+                RasterBox[{{0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1}, {1, 0, 
+                 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1}, {1, 1, 0, 0, 1, 1, 0, 0,
+                  1, 1, 1, 1, 0, 0}, {0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 
+                 0}, {0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1}, {1, 0, 0, 1, 
+                 1, 0, 0, 0, 0, 1, 1, 0, 0, 1}, {1, 1, 0, 0, 1, 1, 1, 1, 0, 0,
+                  1, 1, 0, 0}, {0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0}, {0,
+                  0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1}, {1, 0, 0, 0, 0, 1, 
+                 1, 0, 0, 1, 1, 0, 0, 1}, {1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1,
+                  0, 0}, {0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0}, {1, 1, 0,
+                  0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1}, {0, 1, 1, 0, 0, 1, 1, 0, 
+                 0, 1, 1, 0, 0, 0}}, {{0, 0}, {14, 14}}, {0, 1}],
+                Frame->Automatic,
+                FrameLabel->{None, None},
+                FrameTicks->{{None, None}, {None, None}},
+                GridLinesStyle->Directive[
+                  GrayLevel[0.5, 0.4]],
+                
+                Method->{
+                 "GridLinesInFront" -> True, "DefaultBoundaryStyle" -> 
+                  Automatic, 
+                  "DefaultGraphicsInteraction" -> {
+                   "Version" -> 1.2, "TrackMousePosition" -> {True, False}, 
+                    "Effects" -> {
+                    "Highlight" -> {"ratio" -> 2}, 
+                    "HighlightPoint" -> {"ratio" -> 2}, 
+                    "Droplines" -> {
+                    "freeformCursorMode" -> True, 
+                    "placement" -> {"x" -> "All", "y" -> "None"}}}}, 
+                  "DefaultPlotStyle" -> Automatic}], 28->
+               
+               GraphicsBox[
+                RasterBox[{{0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0}, {0, 0, 
+                 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1}, {1, 0, 0, 1, 1, 0, 0, 1,
+                  1, 0, 0, 0, 0, 1}, {1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 
+                 0}, {0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0}, {0, 0, 1, 1, 
+                 0, 0, 1, 1, 1, 1, 0, 0, 1, 1}, {1, 0, 0, 1, 1, 0, 0, 0, 0, 1,
+                  1, 0, 0, 1}, {1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0}, {0,
+                  1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0}, {0, 0, 1, 1, 1, 1, 
+                 0, 0, 1, 1, 0, 0, 1, 1}, {1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0,
+                  0, 1}, {1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0}, {0, 0, 0,
+                  1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0}, {1, 1, 0, 0, 1, 1, 0, 0, 
+                 1, 1, 0, 0, 1, 1}}, {{0, 0}, {14, 14}}, {0, 1}],
+                Frame->Automatic,
+                FrameLabel->{None, None},
+                FrameTicks->{{None, None}, {None, None}},
+                GridLinesStyle->Directive[
+                  GrayLevel[0.5, 0.4]],
+                
+                Method->{
+                 "GridLinesInFront" -> True, "DefaultBoundaryStyle" -> 
+                  Automatic, 
+                  "DefaultGraphicsInteraction" -> {
+                   "Version" -> 1.2, "TrackMousePosition" -> {True, False}, 
+                    "Effects" -> {
+                    "Highlight" -> {"ratio" -> 2}, 
+                    "HighlightPoint" -> {"ratio" -> 2}, 
+                    "Droplines" -> {
+                    "freeformCursorMode" -> True, 
+                    "placement" -> {"x" -> "All", "y" -> "None"}}}}, 
+                  "DefaultPlotStyle" -> Automatic}], 29->
+               
+               GraphicsBox[
+                RasterBox[{{1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1}, {0, 1, 
+                 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0}, {0, 0, 1, 1, 0, 0, 1, 1,
+                  0, 0, 1, 1, 1, 1}, {1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 
+                 1}, {1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0}, {0, 1, 1, 0, 
+                 0, 1, 1, 0, 0, 0, 0, 1, 1, 0}, {0, 0, 1, 1, 0, 0, 1, 1, 1, 1,
+                  0, 0, 1, 1}, {1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1}, {1,
+                  1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0}, {0, 1, 1, 0, 0, 0, 
+                 0, 1, 1, 0, 0, 1, 1, 0}, {0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0,
+                  1, 1}, {1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1}, {1, 1, 1,
+                  1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0}, {0, 0, 0, 1, 1, 0, 0, 1, 
+                 1, 0, 0, 1, 1, 0}}, {{0, 0}, {14, 14}}, {0, 1}],
+                Frame->Automatic,
+                FrameLabel->{None, None},
+                FrameTicks->{{None, None}, {None, None}},
+                GridLinesStyle->Directive[
+                  GrayLevel[0.5, 0.4]],
+                
+                Method->{
+                 "GridLinesInFront" -> True, "DefaultBoundaryStyle" -> 
+                  Automatic, 
+                  "DefaultGraphicsInteraction" -> {
+                   "Version" -> 1.2, "TrackMousePosition" -> {True, False}, 
+                    "Effects" -> {
+                    "Highlight" -> {"ratio" -> 2}, 
+                    "HighlightPoint" -> {"ratio" -> 2}, 
+                    "Droplines" -> {
+                    "freeformCursorMode" -> True, 
+                    "placement" -> {"x" -> "All", "y" -> "None"}}}}, 
+                  "DefaultPlotStyle" -> Automatic}], 30->
+               
+               GraphicsBox[
+                RasterBox[{{0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0}, {1, 1, 
+                 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1}, {0, 1, 1, 0, 0, 1, 1, 0,
+                  0, 1, 1, 0, 0, 0}, {0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 
+                 1}, {1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1}, {1, 1, 0, 0, 
+                 1, 1, 0, 0, 1, 1, 1, 1, 0, 0}, {0, 1, 1, 0, 0, 1, 1, 0, 0, 0,
+                  0, 1, 1, 0}, {0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1}, {1,
+                  0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1}, {1, 1, 0, 0, 1, 1, 
+                 1, 1, 0, 0, 1, 1, 0, 0}, {0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1,
+                  1, 0}, {0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1}, {1, 0, 0,
+                  0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1}, {1, 1, 1, 1, 0, 0, 1, 1, 
+                 0, 0, 1, 1, 0, 0}}, {{0, 0}, {14, 14}}, {0, 1}],
+                Frame->Automatic,
+                FrameLabel->{None, None},
+                FrameTicks->{{None, None}, {None, None}},
+                GridLinesStyle->Directive[
+                  GrayLevel[0.5, 0.4]],
+                
+                Method->{
+                 "GridLinesInFront" -> True, "DefaultBoundaryStyle" -> 
+                  Automatic, 
+                  "DefaultGraphicsInteraction" -> {
+                   "Version" -> 1.2, "TrackMousePosition" -> {True, False}, 
+                    "Effects" -> {
+                    "Highlight" -> {"ratio" -> 2}, 
+                    "HighlightPoint" -> {"ratio" -> 2}, 
+                    "Droplines" -> {
+                    "freeformCursorMode" -> True, 
+                    "placement" -> {"x" -> "All", "y" -> "None"}}}}, 
+                  "DefaultPlotStyle" -> Automatic}], 31->
+               
+               GraphicsBox[
+                RasterBox[{{1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0}, {0, 0, 
+                 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0}, {1, 1, 0, 0, 1, 1, 0, 0,
+                  1, 1, 0, 0, 1, 1}, {0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 
+                 0}, {0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1}, {1, 0, 0, 1, 
+                 1, 0, 0, 1, 1, 0, 0, 0, 0, 1}, {1, 1, 0, 0, 1, 1, 0, 0, 1, 1,
+                  1, 1, 0, 0}, {0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0}, {0,
+                  0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1}, {1, 0, 0, 1, 1, 0, 
+                 0, 0, 0, 1, 1, 0, 0, 1}, {1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1,
+                  0, 0}, {0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0}, {0, 0, 1,
+                  1, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1}, {1, 0, 0, 0, 0, 1, 1, 0, 
+                 0, 1, 1, 0, 0, 1}}, {{0, 0}, {14, 14}}, {0, 1}],
+                Frame->Automatic,
+                FrameLabel->{None, None},
+                FrameTicks->{{None, None}, {None, None}},
+                GridLinesStyle->Directive[
+                  GrayLevel[0.5, 0.4]],
+                
+                Method->{
+                 "GridLinesInFront" -> True, "DefaultBoundaryStyle" -> 
+                  Automatic, 
+                  "DefaultGraphicsInteraction" -> {
+                   "Version" -> 1.2, "TrackMousePosition" -> {True, False}, 
+                    "Effects" -> {
+                    "Highlight" -> {"ratio" -> 2}, 
+                    "HighlightPoint" -> {"ratio" -> 2}, 
+                    "Droplines" -> {
+                    "freeformCursorMode" -> True, 
+                    "placement" -> {"x" -> "All", "y" -> "None"}}}}, 
+                  "DefaultPlotStyle" -> Automatic}], 32->
+               
+               GraphicsBox[
+                RasterBox[{{1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1}, {1, 1, 
+                 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0}, {0, 0, 0, 1, 1, 0, 0, 1,
+                  1, 0, 0, 1, 1, 0}, {1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 
+                 1}, {0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0}, {0, 0, 1, 1, 
+                 0, 0, 1, 1, 0, 0, 1, 1, 1, 1}, {1, 0, 0, 1, 1, 0, 0, 1, 1, 0,
+                  0, 0, 0, 1}, {1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0}, {0,
+                  1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0}, {0, 0, 1, 1, 0, 0, 
+                 1, 1, 1, 1, 0, 0, 1, 1}, {1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0,
+                  0, 1}, {1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0}, {0, 1, 1,
+                  0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0}, {0, 0, 1, 1, 1, 1, 0, 0, 
+                 1, 1, 0, 0, 1, 1}}, {{0, 0}, {14, 14}}, {0, 1}],
+                Frame->Automatic,
+                FrameLabel->{None, None},
+                FrameTicks->{{None, None}, {None, None}},
+                GridLinesStyle->Directive[
+                  GrayLevel[0.5, 0.4]],
+                
+                Method->{
+                 "GridLinesInFront" -> True, "DefaultBoundaryStyle" -> 
+                  Automatic, 
+                  "DefaultGraphicsInteraction" -> {
+                   "Version" -> 1.2, "TrackMousePosition" -> {True, False}, 
+                    "Effects" -> {
+                    "Highlight" -> {"ratio" -> 2}, 
+                    "HighlightPoint" -> {"ratio" -> 2}, 
+                    "Droplines" -> {
+                    "freeformCursorMode" -> True, 
+                    "placement" -> {"x" -> "All", "y" -> "None"}}}}, 
+                  "DefaultPlotStyle" -> Automatic}], 33->
+               
+               GraphicsBox[
+                RasterBox[{{0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1}, {1, 0, 
+                 0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1}, {1, 1, 1, 1, 0, 0, 1, 1,
+                  0, 0, 1, 1, 0, 0}, {0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 
+                 0}, {1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1}, {0, 1, 1, 0, 
+                 0, 1, 1, 0, 0, 1, 1, 0, 0, 0}, {0, 0, 1, 1, 0, 0, 1, 1, 0, 0,
+                  1, 1, 1, 1}, {1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1}, {1,
+                  1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0}, {0, 1, 1, 0, 0, 1, 
+                 1, 0, 0, 0, 0, 1, 1, 0}, {0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0,
+                  1, 1}, {1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1}, {1, 1, 0,
+                  0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0}, {0, 1, 1, 0, 0, 0, 0, 1, 
+                 1, 0, 0, 1, 1, 0}}, {{0, 0}, {14, 14}}, {0, 1}],
+                Frame->Automatic,
+                FrameLabel->{None, None},
+                FrameTicks->{{None, None}, {None, None}},
+                GridLinesStyle->Directive[
+                  GrayLevel[0.5, 0.4]],
+                
+                Method->{
+                 "GridLinesInFront" -> True, "DefaultBoundaryStyle" -> 
+                  Automatic, 
+                  "DefaultGraphicsInteraction" -> {
+                   "Version" -> 1.2, "TrackMousePosition" -> {True, False}, 
+                    "Effects" -> {
+                    "Highlight" -> {"ratio" -> 2}, 
+                    "HighlightPoint" -> {"ratio" -> 2}, 
+                    "Droplines" -> {
+                    "freeformCursorMode" -> True, 
+                    "placement" -> {"x" -> "All", "y" -> "None"}}}}, 
+                  "DefaultPlotStyle" -> Automatic}], 34->
+               
+               GraphicsBox[
+                RasterBox[{{0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0}, {0, 0, 
+                 1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1}, {1, 0, 0, 0, 0, 1, 1, 0,
+                  0, 1, 1, 0, 0, 1}, {1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 
+                 0}, {0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0}, {1, 1, 0, 0, 
+                 1, 1, 0, 0, 1, 1, 0, 0, 1, 1}, {0, 1, 1, 0, 0, 1, 1, 0, 0, 1,
+                  1, 0, 0, 0}, {0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1}, {1,
+                  0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1}, {1, 1, 0, 0, 1, 1, 
+                 0, 0, 1, 1, 1, 1, 0, 0}, {0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1,
+                  1, 0}, {0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1}, {1, 0, 0,
+                  1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1}, {1, 1, 0, 0, 1, 1, 1, 1, 
+                 0, 0, 1, 1, 0, 0}}, {{0, 0}, {14, 14}}, {0, 1}],
+                Frame->Automatic,
+                FrameLabel->{None, None},
+                FrameTicks->{{None, None}, {None, None}},
+                GridLinesStyle->Directive[
+                  GrayLevel[0.5, 0.4]],
+                
+                Method->{
+                 "GridLinesInFront" -> True, "DefaultBoundaryStyle" -> 
+                  Automatic, 
+                  "DefaultGraphicsInteraction" -> {
+                   "Version" -> 1.2, "TrackMousePosition" -> {True, False}, 
+                    "Effects" -> {
+                    "Highlight" -> {"ratio" -> 2}, 
+                    "HighlightPoint" -> {"ratio" -> 2}, 
+                    "Droplines" -> {
+                    "freeformCursorMode" -> True, 
+                    "placement" -> {"x" -> "All", "y" -> "None"}}}}, 
+                  "DefaultPlotStyle" -> Automatic}], 35->
+               
+               GraphicsBox[
+                RasterBox[{{1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0}, {0, 1, 
+                 1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0}, {0, 0, 1, 1, 1, 1, 0, 0,
+                  1, 1, 0, 0, 1, 1}, {1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 
+                 1}, {1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0}, {0, 0, 0, 1, 
+                 1, 0, 0, 1, 1, 0, 0, 1, 1, 0}, {1, 1, 0, 0, 1, 1, 0, 0, 1, 1,
+                  0, 0, 1, 1}, {0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0}, {0,
+                  0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1}, {1, 0, 0, 1, 1, 0, 
+                 0, 1, 1, 0, 0, 0, 0, 1}, {1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1,
+                  0, 0}, {0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0}, {0, 0, 1,
+                  1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1}, {1, 0, 0, 1, 1, 0, 0, 0, 
+                 0, 1, 1, 0, 0, 1}}, {{0, 0}, {14, 14}}, {0, 1}],
+                Frame->Automatic,
+                FrameLabel->{None, None},
+                FrameTicks->{{None, None}, {None, None}},
+                GridLinesStyle->Directive[
+                  GrayLevel[0.5, 0.4]],
+                
+                Method->{
+                 "GridLinesInFront" -> True, "DefaultBoundaryStyle" -> 
+                  Automatic, 
+                  "DefaultGraphicsInteraction" -> {
+                   "Version" -> 1.2, "TrackMousePosition" -> {True, False}, 
+                    "Effects" -> {
+                    "Highlight" -> {"ratio" -> 2}, 
+                    "HighlightPoint" -> {"ratio" -> 2}, 
+                    "Droplines" -> {
+                    "freeformCursorMode" -> True, 
+                    "placement" -> {"x" -> "All", "y" -> "None"}}}}, 
+                  "DefaultPlotStyle" -> Automatic}], 36->
+               
+               GraphicsBox[
+                RasterBox[{{1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1}, {1, 1, 
+                 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0}, {0, 1, 1, 0, 0, 0, 0, 1,
+                  1, 0, 0, 1, 1, 0}, {0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 1, 
+                 1}, {1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1}, {1, 1, 1, 1, 
+                 0, 0, 1, 1, 0, 0, 1, 1, 0, 0}, {0, 0, 0, 1, 1, 0, 0, 1, 1, 0,
+                  0, 1, 1, 0}, {1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1}, {0,
+                  1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0}, {0, 0, 1, 1, 0, 0, 
+                 1, 1, 0, 0, 1, 1, 1, 1}, {1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0,
+                  0, 1}, {1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0}, {0, 1, 1,
+                  0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0}, {0, 0, 1, 1, 0, 0, 1, 1, 
+                 1, 1, 0, 0, 1, 1}}, {{0, 0}, {14, 14}}, {0, 1}],
+                Frame->Automatic,
+                FrameLabel->{None, None},
+                FrameTicks->{{None, None}, {None, None}},
+                GridLinesStyle->Directive[
+                  GrayLevel[0.5, 0.4]],
+                
+                Method->{
+                 "GridLinesInFront" -> True, "DefaultBoundaryStyle" -> 
+                  Automatic, 
+                  "DefaultGraphicsInteraction" -> {
+                   "Version" -> 1.2, "TrackMousePosition" -> {True, False}, 
+                    "Effects" -> {
+                    "Highlight" -> {"ratio" -> 2}, 
+                    "HighlightPoint" -> {"ratio" -> 2}, 
+                    "Droplines" -> {
+                    "freeformCursorMode" -> True, 
+                    "placement" -> {"x" -> "All", "y" -> "None"}}}}, 
+                  "DefaultPlotStyle" -> Automatic}], 37->
+               
+               GraphicsBox[
+                RasterBox[{{0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1}, {1, 0, 
+                 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1}, {1, 1, 0, 0, 1, 1, 1, 1,
+                  0, 0, 1, 1, 0, 0}, {0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 
+                 0}, {0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1}, {1, 0, 0, 0, 
+                 0, 1, 1, 0, 0, 1, 1, 0, 0, 1}, {1, 1, 1, 1, 0, 0, 1, 1, 0, 0,
+                  1, 1, 0, 0}, {0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0}, {1,
+                  1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1}, {0, 1, 1, 0, 0, 1, 
+                 1, 0, 0, 1, 1, 0, 0, 0}, {0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1,
+                  1, 1}, {1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1}, {1, 1, 0,
+                  0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0}, {0, 1, 1, 0, 0, 1, 1, 0, 
+                 0, 0, 0, 1, 1, 0}}, {{0, 0}, {14, 14}}, {0, 1}],
+                Frame->Automatic,
+                FrameLabel->{None, None},
+                FrameTicks->{{None, None}, {None, None}},
+                GridLinesStyle->Directive[
+                  GrayLevel[0.5, 0.4]],
+                
+                Method->{
+                 "GridLinesInFront" -> True, "DefaultBoundaryStyle" -> 
+                  Automatic, 
+                  "DefaultGraphicsInteraction" -> {
+                   "Version" -> 1.2, "TrackMousePosition" -> {True, False}, 
+                    "Effects" -> {
+                    "Highlight" -> {"ratio" -> 2}, 
+                    "HighlightPoint" -> {"ratio" -> 2}, 
+                    "Droplines" -> {
+                    "freeformCursorMode" -> True, 
+                    "placement" -> {"x" -> "All", "y" -> "None"}}}}, 
+                  "DefaultPlotStyle" -> Automatic}], 38->
+               
+               GraphicsBox[
+                RasterBox[{{0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0}, {0, 0, 
+                 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1}, {1, 0, 0, 1, 1, 0, 0, 0,
+                  0, 1, 1, 0, 0, 1}, {1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 
+                 0}, {0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0}, {0, 0, 1, 1, 
+                 1, 1, 0, 0, 1, 1, 0, 0, 1, 1}, {1, 0, 0, 0, 0, 1, 1, 0, 0, 1,
+                  1, 0, 0, 1}, {1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0}, {0,
+                  0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0}, {1, 1, 0, 0, 1, 1, 
+                 0, 0, 1, 1, 0, 0, 1, 1}, {0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0,
+                  0, 0}, {0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1}, {1, 0, 0,
+                  1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1}, {1, 1, 0, 0, 1, 1, 0, 0, 
+                 1, 1, 1, 1, 0, 0}}, {{0, 0}, {14, 14}}, {0, 1}],
+                Frame->Automatic,
+                FrameLabel->{None, None},
+                FrameTicks->{{None, None}, {None, None}},
+                GridLinesStyle->Directive[
+                  GrayLevel[0.5, 0.4]],
+                
+                Method->{
+                 "GridLinesInFront" -> True, "DefaultBoundaryStyle" -> 
+                  Automatic, 
+                  "DefaultGraphicsInteraction" -> {
+                   "Version" -> 1.2, "TrackMousePosition" -> {True, False}, 
+                    "Effects" -> {
+                    "Highlight" -> {"ratio" -> 2}, 
+                    "HighlightPoint" -> {"ratio" -> 2}, 
+                    "Droplines" -> {
+                    "freeformCursorMode" -> True, 
+                    "placement" -> {"x" -> "All", "y" -> "None"}}}}, 
+                  "DefaultPlotStyle" -> Automatic}], 39->
+               
+               GraphicsBox[
+                RasterBox[{{1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0}, {0, 1, 
+                 1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0}, {0, 0, 1, 1, 0, 0, 1, 1,
+                  1, 1, 0, 0, 1, 1}, {1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 
+                 1}, {1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0}, {0, 1, 1, 0, 
+                 0, 0, 0, 1, 1, 0, 0, 1, 1, 0}, {0, 0, 1, 1, 1, 1, 0, 0, 1, 1,
+                  0, 0, 1, 1}, {1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1}, {1,
+                  1, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0}, {0, 0, 0, 1, 1, 0, 
+                 0, 1, 1, 0, 0, 1, 1, 0}, {1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0,
+                  1, 1}, {0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0}, {0, 0, 1,
+                  1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1}, {1, 0, 0, 1, 1, 0, 0, 1, 
+                 1, 0, 0, 0, 0, 1}}, {{0, 0}, {14, 14}}, {0, 1}],
+                Frame->Automatic,
+                FrameLabel->{None, None},
+                FrameTicks->{{None, None}, {None, None}},
+                GridLinesStyle->Directive[
+                  GrayLevel[0.5, 0.4]],
+                
+                Method->{
+                 "GridLinesInFront" -> True, "DefaultBoundaryStyle" -> 
+                  Automatic, 
+                  "DefaultGraphicsInteraction" -> {
+                   "Version" -> 1.2, "TrackMousePosition" -> {True, False}, 
+                    "Effects" -> {
+                    "Highlight" -> {"ratio" -> 2}, 
+                    "HighlightPoint" -> {"ratio" -> 2}, 
+                    "Droplines" -> {
+                    "freeformCursorMode" -> True, 
+                    "placement" -> {"x" -> "All", "y" -> "None"}}}}, 
+                  "DefaultPlotStyle" -> Automatic}], 40->
+               
+               GraphicsBox[
+                RasterBox[{{1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1}, {1, 1, 
+                 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0}, {0, 1, 1, 0, 0, 1, 1, 0,
+                  0, 0, 0, 1, 1, 0}, {0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 
+                 1}, {1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1}, {1, 1, 0, 0, 
+                 1, 1, 1, 1, 0, 0, 1, 1, 0, 0}, {0, 1, 1, 0, 0, 0, 0, 1, 1, 0,
+                  0, 1, 1, 0}, {0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1}, {1,
+                  0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1}, {1, 1, 1, 1, 0, 0, 
+                 1, 1, 0, 0, 1, 1, 0, 0}, {0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1,
+                  1, 0}, {1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1}, {0, 1, 1,
+                  0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0}, {0, 0, 1, 1, 0, 0, 1, 1, 
+                 0, 0, 1, 1, 1, 1}}, {{0, 0}, {14, 14}}, {0, 1}],
+                Frame->Automatic,
+                FrameLabel->{None, None},
+                FrameTicks->{{None, None}, {None, None}},
+                GridLinesStyle->Directive[
+                  GrayLevel[0.5, 0.4]],
+                
+                Method->{
+                 "GridLinesInFront" -> True, "DefaultBoundaryStyle" -> 
+                  Automatic, 
+                  "DefaultGraphicsInteraction" -> {
+                   "Version" -> 1.2, "TrackMousePosition" -> {True, False}, 
+                    "Effects" -> {
+                    "Highlight" -> {"ratio" -> 2}, 
+                    "HighlightPoint" -> {"ratio" -> 2}, 
+                    "Droplines" -> {
+                    "freeformCursorMode" -> True, 
+                    "placement" -> {"x" -> "All", "y" -> "None"}}}}, 
+                  "DefaultPlotStyle" -> Automatic}], 41->
+               
+               GraphicsBox[
+                RasterBox[{{0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1}, {1, 0, 
+                 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1}, {1, 1, 0, 0, 1, 1, 0, 0,
+                  1, 1, 1, 1, 0, 0}, {0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 
+                 0}, {0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1}, {1, 0, 0, 1, 
+                 1, 0, 0, 0, 0, 1, 1, 0, 0, 1}, {1, 1, 0, 0, 1, 1, 1, 1, 0, 0,
+                  1, 1, 0, 0}, {0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0}, {0,
+                  0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1}, {1, 0, 0, 0, 0, 1, 
+                 1, 0, 0, 1, 1, 0, 0, 1}, {1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1,
+                  0, 0}, {0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0}, {1, 1, 0,
+                  0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1}, {0, 1, 1, 0, 0, 1, 1, 0, 
+                 0, 1, 1, 0, 0, 0}}, {{0, 0}, {14, 14}}, {0, 1}],
+                Frame->Automatic,
+                FrameLabel->{None, None},
+                FrameTicks->{{None, None}, {None, None}},
+                GridLinesStyle->Directive[
+                  GrayLevel[0.5, 0.4]],
+                
+                Method->{
+                 "GridLinesInFront" -> True, "DefaultBoundaryStyle" -> 
+                  Automatic, 
+                  "DefaultGraphicsInteraction" -> {
+                   "Version" -> 1.2, "TrackMousePosition" -> {True, False}, 
+                    "Effects" -> {
+                    "Highlight" -> {"ratio" -> 2}, 
+                    "HighlightPoint" -> {"ratio" -> 2}, 
+                    "Droplines" -> {
+                    "freeformCursorMode" -> True, 
+                    "placement" -> {"x" -> "All", "y" -> "None"}}}}, 
+                  "DefaultPlotStyle" -> Automatic}], 42->
+               
+               GraphicsBox[
+                RasterBox[{{0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0}, {0, 0, 
+                 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1}, {1, 0, 0, 1, 1, 0, 0, 1,
+                  1, 0, 0, 0, 0, 1}, {1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 
+                 0}, {0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0}, {0, 0, 1, 1, 
+                 0, 0, 1, 1, 1, 1, 0, 0, 1, 1}, {1, 0, 0, 1, 1, 0, 0, 0, 0, 1,
+                  1, 0, 0, 1}, {1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0}, {0,
+                  1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0}, {0, 0, 1, 1, 1, 1, 
+                 0, 0, 1, 1, 0, 0, 1, 1}, {1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0,
+                  0, 1}, {1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0}, {0, 0, 0,
+                  1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0}, {1, 1, 0, 0, 1, 1, 0, 0, 
+                 1, 1, 0, 0, 1, 1}}, {{0, 0}, {14, 14}}, {0, 1}],
+                Frame->Automatic,
+                FrameLabel->{None, None},
+                FrameTicks->{{None, None}, {None, None}},
+                GridLinesStyle->Directive[
+                  GrayLevel[0.5, 0.4]],
+                
+                Method->{
+                 "GridLinesInFront" -> True, "DefaultBoundaryStyle" -> 
+                  Automatic, 
+                  "DefaultGraphicsInteraction" -> {
+                   "Version" -> 1.2, "TrackMousePosition" -> {True, False}, 
+                    "Effects" -> {
+                    "Highlight" -> {"ratio" -> 2}, 
+                    "HighlightPoint" -> {"ratio" -> 2}, 
+                    "Droplines" -> {
+                    "freeformCursorMode" -> True, 
+                    "placement" -> {"x" -> "All", "y" -> "None"}}}}, 
+                  "DefaultPlotStyle" -> Automatic}], 43->
+               
+               GraphicsBox[
+                RasterBox[{{1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1}, {0, 1, 
+                 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0}, {0, 0, 1, 1, 0, 0, 1, 1,
+                  0, 0, 1, 1, 1, 1}, {1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 
+                 1}, {1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0}, {0, 1, 1, 0, 
+                 0, 1, 1, 0, 0, 0, 0, 1, 1, 0}, {0, 0, 1, 1, 0, 0, 1, 1, 1, 1,
+                  0, 0, 1, 1}, {1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1}, {1,
+                  1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0}, {0, 1, 1, 0, 0, 0, 
+                 0, 1, 1, 0, 0, 1, 1, 0}, {0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0,
+                  1, 1}, {1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1}, {1, 1, 1,
+                  1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0}, {0, 0, 0, 1, 1, 0, 0, 1, 
+                 1, 0, 0, 1, 1, 0}}, {{0, 0}, {14, 14}}, {0, 1}],
+                Frame->Automatic,
+                FrameLabel->{None, None},
+                FrameTicks->{{None, None}, {None, None}},
+                GridLinesStyle->Directive[
+                  GrayLevel[0.5, 0.4]],
+                
+                Method->{
+                 "GridLinesInFront" -> True, "DefaultBoundaryStyle" -> 
+                  Automatic, 
+                  "DefaultGraphicsInteraction" -> {
+                   "Version" -> 1.2, "TrackMousePosition" -> {True, False}, 
+                    "Effects" -> {
+                    "Highlight" -> {"ratio" -> 2}, 
+                    "HighlightPoint" -> {"ratio" -> 2}, 
+                    "Droplines" -> {
+                    "freeformCursorMode" -> True, 
+                    "placement" -> {"x" -> "All", "y" -> "None"}}}}, 
+                  "DefaultPlotStyle" -> Automatic}], 44->
+               
+               GraphicsBox[
+                RasterBox[{{0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0}, {1, 1, 
+                 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1}, {0, 1, 1, 0, 0, 1, 1, 0,
+                  0, 1, 1, 0, 0, 0}, {0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 
+                 1}, {1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1}, {1, 1, 0, 0, 
+                 1, 1, 0, 0, 1, 1, 1, 1, 0, 0}, {0, 1, 1, 0, 0, 1, 1, 0, 0, 0,
+                  0, 1, 1, 0}, {0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1}, {1,
+                  0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1}, {1, 1, 0, 0, 1, 1, 
+                 1, 1, 0, 0, 1, 1, 0, 0}, {0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1,
+                  1, 0}, {0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1}, {1, 0, 0,
+                  0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1}, {1, 1, 1, 1, 0, 0, 1, 1, 
+                 0, 0, 1, 1, 0, 0}}, {{0, 0}, {14, 14}}, {0, 1}],
+                Frame->Automatic,
+                FrameLabel->{None, None},
+                FrameTicks->{{None, None}, {None, None}},
+                GridLinesStyle->Directive[
+                  GrayLevel[0.5, 0.4]],
+                
+                Method->{
+                 "GridLinesInFront" -> True, "DefaultBoundaryStyle" -> 
+                  Automatic, 
+                  "DefaultGraphicsInteraction" -> {
+                   "Version" -> 1.2, "TrackMousePosition" -> {True, False}, 
+                    "Effects" -> {
+                    "Highlight" -> {"ratio" -> 2}, 
+                    "HighlightPoint" -> {"ratio" -> 2}, 
+                    "Droplines" -> {
+                    "freeformCursorMode" -> True, 
+                    "placement" -> {"x" -> "All", "y" -> "None"}}}}, 
+                  "DefaultPlotStyle" -> Automatic}], 45->
+               
+               GraphicsBox[
+                RasterBox[{{1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0}, {0, 0, 
+                 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0}, {1, 1, 0, 0, 1, 1, 0, 0,
+                  1, 1, 0, 0, 1, 1}, {0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 
+                 0}, {0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1}, {1, 0, 0, 1, 
+                 1, 0, 0, 1, 1, 0, 0, 0, 0, 1}, {1, 1, 0, 0, 1, 1, 0, 0, 1, 1,
+                  1, 1, 0, 0}, {0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0}, {0,
+                  0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1}, {1, 0, 0, 1, 1, 0, 
+                 0, 0, 0, 1, 1, 0, 0, 1}, {1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1,
+                  0, 0}, {0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0}, {0, 0, 1,
+                  1, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1}, {1, 0, 0, 0, 0, 1, 1, 0, 
+                 0, 1, 1, 0, 0, 1}}, {{0, 0}, {14, 14}}, {0, 1}],
+                Frame->Automatic,
+                FrameLabel->{None, None},
+                FrameTicks->{{None, None}, {None, None}},
+                GridLinesStyle->Directive[
+                  GrayLevel[0.5, 0.4]],
+                
+                Method->{
+                 "GridLinesInFront" -> True, "DefaultBoundaryStyle" -> 
+                  Automatic, 
+                  "DefaultGraphicsInteraction" -> {
+                   "Version" -> 1.2, "TrackMousePosition" -> {True, False}, 
+                    "Effects" -> {
+                    "Highlight" -> {"ratio" -> 2}, 
+                    "HighlightPoint" -> {"ratio" -> 2}, 
+                    "Droplines" -> {
+                    "freeformCursorMode" -> True, 
+                    "placement" -> {"x" -> "All", "y" -> "None"}}}}, 
+                  "DefaultPlotStyle" -> Automatic}], 46->
+               
+               GraphicsBox[
+                RasterBox[{{1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1}, {1, 1, 
+                 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0}, {0, 0, 0, 1, 1, 0, 0, 1,
+                  1, 0, 0, 1, 1, 0}, {1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 
+                 1}, {0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0}, {0, 0, 1, 1, 
+                 0, 0, 1, 1, 0, 0, 1, 1, 1, 1}, {1, 0, 0, 1, 1, 0, 0, 1, 1, 0,
+                  0, 0, 0, 1}, {1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0}, {0,
+                  1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0}, {0, 0, 1, 1, 0, 0, 
+                 1, 1, 1, 1, 0, 0, 1, 1}, {1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0,
+                  0, 1}, {1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0}, {0, 1, 1,
+                  0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0}, {0, 0, 1, 1, 1, 1, 0, 0, 
+                 1, 1, 0, 0, 1, 1}}, {{0, 0}, {14, 14}}, {0, 1}],
+                Frame->Automatic,
+                FrameLabel->{None, None},
+                FrameTicks->{{None, None}, {None, None}},
+                GridLinesStyle->Directive[
+                  GrayLevel[0.5, 0.4]],
+                
+                Method->{
+                 "GridLinesInFront" -> True, "DefaultBoundaryStyle" -> 
+                  Automatic, 
+                  "DefaultGraphicsInteraction" -> {
+                   "Version" -> 1.2, "TrackMousePosition" -> {True, False}, 
+                    "Effects" -> {
+                    "Highlight" -> {"ratio" -> 2}, 
+                    "HighlightPoint" -> {"ratio" -> 2}, 
+                    "Droplines" -> {
+                    "freeformCursorMode" -> True, 
+                    "placement" -> {"x" -> "All", "y" -> "None"}}}}, 
+                  "DefaultPlotStyle" -> Automatic}], 47->
+               
+               GraphicsBox[
+                RasterBox[{{0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1}, {1, 0, 
+                 0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1}, {1, 1, 1, 1, 0, 0, 1, 1,
+                  0, 0, 1, 1, 0, 0}, {0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 
+                 0}, {1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1}, {0, 1, 1, 0, 
+                 0, 1, 1, 0, 0, 1, 1, 0, 0, 0}, {0, 0, 1, 1, 0, 0, 1, 1, 0, 0,
+                  1, 1, 1, 1}, {1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1}, {1,
+                  1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0}, {0, 1, 1, 0, 0, 1, 
+                 1, 0, 0, 0, 0, 1, 1, 0}, {0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0,
+                  1, 1}, {1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1}, {1, 1, 0,
+                  0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0}, {0, 1, 1, 0, 0, 0, 0, 1, 
+                 1, 0, 0, 1, 1, 0}}, {{0, 0}, {14, 14}}, {0, 1}],
+                Frame->Automatic,
+                FrameLabel->{None, None},
+                FrameTicks->{{None, None}, {None, None}},
+                GridLinesStyle->Directive[
+                  GrayLevel[0.5, 0.4]],
+                
+                Method->{
+                 "GridLinesInFront" -> True, "DefaultBoundaryStyle" -> 
+                  Automatic, 
+                  "DefaultGraphicsInteraction" -> {
+                   "Version" -> 1.2, "TrackMousePosition" -> {True, False}, 
+                    "Effects" -> {
+                    "Highlight" -> {"ratio" -> 2}, 
+                    "HighlightPoint" -> {"ratio" -> 2}, 
+                    "Droplines" -> {
+                    "freeformCursorMode" -> True, 
+                    "placement" -> {"x" -> "All", "y" -> "None"}}}}, 
+                  "DefaultPlotStyle" -> Automatic}], 48->
+               
+               GraphicsBox[
+                RasterBox[{{0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0}, {0, 0, 
+                 1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1}, {1, 0, 0, 0, 0, 1, 1, 0,
+                  0, 1, 1, 0, 0, 1}, {1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 
+                 0}, {0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0}, {1, 1, 0, 0, 
+                 1, 1, 0, 0, 1, 1, 0, 0, 1, 1}, {0, 1, 1, 0, 0, 1, 1, 0, 0, 1,
+                  1, 0, 0, 0}, {0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1}, {1,
+                  0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1}, {1, 1, 0, 0, 1, 1, 
+                 0, 0, 1, 1, 1, 1, 0, 0}, {0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1,
+                  1, 0}, {0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1}, {1, 0, 0,
+                  1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1}, {1, 1, 0, 0, 1, 1, 1, 1, 
+                 0, 0, 1, 1, 0, 0}}, {{0, 0}, {14, 14}}, {0, 1}],
+                Frame->Automatic,
+                FrameLabel->{None, None},
+                FrameTicks->{{None, None}, {None, None}},
+                GridLinesStyle->Directive[
+                  GrayLevel[0.5, 0.4]],
+                
+                Method->{
+                 "GridLinesInFront" -> True, "DefaultBoundaryStyle" -> 
+                  Automatic, 
+                  "DefaultGraphicsInteraction" -> {
+                   "Version" -> 1.2, "TrackMousePosition" -> {True, False}, 
+                    "Effects" -> {
+                    "Highlight" -> {"ratio" -> 2}, 
+                    "HighlightPoint" -> {"ratio" -> 2}, 
+                    "Droplines" -> {
+                    "freeformCursorMode" -> True, 
+                    "placement" -> {"x" -> "All", "y" -> "None"}}}}, 
+                  "DefaultPlotStyle" -> Automatic}], 49->
+               
+               GraphicsBox[
+                RasterBox[{{1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0}, {0, 1, 
+                 1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0}, {0, 0, 1, 1, 1, 1, 0, 0,
+                  1, 1, 0, 0, 1, 1}, {1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 
+                 1}, {1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0}, {0, 0, 0, 1, 
+                 1, 0, 0, 1, 1, 0, 0, 1, 1, 0}, {1, 1, 0, 0, 1, 1, 0, 0, 1, 1,
+                  0, 0, 1, 1}, {0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0}, {0,
+                  0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1}, {1, 0, 0, 1, 1, 0, 
+                 0, 1, 1, 0, 0, 0, 0, 1}, {1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1,
+                  0, 0}, {0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0}, {0, 0, 1,
+                  1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1}, {1, 0, 0, 1, 1, 0, 0, 0, 
+                 0, 1, 1, 0, 0, 1}}, {{0, 0}, {14, 14}}, {0, 1}],
+                Frame->Automatic,
+                FrameLabel->{None, None},
+                FrameTicks->{{None, None}, {None, None}},
+                GridLinesStyle->Directive[
+                  GrayLevel[0.5, 0.4]],
+                
+                Method->{
+                 "GridLinesInFront" -> True, "DefaultBoundaryStyle" -> 
+                  Automatic, 
+                  "DefaultGraphicsInteraction" -> {
+                   "Version" -> 1.2, "TrackMousePosition" -> {True, False}, 
+                    "Effects" -> {
+                    "Highlight" -> {"ratio" -> 2}, 
+                    "HighlightPoint" -> {"ratio" -> 2}, 
+                    "Droplines" -> {
+                    "freeformCursorMode" -> True, 
+                    "placement" -> {"x" -> "All", "y" -> "None"}}}}, 
+                  "DefaultPlotStyle" -> Automatic}], 50->
+               
+               GraphicsBox[
+                RasterBox[{{1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1}, {1, 1, 
+                 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0}, {0, 1, 1, 0, 0, 0, 0, 1,
+                  1, 0, 0, 1, 1, 0}, {0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 1, 
+                 1}, {1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1}, {1, 1, 1, 1, 
+                 0, 0, 1, 1, 0, 0, 1, 1, 0, 0}, {0, 0, 0, 1, 1, 0, 0, 1, 1, 0,
+                  0, 1, 1, 0}, {1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1}, {0,
+                  1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0}, {0, 0, 1, 1, 0, 0, 
+                 1, 1, 0, 0, 1, 1, 1, 1}, {1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0,
+                  0, 1}, {1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0}, {0, 1, 1,
+                  0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0}, {0, 0, 1, 1, 0, 0, 1, 1, 
+                 1, 1, 0, 0, 1, 1}}, {{0, 0}, {14, 14}}, {0, 1}],
+                Frame->Automatic,
+                FrameLabel->{None, None},
+                FrameTicks->{{None, None}, {None, None}},
+                GridLinesStyle->Directive[
+                  GrayLevel[0.5, 0.4]],
+                
+                Method->{
+                 "GridLinesInFront" -> True, "DefaultBoundaryStyle" -> 
+                  Automatic, 
+                  "DefaultGraphicsInteraction" -> {
+                   "Version" -> 1.2, "TrackMousePosition" -> {True, False}, 
+                    "Effects" -> {
+                    "Highlight" -> {"ratio" -> 2}, 
+                    "HighlightPoint" -> {"ratio" -> 2}, 
+                    "Droplines" -> {
+                    "freeformCursorMode" -> True, 
+                    "placement" -> {"x" -> "All", "y" -> "None"}}}}, 
+                  "DefaultPlotStyle" -> Automatic}]}, Dynamic[
+               Manipulate`Dump`i$104406$$],
+               Alignment->Automatic,
+               BaseStyle->"ListAnimateCore",
+               ImageSize->All,
+               TransitionDirection->Horizontal,
+               TransitionDuration->0.5,
+               TransitionEffect->Automatic],
+              Identity,
+              Editable->True,
+              Selectable->True],
+             ImageMargins->10],
+            Deployed->False,
+            StripOnInput->False,
+            ScriptLevel->0,
+            GraphicsBoxOptions->{PreserveImageOptions->True},
+            Graphics3DBoxOptions->{PreserveImageOptions->True}],
+           Identity,
+           Editable->False,
+           Selectable->False],
+          Alignment->{Left, Center},
+          Background->ThemeColor["Background"],
+          Frame->1,
+          FrameStyle->Directive[
+            Opacity[0.2], 
+            ThemeColor["Foreground"]],
+          ItemSize->Automatic,
+          StripOnInput->False]}
+       },
+       AutoDelete->False,
+       GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Top}}},
+       GridBoxDividers->{"Columns" -> {{False}}, "Rows" -> {{False}}},
+       GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+       
+       GridBoxSpacings->{"Columns" -> {
+           Offset[0.7], {
+            Offset[0.5599999999999999]}, 
+           Offset[0.7]}, "Rows" -> {
+           Offset[0.4], {
+            Offset[0.8]}, 
+           Offset[0.4]}}],
+      DefaultBaseStyle->{},
+      FrameMargins->{{5, 5}, {5, 5}}],
+     BaselinePosition->Automatic,
+     ImageMargins->0],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "ListAnimate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{
+  3.98575694339247*^9, 3.985756975193801*^9, {3.9857572748975677`*^9, 
+   3.985757346865213*^9}, 3.985757634191114*^9, 3.9857577463694277`*^9, 
+   3.9857578567378674`*^9, {3.985757888013517*^9, 3.985757925375614*^9}, 
+   3.985758393952961*^9},
+ CellLabel->"Out[45]=",ExpressionUUID->"c4f0f558-85c7-4765-8b9c-aebfcf53cdac"]
+}, Open  ]],
 
 Cell[BoxData[""], "Input",
  CellChangeTimes->{{3.985152304846778*^9, 
@@ -168,20 +2002,23 @@ Cell[576, 22, 161, 3, 96, "Title",ExpressionUUID->"6ecb9d33-8a47-44e4-88c6-273a8
 Cell[740, 27, 299, 8, 77, "Text",ExpressionUUID->"0e5d6337-f7c1-4729-8d73-af8320441479"],
 Cell[CellGroupData[{
 Cell[1064, 39, 157, 3, 65, "Section",ExpressionUUID->"10083f13-df8b-4914-959d-2fb5b36a388a"],
-Cell[1224, 44, 897, 19, 230, "Text",ExpressionUUID->"920f4b18-8576-47f6-985f-ba0880db0523"],
-Cell[2124, 65, 489, 14, 71, "Input",ExpressionUUID->"56e2d6ab-5cf1-4e50-9ebe-4894861566f2"],
-Cell[2616, 81, 154, 3, 29, "Input",ExpressionUUID->"e3418726-dce7-4db2-bc03-d18707e5e569"]
+Cell[1224, 44, 897, 19, 186, "Text",ExpressionUUID->"920f4b18-8576-47f6-985f-ba0880db0523"],
+Cell[CellGroupData[{
+Cell[2146, 67, 8789, 182, 1108, "Input",ExpressionUUID->"56e2d6ab-5cf1-4e50-9ebe-4894861566f2"],
+Cell[10938, 251, 91663, 1661, 464, "Output",ExpressionUUID->"c4f0f558-85c7-4765-8b9c-aebfcf53cdac"]
+}, Open  ]],
+Cell[102616, 1915, 154, 3, 29, "Input",ExpressionUUID->"e3418726-dce7-4db2-bc03-d18707e5e569"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[2807, 89, 158, 3, 65, "Section",ExpressionUUID->"1f63616d-10a0-470c-bf40-9aa3fe042bc1"],
-Cell[2968, 94, 749, 14, 186, "Text",ExpressionUUID->"be5805ba-3c82-465a-9feb-f66fdaa29ff6"],
-Cell[3720, 110, 216, 4, 29, "Input",ExpressionUUID->"833f31c9-07b1-4090-8271-e4062d88877e"],
-Cell[3939, 116, 154, 3, 29, "Input",ExpressionUUID->"9f61f0ff-a7f5-438e-967b-057a9cad84a6"]
+Cell[102807, 1923, 158, 3, 65, "Section",ExpressionUUID->"1f63616d-10a0-470c-bf40-9aa3fe042bc1"],
+Cell[102968, 1928, 749, 14, 186, "Text",ExpressionUUID->"be5805ba-3c82-465a-9feb-f66fdaa29ff6"],
+Cell[103720, 1944, 216, 4, 29, "Input",ExpressionUUID->"833f31c9-07b1-4090-8271-e4062d88877e"],
+Cell[103939, 1950, 154, 3, 29, "Input",ExpressionUUID->"9f61f0ff-a7f5-438e-967b-057a9cad84a6"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[4130, 124, 156, 3, 65, "Section",ExpressionUUID->"22516b1e-577c-4692-811d-d3b64c8a0d99"],
-Cell[4289, 129, 562, 10, 99, "Text",ExpressionUUID->"4412ca1b-247f-4c51-85e7-c61b0e18268c"],
-Cell[4854, 141, 163, 3, 29, "Input",ExpressionUUID->"31e7c4e0-339c-4fdb-9ce3-70d219beb4a7"]
+Cell[104130, 1958, 156, 3, 65, "Section",ExpressionUUID->"22516b1e-577c-4692-811d-d3b64c8a0d99"],
+Cell[104289, 1963, 562, 10, 121, "Text",ExpressionUUID->"4412ca1b-247f-4c51-85e7-c61b0e18268c"],
+Cell[104854, 1975, 163, 3, 29, "Input",ExpressionUUID->"31e7c4e0-339c-4fdb-9ce3-70d219beb4a7"]
 }, Open  ]]
 }, Open  ]]
 }
