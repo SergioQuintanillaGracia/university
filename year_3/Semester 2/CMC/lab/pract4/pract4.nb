@@ -1,0 +1,113 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 14.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[      3465,        105]
+NotebookOptionsPosition[      2381,         78]
+NotebookOutlinePosition[      2768,         94]
+CellTagsIndexPosition[      2725,         91]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Pr\[AAcute]ctica 4", "Title",
+ CellChangeTimes->{{3.985152301310869*^9, 3.985152306806728*^9}, {
+  3.986964675847274*^9, 
+  3.986964676066609*^9}},ExpressionUUID->"980d3ab3-e6ba-41fa-9425-\
+0d3679e8b0b9"],
+
+Cell[TextData[{
+ StyleBox["Integrantes del equipo:",
+  FontWeight->"Bold"],
+ "\n\t- Adri\[AGrave] Mar\[IAcute]n Bayarri\n\t- Sergio Quintanilla Graci\
+\[AAcute]"
+}], "Text",
+ CellChangeTimes->{{3.985152793787952*^9, 
+  3.985152808179143*^9}},ExpressionUUID->"19ca3b33-3f62-49bc-ad64-\
+5edf1c13a95e"],
+
+Cell[CellGroupData[{
+
+Cell["Ejercicio 1", "Section",
+ CellChangeTimes->{{3.9851523777826843`*^9, 
+  3.98515238192332*^9}},ExpressionUUID->"255674ca-2067-4aa3-ae51-\
+44282cd39a94"],
+
+Cell["Placeholder", "Text",
+ CellChangeTimes->{{3.985152404392928*^9, 3.9851524637765303`*^9}, {
+  3.985153012271072*^9, 3.9851530314747763`*^9}, {3.986964626546199*^9, 
+  3.986964628096154*^9}},ExpressionUUID->"aa1c5caa-6652-4d1f-9a67-\
+f36acfe2d65a"],
+
+Cell[BoxData["Placeholder"], "Input",
+ CellChangeTimes->{{3.986964629402432*^9, 
+  3.986964630791157*^9}},ExpressionUUID->"3f3a2307-37f5-4a40-a21e-\
+ee5d1056c261"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Ejercicio 2", "Section",
+ CellChangeTimes->{{3.985152711815991*^9, 
+  3.9851527144563103`*^9}},ExpressionUUID->"b605d873-0b2e-4248-93b0-\
+e9ee5ef14659"],
+
+Cell["Placeholder", "Text",
+ CellChangeTimes->{{3.985152718135892*^9, 3.985152718445381*^9}, {
+  3.985152899547159*^9, 3.985152943369335*^9}, {3.985153035330081*^9, 
+  3.985153035785602*^9}, {3.986964667136116*^9, 
+  3.98696466891546*^9}},ExpressionUUID->"705ff706-9f8f-43d3-8380-\
+3584a509aa1e"],
+
+Cell[BoxData["Placeholder"], "Input",
+ CellChangeTimes->{{3.986964664454626*^9, 
+  3.9869646658750772`*^9}},ExpressionUUID->"58d1643b-2b09-4c89-b311-\
+6cedfb43f541"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{648, 789},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"14.3 for Linux x86 (64-bit) (July 8, 2025)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"aaaf5e17-d47a-4bf4-a167-076b8d451cc7"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 210, 4, 96, "Title",ExpressionUUID->"980d3ab3-e6ba-41fa-9425-0d3679e8b0b9"],
+Cell[789, 28, 299, 8, 77, "Text",ExpressionUUID->"19ca3b33-3f62-49bc-ad64-5edf1c13a95e"],
+Cell[CellGroupData[{
+Cell[1113, 40, 157, 3, 65, "Section",ExpressionUUID->"255674ca-2067-4aa3-ae51-44282cd39a94"],
+Cell[1273, 45, 252, 4, 33, "Text",ExpressionUUID->"aa1c5caa-6652-4d1f-9a67-f36acfe2d65a"],
+Cell[1528, 51, 163, 3, 29, "Input",ExpressionUUID->"3f3a2307-37f5-4a40-a21e-ee5d1056c261"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1728, 59, 158, 3, 65, "Section",ExpressionUUID->"b605d873-0b2e-4248-93b0-e9ee5ef14659"],
+Cell[1889, 64, 296, 5, 33, "Text",ExpressionUUID->"705ff706-9f8f-43d3-8380-3584a509aa1e"],
+Cell[2188, 71, 165, 3, 29, "Input",ExpressionUUID->"58d1643b-2b09-4c89-b311-6cedfb43f541"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
