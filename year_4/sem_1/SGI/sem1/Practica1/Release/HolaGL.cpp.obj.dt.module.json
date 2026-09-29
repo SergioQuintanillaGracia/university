@@ -1,0 +1,14 @@
+{
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "Release\\HolaGL.obj",
+            "outputs": [
+                "Release\\HolaGL.cpp.obj.dt.module.json",
+                "Release\\HolaGL.cpp.obj.dt.d.json"
+            ],
+            "requires": []
+        }
+    ]
+}
