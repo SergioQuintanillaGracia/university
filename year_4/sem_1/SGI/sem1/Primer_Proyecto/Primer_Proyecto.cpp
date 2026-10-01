@@ -18,6 +18,8 @@ void display()
 {
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT);
+
+
 	glutWireTeapot(0.5);
 	glFlush();
 }

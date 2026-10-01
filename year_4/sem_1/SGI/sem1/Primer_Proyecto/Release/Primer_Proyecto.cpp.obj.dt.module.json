@@ -1,0 +1,14 @@
+{
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "Release\\Primer_Proyecto.obj",
+            "outputs": [
+                "Release\\Primer_Proyecto.cpp.obj.dt.module.json",
+                "Release\\Primer_Proyecto.cpp.obj.dt.d.json"
+            ],
+            "requires": []
+        }
+    ]
+}
